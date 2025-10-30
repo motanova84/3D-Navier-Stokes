@@ -49,6 +49,14 @@ lake-packages/
 *.pdf
 !Documentation/*.pdf
 
+# Results (keep structure but not large data files)
+Results/Data/*.dat
+Results/Data/*.h5
+Results/Data/*.hdf5
+Results/Figures/*.png
+Results/Figures/*.jpg
+Results/Figures/*.pdf
+delta_star.json
 # IDE
 .vscode/
 .idea/

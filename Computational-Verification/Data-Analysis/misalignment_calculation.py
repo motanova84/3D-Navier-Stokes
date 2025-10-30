@@ -2,6 +2,7 @@
 Herramientas para cálculo de defecto de desalineamiento
 """
 
+import json
 import numpy as np
 from typing import Tuple, Dict
 from scipy import fft
@@ -50,16 +51,16 @@ def compute_vorticity_from_velocity(u_field: np.ndarray, dx: float = 1.0) -> np.
     omega = np.zeros_like(u_field)
     
     # omega_x = ∂u_z/∂y - ∂u_y/∂z
-    omega[0] = (np.gradient(u_field[2], dx, axis=2) - 
-            np.gradient(u_field[1], dx, axis=3))
+    omega[0] = (np.gradient(u_field[2], dx, axis=1) - 
+            np.gradient(u_field[1], dx, axis=2))
     
     # omega_y = ∂u_x/∂z - ∂u_z/∂x
-    omega[1] = (np.gradient(u_field[0], dx, axis=3) - 
-            np.gradient(u_field[2], dx, axis=1))
+    omega[1] = (np.gradient(u_field[0], dx, axis=2) - 
+            np.gradient(u_field[2], dx, axis=0))
     
     # omega_z = ∂u_y/∂x - ∂u_x/∂y
-    omega[2] = (np.gradient(u_field[1], dx, axis=1) - 
-            np.gradient(u_field[0], dx, axis=2))
+    omega[2] = (np.gradient(u_field[1], dx, axis=0) - 
+            np.gradient(u_field[0], dx, axis=1))
     
     return omega
 
@@ -342,6 +343,31 @@ class MisalignmentCalculator:
         }
         
         return evolution
+    
+    def export_delta_star_json(self, evolution: Dict, filename: str = "delta_star.json"):
+        """
+        Exportar delta* a archivo JSON
+        
+        Args:
+            evolution: Diccionario con evolución temporal
+            filename: Nombre del archivo de salida
+        """
+        # Convertir arrays numpy a listas para serialización JSON
+        export_data = {
+            'delta_star': float(evolution['delta_star']),
+            'delta_star_std': float(evolution['delta_star_std']),
+            'delta_mean': evolution['delta_mean'].tolist(),
+            'delta_std': evolution['delta_std'].tolist(),
+            'enstrophy': evolution['enstrophy'].tolist(),
+            'correlation': evolution['correlation'].tolist(),
+            'n_timesteps': len(evolution['delta_mean'])
+        }
+        
+        with open(filename, 'w') as f:
+            json.dump(export_data, f, indent=2)
+        
+        print(f"Delta* data exported to {filename}")
+        print(f"  δ* = {export_data['delta_star']:.6f} ± {export_data['delta_star_std']:.6f}")
 
 
 def export_delta_star_to_json(delta_star: float, std_delta_star: float, 
@@ -391,6 +417,13 @@ if __name__ == "__main__":
     print(f"\nEnstrofia: {analysis['enstrophy']:.6f}")
     print(f"Correlación S-omega: {analysis['strain_vorticity_correlation']:.6f}")
     
+    # Ejemplo de evolución temporal y exportación a JSON
+    print("\n--- Evolución temporal y exportación ---")
+    n_timesteps = 10
+    u_history = [np.random.randn(3, N, N, N) * 0.1 for _ in range(n_timesteps)]
+    
+    evolution = calculator.temporal_evolution(u_history)
+    calculator.export_delta_star_json(evolution, "delta_star.json")
     # Export delta* example
     # In actual use, this would be called after temporal_evolution analysis
     # Example:

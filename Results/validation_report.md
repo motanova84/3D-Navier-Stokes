@@ -31,6 +31,26 @@ Theoretical prediction: δ* = a²c₀²/(4π²) ≈ 0.0253
 | 1000              | TBD         | TBD            |
 | 2000              | TBD         | TBD            |
 
+### Misalignment Defect δ* from DNS
+
+The misalignment defect δ* quantifies the deviation from perfect alignment between the strain rate tensor and vorticity. It is computed from DNS simulations using the `misalignment_calculation.py` tool.
+
+**Computational Method:**
+- Extract velocity fields from DNS solver at regular time intervals
+- Compute strain rate tensor S and vorticity ω at each point
+- Calculate δ(x,t) = 1 - (S·ω·ω)/(||S||·||ω||²)
+- Average δ over final 20% of simulation to obtain δ*
+
+**Export Format:**
+Results are exported to `delta_star.json` containing:
+- `delta_star`: Time-averaged misalignment defect
+- `delta_star_std`: Standard deviation of δ* estimate
+- `delta_mean`: Full temporal evolution of spatially-averaged δ
+- `enstrophy`: Temporal evolution of enstrophy
+- `correlation`: Strain-vorticity correlation coefficient
+
+**Current Results:** See `delta_star.json` for latest DNS runs.
+
 ### Riccati Coefficient α*
 
 For regularization, we require α* < 0 uniformly.
