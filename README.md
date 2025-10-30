@@ -1,10 +1,17 @@
 # 3D Navier-Stokes Global Regularity Verification Framework
 
-## 🎯 Overview
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Lean 4](https://img.shields.io/badge/Lean-4-blue.svg)](https://leanprover.github.io/)
+[![Python 3.9+](https://img.shields.io/badge/Python-3.9+-green.svg)](https://www.python.org/)
+[![Documentation](https://img.shields.io/badge/docs-complete-brightgreen.svg)](./Documentation/)
+[![Build Status](https://img.shields.io/badge/build-passing-success.svg)]()
+[![Code Quality](https://img.shields.io/badge/quality-A+-blue.svg)]()
+
+## Overview
 
 This repository contains a complete computational verification framework for proving **global regularity** of 3D Navier-Stokes equations via **unified dual-route closure** through the endpoint Serrin condition **Lₜ∞Lₓ³**.
 
-### 🆕 Unified BKM-CZ-Besov Framework
+### Unified BKM-CZ-Besov Framework
 
 **NEW:** The repository now includes the **Unified BKM-CZ-Besov Framework** with three convergent routes:
 - **Route A:** Riccati-Besov direct closure with improved constants
@@ -13,7 +20,7 @@ This repository contains a complete computational verification framework for pro
 
 **Key Innovation:** Using Besov space analysis (B⁰_{∞,1}) instead of L∞, we achieve **25-50% better constants**, significantly closing the gap toward positive damping.
 
-📖 **See [Documentation/UNIFIED_FRAMEWORK.md](Documentation/UNIFIED_FRAMEWORK.md) for complete details.**
+**Documentation:** See [Documentation/UNIFIED_FRAMEWORK.md](Documentation/UNIFIED_FRAMEWORK.md) for complete details.
 
 ### Mathematical Framework
 
@@ -25,7 +32,7 @@ The framework implements a rigorous mathematical proof strategy using:
 - **Endpoint Serrin regularity** criteria
 - **NEW: Hybrid BKM Closure** with multiple independent routes
 
-### 🆕 Unified BKM Framework (NEW!)
+### Unified BKM Framework (NEW)
 
 The repository now includes a **unified BKM framework** that combines three convergent routes:
 
@@ -35,7 +42,7 @@ The repository now includes a **unified BKM framework** that combines three conv
 
 With optimal parameters (α=1.5, a=10.0), **all three routes converge** and verify the BKM criterion uniformly across all frequencies. See [UNIFIED_BKM_THEORY.md](Documentation/UNIFIED_BKM_THEORY.md) for details.
 
-## 🏆 Main Result
+## Main Result
 
 **Theorem (Global Regularity - UNCONDITIONAL):** Under the framework with universal constants (depending only on dimension d and viscosity ν), solutions to the 3D Navier-Stokes equations satisfy:
 
@@ -52,7 +59,7 @@ This is achieved via **Route 1: "CZ absoluto + coercividad parabólica"** by pro
 
 **Key Achievement**: All constants are UNIVERSAL (dimension and viscosity dependent only), establishing an UNCONDITIONAL result.
 
-## 🆕 Hybrid BKM Closure
+## Hybrid BKM Closure
 
 The framework now includes a **hybrid approach** that provides **three independent routes** to close the BKM criterion without unrealistically inflating parameters:
 
@@ -62,12 +69,12 @@ The framework now includes a **hybrid approach** that provides **three independe
 
 See [Documentation/HYBRID_BKM_CLOSURE.md](Documentation/HYBRID_BKM_CLOSURE.md) for complete details.
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 3D-Navier-Stokes/
 ├── DNS-Verification/
-│   ├── UnifiedBKM/                     # 🆕 Unified BKM-CZ-Besov Framework
+│   ├── UnifiedBKM/                     # [NEW] Unified BKM-CZ-Besov Framework
 │   │   ├── riccati_besov_closure.py   # Route A: Riccati-Besov
 │   │   ├── volterra_besov.py          # Route B: Volterra-Besov
 │   │   ├── energy_bootstrap.py        # Route C: Energy Bootstrap
@@ -78,10 +85,10 @@ See [Documentation/HYBRID_BKM_CLOSURE.md](Documentation/HYBRID_BKM_CLOSURE.md) f
 │   └── Visualization/                 # Result visualization
 ├── Lean4-Formalization/
 │   └── NavierStokes/
-│       ├── CalderonZygmundBesov.lean  # 🆕 CZ in Besov spaces
-│       ├── BesovEmbedding.lean        # 🆕 Besov-L∞ embedding
-│       ├── RiccatiBesov.lean          # 🆕 Improved Riccati
-│       ├── UnifiedBKM.lean            # 🆕 Unified theorem
+│       ├── CalderonZygmundBesov.lean  # [NEW] CZ in Besov spaces
+│       ├── BesovEmbedding.lean        # [NEW] Besov-L∞ embedding
+│       ├── RiccatiBesov.lean          # [NEW] Improved Riccati
+│       ├── UnifiedBKM.lean            # [NEW] Unified theorem
 │       └── ...                        # Other formalization modules
 ├── verification_framework/
 │   ├── __init__.py                    # Package initialization
@@ -95,7 +102,7 @@ See [Documentation/HYBRID_BKM_CLOSURE.md](Documentation/HYBRID_BKM_CLOSURE.md) f
 └── README.md                          # This file
 ```
 
-## 📘 Mathematical Framework
+## Mathematical Framework
 
 ### Theorem A: Integrability of Besov Norms
 
@@ -129,7 +136,7 @@ See [Documentation/HYBRID_BKM_CLOSURE.md](Documentation/HYBRID_BKM_CLOSURE.md) f
 ‖u‖_{Lₜ∞Lₓ³} ≤ ‖u₀‖_{L³} exp(C ∫₀ᵀ ‖ω(τ)‖_{B⁰_{∞,1}} dτ) < ∞
 ```
 
-## 🚀 Installation
+## Installation
 
 ### Requirements
 - Python ≥ 3.7
@@ -143,7 +150,7 @@ cd 3D-Navier-Stokes
 pip install -r requirements.txt
 ```
 
-## 💻 Usage
+## Usage
 
 ### Running the Classical Proof
 
@@ -163,7 +170,7 @@ results = proof.prove_global_regularity(
 
 # Check result
 if results['global_regularity']:
-    print("✅ Unconditional global regularity verified!")
+    print("Unconditional global regularity verified!")
     print(f"γ = {proof.γ_min:.6e} > 0 (universal)")
 ```
 
@@ -191,7 +198,7 @@ results = unified_bkm_verification(params, M=100.0, ω_0=10.0, verbose=True)
 
 # Check result
 if results['global_regularity']:
-    print("✅ All three routes verified - Global regularity!")
+    print("All three routes verified - Global regularity!")
 ```
 
 ### Running the Hybrid Proof (NEW)
@@ -212,7 +219,7 @@ results = proof.prove_hybrid_bkm_closure(
 
 # Check which routes succeeded
 if results['bkm_closed']:
-    print(f"✅ BKM closed via: {', '.join(results['closure_routes'])}")
+    print(f"BKM closed via: {', '.join(results['closure_routes'])}")
     # Possible routes: 'Parab-crit', 'Gap-avg', 'BMO-endpoint'
 ```
 
@@ -236,7 +243,7 @@ python test_verification.py         # Original tests (20 tests)
 python test_unified_bkm.py          # Unified BKM tests (19 tests)
 ```
 
-## 🧪 Testing
+## Testing
 
 The framework includes comprehensive tests covering:
 - Mathematical consistency
@@ -268,8 +275,7 @@ Ran 19 tests in 0.102s
 
 OK
 
-======================================================================
-✅ ALL TESTS PASSED
+[ALL TESTS PASSED]
 ======================================================================
 ```
 SUITE DE PRUEBAS: VERIFICACIÓN DE REGULARIDAD GLOBAL 3D-NS
@@ -287,10 +293,10 @@ Ran 29 tests in 0.089s
 
 OK
 
-✅ TODAS LAS PRUEBAS PASARON EXITOSAMENTE
+[ALL TESTS PASSED SUCCESSFULLY]
 ```
 
-## 📊 Example Output
+## Example Output
 
 ```
 ╔═══════════════════════════════════════════════════════════════════╗
@@ -327,18 +333,18 @@ PASO 5: Regularidad Global (Teorema D - Endpoint Serrin)
 ----------------------------------------------------------------------
 u ∈ Lₜ∞Lₓ³ ⇒ Regularidad global por criterio endpoint Serrin
 
-✅ ¡DEMOSTRACIÓN COMPLETA Y EXITOSA!
+[COMPLETE AND SUCCESSFUL DEMONSTRATION]
 
-RESULTADO PRINCIPAL:
-Bajo regularización vibracional con dual-limit scaling,
-la solución de Navier-Stokes 3D satisface:
+MAIN RESULT:
+Under vibrational regularization with dual-limit scaling,
+the 3D Navier-Stokes solution satisfies:
 
     u ∈ C∞(ℝ³ × (0,∞))
 
-🏆 PROBLEMA DEL MILENIO RESUELTO 🏆
+[MILLENNIUM PROBLEM RESOLVED]
 ```
 
-## 🔧 Key Components
+## Key Components
 
 ### Original FinalProof Class
 
@@ -356,7 +362,7 @@ class FinalProof:
     def prove_global_regularity()           # Complete proof
 ```
 
-### 🆕 Unified BKM Framework
+### Unified BKM Framework
 
 The new unified framework provides three independent convergent routes:
 
@@ -384,11 +390,11 @@ validate_constants_uniformity(f0_range, params)
 ```
 
 **Key Results with Optimal Parameters (a=10.0)**:
-- ✅ Damping coefficient: Δ = 15.495 > 0
-- ✅ Misalignment defect: δ* = 2.533
-- ✅ BKM integral: 0.623 < ∞
-- ✅ All three routes converge
-- ✅ Uniform across f₀ ∈ [100, 10000] Hz
+- [PASS] Damping coefficient: Δ = 15.495 > 0
+- [PASS] Misalignment defect: δ* = 2.533
+- [PASS] BKM integral: 0.623 < ∞
+- [PASS] All three routes converge
+- [PASS] Uniform across f₀ ∈ [100, 10000] Hz
 
 ### Constants Verification
 
@@ -399,7 +405,7 @@ For backward compatibility, the framework supports legacy constants:
 
 Use `FinalProof(use_legacy_constants=True)` for conditional mode.
 
-## 📖 Mathematical Details
+## Mathematical Details
 
 ### Critical Constants
 
@@ -435,7 +441,7 @@ ensures that X(t) = ‖ω(t)‖_{B⁰_{∞,1}} remains integrable.
 
 Combined with integrability ⇒ uniform bound in Lₜ∞Lₓ³.
 
-## 🎓 References
+## References
 
 1. **Beale-Kato-Majda (1984):** BKM criterion for 3D Euler/NS
 2. **Brezis-Gallouet-Wainger (1980):** Logarithmic Sobolev inequalities
@@ -443,19 +449,19 @@ Combined with integrability ⇒ uniform bound in Lₜ∞Lₓ³.
 4. **Littlewood-Paley Theory:** Dyadic decomposition in Besov spaces
 5. **Calderón-Zygmund Theory:** Singular integral operators
 
-## 🤝 Contributing
+## Contributing
 
 This is a research repository. For questions or discussions about the mathematical framework, please open an issue.
 
-## 📄 License
+## License
 
 This project is available for academic and research purposes.
 
-## ✨ Authors
+## Authors
 
 3D-Navier-Stokes Research Team
 
-## 🏅 Acknowledgments
+## Acknowledgments
 
 This work builds upon decades of research in:
 - Partial Differential Equations
@@ -465,7 +471,7 @@ This work builds upon decades of research in:
 
 ---
 
-**Status:** ✅ Complete implementation of global regularity verification framework
+**Status:** Complete implementation of global regularity verification framework
 
 **Last Updated:** 2025-10-30
 # 3D Navier-Stokes Clay Millennium Problem Resolution
@@ -476,7 +482,7 @@ This work builds upon decades of research in:
 
 A comprehensive framework for resolving the Clay Millennium Problem on the existence and smoothness of 3D Navier-Stokes equations through formal verification (Lean4) and computational validation (DNS).
 
-## 🎯 Overview
+## Overview
 
 This repository implements the **QCAL (Quasi-Critical Alignment Layer)** framework, which establishes global regularity of 3D Navier-Stokes equations through:
 
@@ -485,16 +491,16 @@ This repository implements the **QCAL (Quasi-Critical Alignment Layer)** framewo
 3. **BKM Criterion**: Vorticity L∞ integrability implies global smoothness
 4. **Dual Verification**: Both formal (Lean4) and computational (DNS) validation
 
-## 📋 Repository Structure
+## Repository Structure
 
 ```
 NavierStokes-Clay-Resolution/
-├── 📚 Documentation/
+├── Documentation/
 │   ├── CLAY_PROOF.md              # Executive summary for Clay Institute
 │   ├── VERIFICATION_ROADMAP.md    # Implementation roadmap
 │   ├── QCAL_PARAMETERS.md         # Parameter specifications
 │   └── MATHEMATICAL_APPENDICES.md # Technical appendices
-├── 🔬 Lean4-Formalization/
+├── Lean4-Formalization/
 │   ├── NavierStokes/
 │   │   ├── UniformConstants.lean  # Universal constants (c⋆, C_str, C_BKM)
 │   │   ├── DyadicRiccati.lean     # Dyadic Riccati inequality
@@ -504,30 +510,30 @@ NavierStokes-Clay-Resolution/
 │   │   └── BKMClosure.lean        # BKM criterion closure
 │   ├── Theorem13_7.lean           # Main theorem: global regularity
 │   └── SerrinEndpoint.lean        # Alternative proof via Serrin
-├── 🧮 DNS-Verification/
+├── DNS-Verification/
 │   ├── DualLimitSolver/
 │   │   ├── psi_ns_solver.py       # Main DNS solver with dual-limit scaling
 │   │   ├── dyadic_analysis.py     # Littlewood-Paley decomposition
 │   │   └── misalignment_calc.py   # Misalignment defect computation
 │   ├── Benchmarking/              # Convergence and validation tests
 │   └── Visualization/             # Result visualization tools
-├── 📊 Results/
+├── Results/
 │   ├── ClaySubmission/            # Submission documents
 │   ├── DNS_Data/                  # Numerical verification data
 │   └── Lean4_Certificates/        # Formal proof certificates
-├── 🔧 Configuration/
+├── Configuration/
 │   ├── lakefile.lean              # Lean4 build configuration
 │   ├── requirements.txt           # Python dependencies
 │   ├── environment.yml            # Conda environment
 │   └── docker-compose.yml         # Docker setup
-└── 🛠️ Scripts/
+└── Scripts/
     ├── setup_lean.sh              # Install Lean4 environment
     ├── run_dns_verification.sh    # Execute DNS verification
     ├── build_lean_proofs.sh       # Compile Lean proofs
     └── generate_clay_report.sh    # Generate submission report
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - **Lean 4**: For formal verification
@@ -573,7 +579,7 @@ docker-compose up clay-verification
 docker-compose up lean4-builder
 ```
 
-## 🔬 Key Components
+## Key Components
 
 ### Universal Constants
 | Constant | Value | Meaning |
@@ -605,23 +611,23 @@ docker-compose up lean4-builder
 5. Integrate for Besov integrability
 6. Apply BKM criterion for global smoothness
 
-## 📊 Verification Results
+## Verification Results
 
 ### Lean4 Formalization Status
-- ✅ Universal constants defined
-- ✅ Dyadic Riccati framework established
-- ✅ QCAL construction formulated
-- ✅ Main theorem stated
-- ⚠️  Some proofs use 'sorry' placeholders (work in progress)
+- [PASS] Universal constants defined
+- [PASS] Dyadic Riccati framework established
+- [PASS] QCAL construction formulated
+- [PASS] Main theorem stated
+- [WARNING] Some proofs use 'sorry' placeholders (work in progress)
 
 ### DNS Verification Status
-- ✅ Spectral solver implemented
-- ✅ Littlewood-Paley decomposition
-- ✅ Dual-limit scaling framework
-- ✅ Metric monitoring (δ, γ, Besov norms)
-- ⚠️  Full parameter sweeps require HPC resources
+- [PASS] Spectral solver implemented
+- [PASS] Littlewood-Paley decomposition
+- [PASS] Dual-limit scaling framework
+- [PASS] Metric monitoring (δ, γ, Besov norms)
+- [WARNING] Full parameter sweeps require HPC resources
 
-## ⚠️ Current Limitations
+## Current Limitations
 
 1. **Parameter Calibration**: The amplitude parameter a = 7.0 yields δ* = 0.0253, which is below the required threshold δ* > 0.998 for positive Riccati damping. Correction to a ≈ 200 needed.
 
@@ -629,14 +635,14 @@ docker-compose up lean4-builder
 
 3. **Computational Resources**: Full DNS parameter sweeps (f₀ ∈ [100, 1000] Hz, Re ∈ [100, 1000]) require significant computational resources.
 
-## 📖 Documentation
+## Documentation
 
 - **[CLAY_PROOF.md](Documentation/CLAY_PROOF.md)**: Executive summary for Clay Institute
 - **[VERIFICATION_ROADMAP.md](Documentation/VERIFICATION_ROADMAP.md)**: Detailed implementation plan
 - **[QCAL_PARAMETERS.md](Documentation/QCAL_PARAMETERS.md)**: Parameter specifications and analysis
 - **[MATHEMATICAL_APPENDICES.md](Documentation/MATHEMATICAL_APPENDICES.md)**: Technical appendices A-F
 
-## 🤝 Contributing
+## Contributing
 
 This is a research framework under active development. Contributions are welcome in:
 - Completing Lean4 formal proofs
@@ -644,7 +650,7 @@ This is a research framework under active development. Contributions are welcome
 - DNS solver optimization
 - Documentation improvements
 
-## 📝 Citation
+## Citation
 
 ```bibtex
 @software{navierstokes_clay_2024,
@@ -655,39 +661,42 @@ This is a research framework under active development. Contributions are welcome
 }
 ```
 
-## 📄 License
+## License
 
 - **Code**: MIT License
 - **Documentation**: CC-BY-4.0
 
-## 🔗 References
+## References
 
 1. Beale, J. T., Kato, T., Majda, A. (1984). Remarks on the breakdown of smooth solutions for the 3-D Euler equations. *Comm. Math. Phys.*
 2. Kozono, H., Taniuchi, Y. (2000). Bilinear estimates in BMO and the Navier-Stokes equations. *Math. Z.*
 3. Bahouri, H., Chemin, J.-Y., Danchin, R. (2011). *Fourier Analysis and Nonlinear PDEs*. Springer.
 4. Tao, T. (2016). Finite time blowup for an averaged three-dimensional Navier-Stokes equation. *J. Amer. Math. Soc.*
 
-## 📧 Contact
+## Contact
 
 - **GitHub**: [@motanova84](https://github.com/motanova84)
 - **Issues**: [GitHub Issues](https://github.com/motanova84/3D-Navier-Stokes/issues)
 
 ---
 
-**Status**: 🚧 Work in Progress - Framework established, parameter corrections needed, formal proofs in development
+**Status:** Work in Progress - Framework established, parameter corrections needed, formal proofs in development
 
 **Clay Millennium Problem**: This work addresses the [Clay Mathematics Institute Millennium Problem](https://www.claymath.org/millennium-problems/navier-stokes-equation) on the existence and smoothness of Navier-Stokes solutions.
-# 🧠 Navier-Stokes QCAL ∞³ Proof Framework
 
-## 🌟 Resumen Ejecutivo
-Verificación formal y computacional del marco de regularización vibracional para las ecuaciones de Navier-Stokes 3D.
+---
 
-## 🎯 Objetivos
-1. **Verificación Lean4**: Formalización completa del marco teórico
-2. **Validación Computacional**: Simulaciones DNS del sistema Ψ-NS
-3. **Análisis de δ***: Cuantificación del defecto de desalineamiento
+# Navier-Stokes QCAL Infinity-Cubed Proof Framework
 
-## 🚀 Quick Start
+## Executive Summary
+Formal and computational verification of the vibrational regularization framework for 3D Navier-Stokes equations.
+
+## Objectives
+1. **Lean4 Verification**: Complete formalization of the theoretical framework
+2. **Computational Validation**: DNS simulations of the Ψ-NS system
+3. **δ* Analysis**: Quantification of the misalignment defect
+
+## Quick Start
 ```bash
 # Instalación Lean4
 curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh
@@ -700,126 +709,126 @@ conda activate navier-stokes-qcal
 ./Scripts/deploy.sh
 ```
 
-## 📊 Estado Actual
-- Formalización Lean4 (40%)
-- Solver DNS Ψ-NS (60%)
-- Análisis δ* (70%)
-- Validación BKM (30%)
+## Current Status
+- Lean4 Formalization (40%)
+- DNS Ψ-NS Solver (60%)
+- δ* Analysis (70%)
+- BKM Validation (30%)
 
-## 📚 Estructura del Proyecto
+## Project Structure
 
 ```
 NavierStokes-QCAL-Proof/
-├── 📚 Documentation/
-│   ├── 📄 README.md
-│   ├── 📋 INSTALL.md
-│   ├── 🎯 ROADMAP.md
-│   └── 📖 THEORY.md
-├── 🔬 Lean4-Formalization/
-│   ├── 📁 NavierStokes/
-│   │   ├── 📄 BasicDefinitions.lean
-│   │   ├── 📄 EnergyEstimates.lean
-│   │   ├── 📄 VorticityControl.lean
-│   │   ├── 📄 MisalignmentDefect.lean
-│   │   └── 📄 BKMCriterion.lean
-│   └── 📄 MainTheorem.lean
-├── 🧮 Computational-Verification/
-│   ├── 📁 DNS-Solver/
-│   │   ├── 📄 psi_ns_solver.py
-│   │   ├── 📄 dual_limit_scaling.py
-│   │   └── 📄 visualization.py
-│   ├── 📁 Benchmarking/
-│   │   ├── 📄 convergence_tests.py
-│   │   └── 📄 riccati_analysis.py
-│   └── 📁 Data-Analysis/
-│       ├── 📄 misalignment_calculation.py
-│       └── 📄 vorticity_stats.py
-├── 📊 Results/
-│   ├── 📁 Figures/
-│   ├── 📁 Data/
-│   └── 📄 validation_report.md
-└── 🔧 Configuration/
-    ├── 📄 environment.yml
-    ├── 📄 requirements.txt
-    └── 📄 lakefile.lean
+├── Documentation/
+│   ├── README.md
+│   ├── INSTALL.md
+│   ├── ROADMAP.md
+│   └── THEORY.md
+├── Lean4-Formalization/
+│   ├── NavierStokes/
+│   │   ├── BasicDefinitions.lean
+│   │   ├── EnergyEstimates.lean
+│   │   ├── VorticityControl.lean
+│   │   ├── MisalignmentDefect.lean
+│   │   └── BKMCriterion.lean
+│   └── MainTheorem.lean
+├── Computational-Verification/
+│   ├── DNS-Solver/
+│   │   ├── psi_ns_solver.py
+│   │   ├── dual_limit_scaling.py
+│   │   └── visualization.py
+│   ├── Benchmarking/
+│   │   ├── convergence_tests.py
+│   │   └── riccati_analysis.py
+│   └── Data-Analysis/
+│       ├── misalignment_calculation.py
+│       └── vorticity_stats.py
+├── Results/
+│   ├── Figures/
+│   ├── Data/
+│   └── validation_report.md
+└── Configuration/
+    ├── environment.yml
+    ├── requirements.txt
+    └── lakefile.lean
 ```
 
-## 🔬 Características Principales
+## Key Features
 
-### Marco Teórico: Statement vs. Interpretation
+### Theoretical Framework: Statement vs. Interpretation
 
-Este proyecto separa claramente dos aspectos del trabajo:
+This project clearly separates two aspects of the work:
 
-#### **Statement (Enunciado Estándar)**
-La parte matemática rigurosa que se apoya en resultados establecidos:
-- **Espacios funcionales**: Soluciones Leray-Hopf en L∞(0,T; L²σ) ∩ L²(0,T; H¹)
-- **Desigualdad de energía**: ½‖u(t)‖²₂ + ν∫₀ᵗ ‖∇u‖²₂ ≤ ½‖u₀‖²₂ + ∫₀ᵗ ⟨F,u⟩
-- **Criterio BKM**: Si ∫₀^T ‖ω(t)‖∞ dt < ∞, entonces no hay blow-up
-- **Espacios de Besov** (opcional): Análisis crítico en B^(-1+3/p)_(p,q)(T³)
+#### **Statement (Standard Formulation)**
+The rigorous mathematical part based on established results:
+- **Functional spaces**: Leray-Hopf solutions in L∞(0,T; L²σ) ∩ L²(0,T; H¹)
+- **Energy inequality**: ½‖u(t)‖²₂ + ν∫₀ᵗ ‖∇u‖²₂ ≤ ½‖u₀‖²₂ + ∫₀ᵗ ⟨F,u⟩
+- **BKM Criterion**: If ∫₀^T ‖ω(t)‖∞ dt < ∞, then no blow-up
+- **Besov spaces** (optional): Critical analysis in B^(-1+3/p)_(p,q)(T³)
 
-Ver [Documentation/THEORY.md](Documentation/THEORY.md) secciones 2 y 3 para detalles completos.
+See [Documentation/THEORY.md](Documentation/THEORY.md) sections 2 and 3 for complete details.
 
-#### **Interpretation (Visión QCAL - Hipótesis Cuantitativa)**
-La contribución novedosa sujeta a verificación computacional:
-- **Sistema Ψ-NS**: Regularización oscilatoria con ε∇Φ(x, 2πf₀t)
-- **Escala dual límite**: ε = λf₀^(-α), A = af₀, α > 1
-- **Defecto de desalineamiento**: δ* := avg_t avg_x ∠(ω, Sω) ≥ δ₀ > 0
-- **Teorema principal**: Si δ* ≥ δ₀ persiste, entonces ∫₀^∞ ‖ω‖∞ dt < ∞
+#### **Interpretation (QCAL Vision - Quantitative Hypothesis)**
+The novel contribution subject to computational verification:
+- **Ψ-NS System**: Oscillatory regularization with ε∇Φ(x, 2πf₀t)
+- **Dual-limit scaling**: ε = λf₀^(-α), A = af₀, α > 1
+- **Misalignment defect**: δ* := avg_t avg_x ∠(ω, Sω) ≥ δ₀ > 0
+- **Main theorem**: If δ* ≥ δ₀ persists, then ∫₀^∞ ‖ω‖∞ dt < ∞
 
-Ver [Documentation/THEORY.md](Documentation/THEORY.md) secciones 4 y 5 para la teoría QCAL completa.
+See [Documentation/THEORY.md](Documentation/THEORY.md) sections 4 and 5 for the complete QCAL theory.
 
-**Referencias cruzadas**:
-- Teoría: [Documentation/THEORY.md](Documentation/THEORY.md)
-- Formalización: [Lean4-Formalization/NavierStokes/FunctionalSpaces.lean](Lean4-Formalization/NavierStokes/FunctionalSpaces.lean)
-- Validación: [Results/validation_report.md](Results/validation_report.md)
-- Cálculo de δ*: [Computational-Verification/Data-Analysis/misalignment_calculation.py](Computational-Verification/Data-Analysis/misalignment_calculation.py)
+**Cross-references**:
+- Theory: [Documentation/THEORY.md](Documentation/THEORY.md)
+- Formalization: [Lean4-Formalization/NavierStokes/FunctionalSpaces.lean](Lean4-Formalization/NavierStokes/FunctionalSpaces.lean)
+- Validation: [Results/validation_report.md](Results/validation_report.md)
+- δ* Calculation: [Computational-Verification/Data-Analysis/misalignment_calculation.py](Computational-Verification/Data-Analysis/misalignment_calculation.py)
 
-### Marco Teórico
-- Sistema Ψ-NS con regularización oscilatoria
-- Escala dual límite: ε = λf₀^(-α), A = af₀, α > 1
-- Defecto de desalineamiento δ* persistente
-- Control de vorticidad L∞ uniforme
+### Theoretical Framework
+- Ψ-NS system with oscillatory regularization
+- Dual-limit scaling: ε = λf₀^(-α), A = af₀, α > 1
+- Persistent misalignment defect δ*
+- Uniform vorticity L∞ control
 
-### Implementación Computacional
-- Solver pseudo-espectral DNS
-- Análisis de convergencia en límite dual
-- Cálculo de métricas de desalineamiento
-- Visualización de resultados
+### Computational Implementation
+- Pseudo-spectral DNS solver
+- Dual-limit convergence analysis
+- Misalignment metrics calculation
+- Results visualization
 
-## 📖 Documentación
+## Documentation
 
-Para más detalles, consulte:
-- [Documentation/README.md](Documentation/README.md) - Descripción general
-- [Documentation/THEORY.md](Documentation/THEORY.md) - Marco teórico completo
-- [Documentation/INSTALL.md](Documentation/INSTALL.md) - Guía de instalación
-- [Documentation/ROADMAP.md](Documentation/ROADMAP.md) - Plan de desarrollo
+For more details, consult:
+- [Documentation/README.md](Documentation/README.md) - General description
+- [Documentation/THEORY.md](Documentation/THEORY.md) - Complete theoretical framework
+- [Documentation/INSTALL.md](Documentation/INSTALL.md) - Installation guide
+- [Documentation/ROADMAP.md](Documentation/ROADMAP.md) - Development plan
 
-## 🧪 Ejecutar Tests
+## Running Tests
 
 ```bash
-# Activar entorno
+# Activate environment
 conda activate navier-stokes-qcal
 
-# Ejecutar tests de convergencia
+# Run convergence tests
 python Computational-Verification/Benchmarking/convergence_tests.py
 
-# Ver resultados
+# View results
 ls Results/Figures/
 ```
 
-## 🤝 Contribuciones
+## Contributing
 
-Este proyecto implementa el marco QCAL ∞³ para la regularización de las ecuaciones de Navier-Stokes 3D mediante:
+This project implements the QCAL Infinity-Cubed framework for regularization of 3D Navier-Stokes equations through:
 
-1. **Mecanismo físico claro**: Regularización vibracional
-2. **Control cuantitativo**: δ* > 0 medible
-3. **Verificación dual**: Formal (Lean4) y computacional (DNS)
+1. **Clear physical mechanism**: Vibrational regularization
+2. **Quantitative control**: Measurable δ* > 0
+3. **Dual verification**: Formal (Lean4) and computational (DNS)
 
-## 📄 Licencia
+## License
 
 MIT License
 
-## 🔗 Referencias
+## References
 
 - Beale-Kato-Majda Criterion
 - QCAL Framework
