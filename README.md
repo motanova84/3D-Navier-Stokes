@@ -20,6 +20,7 @@
 - [Overview](#overview)
 - [Main Results](#main-results)
 - [Mathematical Framework](#mathematical-framework)
+- [Verifiable Proof Certificates](#verifiable-proof-certificates)
 - [Repository Structure](#repository-structure)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -123,6 +124,72 @@ The framework provides **three independent routes** to establish the BKM criteri
 3. **BMO-endpoint Route**: Kozono-Taniuchi estimates with bounded logarithm (improved constants)
 
 **Technical Documentation:** [Documentation/HYBRID_BKM_CLOSURE.md](Documentation/HYBRID_BKM_CLOSURE.md)
+
+---
+
+## Verifiable Proof Certificates
+
+### Third-Party Verification
+
+This framework provides **cryptographic proof certificates** that enable automated, third-party verification without manual intervention:
+
+- ✅ **SHA256 hashes** of all Lean4 source files
+- ✅ **SHA256 signatures** of compiled proof artifacts (.olean files)
+- ✅ **Session logs** with timestamps and build metadata
+- ✅ **DNS verification data** integrity hashes
+- ✅ **Environment information** (versions, git commits, build parameters)
+
+### Quick Verification
+
+Verify the proof certificates (no build required):
+
+```bash
+# Clone repository
+git clone https://github.com/motanova84/3D-Navier-Stokes.git
+cd 3D-Navier-Stokes
+
+# Verify all certificates automatically
+python3 Scripts/verify_proof_certificates.py
+```
+
+Expected output:
+```
+✅ ALL VERIFICATIONS PASSED
+The proof certificates are valid and all file hashes match.
+```
+
+### Generate New Certificates
+
+For repository maintainers and contributors:
+
+```bash
+# Build Lean4 proofs and generate certificates
+bash Scripts/build_lean_proofs_with_certificates.sh
+
+# Or generate certificates separately
+python3 Scripts/generate_proof_certificates.py
+```
+
+### Certificate Contents
+
+Each certificate (`Results/Lean4_Certificates/proof_certificate_latest.json`) contains:
+
+- **Lean4 source hashes**: SHA256 of every .lean file
+- **Compiled artifact hashes**: SHA256 of every .olean file
+- **DNS data hashes**: SHA256 of all numerical simulation results
+- **Master hashes**: Combined hash for integrity verification
+- **Build metadata**: Timestamps, versions, git commits
+
+### Continuous Integration
+
+Certificates are automatically generated and verified on every CI build:
+- Generated after successful Lean4 compilation
+- Verified for consistency before deployment
+- Uploaded as GitHub Actions artifacts (90-day retention)
+
+### Documentation
+
+Complete verification guide: [Documentation/VERIFICATION_CERTIFICATES.md](Documentation/VERIFICATION_CERTIFICATES.md)
 
 ---
 

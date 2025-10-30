@@ -81,8 +81,12 @@ docs/_build/
 # Temporary files
 *.tmp
 *.log
+!build.log
 /tmp/
 
 # Large data files
 Results/DNS_Data/*.h5
 Results/DNS_Data/*.dat
+
+# Keep proof certificates
+!Results/Lean4_Certificates/*.json
