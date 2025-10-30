@@ -49,6 +49,7 @@ Results/Data/*.hdf5
 Results/Figures/*.png
 Results/Figures/*.jpg
 Results/Figures/*.pdf
+delta_star.json
 
 # OS
 .DS_Store
