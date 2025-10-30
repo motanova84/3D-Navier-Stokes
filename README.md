@@ -512,7 +512,7 @@ Roadmap detallado: [`docs/formal_proof_status.md`](docs/formal_proof_status.md)
 
 - ⚠️ Aunque el sistema es físicamente motivado y matemáticamente coherente, **no resuelve el enunciado exacto de Clay**.
 
-- 🧩 Sin embargo, **si logramos demostrar que el límite del sistema extendido (QCAL) con $\epsilon \to 0$ recupera regularidad en el sistema clásico**, entonces se abriría la posibilidad de reclasificación.
+- 🧩 Sin embargo, **si logramos demostrar que el límite del sistema extendido (QCAL) con ε → 0 recupera regularidad en el sistema clásico** (donde ε es el parámetro de regularización vibracional), entonces se abriría la posibilidad de reclasificación.
 
 ---
 

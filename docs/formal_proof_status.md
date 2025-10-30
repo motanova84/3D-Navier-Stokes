@@ -9,7 +9,7 @@ Este documento rastrea el estado de la verificación formal en Lean4 del sistema
 | **Módulos Lean4** | 17 |
 | **Teoremas Verificados** | 18 |
 | **Axiomas (requieren prueba)** | 27 |
-| **Progreso Total** | 🔶 ~40% |
+| **Progreso Total** | 🔶 ~49% |
 | **Última Actualización** | 31 octubre 2025 |
 
 ---
@@ -30,7 +30,7 @@ Este documento rastrea el estado de la verificación formal en Lean4 del sistema
 ### 2. UniformConstants.lean
 | Elemento | Tipo | Verificado | Comentario |
 |----------|------|------------|------------|
-| UniversalConstants | Estructura | ✅ | c⋆=1/16, C_str=32, C_BKM=2, c_B=0.1 |
+| UniversalConstants | Estructura | ✅ | c_star=1/16 (coercividad), C_str=32, C_BKM=2, c_B=0.1 |
 | QCALParameters | Estructura | ✅ | a=7.0, c₀=1.0, f₀=141.7001 Hz |
 | delta_star_positive | Teorema | ✅ | Prueba con `positivity` |
 | positive_damping_condition | Teorema | ✅ | Condición γ > 0 ⟺ δ* > 1 - ν/512 |
@@ -65,7 +65,7 @@ Este documento rastrea el estado de la verificación formal en Lean4 del sistema
 ### 5. BesovEmbedding.lean
 | Elemento | Tipo | Verificado | Comentario |
 |----------|------|------------|------------|
-| C_star | Definición | ✅ | Constante C⋆ = 1.2 |
+| C_star | Definición | ✅ | Constante C_star = 1.2 (Besov embedding) |
 | log_plus_nonneg | Teorema | ✅ | No negatividad de log⁺ |
 | log_plus_mono | Axioma | ❌ | Monotonicidad de log⁺ |
 | besov_linfty_embedding | Axioma | ❌ | Embedding Besov → L∞ |
