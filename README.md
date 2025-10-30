@@ -10,6 +10,7 @@ The framework implements a rigorous mathematical proof strategy using:
 - **Osgood differential inequalities**
 - **Brezis-Gallouet-Wainger (BGW)** logarithmic estimates
 - **Endpoint Serrin regularity** criteria
+- **NEW: Hybrid BKM Closure** with multiple independent routes
 
 ## 🏆 Main Result
 
@@ -24,15 +25,28 @@ This is achieved by proving:
 2. **L³ control:** ‖u‖_{Lₜ∞Lₓ³} < ∞
 3. **Endpoint Serrin:** u ∈ Lₜ∞Lₓ³ ⇒ global regularity
 
+## 🆕 Hybrid BKM Closure
+
+The framework now includes a **hybrid approach** that provides **three independent routes** to close the BKM criterion without unrealistically inflating parameters:
+
+1. **Gap-avg Route:** Time-averaged misalignment δ̄₀ (more realistic than pointwise)
+2. **Parab-crit Route:** Dyadic Riccati with parabolic coercivity (no log dependence)
+3. **BMO-endpoint Route:** Kozono-Taniuchi estimate with bounded logarithm (improved constants)
+
+See [Documentation/HYBRID_BKM_CLOSURE.md](Documentation/HYBRID_BKM_CLOSURE.md) for complete details.
+
 ## 📁 Repository Structure
 
 ```
 3D-Navier-Stokes/
 ├── verification_framework/
 │   ├── __init__.py                    # Package initialization
-│   ├── final_proof.py                 # Main proof implementation (Theorems A-D)
+│   ├── final_proof.py                 # Main proof (classical + hybrid)
 │   └── constants_verification.py     # Mathematical constants verification
-├── test_verification.py               # Comprehensive test suite
+├── Documentation/
+│   ├── HYBRID_BKM_CLOSURE.md         # NEW: Hybrid approach documentation
+│   └── MATHEMATICAL_APPENDICES.md    # Technical appendices
+├── test_verification.py               # Comprehensive test suite (29 tests)
 ├── requirements.txt                   # Python dependencies
 └── README.md                          # This file
 ```
@@ -87,7 +101,7 @@ pip install -r requirements.txt
 
 ## 💻 Usage
 
-### Running the Complete Proof
+### Running the Classical Proof
 
 ```python
 from verification_framework import FinalProof
@@ -95,7 +109,7 @@ from verification_framework import FinalProof
 # Initialize proof framework
 proof = FinalProof(ν=1e-3, δ_star=1/(4*np.pi**2))
 
-# Execute complete proof
+# Execute classical proof
 results = proof.prove_global_regularity(
     T_max=100.0,      # Time horizon
     X0=10.0,          # Initial Besov norm
@@ -108,10 +122,32 @@ if results['global_regularity']:
     print("✅ Global regularity verified!")
 ```
 
+### Running the Hybrid Proof (NEW)
+
+```python
+from verification_framework import FinalProof
+
+# Initialize with hybrid constants
+proof = FinalProof(ν=1e-3, δ_star=1/(4*np.pi**2), f0=141.7)
+
+# Execute hybrid proof with multiple routes
+results = proof.prove_hybrid_bkm_closure(
+    T_max=100.0,
+    X0=10.0,
+    u0_L3_norm=1.0,
+    verbose=True
+)
+
+# Check which routes succeeded
+if results['bkm_closed']:
+    print(f"✅ BKM closed via: {', '.join(results['closure_routes'])}")
+    # Possible routes: 'Parab-crit', 'Gap-avg', 'BMO-endpoint'
+```
+
 ### Running from Command Line
 
 ```bash
-# Run complete proof
+# Run complete proof (both classical and hybrid)
 python verification_framework/final_proof.py
 
 # Verify constants
@@ -125,6 +161,7 @@ python test_verification.py
 
 The framework includes comprehensive tests covering:
 - Mathematical consistency
+- **NEW:** Hybrid approach components (time-averaged δ₀, parabolic coercivity, BMO estimates)
 - Numerical stability
 - Edge cases
 - Long-time behavior
@@ -137,14 +174,17 @@ python test_verification.py
 Expected output:
 ```
 SUITE DE PRUEBAS: VERIFICACIÓN DE REGULARIDAD GLOBAL 3D-NS
+  (Incluyendo Enfoque Híbrido)
 
 test_dissipative_scale_positive ... ok
 test_global_regularity_proof ... ok
 test_integrability_verification ... ok
 ...
+test_time_averaged_misalignment ... ok
+test_parabolic_criticality ... ok
 
 ----------------------------------------------------------------------
-Ran 24 tests in 5.234s
+Ran 29 tests in 0.089s
 
 OK
 
