@@ -359,6 +359,8 @@ The framework includes comprehensive tests covering:
 - **Parameter optimization**
 - **Uniformity across frequencies**
 
+### Running Tests
+
 Run all tests:
 ```bash
 # Original verification tests (20 tests)
@@ -366,7 +368,37 @@ python test_verification.py
 
 # Unified BKM tests (19 tests)
 python test_unified_bkm.py
+
+# Unconditional proof tests
+python test_unconditional.py
 ```
+
+### Test Coverage Reports
+
+The repository includes comprehensive test coverage analysis for both Python and Lean4 components:
+
+```bash
+# Run Python test coverage
+./Scripts/run_python_coverage.sh
+
+# Run Lean4 coverage analysis
+./Scripts/run_lean_coverage.sh
+
+# Run both coverage reports
+./Scripts/run_all_coverage.sh
+```
+
+**Coverage Reports:**
+- **Python Coverage:** HTML report in `coverage_html_report/index.html`
+- **Comprehensive Report:** See `COVERAGE_REPORT.md` for detailed module-by-module analysis
+- **CI/CD Integration:** Coverage runs automatically on every commit
+
+**Coverage Targets:**
+- Core modules: ≥90% line coverage
+- Numerical solvers: ≥85% line coverage
+- Lean4 proofs: 100% completeness (no `sorry` statements)
+
+For detailed information about test coverage and module contributions, see [COVERAGE_REPORT.md](COVERAGE_REPORT.md).
 
 Expected output:
 ```

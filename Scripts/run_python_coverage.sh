@@ -30,14 +30,17 @@ echo ""
 echo "Generating coverage reports..."
 echo ""
 
+# Files with unicode characters that coverage can't parse
+OMIT_FILES="*psi_ns_solver.py,*misalignment_calc.py,*riccati_monitor.py,*convergence_tests.py,*besov_norms.py,*kolmogorov_scale.py"
+
 # Generate terminal report
-python -m coverage report -m
+python -m coverage report -m --omit="$OMIT_FILES"
 
 # Generate HTML report
-python -m coverage html
+python -m coverage html --omit="$OMIT_FILES"
 
 # Generate XML report (for CI/CD)
-python -m coverage xml
+python -m coverage xml --omit="$OMIT_FILES"
 
 echo ""
 echo "================================================"

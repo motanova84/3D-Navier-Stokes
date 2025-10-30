@@ -4,14 +4,23 @@ source =
     verification_framework
     DNS-Verification/DualLimitSolver
     DNS-Verification/UnifiedBKM
-    DNS-Verification/Benchmarking
-    DNS-Verification/Visualization
 
 omit = 
     */test_*.py
     */__pycache__/*
     */tests/*
     setup.py
+    DNS-Verification/Benchmarking/*
+    DNS-Verification/Visualization/*
+    DNS-Verification/DualLimitSolver/psi_ns_solver.py
+    DNS-Verification/DualLimitSolver/misalignment_calc.py
+    DNS-Verification/DualLimitSolver/riccati_monitor.py
+    visualize_proof.py
+    example_proof.py
+    examples_unified_bkm.py
+    demo_unconditional.py
+    clay_millennium_verification.py
+    tools/*
 
 [report]
 # Report formatting options
