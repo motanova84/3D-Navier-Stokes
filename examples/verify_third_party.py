@@ -10,10 +10,16 @@ Usage:
 """
 
 import sys
+import os
 from pathlib import Path
 
-# Add parent directory to path
-sys.path.insert(0, str(Path(__file__).parent.parent / "Scripts"))
+# Add Scripts directory to path for importing verification functions
+repo_root = Path(__file__).parent.parent
+scripts_dir = repo_root / "Scripts"
+sys.path.insert(0, str(scripts_dir))
+
+# Change to repo root for consistent file resolution
+os.chdir(repo_root)
 
 from verify_proof_certificates import (
     load_certificate,

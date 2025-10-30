@@ -3,9 +3,9 @@
 Verify proof certificates for third-party validation.
 
 This script verifies cryptographic certificates without requiring manual changes:
-- Validates SHA256 hashes of Lean4 source files
-- Validates SHA256 hashes of compiled artifacts
-- Validates DNS verification data integrity
+- Verifies SHA256 hashes match expected values for Lean4 source files
+- Verifies SHA256 hashes match expected values for compiled artifacts
+- Verifies SHA256 hashes match expected values for DNS verification data
 - Checks certificate consistency and completeness
 
 Usage:
@@ -20,6 +20,10 @@ import hashlib
 import sys
 from pathlib import Path
 from typing import Dict, List, Tuple, Any
+
+
+# Sentinel value for when no data files are present
+NO_DATA_FILES_SENTINEL = "no_data_files"
 
 
 def compute_sha256(filepath: Path) -> str:
@@ -161,10 +165,24 @@ def verify_master_hash(cert_data: Dict[str, Any], cert_type: str) -> bool:
         return True  # Skip if not present
     
     data = cert_data[cert_type]
-    files = data.get("source_files", {}) or data.get("data_files", {})
-    master_hash = data.get("master_source_hash") or data.get("master_data_hash")
     
-    if not files or not master_hash:
+    # Get files dictionary based on certificate type
+    if cert_type == "lean4_proofs":
+        files = data.get("source_files", {})
+    else:
+        files = data.get("data_files", {})
+    
+    # Get master hash based on certificate type
+    if cert_type == "lean4_proofs":
+        master_hash = data.get("master_source_hash")
+    else:
+        master_hash = data.get("master_data_hash")
+    
+    # Handle no files case
+    if not files:
+        return master_hash == NO_DATA_FILES_SENTINEL if master_hash else True
+    
+    if not master_hash:
         return True
     
     # Recompute master hash

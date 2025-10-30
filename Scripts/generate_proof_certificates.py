@@ -21,6 +21,10 @@ from pathlib import Path
 from typing import Dict, List, Optional, Any
 
 
+# Sentinel value for when no data files are present
+NO_DATA_FILES_SENTINEL = "no_data_files"
+
+
 def compute_sha256(filepath: Path) -> str:
     """Compute SHA256 hash of a file."""
     sha256_hash = hashlib.sha256()
@@ -193,7 +197,7 @@ def generate_dns_certificates(repo_root: Path) -> Dict[str, Any]:
         all_data_hashes = "".join(sorted([v["sha256"] for v in data_hashes.values()]))
         master_hash = hashlib.sha256(all_data_hashes.encode()).hexdigest()
     else:
-        master_hash = "no_data_files"
+        master_hash = NO_DATA_FILES_SENTINEL
     
     certificate = {
         "type": "dns_verification_certificate",
