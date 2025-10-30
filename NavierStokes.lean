@@ -1,0 +1,16 @@
+-- Main entry point for the Navier-Stokes formalization
+import NavierStokes.BasicDefinitions
+import NavierStokes.UniformConstants
+import NavierStokes.FunctionalSpaces
+import NavierStokes.EnergyEstimates
+import NavierStokes.VorticityControl
+import NavierStokes.BesovEmbedding
+import NavierStokes.CalderonZygmundBesov
+import NavierStokes.ParabolicCoercivity
+import NavierStokes.DyadicRiccati
+import NavierStokes.RiccatiBesov
+import NavierStokes.GlobalRiccati
+import NavierStokes.MisalignmentDefect
+import NavierStokes.BKMCriterion
+import NavierStokes.BKMClosure
+import NavierStokes.UnifiedBKM
