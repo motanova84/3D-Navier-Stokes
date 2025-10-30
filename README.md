@@ -18,6 +18,7 @@
 ## Table of Contents
 
 - [Overview](#overview)
+- [Estado de la Demostración](#estado-de-la-demostración)
 - [Main Results](#main-results)
 - [Mathematical Framework](#mathematical-framework)
 - [Repository Structure](#repository-structure)
