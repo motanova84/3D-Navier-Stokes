@@ -8,8 +8,14 @@ Comprehensive tests for parameter sweeps, edge cases, and δ* analysis
 import unittest
 import numpy as np
 import sys
+import os
 
-sys.path.append('/home/runner/work/3D-Navier-Stokes/3D-Navier-Stokes/DNS-Verification/DualLimitSolver')
+# Add module path using relative path
+_test_dir = os.path.dirname(os.path.abspath(__file__))
+_module_dir = os.path.join(_test_dir, 'DNS-Verification', 'DualLimitSolver')
+if _module_dir not in sys.path:
+    sys.path.insert(0, _module_dir)
+
 from exhaustive_validation import (
     ExhaustiveValidator,
     ValidationConfig,

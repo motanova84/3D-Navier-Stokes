@@ -20,8 +20,13 @@ import sys
 import warnings
 from dataclasses import dataclass, asdict
 import json
+import os
 
-sys.path.append('/home/runner/work/3D-Navier-Stokes/3D-Navier-Stokes/DNS-Verification/DualLimitSolver')
+# Add module to path using relative path
+_current_dir = os.path.dirname(os.path.abspath(__file__))
+if _current_dir not in sys.path:
+    sys.path.insert(0, _current_dir)
+
 from unified_bkm import (
     riccati_besov_closure,
     compute_optimal_dual_scaling,
@@ -83,14 +88,17 @@ class ExhaustiveValidator:
     Comprehensive validator for BKM framework with edge case analysis
     """
     
-    def __init__(self, config: Optional[ValidationConfig] = None):
+    def __init__(self, config: Optional[ValidationConfig] = None, 
+                 output_dir: Optional[str] = None):
         """
         Initialize validator with configuration
         
         Args:
             config: Validation configuration (uses defaults if None)
+            output_dir: Output directory for results (uses default if None)
         """
         self.config = config or ValidationConfig()
+        self.output_dir = output_dir or self._get_default_output_dir()
         self.results = {
             'parameter_sweeps': [],
             'edge_cases': [],
@@ -98,6 +106,12 @@ class ExhaustiveValidator:
             'critical_points': [],
             'recommendations': []
         }
+    
+    def _get_default_output_dir(self) -> str:
+        """Get default output directory relative to module location"""
+        module_dir = os.path.dirname(os.path.abspath(__file__))
+        repo_root = os.path.dirname(os.path.dirname(module_dir))
+        return os.path.join(repo_root, "Results")
     
     def compute_delta_star(self, a: float, c_0: float = 1.0) -> float:
         """
@@ -641,11 +655,9 @@ class ExhaustiveValidator:
             results: Results dictionary
             filename: Output filename
         """
-        import os
-        output_dir = "/home/runner/work/3D-Navier-Stokes/3D-Navier-Stokes/Results"
-        os.makedirs(output_dir, exist_ok=True)
+        os.makedirs(self.output_dir, exist_ok=True)
         
-        output_path = os.path.join(output_dir, filename)
+        output_path = os.path.join(self.output_dir, filename)
         
         # Convert numpy types to native Python types for JSON serialization
         def convert_types(obj):

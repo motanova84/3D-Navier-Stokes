@@ -20,8 +20,11 @@ import os
 import argparse
 from datetime import datetime
 
-# Add module paths
-sys.path.append('/home/runner/work/3D-Navier-Stokes/3D-Navier-Stokes/DNS-Verification/DualLimitSolver')
+# Add module paths using relative path
+_current_dir = os.path.dirname(os.path.abspath(__file__))
+_module_dir = os.path.join(_current_dir, 'DNS-Verification', 'DualLimitSolver')
+if _module_dir not in sys.path:
+    sys.path.insert(0, _module_dir)
 
 from exhaustive_validation import ExhaustiveValidator, ValidationConfig
 from validation_visualizer import ValidationVisualizer
@@ -53,6 +56,10 @@ def run_validation_suite(skip_validation: bool = False,
     Returns:
         Dictionary with paths to generated files
     """
+    # Get repo root and paths
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    results_dir = os.path.join(script_dir, 'Results')
+    
     results = {
         'validation_json': None,
         'report_md': None,
@@ -71,7 +78,7 @@ def run_validation_suite(skip_validation: bool = False,
         validation_results = validator.run_full_validation(verbose=True)
         
         # Save results
-        results_path = "/home/runner/work/3D-Navier-Stokes/3D-Navier-Stokes/Results/validation_results.json"
+        results_path = os.path.join(results_dir, "validation_results.json")
         validator.save_results(validation_results, "validation_results.json")
         results['validation_json'] = results_path
         
@@ -81,7 +88,7 @@ def run_validation_suite(skip_validation: bool = False,
     else:
         print_section("PHASE 1: VALIDATION (SKIPPED)")
         print("Using existing validation results...")
-        results['validation_json'] = "/home/runner/work/3D-Navier-Stokes/3D-Navier-Stokes/Results/validation_results.json"
+        results['validation_json'] = os.path.join(results_dir, "validation_results.json")
     
     # Phase 2: Visualization
     if not skip_visualization:
@@ -103,7 +110,7 @@ def run_validation_suite(skip_validation: bool = False,
     # Phase 3: Report Summary
     print_section("PHASE 3: REPORT SUMMARY")
     
-    report_path = "/home/runner/work/3D-Navier-Stokes/3D-Navier-Stokes/Results/EXHAUSTIVE_VALIDATION_REPORT.md"
+    report_path = os.path.join(results_dir, "EXHAUSTIVE_VALIDATION_REPORT.md")
     results['report_md'] = report_path
     
     if os.path.exists(report_path):

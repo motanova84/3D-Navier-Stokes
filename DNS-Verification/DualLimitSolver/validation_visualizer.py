@@ -34,21 +34,29 @@ class ValidationVisualizer:
     """
     
     def __init__(self, results: Optional[Dict] = None, 
-                 results_file: str = None):
+                 results_file: str = None,
+                 output_dir: str = None):
         """
         Initialize visualizer
         
         Args:
             results: Results dictionary from exhaustive validation
             results_file: Path to JSON file with results
+            output_dir: Output directory for figures (uses default if None)
         """
         if results is None and results_file is not None:
             with open(results_file, 'r') as f:
                 results = json.load(f)
         
         self.results = results
-        self.output_dir = "/home/runner/work/3D-Navier-Stokes/3D-Navier-Stokes/Results/Figures"
+        self.output_dir = output_dir or self._get_default_output_dir()
         os.makedirs(self.output_dir, exist_ok=True)
+    
+    def _get_default_output_dir(self) -> str:
+        """Get default output directory relative to module location"""
+        module_dir = os.path.dirname(os.path.abspath(__file__))
+        repo_root = os.path.dirname(os.path.dirname(module_dir))
+        return os.path.join(repo_root, "Results", "Figures")
     
     def plot_delta_star_vs_amplitude(self, save: bool = True) -> str:
         """
@@ -503,8 +511,10 @@ def main():
     """
     Main entry point for visualization
     """
-    # Load results
-    results_file = "/home/runner/work/3D-Navier-Stokes/3D-Navier-Stokes/Results/validation_results.json"
+    # Get default results file path
+    module_dir = os.path.dirname(os.path.abspath(__file__))
+    repo_root = os.path.dirname(os.path.dirname(module_dir))
+    results_file = os.path.join(repo_root, "Results", "validation_results.json")
     
     if not os.path.exists(results_file):
         print(f"Error: Results file not found: {results_file}")
