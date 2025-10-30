@@ -1,0 +1,48 @@
+digraph LeanDependencies {
+    rankdir=BT;
+    node [shape=box, style=filled];
+
+    "BKMClosure" [fillcolor="#4dabf7", fontcolor=white];
+    "BKMCriterion" [fillcolor="#4dabf7", fontcolor=white];
+    "BasicDefinitions" [fillcolor="#ffd43b", fontcolor=black];
+    "BesovEmbedding" [fillcolor="#e9ecef"];
+    "CalderonZygmundBesov" [fillcolor="#e9ecef"];
+    "DyadicRiccati" [fillcolor="#51cf66", fontcolor=white];
+    "EnergyEstimates" [fillcolor="#e9ecef"];
+    "FunctionalSpaces" [fillcolor="#ffd43b", fontcolor=black];
+    "GlobalRiccati" [fillcolor="#51cf66", fontcolor=white];
+    "MainTheorem" [fillcolor="#ff6b6b", fontcolor=white];
+    "MisalignmentDefect" [fillcolor="#e9ecef"];
+    "ParabolicCoercivity" [fillcolor="#e9ecef"];
+    "RiccatiBesov" [fillcolor="#51cf66", fontcolor=white];
+    "SerrinEndpoint" [fillcolor="#ff6b6b", fontcolor=white];
+    "Theorem13_7" [fillcolor="#ff6b6b", fontcolor=white];
+    "UnifiedBKM" [fillcolor="#4dabf7", fontcolor=white];
+    "UniformConstants" [fillcolor="#ffd43b", fontcolor=black];
+    "VorticityControl" [fillcolor="#e9ecef"];
+
+    "GlobalRiccati" -> "BKMClosure";
+    "BasicDefinitions" -> "BKMCriterion";
+    "VorticityControl" -> "BKMCriterion";
+    "CalderonZygmundBesov" -> "BesovEmbedding";
+    "UniformConstants" -> "DyadicRiccati";
+    "BasicDefinitions" -> "EnergyEstimates";
+    "DyadicRiccati" -> "GlobalRiccati";
+    "ParabolicCoercivity" -> "GlobalRiccati";
+    "MisalignmentDefect" -> "GlobalRiccati";
+    "BasicDefinitions" -> "MainTheorem";
+    "EnergyEstimates" -> "MainTheorem";
+    "VorticityControl" -> "MainTheorem";
+    "MisalignmentDefect" -> "MainTheorem";
+    "BKMCriterion" -> "MainTheorem";
+    "FunctionalSpaces" -> "MainTheorem";
+    "UniformConstants" -> "MisalignmentDefect";
+    "BasicDefinitions" -> "MisalignmentDefect";
+    "UniformConstants" -> "ParabolicCoercivity";
+    "DyadicRiccati" -> "ParabolicCoercivity";
+    "BKMClosure" -> "SerrinEndpoint";
+    "BKMClosure" -> "Theorem13_7";
+    "GlobalRiccati" -> "Theorem13_7";
+    "DyadicRiccati" -> "Theorem13_7";
+    "BasicDefinitions" -> "VorticityControl";
+}

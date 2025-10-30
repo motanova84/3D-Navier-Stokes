@@ -75,6 +75,10 @@ Thumbs.db
 .pytest_cache/
 .coverage
 htmlcov/
+coverage_html_report/
+coverage.xml
+.coverage.*
+coverage_reports/
 
 # Documentation
 docs/_build/
@@ -86,3 +90,6 @@ docs/_build/
 # Large data files
 Results/DNS_Data/*.h5
 Results/DNS_Data/*.dat
+
+# AI Agent workspace (user-generated)
+ai_agent_workspace/

@@ -34,16 +34,25 @@ theorem log_plus_nonneg (x : ℝ) : log_plus x ≥ 0 := by
   exact le_max_left 0 _
 
 /-- log⁺ is monotone -/
-axiom log_plus_mono {x y : ℝ} (h : x ≤ y) (hx : 0 ≤ x) : log_plus x ≤ log_plus y
+theorem log_plus_mono {x y : ℝ} (h : x ≤ y) (hx : 0 ≤ x) : log_plus x ≤ log_plus y := by
+  unfold log_plus
+  apply max_le_max
+  · rfl
+  · apply Real.log_le_log
+    · linarith
+    · linarith
 
 /-!
 ## Main Embedding Theorem
 -/
 
 /-- Besov-L∞ embedding with logarithmic factor -/
-axiom besov_linfty_embedding {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+theorem besov_linfty_embedding {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [BesovSpace E] [SobolevSpace E 3] (ω u : E) :
-  BesovSpace.besov_norm ω ≤ C_star * ‖ω‖ * (1 + log_plus (SobolevSpace.sobolev_norm u))
+  BesovSpace.besov_norm ω ≤ C_star * ‖ω‖ * (1 + log_plus (SobolevSpace.sobolev_norm u)) := by
+  -- This is the Kozono-Taniuchi embedding from Besov to L∞
+  -- with a logarithmic correction factor involving H^m norms
+  sorry  -- Requires detailed functional analysis
 
 /-- Simplified form with explicit H^m bound M -/
 theorem besov_linfty_with_bound {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]

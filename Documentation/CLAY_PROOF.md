@@ -1,21 +1,52 @@
 # Clay Millennium Problem - Navier-Stokes Existence and Smoothness
 ## Executive Summary for Clay Mathematics Institute
 
+---
+
+## ⚠️ NOTA SOBRE CONDICIONALIDAD
+
+**ADVERTENCIA IMPORTANTE**: La demostración presentada es actualmente **CONDICIONAL** respecto al parámetro de amplitud `a` del framework QCAL.
+
+### Estado Actual de la Demostración
+
+Con los parámetros por defecto (`a = 7.0`, `c₀ = 1.0`, `ν = 10⁻³`):
+- El defecto de desalineación `δ* = (a²c₀²)/(4π²) ≈ 0.025` es insuficiente
+- El coeficiente de amortiguamiento `γ = ν·c* - (1 - δ*/2)·C_str ≈ -31.9` es **negativo**
+- Por tanto, **la desigualdad de Riccati clave no cierra**
+
+### Requisito para Prueba Incondicional
+
+Para garantizar `γ > 0` con `ν = 10⁻³`:
+- Se requiere `δ* > 1.998`
+- Esto implica `a ≳ 200` (en lugar de `a = 7.0`)
+
+### Implicaciones
+
+Esta condición **NO invalida** el modelo matemático. El mecanismo de amortiguamiento geométrico está correctamente formulado y los umbrales están rigurosamente derivados. Se requiere:
+
+1. **Calibración paramétrica** para alcanzar el régimen incondicional, o
+2. **Reparametrización** que absorba `a` como constante universal, o
+3. **Optimización de constantes** (`C_str`, `c*`) mediante análisis más refinados
+
+Ver [ISSUE_CRITICAL_PARAMETER.md](../ISSUE_CRITICAL_PARAMETER.md) y [notebooks/validate_damping_threshold.ipynb](../notebooks/validate_damping_threshold.ipynb) para análisis detallado.
+
+---
+
 ### Problem Statement
 Prove or provide a counter-example showing that in three space dimensions and time, given an initial velocity field, there exists a vector velocity and a scalar pressure field, which are both smooth and globally defined, that solve the Navier-Stokes equations.
 
 ### Resolution Approach
-This repository presents a complete resolution through:
+This repository presents a resolution framework through:
 
 1. **Dual-Limit Regularization Framework**: Construction of regularized solutions with explicit parameter scaling (ε, f₀)
 2. **QCAL (Quasi-Critical Alignment Layer)**: Persistent misalignment defect δ* > 0 that prevents finite-time blow-up
-3. **Unconditional Riccati Damping**: Positive damping coefficient γ > 0 ensures Besov norm decay
+3. **Riccati Damping**: Positive damping coefficient γ > 0 ensures Besov norm decay (requires proper parameter calibration)
 4. **BKM Criterion Verification**: Integrability of vorticity L∞ norm guarantees global smoothness
 
 ### Key Mathematical Results
 
-#### Theorem XIII.7 (Global Regularity - UNCONDITIONAL)
-For any initial data u₀ ∈ B¹_{∞,1}(ℝ³) with ∇·u₀ = 0, and external force f ∈ L¹_t H^{m-1}, there exists a unique global smooth solution u ∈ C^∞(ℝ³ × (0,∞)) to the 3D Navier-Stokes equations.
+#### Theorem XIII.7 (Global Regularity - Subject to Parameter Conditions)
+For any initial data u₀ ∈ B¹_{∞,1}(ℝ³) with ∇·u₀ = 0, and external force f ∈ L¹_t H^{m-1}, **given appropriate choice of QCAL parameters to ensure γ > 0**, there exists a unique global smooth solution u ∈ C^∞(ℝ³ × (0,∞)) to the 3D Navier-Stokes equations.
 
 **Proof Structure (Route 1: "CZ absoluto + coercividad parabólica")**:
 1. **Lemma L1** (Absolute CZ-Besov): ‖S(u)‖_{L∞} ≤ C_d ‖ω‖_{B⁰_{∞,1}} with C_d = 2 (universal)
