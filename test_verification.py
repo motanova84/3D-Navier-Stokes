@@ -26,7 +26,8 @@ class TestFinalProof(unittest.TestCase):
     
     def setUp(self):
         """Initialize proof framework for each test"""
-        self.proof = FinalProof(ν=1e-3, δ_star=1/(4*np.pi**2))
+        # Use legacy constants for backward compatibility in tests
+        self.proof = FinalProof(ν=1e-3, use_legacy_constants=True)
     
     def test_initialization(self):
         """Test that FinalProof initializes with correct constants"""
@@ -190,12 +191,12 @@ class TestMathematicalProperties(unittest.TestCase):
     """Test mathematical properties and consistency"""
     
     def setUp(self):
-        self.proof = FinalProof()
+        self.proof = FinalProof(use_legacy_constants=True)
     
     def test_dissipative_scale_increases_with_viscosity(self):
         """Test that j_d decreases (scale increases) with higher viscosity"""
-        proof_low_visc = FinalProof(ν=1e-4)
-        proof_high_visc = FinalProof(ν=1e-2)
+        proof_low_visc = FinalProof(ν=1e-4, use_legacy_constants=True)
+        proof_high_visc = FinalProof(ν=1e-2, use_legacy_constants=True)
         
         j_d_low = proof_low_visc.compute_dissipative_scale()
         j_d_high = proof_high_visc.compute_dissipative_scale()
@@ -238,7 +239,7 @@ class TestNumericalStability(unittest.TestCase):
     """Test numerical stability and edge cases"""
     
     def setUp(self):
-        self.proof = FinalProof()
+        self.proof = FinalProof(use_legacy_constants=True)
     
     def test_large_initial_condition(self):
         """Test proof with large initial condition"""
