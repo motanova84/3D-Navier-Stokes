@@ -47,7 +47,9 @@ jobs:
         run: |
           echo "## Python Coverage Report" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          python -m coverage report --omit="*psi_ns_solver.py,*misalignment_calc.py,*riccati_monitor.py,*convergence_tests.py,*besov_norms.py,*kolmogorov_scale.py" >> $GITHUB_STEP_SUMMARY
+          echo "Full coverage report generated. See artifacts for HTML report." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          python -m coverage report >> $GITHUB_STEP_SUMMARY
 
   lean-coverage:
     runs-on: ubuntu-latest

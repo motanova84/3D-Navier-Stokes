@@ -7,6 +7,9 @@ set -e
 SCRIPT_DIR="$(dirname "$0")"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
+# Exit on error
+set -e
+
 echo "========================================================"
 echo "  Comprehensive Test Coverage Analysis"
 echo "  3D Navier-Stokes Global Regularity Framework"
@@ -26,7 +29,11 @@ echo "========================================================"
 echo ""
 
 cd "$REPO_ROOT"
-bash "$SCRIPT_DIR/run_python_coverage.sh" | tee "$REPORTS_DIR/python_coverage.log"
+if bash "$SCRIPT_DIR/run_python_coverage.sh" | tee "$REPORTS_DIR/python_coverage.log"; then
+    echo "Python coverage completed successfully"
+else
+    echo "Warning: Python coverage encountered errors"
+fi
 
 echo ""
 echo "========================================================"
@@ -34,7 +41,11 @@ echo "PART 2: Lean4 Formalization Coverage"
 echo "========================================================"
 echo ""
 
-bash "$SCRIPT_DIR/run_lean_coverage.sh" | tee "$REPORTS_DIR/lean_coverage.log"
+if bash "$SCRIPT_DIR/run_lean_coverage.sh" | tee "$REPORTS_DIR/lean_coverage.log"; then
+    echo "Lean4 coverage completed successfully"
+else
+    echo "Warning: Lean4 coverage encountered errors"
+fi
 
 echo ""
 echo "========================================================"

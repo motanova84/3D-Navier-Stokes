@@ -30,7 +30,9 @@ echo ""
 echo "Generating coverage reports..."
 echo ""
 
-# Files with unicode characters that coverage can't parse
+# Files with unicode characters (subscripts like ₀) that coverage can't parse
+# These files contain mathematical notation in variable names and are excluded
+# to prevent parsing errors. They are still tested indirectly through their APIs.
 OMIT_FILES="*psi_ns_solver.py,*misalignment_calc.py,*riccati_monitor.py,*convergence_tests.py,*besov_norms.py,*kolmogorov_scale.py"
 
 # Generate terminal report

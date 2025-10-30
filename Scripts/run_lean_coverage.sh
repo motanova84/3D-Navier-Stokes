@@ -38,7 +38,10 @@ for file in NavierStokes/*.lean; do
         MODULE_NAME=$(basename "$file" .lean)
         echo "Module: $MODULE_NAME"
         
-        # Count definitions
+        # Count definitions and theorems
+        # Matches: def, theorem, lemma, example at start of line
+        # Note: This is a heuristic count and may not be 100% accurate
+        # For precise counts, use Lean4's built-in tooling via lake
         DEF_COUNT=$(grep -E "^(def|theorem|lemma|example)" "$file" 2>/dev/null | wc -l)
         echo "  - Definitions/Theorems: $DEF_COUNT"
         
