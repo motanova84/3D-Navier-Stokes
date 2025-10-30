@@ -1,4 +1,5 @@
 import NavierStokes.UniformConstants
+import NavierStokes.BasicDefinitions
 
 set_option autoImplicit false
 set_option linter.unusedVariables false
@@ -31,10 +32,6 @@ theorem defect_positive_uniform (field : QCALField)
   apply delta_star_positive
   · exact h_params.1
   · exact h_params.2
-
-import NavierStokes.BasicDefinitions
-
-namespace NavierStokes
 
 -- Teorema 13.4: Persistencia de δ* > 0
 theorem misalignment_persistence 

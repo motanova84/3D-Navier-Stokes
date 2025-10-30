@@ -38,6 +38,7 @@ axiom dyadic_vorticity_decay (j : ℕ) (ω_norm : ℝ) (ν : ℝ) (δ_star : ℝ
     (h_ω : ω_norm > 0)
     (h_dissipative : j ≥ dissipative_threshold ν δ_star consts) :
     ∃ γ : ℝ, γ > 0 ∧ 
+    -- TODO: Complete formulation with proper vorticity decay rate
     -- dω/dt ≤ -γ·2^{2j}·ω² implies decay
     True
 
@@ -47,6 +48,8 @@ def besov_norm (blocks : List DyadicBlock) : ℝ :=
 
 /-- Dyadic decomposition is complete -/
 axiom dyadic_completeness (ω : ℝ → ℝ) : 
-  ∃ blocks : List DyadicBlock, True  -- Full measure-theoretic formulation needed
+  -- TODO: Complete with proper measure-theoretic formulation
+  -- stating that besov_norm matches formal Besov norm definition
+  ∃ blocks : List DyadicBlock, True
 
 end NavierStokes
