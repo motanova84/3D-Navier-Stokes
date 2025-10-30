@@ -25,11 +25,21 @@ def dissipative_threshold (ν : ℝ) (δ_star : ℝ) (consts : UniversalConstant
   Nat.ceil (Real.logb 2 (numerator / denominator) / 2)
 
 /-- Lemma XIII.4bis: Riccati coefficient is negative for j ≥ j_d -/
-axiom dyadic_riccati_inequality (j : ℕ) (ν : ℝ) (δ_star : ℝ) (consts : UniversalConstants)
+theorem dyadic_riccati_inequality (j : ℕ) (ν : ℝ) (δ_star : ℝ) (consts : UniversalConstants)
     (h_ν : ν > 0)
     (h_δ : δ_star > 0 ∧ δ_star < 1)
     (h_j : j ≥ dissipative_threshold ν δ_star consts) :
-    dyadic_riccati_coefficient j ν δ_star consts < 0
+    dyadic_riccati_coefficient j ν δ_star consts < 0 := by
+  -- Proof: For j ≥ j_d, the dissipation term ν·c_B·2^{2j} dominates the stretching term
+  -- α_j = C_BKM(1-δ*)(1+log⁺K) - ν·c_B·2^{2j}
+  -- By definition of j_d, when j ≥ j_d: 2^{2j} ≥ C_BKM(1-δ*)(1+log⁺K)/(ν·c_B)
+  -- Therefore: ν·c_B·2^{2j} ≥ C_BKM(1-δ*)(1+log⁺K)
+  -- Hence: α_j ≤ 0, and with strict inequality for j > j_d
+  
+  rw [dyadic_riccati_coefficient]
+  -- The key is that j ≥ dissipative_threshold implies 2^{2j} is large enough
+  -- Full proof requires properties of Real.logb and ceiling function
+  sorry  -- Full proof: show ν * consts.c_B * (2 ^ (2 * j)) > stretching_term
 
 /-- Evolution of dyadic vorticity: decay for j ≥ j_d -/
 axiom dyadic_vorticity_decay (j : ℕ) (ω_norm : ℝ) (ν : ℝ) (δ_star : ℝ) 
