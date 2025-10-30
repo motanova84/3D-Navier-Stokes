@@ -8,7 +8,9 @@
 [![Documentation](https://img.shields.io/badge/docs-complete-brightgreen.svg)](./Documentation/)
 [![Build Status](https://img.shields.io/badge/build-passing-success.svg)]()
 [![Code Quality](https://img.shields.io/badge/quality-A+-blue.svg)]()
-[![DOI](https://img.shields.io/badge/DOI-pending-lightgrey.svg)]()
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17486531.svg)](https://zenodo.org/records/17486531)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17488796.svg)](https://zenodo.org/records/17488796)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17479481.svg)](https://zenodo.org/records/17479481)
 [![arXiv](https://img.shields.io/badge/arXiv-pending-red.svg)]()
 
 </div>
@@ -648,6 +650,9 @@ This work builds upon foundational research in:
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Lean 4](https://img.shields.io/badge/Lean-4-blue.svg)](https://leanprover.github.io/)
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9+-green.svg)](https://www.python.org/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17486531.svg)](https://zenodo.org/records/17486531)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17488796.svg)](https://zenodo.org/records/17488796)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17479481.svg)](https://zenodo.org/records/17479481)
 
 A comprehensive framework for resolving the Clay Millennium Problem on the existence and smoothness of 3D Navier-Stokes equations through formal verification (Lean4) and computational validation (DNS).
 
