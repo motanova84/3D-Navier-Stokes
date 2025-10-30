@@ -6,10 +6,10 @@ Este documento rastrea el estado de la verificación formal en Lean4 del sistema
 
 | Métrica | Valor |
 |---------|-------|
-| **Módulos Lean4** | 17 |
+| **Módulos Lean4** | 18 (15 en NavierStokes/ + 3 principales) |
 | **Teoremas Verificados** | 18 |
-| **Axiomas (requieren prueba)** | 27 |
-| **Progreso Total** | 🔶 ~49% |
+| **Axiomas (requieren prueba)** | 33 |
+| **Progreso Total** | 🔶 ~35% |
 | **Última Actualización** | 31 octubre 2025 |
 
 ---
@@ -186,18 +186,35 @@ Este documento rastrea el estado de la verificación formal en Lean4 del sistema
 ### 16. MainTheorem.lean
 | Elemento | Tipo | Verificado | Comentario |
 |----------|------|------------|------------|
-| Main theorem structure | Estructura | ✅ | Estructura del teorema principal |
+| uniform_estimates_imply_persistence | Axioma | ❌ | Estimaciones uniformes implican persistencia |
 
-**Estado:** 🔶 Parcial - Estructura definida, prueba en progreso
+**Estado:** ❌ Pendiente - Axioma del teorema principal
 
 ---
 
 ### 17. Theorem13_7.lean
 | Elemento | Tipo | Verificado | Comentario |
 |----------|------|------------|------------|
-| Theorem XIII.7 | Teorema | 🔶 | Teorema principal: u ∈ C∞(ℝ³ × (0,∞)) |
+| VelocityField | Axioma (tipo) | ❌ | Tipo para campo de velocidad |
+| IsSolution | Axioma | ❌ | Definición de solución |
+| CInfinity | Axioma | ❌ | Definición de suavidad infinita |
+| global_regularity_unconditional | Axioma | ❌ | Teorema principal: regularidad global incondicional |
+| clay_millennium_solution | Axioma | ❌ | Conexión con problema Clay |
+| existence_and_uniqueness | Axioma | ❌ | Existencia y unicidad |
 
-**Estado:** 🔶 En progreso - Depende de cierre BKM
+**Estado:** ❌ Pendiente - Teorema XIII.7: u ∈ C∞(ℝ³ × (0,∞))
+
+---
+
+### 18. SerrinEndpoint.lean
+| Elemento | Tipo | Verificado | Comentario |
+|----------|------|------------|------------|
+| serrin_criterion | Axioma | ❌ | Criterio de Serrin para regularidad |
+| serrin_endpoint | Axioma | ❌ | Caso endpoint de Serrin |
+| qcal_satisfies_serrin | Axioma | ❌ | QCAL satisface criterio de Serrin |
+| global_regularity_via_serrin | Axioma | ❌ | Regularidad global vía Serrin |
+
+**Estado:** ❌ Pendiente - Ruta alternativa vía criterio de Serrin
 
 ---
 
@@ -259,12 +276,12 @@ Para completar la verificación formal, estos axiomas deben ser probados en orde
 |-----------|------------|-----------|----------|
 | **Definiciones y Estructuras** | 8 | 0 | ✅ 100% |
 | **Teoremas Fundamentales** | 18 | 0 | ✅ 100% |
-| **Axiomas (requieren prueba)** | 0 | 27 | ❌ 0% |
+| **Axiomas (requieren prueba)** | 0 | 33 | ❌ 0% |
 | **Teorema Principal** | 0 | 1 | 🔶 En progreso |
 
 ### Progreso Total
-- **Elementos verificados:** 26 / 53 = **49%**
-- **Sin axiomas:** 0 / 27 = **0%** de axiomas probados
+- **Elementos verificados:** 26 / 59 = **44%**
+- **Sin axiomas:** 0 / 33 = **0%** de axiomas probados
 - **Estado general:** 🔶 **Formalización parcial - trabajo sustancial pendiente**
 
 ---

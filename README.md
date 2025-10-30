@@ -521,7 +521,7 @@ Roadmap detallado: [`docs/formal_proof_status.md`](docs/formal_proof_status.md)
 | Pregunta                                      | Estado              |
 |----------------------------------------------|---------------------|
 | ¿La prueba está verificada en Lean4?         | 🔶 Parcialmente     |
-| ¿Contiene marcadores `axiom`?                | ✅ Sí (27 axiomas)  |
+| ¿Contiene marcadores `axiom`?                | ✅ Sí (33 axiomas)  |
 | ¿Resuelve NS clásico como en Clay?           | ❌ No               |
 | ¿Demuestra regularidad de un sistema coherente? | ✅ Sí           |
 | ¿Puede derivarse Clay desde QCAL?            | 🔄 A investigar     |
