@@ -1,0 +1,163 @@
+{
+  "build_log": {
+    "build_commands": [],
+    "timestamp": "2025-10-30T23:17:54.888791+00:00"
+  },
+  "certificate_version": "1.0",
+  "description": "Verifiable proof certificate for 3D Navier-Stokes global regularity framework",
+  "dns_verification": {
+    "data_files": {},
+    "environment": {
+      "git_info": {
+        "branch": "copilot/export-verifiable-proof-objects",
+        "commit_date": "2025-10-30 23:08:29 +0000",
+        "commit_hash": "f806a7409e9368d7e9a9dbc81334439c738c0c3b"
+      },
+      "hostname": "runnervmwhb2z",
+      "lean_version": "leanprover/lean4:stable",
+      "platform": "Linux",
+      "python_version": "Python 3.12.3",
+      "timestamp": "2025-10-30T23:17:54.883274+00:00"
+    },
+    "master_data_hash": "no_data_files",
+    "statistics": {
+      "total_data_bytes": 0,
+      "total_data_files": 0
+    },
+    "type": "dns_verification_certificate"
+  },
+  "environment": {
+    "git_info": {
+      "branch": "copilot/export-verifiable-proof-objects",
+      "commit_date": "2025-10-30 23:08:29 +0000",
+      "commit_hash": "f806a7409e9368d7e9a9dbc81334439c738c0c3b"
+    },
+    "hostname": "runnervmwhb2z",
+    "lean_version": "leanprover/lean4:stable",
+    "platform": "Linux",
+    "python_version": "Python 3.12.3",
+    "timestamp": "2025-10-30T23:17:54.888916+00:00"
+  },
+  "generated": "2025-10-30T23:17:54.888908+00:00",
+  "lean4_proofs": {
+    "compiled_artifacts": {},
+    "environment": {
+      "git_info": {
+        "branch": "copilot/export-verifiable-proof-objects",
+        "commit_date": "2025-10-30 23:08:29 +0000",
+        "commit_hash": "f806a7409e9368d7e9a9dbc81334439c738c0c3b"
+      },
+      "hostname": "runnervmwhb2z",
+      "lean_version": "leanprover/lean4:stable",
+      "platform": "Linux",
+      "python_version": "Python 3.12.3",
+      "timestamp": "2025-10-30T23:17:54.876088+00:00"
+    },
+    "master_source_hash": "54c203987fa9f806d7ca28d57a772b636c880c0363c8e288f2867111b6bd24c8",
+    "source_files": {
+      "Lean4-Formalization/MainTheorem.lean": {
+        "modified": "2025-10-30T23:11:24.873600",
+        "sha256": "fc21b237b5cbccb5229838ceb4fea706f485f1e2c4c7ccdadab7209606712f8c",
+        "size_bytes": 2281
+      },
+      "Lean4-Formalization/NavierStokes/BKMClosure.lean": {
+        "modified": "2025-10-30T23:11:24.873600",
+        "sha256": "10ed69fe7678772e10c135d34c01af8350317a23b64b5d67a32346eb1f7e62d7",
+        "size_bytes": 1201
+      },
+      "Lean4-Formalization/NavierStokes/BKMCriterion.lean": {
+        "modified": "2025-10-30T23:11:24.874600",
+        "sha256": "9cacac14a8fffff67f0fe1cacb824c89f38ad079e6dd53148e58f747bae8421c",
+        "size_bytes": 993
+      },
+      "Lean4-Formalization/NavierStokes/BasicDefinitions.lean": {
+        "modified": "2025-10-30T23:11:24.874600",
+        "sha256": "713aa29fd30bc6a0dc4fb51cd63b11a51f2d62144bfbe465d5a9344782bafefb",
+        "size_bytes": 1840
+      },
+      "Lean4-Formalization/NavierStokes/BesovEmbedding.lean": {
+        "modified": "2025-10-30T23:11:24.874600",
+        "sha256": "b95dc83a4e11ebd37dc6f56ac60141d734cdde509856493101ca3fbd67876ad6",
+        "size_bytes": 3698
+      },
+      "Lean4-Formalization/NavierStokes/CalderonZygmundBesov.lean": {
+        "modified": "2025-10-30T23:11:24.874600",
+        "sha256": "828d4e6e95cf88f6b61af316fabdc5eb664bede16e012dff1589f73c6bfd0fde",
+        "size_bytes": 690
+      },
+      "Lean4-Formalization/NavierStokes/DyadicRiccati.lean": {
+        "modified": "2025-10-30T23:11:24.874600",
+        "sha256": "6bb069a8864133ca930f2a9807ddff357c347dade15a1a146c9ac94b0e169b3f",
+        "size_bytes": 2235
+      },
+      "Lean4-Formalization/NavierStokes/EnergyEstimates.lean": {
+        "modified": "2025-10-30T23:11:24.874600",
+        "sha256": "bd06de7afc64080e25a512c66415a5fb6c4d2ff4f2d6be25e3bcd2f79a959db5",
+        "size_bytes": 816
+      },
+      "Lean4-Formalization/NavierStokes/FunctionalSpaces.lean": {
+        "modified": "2025-10-30T23:11:24.874600",
+        "sha256": "b57b7db59aab2adf0e4784f5f2a934b07a85aa8c943c3dbe16bc46e74acdd232",
+        "size_bytes": 2195
+      },
+      "Lean4-Formalization/NavierStokes/GlobalRiccati.lean": {
+        "modified": "2025-10-30T23:11:24.874600",
+        "sha256": "9cc4184496dffe72408b7835a67b0cd37df678cdfe4b9ec51a750a9b16bb8156",
+        "size_bytes": 1236
+      },
+      "Lean4-Formalization/NavierStokes/MisalignmentDefect.lean": {
+        "modified": "2025-10-30T23:11:24.874600",
+        "sha256": "9c0346dba9471d91d6c9574386210fe21aea32f50c7313a75c50844be4c8eb5c",
+        "size_bytes": 2038
+      },
+      "Lean4-Formalization/NavierStokes/ParabolicCoercivity.lean": {
+        "modified": "2025-10-30T23:11:24.874600",
+        "sha256": "167cb64378e376afebc1c3f3824f0bb3fbdaf46455b24e3403cc11d8344bc685",
+        "size_bytes": 813
+      },
+      "Lean4-Formalization/NavierStokes/RiccatiBesov.lean": {
+        "modified": "2025-10-30T23:11:24.874600",
+        "sha256": "edc6e356c9020828ea07c90d24758bbcb7a2a4dd53a969ec4662ba0f16ac3c6b",
+        "size_bytes": 243
+      },
+      "Lean4-Formalization/NavierStokes/UnifiedBKM.lean": {
+        "modified": "2025-10-30T23:11:24.874600",
+        "sha256": "5673abe3ab88c38a5c746c033ebf5633db57fb22e34f2f099e90daddf5d46f36",
+        "size_bytes": 384
+      },
+      "Lean4-Formalization/NavierStokes/UniformConstants.lean": {
+        "modified": "2025-10-30T23:11:24.874600",
+        "sha256": "333977a5b195ed27c223564a028c4c4988ff31d0024d2cb42efb11184a7a84b8",
+        "size_bytes": 2324
+      },
+      "Lean4-Formalization/NavierStokes/VorticityControl.lean": {
+        "modified": "2025-10-30T23:11:24.874600",
+        "sha256": "5657b7dace4a28e1d6a75fbd3735bdbbf09b70b6f3ffaac86c54fcd5da1f2967",
+        "size_bytes": 731
+      },
+      "Lean4-Formalization/SerrinEndpoint.lean": {
+        "modified": "2025-10-30T23:11:24.874600",
+        "sha256": "61a290eedee25edd6b4a6a604b77d2d558bcc220c45edacbafe081269cf66c6d",
+        "size_bytes": 1039
+      },
+      "Lean4-Formalization/Theorem13_7.lean": {
+        "modified": "2025-10-30T23:11:24.874600",
+        "sha256": "cbfeb7cdb21f1bb005f59e3e58ead7a9f2f0c2ce92aff42ba9cc611b34db2d19",
+        "size_bytes": 1347
+      },
+      "Lean4-Formalization/lakefile.lean": {
+        "modified": "2025-10-30T23:11:24.874600",
+        "sha256": "aa1854cbc34e5b7205ec1fb86b3a97977943e9ccbac34c15f670cf5c16a8efbe",
+        "size_bytes": 282
+      }
+    },
+    "statistics": {
+      "total_artifact_bytes": 0,
+      "total_compiled_files": 0,
+      "total_source_bytes": 26386,
+      "total_source_files": 19
+    },
+    "type": "lean4_proof_certificate"
+  },
+  "repository": "motanova84/3D-Navier-Stokes"
+}
