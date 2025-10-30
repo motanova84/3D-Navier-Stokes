@@ -3,6 +3,7 @@ import NavierStokes.EnergyEstimates
 import NavierStokes.VorticityControl
 import NavierStokes.MisalignmentDefect
 import NavierStokes.BKMCriterion
+import NavierStokes.FunctionalSpaces
 
 namespace NavierStokes
 

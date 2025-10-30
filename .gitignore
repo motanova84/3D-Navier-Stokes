@@ -25,22 +25,29 @@ venv/
 ENV/
 env/
 
-# Jupyter
-.ipynb_checkpoints
-*.ipynb
-
 # IDEs
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
 
 # Lean4
 .lake/
 lake-packages/
-build/
 *.olean
+*.trace
+
+# Results and data
+*.h5
+*.hdf5
+*.npy
+*.npz
+*.png
+*.jpg
+*.pdf
+!Documentation/*.pdf
 
 # Results (keep structure but not large data files)
 Results/Data/*.dat
@@ -50,12 +57,32 @@ Results/Figures/*.png
 Results/Figures/*.jpg
 Results/Figures/*.pdf
 delta_star.json
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
 # OS
 .DS_Store
 Thumbs.db
 
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Documentation
+docs/_build/
 # Temporary files
 *.tmp
-*.bak
 *.log
+/tmp/
+
+# Large data files
+Results/DNS_Data/*.h5
+Results/DNS_Data/*.dat

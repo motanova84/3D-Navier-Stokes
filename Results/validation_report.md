@@ -69,6 +69,29 @@ BKM criterion verification: ∫₀^T ‖ω(t)‖_∞ dt < ∞
 
 Results: TBD
 
+### BKM Proxy: Integral Numérica de ‖ω‖∞
+
+Para verificar el criterio BKM, calculamos la integral numérica de ‖ω‖∞ en ventanas temporales crecientes:
+
+| Ventana Temporal [0,T] | ∫₀ᵀ ‖ω(t)‖∞ dt | Frecuencia f₀ (Hz) | Estado |
+|------------------------|-----------------|---------------------|---------|
+| [0, 1]                 | TBD             | 100                 | TBD     |
+| [0, 2]                 | TBD             | 100                 | TBD     |
+| [0, 5]                 | TBD             | 100                 | TBD     |
+| [0, 10]                | TBD             | 100                 | TBD     |
+| [0, 1]                 | TBD             | 500                 | TBD     |
+| [0, 2]                 | TBD             | 500                 | TBD     |
+| [0, 5]                 | TBD             | 500                 | TBD     |
+| [0, 10]                | TBD             | 500                 | TBD     |
+
+**Interpretación**:
+- Si la integral permanece acotada uniformemente en T, se satisface el criterio BKM
+- La dependencia en f₀ muestra el efecto de la regularización vibracional
+- Valores más altos de f₀ deberían mostrar mejor control de ‖ω‖∞
+
+**Conexión con δ***:
+La hipótesis δ* ≥ δ₀ > 0 es el mecanismo que garantiza la integrabilidad de ‖ω‖∞.
+
 ## Conclusions
 
 1. **Dual Limit Convergence**: TBD
