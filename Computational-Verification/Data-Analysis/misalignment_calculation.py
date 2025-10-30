@@ -344,6 +344,36 @@ class MisalignmentCalculator:
         return evolution
 
 
+def export_delta_star_to_json(delta_star: float, std_delta_star: float, 
+                                output_path: str = "../../Results/Data/delta_star.json"):
+    """
+    Export delta* to JSON file
+    
+    Args:
+        delta_star: Valor de delta*
+        std_delta_star: Desviación estándar de delta*
+        output_path: Ruta del archivo de salida
+    """
+    import json
+    import os
+    
+    # Ensure directory exists
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    
+    data = {
+        "delta_star": float(delta_star),
+        "delta_star_std": float(std_delta_star),
+        "description": "Persistent misalignment defect in dual limit",
+        "units": "dimensionless",
+        "theoretical_prediction": "δ* = (a²c₀²)/(4π²)"
+    }
+    
+    with open(output_path, 'w') as f:
+        json.dump(data, f, indent=2)
+    
+    print(f"Delta* exported to {output_path}")
+
+
 if __name__ == "__main__":
     # Ejemplo de uso
     print("Ejemplo de cálculo de defecto de desalineamiento")
@@ -360,3 +390,9 @@ if __name__ == "__main__":
     
     print(f"\nEnstrofia: {analysis['enstrophy']:.6f}")
     print(f"Correlación S-omega: {analysis['strain_vorticity_correlation']:.6f}")
+    
+    # Export delta* example
+    # In actual use, this would be called after temporal_evolution analysis
+    # Example:
+    # evolution = calculator.temporal_evolution(u_history)
+    # export_delta_star_to_json(evolution['delta_star'], evolution['delta_star_std'])

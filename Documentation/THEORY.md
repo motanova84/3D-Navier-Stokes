@@ -16,24 +16,74 @@ Donde:
 - **ν > 0**: Viscosidad cinemática
 - **f**: Fuerza externa
 
-## 2. El Problema de Regularidad Global
+## 2. Espacios Funcionales y Soluciones
 
-### Problema del Milenio (Clay Mathematics Institute)
+### 2.1 Datos Iniciales
+
+**Datos**: u₀ ∈ L²σ(T³) (div-free), opcional u₀ ∈ H¹ para estimaciones más finas.
+
+Aquí L²σ(T³) denota el espacio de campos vectoriales de cuadrado integrable en el toro 3D que satisfacen la condición de incompresibilidad ∇·u = 0.
+
+### 2.2 Solución Leray-Hopf
+
+Una **solución Leray-Hopf** es un campo de velocidad que satisface:
+
+```
+u ∈ L∞(0,T; L²σ) ∩ L²(0,T; H¹)
+```
+
+con la desigualdad de energía correspondiente.
+
+**Propiedades**:
+- Existencia global garantizada para datos arbitrarios en L²σ
+- Unicidad solo conocida en 2D o para datos pequeños en 3D
+- Satisface la ecuación en sentido débil
+
+### 2.3 Desigualdad de Energía (estándar)
+
+Para toda solución Leray-Hopf se cumple:
+
+```
+½‖u(t)‖²₂ + ν∫₀ᵗ ‖∇u‖²₂ ≤ ½‖u₀‖²₂ + ∫₀ᵗ ⟨F,u⟩
+```
+
+Esta desigualdad expresa la conservación/disipación de energía cinética en el sistema.
+
+### 2.4 Criterio BKM (Beale-Kato-Majda)
+
+**Teorema BKM**: Si 
+
+```
+∫₀ᵀ ‖ω(·,t)‖∞ dt < ∞
+```
+
+entonces no hay blow-up en [0,T], donde ω = ∇ × u es la vorticidad.
+
+Este criterio establece que el control de la vorticidad en norma L∞ es suficiente y necesario para garantizar la suavidad de la solución.
+
+### 2.5 Espacios de Besov (Opcional - Criticalidad)
+
+Para análisis en espacios críticos, trabajamos en B^(−1+3/p)_(p,q)(T³) con 3 < p ≤ ∞, 1 ≤ q ≤ ∞.
+
+**Estimación bilineal estándar**:
+
+```
+‖B(u,v)‖_(B^(−1+3/p)_(p,q)) ≤ C‖u‖_(B^(−1+3/p)_(p,q))‖v‖_(B^(1+3/p)_(p,q))
+```
+
+Fijando por ejemplo p = 3 + ε, q = 1 obtenemos criticalidad y buena interpolación para el análisis de regularidad.
+
+## 3. El Problema de Regularidad Global
+
+### 3.1 Problema del Milenio (Clay Mathematics Institute)
 Demostrar que para datos iniciales suaves u₀ ∈ H^m (m ≥ 3), existe una solución global suave:
 ```
 u ∈ C^∞(ℝ³ × (0,∞))
 ```
 
-### Criterio BKM (Beale-Kato-Majda)
-La solución permanece suave si y solo si:
-```
-∫₀^T ‖ω(t)‖_L∞ dt < ∞
-```
-donde ω = ∇ × u es la vorticidad.
+## 4. Marco QCAL ∞³
 
-## 3. Marco QCAL ∞³
-
-### 3.1 Sistema Ψ-NS Regularizado
+### 4.1 Sistema Ψ-NS Regularizado
 
 Introducimos una fuerza oscilatoria de alta frecuencia:
 ```
@@ -46,7 +96,7 @@ Donde:
 - **f₀**: Frecuencia (Hz)
 - **Φ(x,θ)**: Potencial oscilatorio con ∇ₓφ ≥ c₀ > 0
 
-### 3.2 Escala Dual-Límite
+### 4.2 Escala Dual-Límite
 
 **Parámetros de escala:**
 ```
@@ -59,7 +109,7 @@ A = af₀
 - La amplitud ε → 0 (fuerza desaparece)
 - El efecto regularizante persiste vía δ* > 0
 
-### 3.3 Defecto de Desalineamiento
+### 4.3 Defecto de Desalineamiento
 
 El tensor de alineamiento vorticidad-deformación:
 ```
@@ -73,9 +123,35 @@ Donde S = ½(∇u + ∇uᵀ) es el tensor de deformación.
 δ(t) = 1 - A_ε,f₀(t)
 ```
 
-## 4. Resultados Principales
+## 5. Resultados Principales
 
-### Teorema 13.1: Uniformidad de Estimaciones
+### Teorema Principal (Continuidad a priori ⇒ Suavidad Global)
+
+**Enunciado**: Existe δ₀ > 0 tal que si el defecto de desalineamiento persistente
+
+```
+δ* := avg_t avg_x ∠(ω, Sω) ≥ δ₀
+```
+
+en el límite dual ε → 0, A → ∞ (con ε = λf₀^(−α), A = af₀, α > 1), entonces
+
+```
+∫₀^∞ ‖ω‖∞ dt < ∞
+```
+
+y por el criterio BKM la solución Leray-Hopf se vuelve suave globalmente.
+
+**Idea de prueba**:
+1. Descomposición del estiramiento (ω·∇)u mediante Sω
+2. Control de ⟨cos θ⟩ con θ = ∠(ω, Sω): ⟨cos θ⟩ ≤ cos δ₀ < 1
+3. Ecuación tipo Riccati efectiva con término lineal de disipación y coeficiente cuadrático reducido por cos δ₀
+4. Cierre con energía y Grönwall ⇒ integrabilidad de ‖ω‖∞
+
+**Separación de conceptos**:
+- **Statement (Enunciado estándar)**: La integrabilidad de ‖ω‖∞ implica suavidad global vía BKM
+- **Interpretation (Visión QCAL)**: La hipótesis δ* ≥ δ₀ es la contribución novedosa verificable computacionalmente
+
+### Teorema 5.1: Uniformidad de Estimaciones
 
 Para el sistema Ψ-NS con escala dual, existen constantes C_m independientes de f₀ tales que:
 ```
@@ -87,7 +163,7 @@ Para el sistema Ψ-NS con escala dual, existen constantes C_m independientes de 
 - Control uniforme de términos no lineales
 - Análisis de dos escalas temporal
 
-### Teorema 13.4: Persistencia de δ*
+### Teorema 5.2: Persistencia de δ*
 
 En el límite f₀ → ∞, el defecto se estabiliza:
 ```
@@ -103,7 +179,7 @@ Donde:
 - **a**: Parámetro de escala de amplitud
 - **c₀**: Cota inferior del gradiente de fase
 
-### Teorema 13.5: Regularidad Global Condicional
+### Teorema 5.3: Regularidad Global Condicional
 
 Si existe un régimen de parámetros donde:
 1. δ* > 0 persiste
@@ -114,9 +190,9 @@ Entonces:
 ∫₀^∞ ‖ω(t)‖_L∞ dt < ∞  ⟹  u ∈ C^∞(ℝ³ × (0,∞))
 ```
 
-## 5. Análisis Técnico
+## 6. Análisis Técnico
 
-### 5.1 Promediado de Dos Escalas
+### 6.1 Promediado de Dos Escalas
 
 Descomposición temporal:
 ```
@@ -130,7 +206,7 @@ Para funciones periódicas en θ:
 lim_{T→∞} (1/T)∫₀^T F(t,θ) dt = ⟨F⟩_θ
 ```
 
-### 5.2 Ecuación de Riccati para Vorticidad
+### 6.2 Ecuación de Riccati para Vorticidad
 
 La evolución de ‖ω‖²_L² satisface:
 ```
@@ -144,7 +220,7 @@ Donde:
 
 **Consecuencia:** Si α* < 0 uniformemente, entonces ‖ω‖_L∞ está acotado.
 
-### 5.3 Escalas Características
+### 6.3 Escalas Características
 
 **Escala de vorticidad:**
 ```
@@ -161,23 +237,23 @@ L_ω ~ (ν³/ε)^(1/4)
 τ ~ f₀^((α-1)/2)  →  ∞  cuando f₀ → ∞, α > 1
 ```
 
-## 6. Conexión con Otros Enfoques
+## 7. Conexión con Otros Enfoques
 
-### 6.1 Onsager y Turbulencia
+### 7.1 Onsager y Turbulencia
 - La regularización vibracional mantiene u ∈ C^∞
 - Compatible con cascada de energía para Re → ∞
 
-### 6.2 Leray y Soluciones Débiles
+### 7.2 Leray y Soluciones Débiles
 - Las soluciones Ψ-NS son soluciones fuertes clásicas
 - En el límite ε → 0, convergen a soluciones débiles de Leray
 
-### 6.3 Métodos de Littlewood-Paley
+### 7.3 Métodos de Littlewood-Paley
 - Análisis frecuencial muestra δ* emerge de modos altos
 - Compatible con teoría de dyadic shells
 
-## 7. Aspectos Computacionales
+## 8. Aspectos Computacionales
 
-### 7.1 Discretización Espectral
+### 8.1 Discretización Espectral
 
 Representación en modos de Fourier:
 ```
@@ -189,14 +265,14 @@ u(x) = Σ_k û_k e^(ik·x)
 - FFT eficiente O(N log N)
 - Conservación de energía discreta
 
-### 7.2 Esquema Temporal
+### 8.2 Esquema Temporal
 
 Método pseudo-espectral RK4:
 ```
 ∂ₜû_k = -ik_i(û·∇u)_k - νk²û_k + (ε∇Φ)_k
 ```
 
-### 7.3 Cálculo de δ(t)
+### 8.3 Cálculo de δ(t)
 
 1. Calcular S = ½(∇u + ∇uᵀ) en espacio físico
 2. Calcular ω = ∇ × u
@@ -207,7 +283,7 @@ Método pseudo-espectral RK4:
    ```
 4. δ = 1 - numerador/denominador
 
-## 8. Limitaciones y Trabajo Futuro
+## 9. Limitaciones y Trabajo Futuro
 
 ### Limitaciones Actuales
 - Requiere f₀ suficientemente grande (> 100 Hz)
@@ -219,7 +295,7 @@ Método pseudo-espectral RK4:
 - Análisis de estabilidad con respecto a perturbaciones
 - Conexión con experimentos físicos de fluidos oscilantes
 
-## 9. Referencias Matemáticas Clave
+## 10. Referencias Matemáticas Clave
 
 ### Análisis Funcional
 - Espacios de Sobolev H^m(ℝ³)
@@ -236,7 +312,7 @@ Método pseudo-espectral RK4:
 - Homogenización
 - Escalas múltiples
 
-## 10. Conclusión
+## 11. Conclusión
 
 El marco QCAL ∞³ proporciona un camino viable hacia la regularidad global para Navier-Stokes 3D mediante:
 
