@@ -1141,6 +1141,22 @@ This project implements the QCAL Infinity-Cubed framework for regularization of 
 
 MIT License
 
+---
+
+## 🧠 Resumen Visual para el Lector
+
+```
+Clay NS puro ─── ? ───► ∞ blow-up posible  
+
+Clay NS + Ψ ───► δ* > 0 ──► γ > 0 ──► ∫‖ω‖∞ dt < ∞ ──► u ∈ C^∞  
+```
+
+✓ Formalización parcial en Lean4  
+✓ Prueba condicional con parámetro físico a > 200  
+✓ NS modificado, pero con motivación física profunda
+
+---
+
 ## References
 
 - Beale-Kato-Majda Criterion
