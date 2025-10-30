@@ -12,16 +12,16 @@ from typing import Dict, Tuple
 class DualLimitAnalyzer:
     """Analizador para el límite dual"""
     
-    def __init__(self, lambda_val_val: float = 1.0, a: float = 1.0, alpha: float = 2.0):
+    def __init__(self, lambda_val: float = 1.0, a: float = 1.0, alpha: float = 2.0):
         """
         Inicializar analizador
         
         Args:
-            lambda_val_val: Intensidad base
+            lambda_val: Intensidad base
             a: Amplitud base
             alpha: Exponente de escala (debe ser > 1)
         """
-        self.lambda_val_val = lambda_val_val
+        self.lambda_val = lambda_val
         self.a = a
         self.alpha = alpha
         
@@ -50,9 +50,9 @@ class DualLimitAnalyzer:
         Returns:
             ‖epsilonnablaPhi‖ ~ lambda_valaf0^(1-alpha)
         """
-        epsilon = self.lambda_val_val * f0**(-self.alpha)
+        epsilon = self.lambda_val * f0**(-self.alpha)
         A = self.a * f0
-        return self.lambda_val_val * self.a * f0**(1 - self.alpha)
+        return self.lambda_val * self.a * f0**(1 - self.alpha)
     
     def characteristic_time_scale(self, f0: float, nu: float = 0.001) -> float:
         """
@@ -65,7 +65,7 @@ class DualLimitAnalyzer:
         Returns:
             τ ~ f0^((alpha-1)/2)
         """
-        epsilon = self.lambda_val_val * f0**(-self.alpha)
+        epsilon = self.lambda_val * f0**(-self.alpha)
         return (nu / epsilon)**0.5
     
     def convergence_rate(self, f0: float, delta_computed: float) -> float:
@@ -153,12 +153,12 @@ class DualLimitAnalyzer:
         Returns:
             Diccionario con condiciones verificadas
         """
-        epsilon = self.lambda_val_val * f0**(-self.alpha)
+        epsilon = self.lambda_val * f0**(-self.alpha)
         A = self.a * f0
         
         conditions = {
             'alpha_greater_than_one': self.alpha > 1,
-            'epsilon_decreasing': epsilon < self.lambda_val_val * 100**(-self.alpha),  # Comparar con f0=100
+            'epsilon_decreasing': epsilon < self.lambda_val * 100**(-self.alpha),  # Comparar con f0=100
             'amplitude_increasing': A > self.a * 100,
             'forcing_vanishing': self.forcing_magnitude(f0) < self.forcing_magnitude(100),
             'time_scale_diverging': self.characteristic_time_scale(f0, nu) > 
@@ -247,7 +247,7 @@ def analyze_blow_up_criterion(delta_star: float, nu: float = 0.001) -> Dict:
 
 if __name__ == "__main__":
     # Ejemplo de uso
-    analyzer = DualLimitAnalyzer(lambda_val_val=1.0, a=1.0, alpha=2.0)
+    analyzer = DualLimitAnalyzer(lambda_val=1.0, a=1.0, alpha=2.0)
     
     print("Análisis de Límite Dual")
     print("=" * 50)

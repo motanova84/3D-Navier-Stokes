@@ -27,7 +27,7 @@ def analyze_dual_limit_convergence(N: int = 64, Re: float = 1000):
     print("=" * 70)
     
     solver = PsiNSSolver(N=N, Re=Re)
-    analyzer = DualLimitAnalyzer(lambda_val_val=1.0, a=1.0, alpha=2.0)
+    analyzer = DualLimitAnalyzer(lambda_val=1.0, a=1.0, alpha=2.0)
     visualizer = PsiNSVisualizer()
     
     # Barrido de frecuencias

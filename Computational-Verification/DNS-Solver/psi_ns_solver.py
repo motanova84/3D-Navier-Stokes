@@ -14,14 +14,14 @@ from typing import Tuple, Dict, List
 @dataclass
 class DualLimitScaling:
     """Parámetros de escala dual-límite"""
-    lambda_val_val: float = 1.0      # Intensidad base
+    lambda_val: float = 1.0      # Intensidad base
     a: float = 1.0          # Amplitud base  
     alpha: float = 2.0          # Exponente de escala (alpha > 1)
     f0_base: float = 141.7001  # Frecuencia QCAL
     
     def epsilon(self, f0: float) -> float:
         """Calcular epsilon = lambda_valf0^(-alpha)"""
-        return self.lambda_val_val * f0**(-self.alpha)
+        return self.lambda_val * f0**(-self.alpha)
     
     def amplitude(self, f0: float) -> float:
         """Calcular A = af0"""
@@ -213,9 +213,9 @@ class PsiNSSolver:
         f_hat = np.array([fft.fftn(f_osc[i]) for i in range(3)])
         
         # Término no lineal (u·nabla)u en espacio físico
-        du_dx = fft.ifftn(1j * self.kx * u_hat.T).T.real
-        du_dy = fft.ifftn(1j * self.ky * u_hat.T).T.real
-        du_dz = fft.ifftn(1j * self.kz * u_hat.T).T.real
+        du_dx = np.array([fft.ifftn(1j * self.kx * u_hat[i]).real for i in range(3)])
+        du_dy = np.array([fft.ifftn(1j * self.ky * u_hat[i]).real for i in range(3)])
+        du_dz = np.array([fft.ifftn(1j * self.kz * u_hat[i]).real for i in range(3)])
         
         nonlinear = np.zeros_like(u)
         nonlinear[0] = u[0]*du_dx[0] + u[1]*du_dy[0] + u[2]*du_dz[0]
