@@ -1,54 +1,45 @@
 name: lean-ci
-on: [push, pull_request]
-
-permissions:
-  contents: read
 
 on:
   push:
-    branches: [ main, purge_axioms ]
+    branches: [ main, master, develop ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, master, develop ]
 
 jobs:
-  build:
+  build-and-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
-      - run: ~/.elan/bin/lake build
-      - name: Allow sorry in purge_axioms
-        if: contains(github.ref, 'purge_axioms')
-        run: echo "allow_sorry branch; skipping #print axioms gate"
-      - name: No extra axioms (main branches)
-        if: "!contains(github.ref, 'purge_axioms')"
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache Lake/LEAN
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.elan
+            .lake
+            lake-packages
+          key: ${{ runner.os }}-lean-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lakefile.lean', 'lake-manifest.json') }}
+          restore-keys: |
+            ${{ runner.os }}-lean-
+
+      - name: Install Lean (elan)
         run: |
-          ~/.elan/bin/lake exe print-axioms RiemannAdelic | tee axioms.txt
-          ! grep -E ".+" axioms.txt || (echo "Found axioms"; cat axioms.txt; exit 1)
-    - uses: actions/checkout@v4
-    
-    - name: Setup Lean
-      uses: leanprover/lean-setup@v1
-      with:
-        lean-version: 'lean4:stable'
-        
-    - name: Create lakefile if missing
-      run: |
-        if [ ! -f lakefile.lean ] && [ ! -f lakefile.toml ]; then
-          echo "Creating minimal lakefile.lean"
-          cat > lakefile.lean << 'EOF'
-          import Lake
-          open Lake DSL
-          package NavierStokesQCAL
-          require mathlib from git
-            "https://github.com/leanprover-community/mathlib4.git"
-          @[default_target]
-          lean_lib NavierStokes
-          EOF
-        fi
-        
-    - name: Build project
-      run: lake build
-      
-    - name: Run tests (if any)
-      run: lake test || echo "No tests configured"
+          bash Scripts/setup_lean.sh
+        shell: bash
+
+      - name: Build (lake)
+        run: |
+          bash Scripts/build_lean_proofs.sh
+        shell: bash
+
+      - name: Check no-sorry
+        run: |
+          bash Scripts/check_no_sorry.sh
+        shell: bash
+
+      - name: Lint
+        run: |
+          bash Scripts/lint.sh
+        shell: bash
