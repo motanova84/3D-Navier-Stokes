@@ -4,51 +4,35 @@ __pycache__/
 *$py.class
 *.so
 .Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# Virtual environments
 venv/
-ENV/
 env/
+ENV/
+*.egg-info/
+dist/
+build/
 
-# Jupyter
-.ipynb_checkpoints
-*.ipynb
+# Lean4
+.lake/
+lake-packages/
+*.olean
+*.trace
 
-# IDEs
+# Results and data
+*.h5
+*.hdf5
+*.npy
+*.npz
+*.png
+*.jpg
+*.pdf
+!Documentation/*.pdf
+
+# IDE
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
-
-# Lean4
-.lake/
-lake-packages/
-build/
-*.olean
-
-# Results (keep structure but not large data files)
-Results/Data/*.dat
-Results/Data/*.h5
-Results/Data/*.hdf5
-Results/Figures/*.png
-Results/Figures/*.jpg
-Results/Figures/*.pdf
 
 # OS
 .DS_Store
@@ -56,5 +40,9 @@ Thumbs.db
 
 # Temporary files
 *.tmp
-*.bak
 *.log
+/tmp/
+
+# Large data files
+Results/DNS_Data/*.h5
+Results/DNS_Data/*.dat

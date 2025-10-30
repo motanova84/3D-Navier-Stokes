@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  clay-verification:
+    image: python:3.9
+    volumes:
+      - ./Results:/workspace/Results
+      - ./DNS-Verification:/workspace/DNS-Verification
+      - ./Configuration:/workspace/Configuration
+    working_dir: /workspace
+    environment:
+      - PYTHONPATH=/workspace
+    command: bash -c "pip install -r Configuration/requirements.txt && python3 DNS-Verification/DualLimitSolver/psi_ns_solver.py"
+
+  lean4-builder:
+    image: leanprover/lean4:latest
+    volumes:
+      - ./Lean4-Formalization:/workspace
+    working_dir: /workspace
+    command: lake build
