@@ -281,7 +281,7 @@ class TestHybridApproach(unittest.TestCase):
     
     def setUp(self):
         """Initialize proof framework for each test"""
-        self.proof = FinalProof(ν=1e-3, δ_star=1/(4*np.pi**2), f0=141.7)
+        self.proof = FinalProof(ν=1e-3, δ_star=1/(4*np.pi**2), f0=141.7001)
     
     def test_time_averaged_misalignment(self):
         """Test time-averaged misalignment computation"""

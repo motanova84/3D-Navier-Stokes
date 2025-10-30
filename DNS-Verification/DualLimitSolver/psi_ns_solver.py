@@ -14,7 +14,7 @@ import h5py
 class DualLimitScaling:
     """Dual-limit scaling parameters for QCAL construction"""
     λ: float = 1.0           # Intensity base
-    a: float = 7.0           # Amplitude (NOTE: needs ~200 for δ* > 0.998)
+    a: float = 40.0          # Amplitude parameter (δ* = 40.528)
     α: float = 2.0           # Scaling exponent (α > 1)
     f₀_base: float = 141.7001  # QCAL critical frequency (Hz)
     c₀: float = 1.0          # Phase gradient

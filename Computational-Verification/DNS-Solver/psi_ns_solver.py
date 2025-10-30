@@ -15,7 +15,7 @@ from typing import Tuple, Dict, List
 class DualLimitScaling:
     """Parámetros de escala dual-límite"""
     lambda_val: float = 1.0      # Intensidad base
-    a: float = 1.0          # Amplitud base  
+    a: float = 40.0         # Amplitud (δ* = 40.528)
     alpha: float = 2.0          # Exponente de escala (alpha > 1)
     f0_base: float = 141.7001  # Frecuencia QCAL
     

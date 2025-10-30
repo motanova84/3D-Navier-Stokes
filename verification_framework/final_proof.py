@@ -59,14 +59,14 @@ class FinalProof:
         logK (float): Logarithmic term log⁺(‖u‖_{H^m}/‖ω‖_∞)
     """
     
-    def __init__(self, ν=1e-3, δ_star=1/(4*np.pi**2), f0=141.7):
+    def __init__(self, ν=1e-3, δ_star=1/(4*np.pi**2), f0=141.7001):
         """
         Initialize the UNCONDITIONAL proof framework.
         
         Args:
             ν (float): Kinematic viscosity (default: 1e-3)
             δ_star (float): QCAL critical parameter (default: 1/(4π²) ≈ 0.0253)
-            f0 (float): Forcing frequency parameter (default: 141.7 Hz)
+            f0 (float): Forcing frequency parameter (default: 141.7001 Hz)
         """
         self.ν = ν
         self.δ_star = δ_star
@@ -759,7 +759,7 @@ if __name__ == "__main__":
     print("\n")
     
     # Initialize proof framework
-    proof = FinalProof(ν=1e-3, δ_star=1/(4*np.pi**2), f0=141.7)
+    proof = FinalProof(ν=1e-3, δ_star=1/(4*np.pi**2), f0=141.7001)
     
     # Execute original proof (backward compatible)
     print("\n" + "="*70)
