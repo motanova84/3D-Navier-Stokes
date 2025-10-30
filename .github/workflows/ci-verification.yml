@@ -21,8 +21,9 @@ jobs:
             ~/.elan
             .lake
             lake-packages
-          key: ${{ runner.os }}-lean-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lakefile.lean', 'lake-manifest.json') }}
+          key: ${{ runner.os }}-lean-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lakefile.lean') }}-${{ hashFiles('lake-manifest.json', '.lake/lakefile.olean') }}
           restore-keys: |
+            ${{ runner.os }}-lean-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lakefile.lean') }}-
             ${{ runner.os }}-lean-
 
       - name: Install Lean (elan)

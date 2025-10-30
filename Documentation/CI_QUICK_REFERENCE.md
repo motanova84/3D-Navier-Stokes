@@ -49,8 +49,10 @@ View CI status: [GitHub Actions](https://github.com/motanova84/3D-Navier-Stokes/
 |------------|-------|--------|----------|
 | `test_unified_bkm.py` | 19 | ✅ Pass | ✅ Yes |
 | `test_verification.py` | 29 | ⚠️ Partial | ⚠️ No |
-| `test_unconditional.py` | ~15 | ⚠️ Partial | ⚠️ No |
+| `test_unconditional.py` | 14 | ⚠️ Partial | ⚠️ No |
 | `DNS/.../test_unified_bkm.py` | 21 | ✅ Pass | ✅ Yes |
+
+*Note: Test counts verified from actual test files. Partial status indicates known API compatibility issues.*
 
 ## Troubleshooting
 

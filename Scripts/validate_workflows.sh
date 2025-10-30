@@ -18,7 +18,7 @@ fi
 # Install PyYAML if not available
 python3 -c "import yaml" 2>/dev/null || {
     echo "Installing PyYAML..."
-    pip install PyYAML -q
+    pip install --user PyYAML -q
 }
 
 WORKFLOW_DIR=".github/workflows"
