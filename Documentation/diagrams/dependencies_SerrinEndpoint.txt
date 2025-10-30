@@ -1,0 +1,13 @@
+Dependency tree for SerrinEndpoint:
+
+└─ BKMClosure
+   └─ GlobalRiccati
+      ├─ DyadicRiccati
+      │  └─ UniformConstants
+      ├─ MisalignmentDefect
+      │  ├─ BasicDefinitions
+      │  └─ UniformConstants
+      └─ ParabolicCoercivity
+         ├─ DyadicRiccati
+         │  └─ UniformConstants
+         └─ UniformConstants

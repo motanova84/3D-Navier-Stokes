@@ -158,6 +158,12 @@ The framework provides **three independent routes** to establish the BKM criteri
 │   └── constants_verification.py        # Mathematical constants verification
 │
 ├── Documentation/                         # Technical Documentation
+│   ├── FORMAL_PROOF_ROADMAP.md           # 📊 Formal proof status & dependencies
+│   ├── diagrams/                         # Dependency graphs & visualizations
+│   │   ├── lean_dependencies.mmd        # Mermaid dependency graph
+│   │   ├── lean_dependencies.dot        # GraphViz DOT format
+│   │   ├── dependencies_*.txt           # ASCII dependency trees
+│   │   └── lean_statistics.md           # Module statistics
 │   ├── HYBRID_BKM_CLOSURE.md            # Hybrid approach specification
 │   ├── MATHEMATICAL_APPENDICES.md       # Technical appendices
 │   └── UNIFIED_FRAMEWORK.md             # Unified framework documentation
@@ -806,10 +812,28 @@ docker-compose up lean4-builder
 
 ## Documentation
 
+### Main Documentation
+
 - **[CLAY_PROOF.md](Documentation/CLAY_PROOF.md)**: Executive summary for Clay Institute
 - **[VERIFICATION_ROADMAP.md](Documentation/VERIFICATION_ROADMAP.md)**: Detailed implementation plan
+- **[FORMAL_PROOF_ROADMAP.md](Documentation/FORMAL_PROOF_ROADMAP.md)**: 📊 **Formal proof status, theorem dependencies, and Lean file dependency graphs**
 - **[QCAL_PARAMETERS.md](Documentation/QCAL_PARAMETERS.md)**: Parameter specifications and analysis
 - **[MATHEMATICAL_APPENDICES.md](Documentation/MATHEMATICAL_APPENDICES.md)**: Technical appendices A-F
+
+### Lean Formalization
+
+The Lean 4 formalization provides rigorous formal verification of the mathematical framework. For detailed information about:
+
+- **Theorem status and dependencies**: See [FORMAL_PROOF_ROADMAP.md](Documentation/FORMAL_PROOF_ROADMAP.md)
+- **Dependency graphs and visualizations**: See [diagrams/](Documentation/diagrams/)
+- **Automated dependency analysis**: Use `tools/generate_lean_dependency_graph.py`
+
+**Quick Overview**:
+- 📁 18 Lean modules organized in 5 layers (Foundation → Core Theory → Analysis → Closure → Main Results)
+- ✅ 18 theorems proven
+- ⚠️ 27 axioms requiring proof
+- 📊 ~40% completion by theorem count
+- 🎯 Critical path: BasicDefinitions → UniformConstants → DyadicRiccati → GlobalRiccati → BKMClosure → Theorem13_7
 
 ## Contributing
 
