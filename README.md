@@ -128,88 +128,123 @@ The framework provides **three independent routes** to establish the BKM criteri
 
 ## Repository Structure
 
+### Directory Organization
+
 ```
 3D-Navier-Stokes/
-├── DNS-Verification/
-│   ├── UnifiedBKM/                     # [NEW] Unified BKM-CZ-Besov Framework
-│   │   ├── riccati_besov_closure.py   # Route A: Riccati-Besov
-│   │   ├── volterra_besov.py          # Route B: Volterra-Besov
-│   │   ├── energy_bootstrap.py        # Route C: Energy Bootstrap
-│   │   ├── unified_validation.py      # Complete validation algorithm
-│   │   └── test_unified_bkm.py        # 21 comprehensive tests
-│   ├── DualLimitSolver/               # DNS solver with dual scaling
-│   ├── Benchmarking/                  # Convergence tests
-│   └── Visualization/                 # Result visualization
-├── Lean4-Formalization/
+│
+├── DNS-Verification/                      # Direct Numerical Simulation Components
+│   ├── UnifiedBKM/                        # Unified BKM-CZ-Besov Framework
+│   │   ├── riccati_besov_closure.py      # Route A: Riccati-Besov implementation
+│   │   ├── volterra_besov.py             # Route B: Volterra-Besov solver
+│   │   ├── energy_bootstrap.py           # Route C: Energy Bootstrap method
+│   │   ├── unified_validation.py         # Comprehensive validation algorithm
+│   │   └── test_unified_bkm.py           # Test suite (21 tests)
+│   ├── DualLimitSolver/                  # DNS solver with dual-limit scaling
+│   ├── Benchmarking/                     # Convergence and performance tests
+│   └── Visualization/                    # Result visualization utilities
+│
+├── Lean4-Formalization/                   # Formal Verification (Lean4)
 │   └── NavierStokes/
-│       ├── CalderonZygmundBesov.lean  # [NEW] CZ in Besov spaces
-│       ├── BesovEmbedding.lean        # [NEW] Besov-L∞ embedding
-│       ├── RiccatiBesov.lean          # [NEW] Improved Riccati
-│       ├── UnifiedBKM.lean            # [NEW] Unified theorem
-│       └── ...                        # Other formalization modules
-├── verification_framework/
-│   ├── __init__.py                    # Package initialization
-│   ├── final_proof.py                 # Main proof (classical + hybrid)
-│   └── constants_verification.py     # Mathematical constants verification
-├── Documentation/
-│   ├── HYBRID_BKM_CLOSURE.md         # NEW: Hybrid approach documentation
-│   └── MATHEMATICAL_APPENDICES.md    # Technical appendices
-├── test_verification.py               # Comprehensive test suite (29 tests)
-├── requirements.txt                   # Python dependencies
-└── README.md                          # This file
+│       ├── CalderonZygmundBesov.lean     # CZ operators in Besov spaces
+│       ├── BesovEmbedding.lean           # Besov-L∞ embedding theorems
+│       ├── RiccatiBesov.lean             # Improved Riccati inequalities
+│       ├── UnifiedBKM.lean               # Unified BKM theorem
+│       └── ...                           # Additional formalization modules
+│
+├── verification_framework/                # Python Verification Framework
+│   ├── __init__.py                       # Package initialization
+│   ├── final_proof.py                    # Main proof (classical + hybrid routes)
+│   └── constants_verification.py        # Mathematical constants verification
+│
+├── Documentation/                         # Technical Documentation
+│   ├── HYBRID_BKM_CLOSURE.md            # Hybrid approach specification
+│   ├── MATHEMATICAL_APPENDICES.md       # Technical appendices
+│   └── UNIFIED_FRAMEWORK.md             # Unified framework documentation
+│
+├── test_verification.py                   # Comprehensive test suite (29 tests)
+├── requirements.txt                       # Python dependencies
+└── README.md                              # This file
 ```
 
-## Mathematical Framework
+---
+
+---
+
+## Mathematical Details
 
 ### Theorem A: Integrability of Besov Norms
 
-**Goal:** Prove ∫₀ᵀ ‖ω(t)‖_{B⁰_{∞,1}} dt < ∞
+**Objective:** Establish ∫₀ᵀ ‖ω(t)‖_{B⁰_{∞,1}} dt < ∞
 
-**Strategy:**
-1. **Littlewood-Paley decomposition:** ω = ∑_{j≥-1} Δ_jω
-2. **Riccati coefficients:** α_j = C_BKM(1-δ*)(1+log⁺K) - ν·c(d)·2²ʲ
-3. **Dissipative scale:** j_d where α_j < 0 for j ≥ j_d
-4. **Osgood inequality:** dX/dt ≤ A - B X log(e + βX)
-5. **Conclusion:** X(t) grows at most double-exponentially → integrable
+**Proof Strategy:**
 
-### Lema B: Gradient Control
+1. **Littlewood-Paley Decomposition**  
+   Decompose vorticity: ω = ∑_{j≥-1} Δ_jω
 
-**Statement:** ‖∇u‖_∞ ≤ C ‖ω‖_{B⁰_{∞,1}}
+2. **Riccati Coefficient Analysis**  
+   Define: α_j = C_BKM(1-δ*)(1+log⁺K) - ν·c(d)·2²ʲ
 
-**Proof:** Via Biot-Savart representation and Calderón-Zygmund theory.
+3. **Dissipative Scale Identification**  
+   Determine j_d such that α_j < 0 for all j ≥ j_d
 
-### Proposición C: L³ Differential Inequality
+4. **Osgood Inequality Application**  
+   Solve: dX/dt ≤ A - B X log(e + βX)
 
-**Statement:** d/dt ‖u‖_{L³}³ ≤ C ‖∇u‖_∞ ‖u‖_{L³}³
+5. **Integrability Conclusion**  
+   Prove X(t) exhibits at most double-exponential growth, ensuring integrability
 
-**Combining with Lema B:** d/dt ‖u‖_{L³}³ ≤ C ‖ω‖_{B⁰_{∞,1}} ‖u‖_{L³}³
+### Lemma B: Gradient Control
 
-### Teorema D: Endpoint Serrin Regularity
+**Statement:** ‖∇u‖_{L∞} ≤ C ‖ω‖_{B⁰_{∞,1}}
+
+**Proof Technique:** Biot-Savart representation combined with Calderón-Zygmund operator theory
+
+### Proposition C: L³ Differential Inequality
+
+**Statement:** d/dt ‖u‖_{L³}³ ≤ C ‖∇u‖_{L∞} ‖u‖_{L³}³
+
+**Combined Result:** Applying Lemma B yields  
+d/dt ‖u‖_{L³}³ ≤ C ‖ω‖_{B⁰_{∞,1}} ‖u‖_{L³}³
+
+### Theorem D: Endpoint Serrin Regularity
 
 **Statement:** u ∈ Lₜ∞Lₓ³ ∩ Lₜ²Hₓ¹ ⇒ u ∈ C∞(ℝ³ × (0,∞))
 
-**Application:** By Gronwall inequality and Theorem A:
+**Application:** Via Gronwall inequality and Theorem A:
 ```
 ‖u‖_{Lₜ∞Lₓ³} ≤ ‖u₀‖_{L³} exp(C ∫₀ᵀ ‖ω(τ)‖_{B⁰_{∞,1}} dτ) < ∞
 ```
 
+---
+
 ## Installation
 
-### Requirements
-- Python ≥ 3.7
-- NumPy ≥ 1.21.0
-- SciPy ≥ 1.7.0
+### System Requirements
 
-### Setup
+- **Python:** ≥ 3.7
+- **NumPy:** ≥ 1.21.0
+- **SciPy:** ≥ 1.7.0
+- **Lean 4:** (Optional, for formal verification)
+
+### Installation Steps
+
 ```bash
+# Clone the repository
 git clone https://github.com/motanova84/3D-Navier-Stokes.git
+
+# Navigate to directory
 cd 3D-Navier-Stokes
+
+# Install Python dependencies
 pip install -r requirements.txt
 ```
 
+---
+
 ## Usage
 
-### Running the Classical Proof
+### Example 1: Classical Proof Execution
 
 ```python
 from verification_framework import FinalProof
@@ -231,7 +266,7 @@ if results['global_regularity']:
     print(f"γ = {proof.γ_min:.6e} > 0 (universal)")
 ```
 
-### Running the Unified BKM Framework
+### Example 2: Unified BKM Framework
 
 ```python
 from DNS-Verification.DualLimitSolver.unified_bkm import (
@@ -239,66 +274,78 @@ from DNS-Verification.DualLimitSolver.unified_bkm import (
     unified_bkm_verification
 )
 
-# Create optimal parameters
+# Configure optimal parameters
 params = UnifiedBKMConstants(
-    ν=1e-3,
-    c_B=0.15,
-    C_CZ=1.5,
-    C_star=1.2,
-    a=10.0,  # Optimal amplitude
-    c_0=1.0,
-    α=2.0
+    ν=1e-3,      # Kinematic viscosity
+    c_B=0.15,    # Bernstein constant
+    C_CZ=1.5,    # Calderón-Zygmund constant
+    C_star=1.2,  # Coercivity constant
+    a=10.0,      # Optimal amplitude parameter
+    c_0=1.0,     # Phase gradient
+    α=2.0        # Scaling exponent
 )
 
-# Run unified verification (all three routes)
-results = unified_bkm_verification(params, M=100.0, ω_0=10.0, verbose=True)
-
-# Check result
-if results['global_regularity']:
-    print("All three routes verified - Global regularity!")
-```
-
-### Running the Hybrid Proof (NEW)
-
-```python
-from verification_framework import FinalProof
-
-# Initialize with hybrid constants
-proof = FinalProof(ν=1e-3, δ_star=1/(4*np.pi**2), f0=141.7)
-
-# Execute hybrid proof with multiple routes
-results = proof.prove_hybrid_bkm_closure(
-    T_max=100.0,
-    X0=10.0,
-    u0_L3_norm=1.0,
+# Execute unified verification (all three routes)
+results = unified_bkm_verification(
+    params, 
+    M=100.0,    # Maximum frequency
+    ω_0=10.0,   # Initial vorticity norm
     verbose=True
 )
 
-# Check which routes succeeded
+# Verify global regularity
+if results['global_regularity']:
+    print("All three routes verified - Global regularity established!")
+```
+
+### Example 3: Hybrid Proof Approach
+
+```python
+from verification_framework import FinalProof
+import numpy as np
+
+# Initialize with hybrid constants
+proof = FinalProof(
+    ν=1e-3, 
+    δ_star=1/(4*np.pi**2), 
+    f0=141.7
+)
+
+# Execute hybrid proof with multiple routes
+results = proof.prove_hybrid_bkm_closure(
+    T_max=100.0,       # Time horizon
+    X0=10.0,           # Initial Besov norm
+    u0_L3_norm=1.0,    # Initial L³ norm
+    verbose=True
+)
+
+# Identify successful closure routes
 if results['bkm_closed']:
-    print(f"BKM closed via: {', '.join(results['closure_routes'])}")
+    print(f"BKM criterion closed via: {', '.join(results['closure_routes'])}")
     # Possible routes: 'Parab-crit', 'Gap-avg', 'BMO-endpoint'
 ```
 
-### Running from Command Line
+### Command Line Interface
 
 ```bash
-# Run complete proof (both classical and hybrid)
+# Execute complete proof (classical + hybrid)
 python verification_framework/final_proof.py
 
 # Run unified BKM framework
 python DNS-Verification/DualLimitSolver/unified_bkm.py
 
-# Run complete validation sweep
+# Execute comprehensive validation sweep
 python DNS-Verification/DualLimitSolver/unified_validation.py
 
-# Run usage examples
+# Run example demonstrations
 python examples_unified_bkm.py
 
-# Run test suites
-python test_verification.py         # Original tests (20 tests)
-python test_unified_bkm.py          # Unified BKM tests (19 tests)
+# Execute test suites
+python test_verification.py        # Original tests (20 tests)
+python test_unified_bkm.py         # Unified BKM tests (19 tests)
 ```
+
+---
 
 ## Testing
 
