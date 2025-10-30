@@ -1,0 +1,28 @@
+[run]
+# Specify which files to include in coverage
+source = 
+    verification_framework
+    DNS-Verification/DualLimitSolver
+    DNS-Verification/UnifiedBKM
+    DNS-Verification/Benchmarking
+    DNS-Verification/Visualization
+
+omit = 
+    */test_*.py
+    */__pycache__/*
+    */tests/*
+    setup.py
+
+[report]
+# Report formatting options
+precision = 2
+show_missing = True
+skip_covered = False
+sort = Cover
+
+[html]
+directory = coverage_html_report
+title = 3D Navier-Stokes Test Coverage Report
+
+[xml]
+output = coverage.xml
