@@ -345,6 +345,41 @@ python test_verification.py        # Original tests (20 tests)
 python test_unified_bkm.py         # Unified BKM tests (19 tests)
 ```
 
+### End-to-End Verification Scripts
+
+The repository includes comprehensive scripts for reproducible verification:
+
+```bash
+# Complete end-to-end verification (all components)
+./Scripts/run_all_formal_verifications.sh
+
+# Quick verification (essential checks only)
+./Scripts/quick_verify.sh
+
+# Regression testing (for CI/CD)
+./Scripts/run_regression_tests.sh
+
+# With options
+./Scripts/run_all_formal_verifications.sh --quick          # Fast mode
+./Scripts/run_all_formal_verifications.sh --regression     # Strict validation
+./Scripts/run_all_formal_verifications.sh --skip-dns       # Skip DNS tests
+
+# Save regression baseline
+./Scripts/run_regression_tests.sh --save-baseline
+
+# Compare against baseline
+./Scripts/run_regression_tests.sh --baseline Results/Regression/baseline.json
+```
+
+**Verification Chain:**
+The complete verification executes in this order:
+1. **Environment Setup** - Dependencies and configuration
+2. **Lean4 Formal Verification** - BasicDefinitions → MainTheorem
+3. **Python Computational Verification** - All test suites
+4. **DNS Verification** - Direct numerical simulation
+5. **Integration Tests** - Chain integrity and artifacts
+6. **Report Generation** - Comprehensive verification report
+
 ---
 
 ## Testing
@@ -359,13 +394,36 @@ The framework includes comprehensive tests covering:
 - **Parameter optimization**
 - **Uniformity across frequencies**
 
-Run all tests:
-```bash
-# Original verification tests (20 tests)
-python test_verification.py
+### Running Tests
 
-# Unified BKM tests (19 tests)
-python test_unified_bkm.py
+```bash
+# Quick verification (recommended for development)
+./Scripts/quick_verify.sh
+
+# Individual test suites
+python test_verification.py        # Original verification tests (29 tests)
+python test_unified_bkm.py         # Unified BKM tests (19 tests)
+python test_unconditional.py       # Unconditional proof tests (11 tests)
+
+# Complete end-to-end verification
+./Scripts/run_all_formal_verifications.sh
+
+# Regression testing (for CI/CD)
+./Scripts/run_regression_tests.sh
+```
+
+### Automated Verification
+
+For continuous integration and regression testing:
+```bash
+# Run complete verification suite
+./Scripts/run_all_formal_verifications.sh --regression
+
+# Save current state as baseline
+./Scripts/run_regression_tests.sh --save-baseline
+
+# Check for regressions against baseline
+./Scripts/run_regression_tests.sh --baseline Results/Regression/baseline.json --strict
 ```
 
 Expected output:
