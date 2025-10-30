@@ -49,10 +49,31 @@ theorem log_plus_mono {x y : ℝ} (h : x ≤ y) (hx : 0 ≤ x) : log_plus x ≤ 
 ## Main Embedding Theorem
 -/
 
-/-- Besov-L∞ embedding with logarithmic factor -/
-axiom besov_linfty_embedding {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+/-- Besov-L∞ embedding with logarithmic factor
+    
+    Theorem (Kozono-Taniuchi type): The Besov norm controls the L∞ norm
+    with a logarithmic correction factor depending on higher Sobolev norms.
+    
+    This embedding is crucial for the unified BKM framework, allowing us
+    to pass from Besov space estimates to L∞ estimates.
+    
+    Full proof requires:
+    1. Littlewood-Paley characterization of Besov spaces
+    2. Sobolev embedding theorems
+    3. Logarithmic interpolation inequalities
+    4. Sharp constants from harmonic analysis
+-/
+theorem besov_linfty_embedding {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [BesovSpace E] [SobolevSpace E 3] (ω u : E) :
-  BesovSpace.besov_norm ω ≤ C_star * ‖ω‖ * (1 + log_plus (SobolevSpace.sobolev_norm u))
+  BesovSpace.besov_norm ω ≤ C_star * ‖ω‖ * (1 + log_plus (SobolevSpace.sobolev_norm u)) := by
+  sorry
+  -- Full proof outline:
+  -- 1. Decompose via Littlewood-Paley: ω = ∑_j Δ_j ω
+  -- 2. For each j: ‖Δ_j ω‖_{L∞} ≤ C · 2^{j·(3/2)} ‖Δ_j ω‖_{L²}
+  -- 3. Sum over j with weight 2^0: ∑_j ‖Δ_j ω‖_{L∞}
+  -- 4. Use energy estimates: ∑_j 2^{j·3/2} ‖Δ_j ω‖_{L²} ~ ‖ω‖_{H^{3/2}}
+  -- 5. Logarithmic correction from scale summation
+  -- 6. Result: ‖ω‖_{B⁰_{∞,1}} ≤ C ‖ω‖_{L∞} (1 + log⁺ ‖u‖_{H^m})
 
 /-- Simplified form with explicit H^m bound M -/
 theorem besov_linfty_with_bound {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
