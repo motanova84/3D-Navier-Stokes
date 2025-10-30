@@ -350,19 +350,22 @@ python test_unified_bkm.py         # Unified BKM tests (19 tests)
 The repository includes comprehensive scripts for reproducible verification:
 
 ```bash
-# Complete end-to-end verification (all components)
-./Scripts/run_all_formal_verifications.sh
+# Convenient wrapper (recommended)
+./verify quick          # Quick verification (< 1 min)
+./verify test           # Run all Python tests
+./verify lean           # Build Lean4 proofs
+./verify full           # Complete verification
+./verify ci             # CI/CD optimized mode
 
-# Quick verification (essential checks only)
-./Scripts/quick_verify.sh
-
-# Regression testing (for CI/CD)
-./Scripts/run_regression_tests.sh
+# Direct script usage
+./Scripts/run_all_formal_verifications.sh              # Complete end-to-end
+./Scripts/quick_verify.sh                               # Essential checks
+./Scripts/run_regression_tests.sh                       # Regression testing
 
 # With options
-./Scripts/run_all_formal_verifications.sh --quick          # Fast mode
-./Scripts/run_all_formal_verifications.sh --regression     # Strict validation
-./Scripts/run_all_formal_verifications.sh --skip-dns       # Skip DNS tests
+./Scripts/run_all_formal_verifications.sh --quick      # Fast mode
+./Scripts/run_all_formal_verifications.sh --regression # Strict validation
+./Scripts/run_all_formal_verifications.sh --skip-dns   # Skip DNS tests
 
 # Save regression baseline
 ./Scripts/run_regression_tests.sh --save-baseline
@@ -864,6 +867,7 @@ docker-compose up lean4-builder
 
 ## Documentation
 
+- **[VERIFICATION_GUIDE.md](Documentation/VERIFICATION_GUIDE.md)**: Complete guide for end-to-end verification scripts
 - **[CLAY_PROOF.md](Documentation/CLAY_PROOF.md)**: Executive summary for Clay Institute
 - **[VERIFICATION_ROADMAP.md](Documentation/VERIFICATION_ROADMAP.md)**: Detailed implementation plan
 - **[QCAL_PARAMETERS.md](Documentation/QCAL_PARAMETERS.md)**: Parameter specifications and analysis
