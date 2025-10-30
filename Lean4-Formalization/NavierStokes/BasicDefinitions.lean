@@ -43,9 +43,16 @@ def SmoothSolution (u : VelocityField) (u₀ : (Fin 3 → ℝ) → (Fin 3 → �
   ∃ p : PressureField, True  -- Simplificado para compilación
 
 -- Propiedades básicas
-axiom misalignment_bounded (S : (Fin 3 → ℝ) → (Fin 3 → ℝ) → ℝ) 
+theorem misalignment_bounded (S : (Fin 3 → ℝ) → (Fin 3 → ℝ) → ℝ) 
                               (ω : (Fin 3 → ℝ) → (Fin 3 → ℝ)) 
                               (x : Fin 3 → ℝ) : 
-  0 ≤ misalignment_defect S ω x ∧ misalignment_defect S ω x ≤ 2
+  0 ≤ misalignment_defect S ω x ∧ misalignment_defect S ω x ≤ 2 := by
+  -- The misalignment defect is a normalized quantity
+  -- bounded between 0 (perfect alignment) and 2 (opposite directions)
+  constructor
+  · -- Lower bound: 0 ≤ δ
+    sorry  -- Requires careful analysis of the definition
+  · -- Upper bound: δ ≤ 2
+    sorry  -- Follows from triangle inequality
 
 end NavierStokes
