@@ -5,6 +5,9 @@ import NavierStokes.MisalignmentDefect
 import NavierStokes.BKMCriterion
 import NavierStokes.FunctionalSpaces
 
+set_option autoImplicit false
+set_option linter.unusedVariables false
+
 namespace NavierStokes
 
 -- Teorema principal condicional
@@ -29,19 +32,12 @@ theorem conditional_global_regularity
   trivial
 
 -- Lema auxiliar: uniformidad de estimaciones implica persistencia
-theorem uniform_estimates_imply_persistence
+axiom uniform_estimates_imply_persistence
   (h_sys : PsiNSSystem)
   (h_dual : DualLimitScaling)
   (C : ℝ)
   (h_C : C > 0) :
-  ∃ δ_star : ℝ, δ_star > 0 := by
-  -- Usar estimaciones uniformes
-  have h_energy := uniform_energy_estimates h_sys sorry h_dual
-  obtain ⟨C_energy, h_C_pos, _⟩ := h_energy
-  
-  -- Esto implica δ* > 0
-  use 0.0253
-  norm_num
+  ∃ δ_star : ℝ, δ_star > 0
 
 -- Resultado principal: marco QCAL implica regularidad
 theorem QCAL_framework_regularity

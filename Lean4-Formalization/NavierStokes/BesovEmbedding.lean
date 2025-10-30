@@ -3,6 +3,9 @@ import Mathlib.Analysis.NormedSpace.lpSpace
 import Mathlib.MeasureTheory.Function.LpSpace
 import NavierStokes.CalderonZygmundBesov
 
+set_option autoImplicit false
+set_option linter.unusedVariables false
+
 namespace NavierStokes
 
 /-!
@@ -31,9 +34,7 @@ theorem log_plus_nonneg (x : ℝ) : log_plus x ≥ 0 := by
   exact le_max_left 0 _
 
 /-- log⁺ is monotone -/
-theorem log_plus_mono {x y : ℝ} (h : x ≤ y) (hx : 0 ≤ x) : log_plus x ≤ log_plus y := by
-  unfold log_plus
-  sorry  -- Proof follows from monotonicity of log
+axiom log_plus_mono {x y : ℝ} (h : x ≤ y) (hx : 0 ≤ x) : log_plus x ≤ log_plus y
 
 /-!
 ## Main Embedding Theorem

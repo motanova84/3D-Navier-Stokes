@@ -1,7 +1,7 @@
 import Lake
 open Lake DSL
 
-package NavierStokesQCAL where
+package «NavierStokes» where
   -- More Lean options
   moreLeanArgs := #[
     "-DautoImplicit=false"
@@ -10,12 +10,10 @@ package NavierStokesQCAL where
     "-DautoImplicit=false"
   ]
 
--- Require the mathematical library
 require mathlib from git
-  "https://github.com/leanprover-community/mathlib4.git"
+  "https://github.com/leanprover-community/mathlib4" @ "master"
 
--- Define the main library target
-@[default_target]
-lean_lib NavierStokes where
-  -- Include all Lean files in the NavierStokes directory
-  globs := #[.submodules `NavierStokes]
+require aesop from git
+  "https://github.com/JLimperg/aesop" @ "master"
+
+@[default_target] lean_lib NavierStokes
