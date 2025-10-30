@@ -3,10 +3,10 @@
 <div align="center">
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CI - Verification](https://github.com/motanova84/3D-Navier-Stokes/actions/workflows/ci-verification.yml/badge.svg)](https://github.com/motanova84/3D-Navier-Stokes/actions/workflows/ci-verification.yml)
 [![Lean 4](https://img.shields.io/badge/Lean-4-blue.svg)](https://leanprover.github.io/)
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9+-green.svg)](https://www.python.org/)
 [![Documentation](https://img.shields.io/badge/docs-complete-brightgreen.svg)](./Documentation/)
-[![Build Status](https://img.shields.io/badge/build-passing-success.svg)]()
 [![Code Quality](https://img.shields.io/badge/quality-A+-blue.svg)]()
 [![DOI](https://img.shields.io/badge/DOI-pending-lightgrey.svg)]()
 [![arXiv](https://img.shields.io/badge/arXiv-pending-red.svg)]()
@@ -24,6 +24,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Testing](#testing)
+- [Continuous Integration](#continuous-integration)
 - [Documentation](#documentation)
 - [Contributing](#contributing)
 - [Citation](#citation)
@@ -437,6 +438,53 @@ OK
 
 [ALL TESTS PASSED SUCCESSFULLY]
 ```
+
+
+---
+
+## Continuous Integration
+
+The repository uses **GitHub Actions** for automated verification on every commit and pull request. The CI pipeline ensures that:
+
+1. **Formal Verification (Lean4)**
+   - All Lean4 proofs compile successfully
+   - No `sorry` placeholders remain in production code
+   - Code passes linting checks
+
+2. **Numerical Verification (Python)**
+   - All test suites pass successfully
+   - Mathematical invariants are preserved
+   - Numerical stability is maintained
+
+### CI Workflow
+
+The CI workflow (`.github/workflows/ci-verification.yml`) runs automatically on:
+- Pushes to `main`, `master`, or `develop` branches
+- Pull requests targeting these branches
+
+**Jobs:**
+- `lean4-formal-verification`: Builds and validates Lean4 formal proofs
+- `python-numerical-tests`: Runs all Python test suites
+- `integration-summary`: Provides overall CI status
+
+**View Status:** [![CI Status](https://github.com/motanova84/3D-Navier-Stokes/actions/workflows/ci-verification.yml/badge.svg)](https://github.com/motanova84/3D-Navier-Stokes/actions/workflows/ci-verification.yml)
+
+### Running CI Locally
+
+To run the full CI pipeline locally before pushing:
+
+```bash
+# Run all Python tests
+bash Scripts/run_all_tests.sh
+
+# Build Lean4 proofs (requires elan/Lean4)
+bash Scripts/setup_lean.sh
+bash Scripts/build_lean_proofs.sh
+bash Scripts/check_no_sorry.sh
+bash Scripts/lint.sh
+```
+
+
 
 ---
 
