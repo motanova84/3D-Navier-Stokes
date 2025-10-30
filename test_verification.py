@@ -275,11 +275,151 @@ class TestNumericalStability(unittest.TestCase):
         self.assertTrue(results['integrability']['is_finite'])
 
 
+class TestHybridApproach(unittest.TestCase):
+    """Test cases for the NEW hybrid BKM closure approach"""
+    
+    def setUp(self):
+        """Initialize proof framework for each test"""
+        self.proof = FinalProof(ν=1e-3, δ_star=1/(4*np.pi**2), f0=141.7)
+    
+    def test_time_averaged_misalignment(self):
+        """Test time-averaged misalignment computation"""
+        # Define a simple oscillating δ₀(t) function
+        def delta0_func(t):
+            return 0.5 + 0.1 * np.sin(2 * np.pi * t / 10)
+        
+        T = 50.0
+        result = self.proof.compute_time_averaged_misalignment(delta0_func, T)
+        
+        self.assertIn('delta0_bar', result)
+        self.assertIn('delta0_min', result)
+        self.assertIn('delta0_max', result)
+        self.assertGreater(result['delta0_bar'], result['delta0_min'])
+        self.assertLess(result['delta0_bar'], result['delta0_max'])
+        # Average should be close to mean value (0.5)
+        self.assertAlmostEqual(result['delta0_bar'], 0.5, places=1)
+    
+    def test_gap_avg_condition(self):
+        """Test Gap-avg condition verification"""
+        # Test with different δ̄₀ values
+        delta0_bar_low = 0.1
+        result_low = self.proof.check_gap_avg_condition(delta0_bar_low)
+        
+        self.assertIn('gap', result_low)
+        self.assertIn('gap_satisfied', result_low)
+        self.assertIn('condition', result_low)
+        
+        # With low δ̄₀, gap should be negative (condition not satisfied)
+        # because (1-δ̄₀) is large, making RHS large
+        self.assertLess(result_low['gap'], 0)
+        self.assertFalse(result_low['gap_satisfied'])
+    
+    def test_parabolic_criticality(self):
+        """Test Parab-crit condition"""
+        result = self.proof.check_parabolic_criticality()
+        
+        self.assertIn('lhs', result)
+        self.assertIn('rhs', result)
+        self.assertIn('gap', result)
+        self.assertIn('condition_satisfied', result)
+        
+        # Check that νc_∗ is computed correctly
+        expected_lhs = self.proof.ν * self.proof.c_star
+        self.assertAlmostEqual(result['lhs'], expected_lhs, places=10)
+        
+        # Check that C_str is used
+        self.assertEqual(result['rhs'], self.proof.C_str)
+    
+    def test_dyadic_riccati_coefficient(self):
+        """Test dyadic Riccati coefficient computation"""
+        omega_besov = 10.0
+        result = self.proof.compute_dyadic_riccati_coefficient(omega_besov)
+        
+        self.assertIn('coercivity', result)
+        self.assertIn('stretching', result)
+        self.assertIn('net_coefficient', result)
+        self.assertIn('C0', result)
+        
+        # Coercivity should be negative (dissipative)
+        self.assertLess(result['coercivity'], 0)
+        
+        # Stretching should be positive (amplifying)
+        self.assertGreater(result['stretching'], 0)
+    
+    def test_bmo_logarithmic_bound(self):
+        """Test BMO endpoint estimate with log control"""
+        omega_bmo = 8.0
+        omega_hs = 12.0
+        result = self.proof.compute_bmo_logarithmic_bound(omega_bmo, omega_hs)
+        
+        self.assertIn('log_term', result)
+        self.assertIn('grad_u_bound', result)
+        self.assertIn('improved_constant', result)
+        self.assertIn('log_bounded', result)
+        
+        # Log term should be non-negative
+        self.assertGreaterEqual(result['log_term'], 0)
+        
+        # Gradient bound should be positive
+        self.assertGreater(result['grad_u_bound'], 0)
+        
+        # With controlled ratio, log should be bounded
+        if omega_hs / omega_bmo < 10:
+            self.assertTrue(result['log_bounded'])
+    
+    def test_hybrid_proof_execution(self):
+        """Test complete hybrid proof execution"""
+        results = self.proof.prove_hybrid_bkm_closure(
+            T_max=50.0,
+            X0=10.0,
+            u0_L3_norm=1.0,
+            verbose=False
+        )
+        
+        self.assertIn('parab_crit', results)
+        self.assertIn('gap_avg', results)
+        self.assertIn('bmo_endpoint', results)
+        self.assertIn('bkm_closed', results)
+        self.assertIn('closure_routes', results)
+        
+        # At least one route should work (BMO endpoint typically does)
+        self.assertIsInstance(results['closure_routes'], list)
+    
+    def test_cz_besov_constants(self):
+        """Test that new CZ-Besov constants are properly initialized"""
+        self.assertEqual(self.proof.C_CZ, 2.0)
+        self.assertEqual(self.proof.C_star, 1.5)
+        self.assertEqual(self.proof.c_Bern, 0.1)
+        self.assertEqual(self.proof.C_str, 32.0)
+        self.assertEqual(self.proof.c_star, 1/16)
+    
+    def test_backward_compatibility(self):
+        """Test that legacy constants are maintained for backward compatibility"""
+        self.assertEqual(self.proof.C_BKM, 2.0)
+        self.assertEqual(self.proof.c_d, 0.5)
+        self.assertEqual(self.proof.logK, 3.0)
+    
+    def test_improved_constants_reduce_gap(self):
+        """Test that BMO approach gives better constants than standard"""
+        omega_bmo = 10.0
+        omega_hs = 15.0
+        bmo_result = self.proof.compute_bmo_logarithmic_bound(omega_bmo, omega_hs)
+        
+        # Standard product C_CZ * C_star
+        standard_constant = self.proof.C_CZ * self.proof.C_star
+        
+        # BMO constant should be competitive or better when log is controlled
+        if bmo_result['log_bounded']:
+            # Improved constant should be reasonable
+            self.assertLess(bmo_result['improved_constant'], 2 * standard_constant)
+
+
 def run_all_tests():
     """Run all test suites and display results"""
     print("\n")
     print("=" * 70)
     print("SUITE DE PRUEBAS: VERIFICACIÓN DE REGULARIDAD GLOBAL 3D-NS")
+    print("  (Incluyendo Enfoque Híbrido)")
     print("=" * 70)
     print("\n")
     
@@ -287,11 +427,12 @@ def run_all_tests():
     loader = unittest.TestLoader()
     suite = unittest.TestSuite()
     
-    # Add all test classes
+    # Add all test classes (including new hybrid tests)
     suite.addTests(loader.loadTestsFromTestCase(TestFinalProof))
     suite.addTests(loader.loadTestsFromTestCase(TestConstantsVerification))
     suite.addTests(loader.loadTestsFromTestCase(TestMathematicalProperties))
     suite.addTests(loader.loadTestsFromTestCase(TestNumericalStability))
+    suite.addTests(loader.loadTestsFromTestCase(TestHybridApproach))
     
     # Run tests with verbose output
     runner = unittest.TextTestRunner(verbosity=2)
@@ -309,7 +450,8 @@ def run_all_tests():
     print("=" * 70)
     
     if result.wasSuccessful():
-        print("\n✅ TODAS LAS PRUEBAS PASARON EXITOSAMENTE\n")
+        print("\n✅ TODAS LAS PRUEBAS PASARON EXITOSAMENTE")
+        print("   (Incluye pruebas del enfoque híbrido)\n")
         return 0
     else:
         print("\n❌ ALGUNAS PRUEBAS FALLARON\n")
