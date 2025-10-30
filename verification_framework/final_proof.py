@@ -72,7 +72,7 @@ class FinalProof:
             float: Riccati coefficient α_j
         """
         return (self.C_BKM * (1 - self.δ_star) * (1 + self.logK) 
-                - self.ν * self.c_d * 4**j)
+                - self.ν * self.c_d * (4.0**j))
     
     def osgood_inequality(self, X, A=1.0, B=0.1, beta=1.0):
         """
