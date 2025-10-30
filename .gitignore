@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Lean4
+.lake/
+lake-packages/
+*.olean
+*.trace
+
+# Results and data
+*.h5
+*.hdf5
+*.npy
+*.npz
+*.png
+*.jpg
+*.pdf
+!Documentation/*.pdf
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log
+/tmp/
+
+# Large data files
+Results/DNS_Data/*.h5
+Results/DNS_Data/*.dat
