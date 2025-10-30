@@ -477,6 +477,228 @@ N ≥ 2^{j_d + 2} · Re^{3/4}
 
 **Example**: Re = 1000, j_d = 8 requires N ≥ 256³
 
+## Section 13.4: Two-Scale Framework and Operator Decomposition
+
+### 13.4.1 Motivation and Overview
+
+In homogenization and two-scale analysis for Navier-Stokes equations, a proper operator decomposition is crucial to avoid circular reasoning and maintain well-posedness. This section clarifies:
+
+1. **What is L₀ in the two-scale framework?**
+2. **What is Γ and why is the threshold Γ < 1 (not Γ < 0.5)?**
+3. **How to avoid circularity when ‖U(t)‖_∞ may grow?**
+
+### 13.4.2 Operator Decomposition: L₀ and L₁
+
+#### Definition of L₀ (Cell Operator)
+
+In our two-scale framework, we **do not** take L₀ as the full Navier-Stokes operator. Instead, we choose:
+
+```
+L₀ := -ν Δ_y + c(y),    y ∈ Y = T^d
+```
+
+where:
+- **c(y) ≥ c₀ > 0**: A positive potential ensuring coercivity
+- **Q**: Projection onto zero-mean functions in the cell
+- **L₀ is elliptic, coercive, and autonomous** (independent of the macroscopic flow)
+
+**Key Properties of L₀:**
+1. **Fixed spectral gap**: L₀ has a gap c₀ > 0 independent of the flow
+2. **Constant structural quantities**: The inverses and cell correctors are structural constants
+3. **Uniform coercivity**: On Ran(Q), the coercivity of L₀ is uniform
+
+The homogenization and main terms do not collapse when projected with Q because the coercivity of L₀ is uniform.
+
+#### Definition of L₁(t) (Perturbation Operator)
+
+All macroscopic advection and two-scale coupling go into the perturbation:
+
+```
+L₁(t) := Q(U(x,t)·∇_x)Q + two-scale coupling terms
+```
+
+where U(x,t) = u₀ is the macroscopic velocity field.
+
+**Key Point**: All dependence on u₀ = U is in L₁(t), not in L₀. This separation ensures:
+- L₀ has a fixed gap c₀
+- The homogenization structure remains stable
+- Dynamics are captured entirely by L₁(t)
+
+### 13.4.3 Relative Bound: Definition of Γ
+
+We define Γ as a **dimensionless relative bound** of the perturbation with respect to L₀:
+
+```
+Γ(t) := ‖Q L₁(t) Q L₀⁻¹‖_{L² → L²}
+```
+
+This measures the size of the perturbation L₁(t) relative to the base operator L₀.
+
+#### Physical Interpretation
+
+- Γ(t) quantifies the relative strength of the macroscopic advection/coupling compared to the microscopic coercive structure
+- Small Γ(t) means the perturbation is controllable
+- Γ(t) < 1 ensures invertibility via Neumann series
+
+### 13.4.4 Anti-Self-Adjoint Properties
+
+#### Pure Convective Operator
+
+Consider the pure convective operator:
+
+```
+B(t) = Q(U(t)·∇)Q
+```
+
+In a periodic domain with ∇·U = 0 (divergence-free), **B(t) is anti-self-adjoint** in L²:
+
+```
+⟨B v, v⟩ = 0
+```
+
+**Proof**: Integration by parts with periodicity and ∇·U = 0 yields:
+```
+⟨(U·∇)v, v⟩ = -⟨v, (U·∇)v⟩ - ⟨(∇·U)v, v⟩ = -⟨(U·∇)v, v⟩
+```
+Thus ⟨(U·∇)v, v⟩ = 0.
+
+#### Coercivity Preservation
+
+The real part of the bilinear form of L₀ + B is just that of L₀:
+
+```
+Re⟨(L₀ + B)v, v⟩ = Re⟨L₀v, v⟩ = ν‖∇v‖²₂ + ⟨cv, v⟩ ≥ c₀‖v‖²₂
+```
+
+This implies, by Lax-Milgram theorem and sectoriality:
+
+```
+‖(L₀ + B(t))⁻¹‖_{L² → L²} ≤ 1/c₀
+```
+
+**independent of the size of ‖U(t)‖_∞**.
+
+### 13.4.5 Threshold Analysis: Γ < 1, Not Γ < 1/2
+
+#### Why Γ < 1/2 Was Sufficient But Not Necessary
+
+The condition Γ(t) < 1/2 was sufficient for invertibility via standard perturbation theory, but it is **not necessary**.
+
+#### The Correct Threshold: Γ < 1
+
+**Moral**: You do not need Γ(t) < 1/2 for a priori invertibility; that condition was sufficient but not necessary.
+
+For the pure convective case (∇·U = 0), the anti-self-adjoint structure means:
+- The real part of the operator does not change
+- Coercivity is maintained regardless of ‖U(t)‖_∞
+- **No smallness condition is needed**
+
+If L₁ contains terms that are not perfectly anti-self-adjoint, then Γ(t) quantifies their relative smallness compared to L₀. In this case, it suffices to require:
+
+```
+Γ(t) < 1
+```
+
+for a Neumann series resolvent bound:
+
+```
+(I + Q L₁ Q L₀⁻¹)⁻¹ = ∑_{k≥0} (-Q L₁ Q L₀⁻¹)^k
+```
+
+The series converges when ‖Q L₁ Q L₀⁻¹‖ < 1, i.e., when Γ(t) < 1.
+
+### 13.4.6 Avoiding Circularity
+
+#### The Key Separation
+
+The crucial point is to separate:
+
+1. **Coercivity/Base Structure**: Provided by L₀ (microscopic, fixed, with c₀ > 0)
+2. **Dynamics**: All in L₁(t) (macroscopic)
+
+Since coercivity does not depend on U, it does not collapse even if ‖U(t)‖_∞ grows.
+
+#### No Circular Reasoning
+
+In the purely convective case (divergence-free), the symmetric part does not change:
+- No loss of spectral gap
+- No loss of invertibility
+- Growth of ‖U(t)‖_∞ does not affect the resolvent bound
+
+If there are non-anti-self-adjoint terms in L₁, then Γ(t) enters the picture, but the natural hypothesis is:
+
+```
+sup_{t∈[0,T]} Γ(t) < 1
+```
+
+This can be verified by:
+- Relative smallness (e.g., coupling scaled by ε)
+- Control via Kato norm estimates with large ν
+- Bounded cell correctors
+
+**You are not assuming what you want to prove**. Instead, you use the anti-self-adjoint/smallness structure to isolate the part that might grow and maintain resolvent control via L₀.
+
+### 13.4.7 Operational Summary
+
+For practical implementation in two-scale Navier-Stokes analysis:
+
+1. **Redefine L₀** as the cell operator:
+   ```
+   L₀ = -ν Δ_y + c(y)    with c₀ > 0
+   ```
+
+2. **Move all advection and macro coupling to L₁(t)**:
+   ```
+   L₁(t) = Q(U(x,t)·∇_x)Q + two-scale coupling terms
+   ```
+
+3. **Define Γ(t)**:
+   ```
+   Γ(t) = ‖Q L₁(t) Q L₀⁻¹‖_{2→2}
+   ```
+
+4. **Case 1: Pure Convection with ∇·U = 0**
+   - The real part of the operator does not change
+   - Resolvent bound: ‖(L₀ + L₁(t))⁻¹‖_{2→2} ≤ 1/c₀
+   - **No smallness hypothesis needed**
+
+5. **Case 2: Non-Anti-Self-Adjoint Terms**
+   - Require sup_t Γ(t) < 1 (not 1/2)
+   - Close argument with Neumann series
+   - Guarantees main two-scale terms do not collapse under Q
+
+### 13.4.8 Benefits of This Framework
+
+With this adjustment:
+
+1. **No identification of L₀ with Navier-Stokes**: Avoids circular reasoning
+2. **Γ is not a "magic constant"**: It becomes a verifiable relative bound (structural or scale-based)
+3. **Correct threshold**: The "0.5" threshold was a sufficient artifact; the correct bound is "< 1" when smallness is needed
+4. **Pure convective case**: No smallness needed at all—coercivity of L₀ suffices
+
+### 13.4.9 Mathematical Rigor
+
+**Theorem 13.4.1** (Two-Scale Well-Posedness):
+Under the two-scale decomposition L = L₀ + L₁(t) with:
+- L₀ = -ν Δ_y + c(y) satisfying Re⟨L₀v,v⟩ ≥ c₀‖v‖²
+- L₁(t) = Q(U·∇)Q with ∇·U = 0
+
+The resolvent exists and satisfies:
+```
+‖(L₀ + L₁(t))⁻¹‖ ≤ 1/c₀
+```
+uniformly in t, independent of ‖U(t)‖_∞.
+
+**Proof**: Follows from sectoriality and anti-self-adjointness of Q(U·∇)Q. □
+
+**Corollary 13.4.2** (Perturbation Theory):
+If L₁ contains non-anti-self-adjoint terms with Γ(t) := ‖Q L₁ Q L₀⁻¹‖ < 1, then:
+```
+‖(L₀ + L₁)⁻¹‖ ≤ (1/c₀) · 1/(1 - Γ)
+```
+
+**Proof**: Neumann series (I + QL₁QL₀⁻¹)⁻¹ = ∑_{k≥0}(-QL₁QL₀⁻¹)^k converges when Γ < 1. □
+
 ## References
 
 1. Bahouri, H., Chemin, J.-Y., Danchin, R. (2011). *Fourier Analysis and Nonlinear Partial Differential Equations*. Springer.
