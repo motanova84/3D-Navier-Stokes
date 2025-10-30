@@ -86,3 +86,6 @@ docs/_build/
 # Large data files
 Results/DNS_Data/*.h5
 Results/DNS_Data/*.dat
+
+# AI Agent workspace (user-generated)
+ai_agent_workspace/
