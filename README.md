@@ -18,6 +18,7 @@
 ## Table of Contents
 
 - [Overview](#overview)
+- [Estado de la Demostración](#estado-de-la-demostración)
 - [Technical Contributions](#technical-contributions)
 - [Main Results](#main-results)
 - [Mathematical Framework](#mathematical-framework)
@@ -51,6 +52,28 @@ This repository provides a comprehensive computational verification framework fo
 
 ---
 
+## Estado de la Demostración
+
+🚧 **Condicionalidad actual**:  
+La demostración de regularidad global es **condicional**, ya que depende de que el parámetro de amplitud `a` produzca un defecto de desalineación `δ*` suficiente para garantizar `γ > 0`.
+
+🔬 **Actualmente**:
+- `a = 7.0` produce `δ* ≈ 0.025`
+- Se requiere `a ≳ 200` para asegurar `γ > 0` en regímenes de baja viscosidad (`ν ≲ 10⁻³`)
+
+⚠️ **Esto significa que la desigualdad de Riccati clave no cierra** con los parámetros por defecto, y por tanto **la prueba no es incondicional**.
+
+🧠 **Lo que sí se ha logrado**:
+- Formulación explícita de un mecanismo de amortiguamiento geométrico coherente
+- Derivación matemática rigurosa de los umbrales de δ*
+- Identificación clara de los valores críticos para regularidad
+
+📈 **Siguiente paso**:
+> Incluir optimización paramétrica (`a`, `c₀`) vía scripts simbólicos y validación numérica para convertir este esquema en una prueba verdaderamente universal.
+
+📊 **Herramientas de validación**:
+- Ver [notebooks/validate_damping_threshold.ipynb](notebooks/validate_damping_threshold.ipynb) para análisis interactivo de parámetros
+- Ver [issue #1](../../issues) sobre optimización del parámetro crítico `a`
 ## Technical Contributions
 
 This framework establishes **13 verifiable technical contributions** across multiple disciplines:

@@ -1,6 +1,18 @@
 """
 Final Proof of Global Regularity for 3D Navier-Stokes - Hybrid Approach
 
+⚠️  NOTA IMPORTANTE SOBRE CONDICIONALIDAD:
+    Esta demostración es actualmente CONDICIONAL respecto al parámetro de amplitud 'a'.
+    Con a = 7.0 (valor por defecto), el coeficiente de amortiguamiento γ < 0,
+    por lo que la desigualdad de Riccati no cierra.
+    
+    Se requiere a ≳ 200 para garantizar γ > 0 en el régimen ν ≈ 10⁻³.
+    
+    Ver:
+    - ISSUE_CRITICAL_PARAMETER.md para análisis detallado
+    - notebooks/validate_damping_threshold.ipynb para validación interactiva
+    - Documentation/QCAL_PARAMETERS.md para requisitos paramétricos
+
 This module implements the complete mathematical framework for proving
 global regularity via critical closure through Lₜ∞Lₓ³ and Besov spaces,
 using a hybrid approach that combines:
