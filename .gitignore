@@ -78,6 +78,7 @@ htmlcov/
 coverage_html_report/
 coverage.xml
 .coverage.*
+coverage_reports/
 
 # Documentation
 docs/_build/
