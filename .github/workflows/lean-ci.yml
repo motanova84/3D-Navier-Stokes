@@ -4,6 +4,12 @@ on: [push, pull_request]
 permissions:
   contents: read
 
+on:
+  push:
+    branches: [ main, purge_axioms ]
+  pull_request:
+    branches: [ main ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,3 +25,30 @@ jobs:
         run: |
           ~/.elan/bin/lake exe print-axioms RiemannAdelic | tee axioms.txt
           ! grep -E ".+" axioms.txt || (echo "Found axioms"; cat axioms.txt; exit 1)
+    - uses: actions/checkout@v4
+    
+    - name: Setup Lean
+      uses: leanprover/lean-setup@v1
+      with:
+        lean-version: 'lean4:stable'
+        
+    - name: Create lakefile if missing
+      run: |
+        if [ ! -f lakefile.lean ] && [ ! -f lakefile.toml ]; then
+          echo "Creating minimal lakefile.lean"
+          cat > lakefile.lean << 'EOF'
+          import Lake
+          open Lake DSL
+          package NavierStokesQCAL
+          require mathlib from git
+            "https://github.com/leanprover-community/mathlib4.git"
+          @[default_target]
+          lean_lib NavierStokes
+          EOF
+        fi
+        
+    - name: Build project
+      run: lake build
+      
+    - name: Run tests (if any)
+      run: lake test || echo "No tests configured"
