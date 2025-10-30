@@ -24,6 +24,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Testing](#testing)
+- [Continuous Integration](#continuous-integration)
 - [Documentation](#documentation)
 - [Contributing](#contributing)
 - [Citation](#citation)
