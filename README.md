@@ -405,6 +405,44 @@ python test_verification.py        # Original tests (20 tests)
 python test_unified_bkm.py         # Unified BKM tests (19 tests)
 ```
 
+### End-to-End Verification Scripts
+
+The repository includes comprehensive scripts for reproducible verification:
+
+```bash
+# Convenient wrapper (recommended)
+./verify quick          # Quick verification (< 1 min)
+./verify test           # Run all Python tests
+./verify lean           # Build Lean4 proofs
+./verify full           # Complete verification
+./verify ci             # CI/CD optimized mode
+
+# Direct script usage
+./Scripts/run_all_formal_verifications.sh              # Complete end-to-end
+./Scripts/quick_verify.sh                               # Essential checks
+./Scripts/run_regression_tests.sh                       # Regression testing
+
+# With options
+./Scripts/run_all_formal_verifications.sh --quick      # Fast mode
+./Scripts/run_all_formal_verifications.sh --regression # Strict validation
+./Scripts/run_all_formal_verifications.sh --skip-dns   # Skip DNS tests
+
+# Save regression baseline
+./Scripts/run_regression_tests.sh --save-baseline
+
+# Compare against baseline
+./Scripts/run_regression_tests.sh --baseline Results/Regression/baseline.json
+```
+
+**Verification Chain:**
+The complete verification executes in this order:
+1. **Environment Setup** - Dependencies and configuration
+2. **Lean4 Formal Verification** - BasicDefinitions → MainTheorem
+3. **Python Computational Verification** - All test suites
+4. **DNS Verification** - Direct numerical simulation
+5. **Integration Tests** - Chain integrity and artifacts
+6. **Report Generation** - Comprehensive verification report
+
 ---
 
 ## Testing
@@ -421,11 +459,35 @@ The framework includes comprehensive tests covering:
 
 ### Running Tests
 
+```bash
+# Quick verification (recommended for development)
+./Scripts/quick_verify.sh
+
+# Individual test suites
+python test_verification.py        # Original verification tests (29 tests)
+python test_unified_bkm.py         # Unified BKM tests (19 tests)
+python test_unconditional.py       # Unconditional proof tests (11 tests)
+
+# Complete end-to-end verification
+./Scripts/run_all_formal_verifications.sh
+
+# Regression testing (for CI/CD)
+./Scripts/run_regression_tests.sh
+```
+
+### Automated Verification
+
+For continuous integration and regression testing:
 Run all tests:
 ```bash
-# Original verification tests (20 tests)
-python test_verification.py
+# Run complete verification suite
+./Scripts/run_all_formal_verifications.sh --regression
 
+# Save current state as baseline
+./Scripts/run_regression_tests.sh --save-baseline
+
+# Check for regressions against baseline
+./Scripts/run_regression_tests.sh --baseline Results/Regression/baseline.json --strict
 # Unified BKM tests (19 tests)
 python test_unified_bkm.py
 
@@ -945,6 +1007,7 @@ docker-compose up lean4-builder
 
 ## Documentation
 
+- **[VERIFICATION_GUIDE.md](Documentation/VERIFICATION_GUIDE.md)**: Complete guide for end-to-end verification scripts
 ### Main Documentation
 
 - **[CLAY_PROOF.md](Documentation/CLAY_PROOF.md)**: Executive summary for Clay Institute
