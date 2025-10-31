@@ -48,6 +48,7 @@ lake-packages/
 *.jpg
 *.pdf
 !Documentation/*.pdf
+psi_nse_results.json
 
 # Results (keep structure but not large data files)
 Results/Data/*.dat
@@ -93,3 +94,8 @@ Results/DNS_Data/*.dat
 
 # AI Agent workspace (user-generated)
 ai_agent_workspace/
+
+# QFT derivation output files
+Phi_tensor_symbolic.txt
+Phi_tensor.tex
+Phi_tensor_metadata.json
