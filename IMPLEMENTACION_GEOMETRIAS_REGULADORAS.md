@@ -14,7 +14,7 @@ Implementar un conjunto completo de scripts de visualización y simulación para
 
 #### 1.1 `visualizador_calabi_yau_3d.py`
 **Funcionalidad:**
-- Generación de variedades Calabi-Yau tipo quintica proyectadas en ℝ³
+- Generación de variedades Calabi-Yau tipo quíntica proyectadas en ℝ³
 - Mapping de energía espectral E(k,t) sobre la geometría
 - Overlay del campo noético Ψ(x,t) = I(x,t) × A²_eff(x,t)
 - Visualizaciones 3D interactivas con matplotlib
@@ -27,7 +27,7 @@ Implementar un conjunto completo de scripts de visualización y simulación para
 
 **Ecuación implementada:**
 ```
-Quintica: z₁⁵ + z₂⁵ + z₃⁵ + z₄⁵ + z₅⁵ = 0
+Quíntica: z₁⁵ + z₂⁵ + z₃⁵ + z₄⁵ + z₅⁵ = 0
 Proyección: r = 1 + 0.3·cos(5θ)·sin(5φ)
 ```
 

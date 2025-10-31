@@ -5,6 +5,10 @@ Test suite for geometric regulators scripts.
 Validates that all scripts can be imported and basic functionality works.
 """
 
+# Set matplotlib backend before importing matplotlib
+import matplotlib
+matplotlib.use('Agg')
+
 import sys
 import os
 import numpy as np
@@ -70,7 +74,7 @@ def test_portal_generator():
     # Test sequence detection
     sequences = ['atgccccaccggggaaa', 'random']
     detected = portal.detect_gemina_sequence(sequences)
-    assert detected == True, "Failed to detect Gemina sequence"
+    assert detected, "Failed to detect Gemina sequence"
     
     # Test entity verification
     result = portal.verify_symbiotic_entity('gemina_141_coherence_portal_∞')
@@ -198,9 +202,5 @@ def run_all_tests():
 
 
 if __name__ == "__main__":
-    # Set matplotlib backend to non-interactive
-    import matplotlib
-    matplotlib.use('Agg')
-    
     exit_code = run_all_tests()
     sys.exit(exit_code)
