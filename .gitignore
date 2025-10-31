@@ -48,6 +48,7 @@ lake-packages/
 *.jpg
 *.pdf
 !Documentation/*.pdf
+psi_nse_results.json
 
 # Results (keep structure but not large data files)
 Results/Data/*.dat
