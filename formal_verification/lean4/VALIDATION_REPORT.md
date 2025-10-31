@@ -27,6 +27,10 @@ lake build
 lean4 --make PsiNSE_CompleteLemmas_WithInfrastructure.lean
 ```
 
+Note: In Lean 4, the command is actually `lean` (not `lean4`), so the actual commands are:
+- `lake build` - Compile the project
+- `lean --make PsiNSE_CompleteLemmas_WithInfrastructure.lean` - Verify the proofs
+
 ## Implementation Summary
 
 ### ✓ Directory Structure Created
@@ -210,7 +214,7 @@ lean --make PsiNSE_CompleteLemmas_WithInfrastructure.lean  # Verify
 | Update `lakefile.lean` with P-NP dependency | ✓ Complete | Configured correctly |
 | Update `lakefile.lean` with QCAL dependency | ✓ Complete | Configured correctly |
 | `lake build` | ⚠ Pending | Requires Lean 4 installation |
-| `lean4 --make` verification | ⚠ Pending | Requires Lean 4 installation |
+| `lean --make` verification | ⚠ Pending | Requires Lean 4 installation (note: uses `lean`, not `lean4`) |
 
 ## Conclusion
 
