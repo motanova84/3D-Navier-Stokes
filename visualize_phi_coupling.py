@@ -9,7 +9,6 @@ try:
     import matplotlib
     matplotlib.use('Agg')  # Use non-interactive backend
     import matplotlib.pyplot as plt
-    from mpl_toolkits.mplot3d import Axes3D
     PLOTTING_AVAILABLE = True
 except ImportError:
     PLOTTING_AVAILABLE = False
@@ -38,13 +37,12 @@ fig = plt.figure(figsize=(15, 10))
 # ══════════════════════════════════════════
 ax1 = fig.add_subplot(2, 2, 1)
 f = np.linspace(0, 300, 1000)
-f0 = F0
 
 # Respuesta resonante del acoplamiento
-Phi_response = 1 / (1 + ((f - f0)/10)**2)
+Phi_response = 1 / (1 + ((f - F0)/10)**2)
 
 ax1.plot(f, Phi_response, color=colors[0], linewidth=2)
-ax1.axvline(f0, color=colors[1], linestyle='--', label=f'f₀ = {f0} Hz')
+ax1.axvline(F0, color=colors[1], linestyle='--', label=f'f₀ = {F0} Hz')
 ax1.fill_between(f, 0, Phi_response, alpha=0.3, color=colors[0])
 ax1.set_xlabel('Frecuencia (Hz)', fontsize=12)
 ax1.set_ylabel('|Φ| (u.a.)', fontsize=12)
@@ -60,7 +58,7 @@ x = np.linspace(0, 2*np.pi, 200)
 t_snapshots = [0, 0.25, 0.5, 0.75]
 
 for i, t in enumerate(t_snapshots):
-    Psi = np.sin(2*np.pi*f0*t) * np.exp(-DECAY_FACTOR*x)
+    Psi = np.sin(2*np.pi*F0*t) * np.exp(-DECAY_FACTOR*x)
     ax2.plot(x, Psi, color=colors[i], alpha=0.7, label=f't = {t}T₀')
 
 ax2.set_xlabel('Posición x', fontsize=12)
@@ -100,7 +98,7 @@ y = np.linspace(0, 10, 100)
 X, Y = np.meshgrid(x, y)
 
 # Patrón de interferencia coherente
-Z = np.sin(2*np.pi*f0/SPATIAL_SCALE * X) * np.cos(2*np.pi*f0/SPATIAL_SCALE * Y)
+Z = np.sin(2*np.pi*F0/SPATIAL_SCALE * X) * np.cos(2*np.pi*F0/SPATIAL_SCALE * Y)
 
 im = ax4.contourf(X, Y, Z, levels=20, cmap='viridis')
 plt.colorbar(im, ax=ax4, label='Amplitud Ψ')
