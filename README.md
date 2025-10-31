@@ -19,6 +19,7 @@
 
 - [Overview](#overview)
   - [Vibrational Dual Regularization Framework](#-vibrational-dual-regularization-framework)
+  - [QFT Tensor Derivation Φ_ij(Ψ)](#-qft-tensor-derivation-φ_ijψ)
 - [Estado de la Demostración](#estado-de-la-demostración)
 - [Technical Contributions](#technical-contributions)
 - [Main Results](#main-results)
@@ -54,6 +55,21 @@ This repository provides a comprehensive computational verification framework fo
 🧪 **Try it**: Run `python examples_vibrational_regularization.py` for full demonstration.
 
 ✅ **Status**: Framework validated with 21 passing tests covering all components.
+
+### 🆕 QFT Tensor Derivation Φ_ij(Ψ)
+
+**NEW**: Rigorous derivation of the coupling tensor from Quantum Field Theory:
+
+- **From First Principles**: Derived via DeWitt-Schwinger expansion in curved spacetime
+- **Fixed Coefficients**: No free parameters - all determined by QFT renormalization
+- **Three Components**: Gradient (α), curvature (β), and trace (γ) terms
+- **Physical Basis**: Seeley-DeWitt coefficients from Birrell & Davies (1982)
+
+📖 **See**: [QFT_DERIVATION_README.md](QFT_DERIVATION_README.md) for complete mathematical framework.
+
+🧪 **Try it**: Run `python phi_qft_derivation_complete.py` to generate symbolic, LaTeX, and JSON outputs.
+
+✅ **Status**: Validated with 17 comprehensive tests + CI/CD workflow.
 
 ### Key Features
 
@@ -250,7 +266,10 @@ The framework provides **three independent routes** to establish the BKM criteri
 │
 ├── test_verification.py                   # Comprehensive test suite (29 tests)
 ├── test_vibrational_regularization.py     # 🆕 Vibrational framework tests (21 tests)
+├── test_qft_derivation.py                 # 🆕 QFT tensor derivation tests (17 tests)
 ├── examples_vibrational_regularization.py # 🆕 Complete demonstration with visualization
+├── phi_qft_derivation_complete.py         # 🆕 QFT Φ_ij(Ψ) tensor derivation from first principles
+├── QFT_DERIVATION_README.md               # 🆕 QFT derivation documentation
 ├── requirements.txt                       # Python dependencies
 └── README.md                              # This file
 ```
