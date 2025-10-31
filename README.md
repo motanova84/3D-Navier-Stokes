@@ -19,6 +19,7 @@
 
 - [Overview](#overview)
   - [Vibrational Dual Regularization Framework](#-vibrational-dual-regularization-framework)
+  - [QFT Tensor Derivation Φ_ij(Ψ)](#-qft-tensor-derivation-φ_ijψ)
 - [Estado de la Demostración](#estado-de-la-demostración)
 - [Technical Contributions](#technical-contributions)
 - [Main Results](#main-results)
@@ -270,6 +271,10 @@ The framework provides **three independent routes** to establish the BKM criteri
 ├── test_seeley_dewitt_tensor.py           # 🆕 Seeley-DeWitt tensor tests (26 tests)
 ├── examples_vibrational_regularization.py # 🆕 Complete demonstration with visualization
 ├── examples_seeley_dewitt_tensor.py       # 🆕 Seeley-DeWitt tensor examples
+├── test_qft_derivation.py                 # 🆕 QFT tensor derivation tests (17 tests)
+├── examples_vibrational_regularization.py # 🆕 Complete demonstration with visualization
+├── phi_qft_derivation_complete.py         # 🆕 QFT Φ_ij(Ψ) tensor derivation from first principles
+├── QFT_DERIVATION_README.md               # 🆕 QFT derivation documentation
 ├── requirements.txt                       # Python dependencies
 └── README.md                              # This file
 ```

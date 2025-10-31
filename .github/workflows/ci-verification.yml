@@ -95,6 +95,10 @@ jobs:
           python test_unconditional.py
         continue-on-error: true
 
+      - name: Run QFT derivation tests
+        run: |
+          python test_qft_derivation.py
+
       - name: Run DNS verification tests
         run: |
           cd DNS-Verification/UnifiedBKM && python test_unified_bkm.py
