@@ -30,6 +30,7 @@
 - [Testing](#testing)
 - [Continuous Integration](#continuous-integration)
 - [Documentation](#documentation)
+- [AI Collaboration](#ai-collaboration)
 - [Contributing](#contributing)
 - [Citation](#citation)
 - [License](#license)
@@ -844,6 +845,30 @@ where X(t) = ‖ω(t)‖_{B⁰_{∞,1}}
 5. **Tao, T. (2016)**  
    "Finite time blowup for Lagrangian modifications of the three-dimensional Euler equation"  
    *Annals of PDE*, 2(2), Article 9
+
+---
+
+## AI Collaboration
+
+### Guidelines for AI Assistants
+
+This repository welcomes AI assistants to help users understand and work with the codebase, while respecting authorship and intellectual property rights.
+
+**For AI Assistants:** Please read [AI-GUIDELINES.md](AI-GUIDELINES.md) (English) or [AI-GUIDELINES_ES.md](AI-GUIDELINES_ES.md) (Español) for complete guidelines on:
+
+- What AI assistants can and cannot do
+- Attribution requirements
+- Ethical guidelines for collaboration
+- Repository structure and navigation
+- Citation formats
+- Intellectual property respect
+
+**Key Points:**
+- ✅ AI assistants may read, explain, and help users understand this work
+- ✅ All use must properly attribute to @motanova84 and this repository
+- ✅ Support educational use while preventing plagiarism
+- ❌ Never present this work as AI-generated or claim authorship
+- ❌ Always require proper citation when work is used or referenced
 
 ---
 
