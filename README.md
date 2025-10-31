@@ -73,7 +73,7 @@ This repository provides a comprehensive computational verification framework fo
 
 ### 🆕 Visualización del Tensor de Acoplamiento Φ_ij
 
-**NEW**: Visualización interactiva de 4 paneles que muestra los efectos del tensor de acoplamiento cuántico Φ_ij en las ecuaciones de Navier-Stokes y sus mecanismos de estabilización a través de la coherencia cuántica.
+**NUEVO**: Visualización interactiva de 4 paneles que muestra los efectos del tensor de acoplamiento cuántico Φ_ij en las ecuaciones de Navier-Stokes y sus mecanismos de estabilización a través de la coherencia cuántica.
 
 ![Visualización del Acoplamiento Phi](Phi_coupling_visualization.png)
 
@@ -104,7 +104,7 @@ This repository provides a comprehensive computational verification framework fo
 - Mapa de contorno 2D que muestra el patrón de interferencia del campo Ψ en el espacio
 - Los patrones de interferencia coherente revelan la estructura geométrica del acoplamiento
 - La modulación espacial a la frecuencia característica f₀/100 en direcciones x e y
-- Colores representan la amplitud local del campo coherente (violeta = mínimo, amarillo = máximo)
+- Colores representan la amplitud local del campo coherente (púrpura oscuro = mínimo, amarillo = máximo)
 - Este patrón espacial estabiliza el flujo al introducir una escala de longitud característica
 
 #### Significado Físico
@@ -118,7 +118,7 @@ El tensor de acoplamiento Φ_ij actúa como un **regulador cuántico geométrico
 
 🔗 **Script**: [`visualize_phi_coupling.py`](visualize_phi_coupling.py)
 
-📊 **Ejecutar**: `python3 visualize_phi_coupling.py` para generar la visualización en alta resolución (300 DPI)
+📊 **Ejecutar**: `python visualize_phi_coupling.py` para generar la visualización en alta resolución (300 DPI)
 
 ✅ **Producción**: Imagen de 4457×2963 píxeles guardada como `Phi_coupling_visualization.png`
 
