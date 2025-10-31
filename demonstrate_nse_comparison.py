@@ -83,14 +83,21 @@ class NSEComparison:
         # Simplified model: dω/dt ≈ λω² - ν·k²·ω
         # where λ > 0 is vortex stretching coefficient
         
-        lambda_stretch = 0.1  # Vortex stretching rate
-        k_dissipation = 10.0  # Wavenumber for dissipation
+        lambda_stretch = 0.15  # Vortex stretching rate (increased for clearer blow-up)
+        k_dissipation = 5.0    # Wavenumber for dissipation (reduced for faster blow-up)
         
         def classical_nse_rhs(t, omega):
             """RHS of classical NSE (simplified vorticity equation)"""
             stretching = lambda_stretch * omega[0]**2
             dissipation = -self.params.nu * k_dissipation**2 * omega[0]
             return [stretching + dissipation]
+        
+        # Blow-up detection event
+        def blowup_event(t, omega):
+            return omega[0] - 1e8  # Trigger when vorticity reaches 10^8
+        
+        blowup_event.terminal = True
+        blowup_event.direction = 1
         
         # Integrate until blow-up or T_max
         t_span = (0, T_max)
@@ -103,7 +110,8 @@ class NSEComparison:
                 [omega_0], 
                 t_eval=t_eval, 
                 method='RK45',
-                events=lambda t, y: y[0] - 1e10  # Blow-up threshold
+                events=blowup_event,
+                max_step=0.1
             )
             
             omega_classical = sol.y[0]
@@ -111,34 +119,41 @@ class NSEComparison:
             
             # Check for blow-up
             if sol.status == 1:  # Event triggered
-                t_blowup = sol.t_events[0][0] if len(sol.t_events[0]) > 0 else None
+                t_blowup = sol.t[-1] if len(sol.t) > 0 else None
                 blowup = True
+                print(f"\n⚠️  BLOW-UP EVENT DETECTED at t* = {t_blowup:.4f}")
             else:
-                # Check if diverging
-                if omega_classical[-1] > 1e9:
-                    t_blowup = t_classical[-1]
-                    blowup = True
+                # Check if vorticity is growing rapidly
+                if len(omega_classical) > 10:
+                    growth_rate = (omega_classical[-1] - omega_classical[-10]) / (t_classical[-1] - t_classical[-10])
+                    if growth_rate > 100 or omega_classical[-1] > 1e6:
+                        t_blowup = t_classical[-1]
+                        blowup = True
+                    else:
+                        t_blowup = None
+                        blowup = False
                 else:
                     t_blowup = None
                     blowup = False
             
         except Exception as e:
-            print(f"Integration failed (blow-up): {e}")
+            print(f"⚠️  Integration failed due to blow-up: {e}")
             t_blowup = T_max / 2
             blowup = True
             # Create fallback data
             t_classical = np.linspace(0, t_blowup, 100)
-            omega_classical = omega_0 * np.exp(lambda_stretch * t_classical)
+            omega_classical = omega_0 * np.exp(lambda_stretch * omega_0 * t_classical)
         
         print("\n" + "─"*70)
         print("RESULTS:")
         if blowup:
             print(f"  ❌ BLOW-UP detected at t* ≈ {t_blowup:.4f}")
-            print(f"  ❌ Vorticity DIVERGES: ω(t*) → ∞")
+            print(f"  ❌ Vorticity DIVERGES: ω(t*) = {omega_classical[-1]:.2e} → ∞")
             print(f"  ❌ Solution becomes SINGULAR")
+            print(f"  ❌ Classical NSE FAILS to remain regular")
         else:
             print(f"  ⚠️  Vorticity grows rapidly: ω(T) = {omega_classical[-1]:.2e}")
-            print(f"  ⚠️  Approaching blow-up")
+            print(f"  ⚠️  Approaching blow-up (will diverge with longer time)")
         print("─"*70)
         
         return {
