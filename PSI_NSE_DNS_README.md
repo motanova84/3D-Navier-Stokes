@@ -81,7 +81,7 @@ T_max = 0.5     # Shorter simulation (from 5.0)
 Or use the provided test script:
 
 ```bash
-python test_psi_nse_quick.py
+python test_psi_nse_dns.py  # Runs with reduced parameters for quick validation
 ```
 
 ### Output Files

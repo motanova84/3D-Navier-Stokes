@@ -13,10 +13,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.fft import fftn, ifftn, fftfreq
-from scipy.integrate import odeint
-import h5py
-from tqdm import tqdm
 import json
+from tqdm import tqdm
 
 # ═══════════════════════════════════════════════════════════
 # PARÁMETROS FÍSICOS
@@ -32,7 +30,7 @@ T_max = 5.0  # tiempo total simulación
 
 # Coeficientes del tensor Φ_ij (derivados de QFT)
 alpha_coupling = 1/(720 * np.pi**2) * 0.1  # escalado para estabilidad numérica
-beta_coupling = 1/(2880 * np.pi**2)
+# beta_coupling = 1/(2880 * np.pi**2)  # Reserved for future R_ij term implementation
 gamma_coupling = -1/(1440 * np.pi**2)
 
 print("🌊 INICIALIZANDO SIMULACIÓN DNS Ψ-NSE")
@@ -85,10 +83,12 @@ def campo_coherencia_psi(t, X, Y, Z):
 # TENSOR DE ACOPLAMIENTO Φ_ij(Ψ)
 # ═══════════════════════════════════════════════════════════
 
-def calcular_phi_tensor(psi, dx):
+def calcular_phi_tensor(psi):
     """
     Calcula tensor Φ_ij derivado de QFT
-    Φ_ij = α·∇_i∇_j Ψ + β·R_ij·Ψ + γ·δ_ij·□Ψ
+    Φ_ij = α·∇_i∇_j Ψ + γ·δ_ij·□Ψ
+    
+    Note: β·R_ij·Ψ term reserved for future curvature implementation
     """
     # Gradientes espectrales (más precisos)
     psi_hat = fftn(psi)
@@ -236,7 +236,7 @@ for step in tqdm(range(n_steps), desc="Simulando"):
     
     # Calcular campo Ψ y tensor Φ
     psi = campo_coherencia_psi(t, X, Y, Z)
-    Phi = calcular_phi_tensor(psi, dx)
+    Phi = calcular_phi_tensor(psi)
     
     # RK4 paso 1
     k1_u, k1_v, k1_w = rhs_psi_nse(u, v, w, psi, Phi, nu, dt)
@@ -296,8 +296,6 @@ print("\n✅ SIMULACIÓN COMPLETADA\n")
 
 print("🔍 ANÁLISIS ESPECTRAL DE FRECUENCIAS")
 print("="*60)
-
-from scipy.signal import welch
 
 # FFT de la señal de energía
 freqs = fftfreq(len(energia), dt)
