@@ -345,7 +345,7 @@ if 'X' in data:
     # Quiver plot
     ax3.quiver(X_sub, Y_sub, Z_sub, 
                u_sub, u_sub * 0.5, u_sub * 0.3,
-               length=0.3, normalize=True, alpha=0.6,
+               length=0.3, alpha=0.6,
                cmap=cmap_coherence)
 
 ax3.set_xlabel('x', color='white', fontsize=12)

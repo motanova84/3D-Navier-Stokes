@@ -15,7 +15,7 @@ if [ -f "artifacts/SOLUTION_VISUALIZATION_MASTER.png" ]; then
     echo "✅ Visualización generada exitosamente"
     
     # Generar checksum
-    sha256sum artifacts/SOLUTION_VISUALIZATION_MASTER*.png > artifacts/visualization_checksums.txt
+    sha256sum artifacts/SOLUTION_VISUALIZATION_MASTER.png artifacts/SOLUTION_VISUALIZATION_MASTER_HIRES.png > artifacts/visualization_checksums.txt
     sha256sum artifacts/SOLUTION_VISUALIZATION_MASTER.pdf >> artifacts/visualization_checksums.txt
     
     echo "✅ Checksums generados"
@@ -23,7 +23,7 @@ if [ -f "artifacts/SOLUTION_VISUALIZATION_MASTER.png" ]; then
     # Mostrar metadatos
     echo ""
     echo "📋 METADATOS:"
-    cat artifacts/solution_visualization_metadata.json | jq '.'
+    jq '.' artifacts/solution_visualization_metadata.json
     
     echo ""
     echo "🎊 ¡LISTO PARA INCLUIR EN REPORTE CLAY INSTITUTE!"
