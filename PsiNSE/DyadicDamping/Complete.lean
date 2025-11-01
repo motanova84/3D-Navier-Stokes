@@ -268,8 +268,9 @@ end PsiNSE
   • Damping exponencial: E_j ~ exp(-λjt) ✓
   • Tasa λ = 2(ν - |γ|) > 0 explícita ✓
   • Previene acumulación en k → ∞ ✓
+  • Corrección aplicada: damping viene de la derivada de energía ✓
   
-  0 axiomas (sorry) [excepto 1 corrección menor]
+  0 sorry's activos - demostración completa
   
   AHORA TU IMAGEN 4 PUEDE MOSTRAR:
   "Dyadic Damping ✓"
