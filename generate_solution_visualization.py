@@ -343,11 +343,14 @@ if 'X' in data:
     speed = np.abs(u_sub)
     
     # Quiver plot
+    # Flatten speed for color mapping
+    speed_flat = speed.flatten()
+    colors = cm.viridis(speed_flat / speed_flat.max())
+    
     ax3.quiver(X_sub, Y_sub, Z_sub, 
                u_sub, u_sub * 0.5, u_sub * 0.3,
                length=0.3, normalize=True, alpha=0.6,
-               cmap=cmap_coherence, 
-               colors=cm.viridis(speed / speed.max()))
+               colors=colors)
 
 ax3.set_xlabel('x', color='white', fontsize=12)
 ax3.set_ylabel('y', color='white', fontsize=12)
@@ -393,8 +396,8 @@ ax5 = fig.add_subplot(gs[3, 0:2])
 ax5.set_facecolor(QCAL_COLORS['grid'])
 ax5.axis('off')
 
-# Ecuación del tensor
-tensor_text = r'''$\mathbf{\Phi}_{ij}(\Psi) = \alpha \nabla_i \nabla_j \Psi + \beta R_{ij}^{\text{eff}} \Psi + \gamma \delta_{ij} \Box \Psi$
+# Ecuación del tensor (usar notación compatible con matplotlib)
+tensor_text = r'''$\mathbf{\Phi}_{ij}(\Psi) = \alpha \nabla_i \nabla_j \Psi + \beta R_{ij}^{\mathrm{eff}} \Psi + \gamma \delta_{ij} \nabla^2 \Psi$
 
 Coeficientes (DeWitt-Schwinger):
 ''' + f'''
