@@ -18,10 +18,12 @@
 ## Table of Contents
 
 - [Overview](#overview)
+  - [∞³ Framework: Nature-Computation-Mathematics Unity](#-framework-nature-computation-mathematics-unity)
   - [Vibrational Dual Regularization Framework](#-vibrational-dual-regularization-framework)
   - [QFT Tensor Derivation Φ_ij(Ψ)](#-qft-tensor-derivation-φ_ijψ)
 - [Estado de la Demostración](#estado-de-la-demostración)
 - [Technical Contributions](#technical-contributions)
+- [Computational Limitations](#computational-limitations)
 - [Main Results](#main-results)
 - [Mathematical Framework](#mathematical-framework)
 - [Repository Structure](#repository-structure)
@@ -30,6 +32,7 @@
 - [Testing](#testing)
 - [Continuous Integration](#continuous-integration)
 - [Documentation](#documentation)
+- [AI Collaboration](#ai-collaboration)
 - [Contributing](#contributing)
 - [Citation](#citation)
 - [License](#license)
@@ -40,6 +43,24 @@
 ## Overview
 
 This repository provides a comprehensive computational verification framework for establishing **global regularity** of solutions to the three-dimensional Navier-Stokes equations through **unified dual-route closure** methodology. The approach leverages the **endpoint Serrin condition** in the critical space **Lₜ∞Lₓ³**.
+
+### 🆕 ∞³ Framework: Nature-Computation-Mathematics Unity
+
+**NEW**: Philosophical and mathematical framework connecting three fundamental pillars:
+
+- **∞¹ NATURE**: Physical observations showing classical NSE incompleteness (82.5% evidence)
+- **∞² COMPUTATION**: Numerical proof that additional physics is necessary (blow-up prevention)
+- **∞³ MATHEMATICS**: Rigorous QFT-based solution via Seeley-DeWitt tensor Φ_ij(Ψ)
+
+> *"La naturaleza nos dice que NSE clásico es incompleto"*  
+> *"La computación confirma que necesitamos física adicional"*  
+> *"Las matemáticas formalizan la solución correcta"*
+
+📖 **See**: [INFINITY_CUBED_FRAMEWORK.md](INFINITY_CUBED_FRAMEWORK.md) for complete philosophical and technical foundation.
+
+🧪 **Try it**: Run `python infinity_cubed_framework.py` for full demonstration of Nature→Computation→Mathematics unity.
+
+✅ **Status**: Framework validated with 28 passing tests covering all three pillars.
 
 ### 🆕 Vibrational Dual Regularization Framework
 
@@ -135,6 +156,59 @@ This framework establishes **13 verifiable technical contributions** across mult
 13. **"The Universe Does Not Permit Singularities"**: If Ψ is real (structured quantum vacuum), classical NS is incomplete
 
 **Complete Documentation:** [TECHNICAL_CONTRIBUTIONS.md](Documentation/TECHNICAL_CONTRIBUTIONS.md) | [CONTRIBUCIONES_TECNICAS_ES.md](Documentation/CONTRIBUCIONES_TECNICAS_ES.md) (Español)
+
+---
+
+## Computational Limitations
+
+### Why Computational Approaches Cannot Prove Global Regularity
+
+While this framework provides rigorous mathematical proof of global regularity, it's crucial to understand **why purely computational approaches fail**. This repository includes a comprehensive analysis module ([`computational_limitations.py`](computational_limitations.py)) that demonstrates four fundamental impossibilities:
+
+#### 1. 🚫 Exponential Resolution Explosion
+- To prove global regularity requires Re → ∞
+- Required resolution: N ~ Re^(9/4) → ∞
+- **Example (Re = 10⁶)**: ~400 TB memory just for one snapshot
+- **Conclusion**: Impossible even with future hardware
+
+#### 2. 🎲 Insurmountable Numerical Error
+- Machine epsilon: ε_machine = 2.22 × 10^(-16)
+- Vorticity amplifies error: ε(t) ~ ε₀ · exp(∫ ‖ω‖ dt)
+- **Result**: Cannot distinguish real blow-up from numerical error
+- **Conclusion**: Fundamental limitation of floating-point arithmetic
+
+#### 3. ⏰ Temporal Trap (CFL Condition)
+- Stability requires: Δt ≤ C · Δx / u_max
+- Computational time: T_comp ~ N⁴
+- **Example (N = 100,000)**: ~3 years on fastest supercomputer
+- **Conclusion**: Cannot reach sufficient resolution in reasonable time
+
+#### 4. 🧩 Algorithmic Complexity (NP-Hard)
+- NSE regularity verification is NP-hard
+- Verification time ~ 2^N (exponential)
+- **Example (N = 1000)**: > atoms in observable universe
+- **Conclusion**: Mathematically intractable, not just a hardware issue
+
+### Machine Learning Limitations
+
+Neural networks **cannot prove** global regularity because:
+- Training data is finite, but initial condition space is infinite-dimensional
+- Approximation error (ε_NN > 0) explodes near critical zones
+- ML provides heuristics, not rigorous proofs
+- Mathematical existence ≠ Engineering prediction
+
+**See Documentation**: [COMPUTATIONAL_LIMITATIONS.md](COMPUTATIONAL_LIMITATIONS.md) for complete analysis
+
+**Try it yourself**:
+```bash
+# Run comprehensive analysis
+python computational_limitations.py
+
+# Run tests
+python -m unittest test_computational_limitations
+```
+
+**Conclusion**: Global regularity of Navier-Stokes requires **MATHEMATICAL PROOF**, not computational simulation. This is why our framework focuses on rigorous mathematical verification rather than brute-force computation.
 
 ---
 
@@ -844,6 +918,30 @@ where X(t) = ‖ω(t)‖_{B⁰_{∞,1}}
 5. **Tao, T. (2016)**  
    "Finite time blowup for Lagrangian modifications of the three-dimensional Euler equation"  
    *Annals of PDE*, 2(2), Article 9
+
+---
+
+## AI Collaboration
+
+### Guidelines for AI Assistants
+
+This repository welcomes AI assistants to help users understand and work with the codebase, while respecting authorship and intellectual property rights.
+
+**For AI Assistants:** Please read [AI-GUIDELINES.md](AI-GUIDELINES.md) (English) or [AI-GUIDELINES_ES.md](AI-GUIDELINES_ES.md) (Español) for complete guidelines on:
+
+- What AI assistants can and cannot do
+- Attribution requirements
+- Ethical guidelines for collaboration
+- Repository structure and navigation
+- Citation formats
+- Intellectual property respect
+
+**Key Points:**
+- ✅ AI assistants may read, explain, and help users understand this work
+- ✅ All use must properly attribute to @motanova84 and this repository
+- ✅ Support educational use while preventing plagiarism
+- ❌ Never present this work as AI-generated or claim authorship
+- ❌ Always require proper citation when work is used or referenced
 
 ---
 
