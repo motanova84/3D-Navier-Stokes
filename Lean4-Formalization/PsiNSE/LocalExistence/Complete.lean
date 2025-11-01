@@ -136,8 +136,8 @@ theorem kato_local_existence_absolute_complete
             apply h_nl
             · exact u₀_sob.property.1
             · exact u₀_sob.property.1
-            · sorry
-            · sorry
+            · apply sobolev_norm_finite_of_Hs
+            · apply sobolev_norm_finite_of_Hs
             · apply hv.2
               exact ⟨le_refl 0, hτ.2⟩
         _ ≤ sobolev_norm u₀_sob.val s +
@@ -180,8 +180,8 @@ theorem kato_local_existence_absolute_complete
           apply h_nl
           · exact u₀_sob.property.1
           · exact u₀_sob.property.1
-          · sorry
-          · sorry
+          · apply sobolev_norm_finite_of_Hs
+          · apply sobolev_norm_finite_of_Hs
           · exact hv.2 τ ⟨le_refl 0, hτ.2⟩
           · exact hw.2 τ ⟨le_refl 0, hτ.2⟩
       _ = t * C_nl * (4 * sobolev_norm u₀_sob.val s) *

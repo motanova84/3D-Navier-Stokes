@@ -41,6 +41,11 @@ lemma sobolev_norm_pos (u : ℝ³ → ℝ³) (s : ℝ)
     (h : Measurable u) (h_ne : ∃ x, u x ≠ 0) : sobolev_norm u s > 0 := by
   sorry
 
+lemma sobolev_norm_finite_of_Hs (u : H^s) : sobolev_norm u.val s < ∞ := by
+  unfold sobolev_norm
+  apply Real.rpow_lt_top_of_lt
+  exact u.property.2
+
 /-! ## Operadores diferenciales -/
 
 /-- Divergencia de un campo vectorial -/
