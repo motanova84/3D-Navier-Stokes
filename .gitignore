@@ -104,3 +104,7 @@ ai_agent_workspace/
 Phi_tensor_symbolic.txt
 Phi_tensor.tex
 Phi_tensor_metadata.json
+
+# Artifacts directory (used by CI for temporary visualization files)
+artifacts/
+
