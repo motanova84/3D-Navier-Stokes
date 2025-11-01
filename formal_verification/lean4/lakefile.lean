@@ -17,9 +17,3 @@ require aesop from git
   "https://github.com/JLimperg/aesop" @ "master"
 
 @[default_target] lean_lib NavierStokes
-
-lean_lib QCAL
-
-lean_lib PNP
-lean_lib PsiNSE where
-  globs := #[.submodules `PsiNSE]
