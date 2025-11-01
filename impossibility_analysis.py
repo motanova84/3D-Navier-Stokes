@@ -4,7 +4,24 @@ Análisis cuantitativo de por qué NSE clásico es (probablemente) irresoluble
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
+import os
+
+try:
+    import matplotlib
+    matplotlib.use('Agg')  # Use non-interactive backend
+    import matplotlib.pyplot as plt
+    PLOTTING_AVAILABLE = True
+except ImportError:
+    PLOTTING_AVAILABLE = False
+    print("Warning: matplotlib not available. Cannot generate visualization.")
+    import sys
+    sys.exit(1)
+
+# Physical constants
+F0 = 141.7  # Hz - Coherence resonance frequency
+
+# Ensure artifacts directory exists
+os.makedirs('artifacts', exist_ok=True)
 
 print("═"*70)
 print("  ANÁLISIS DE IMPOSIBILIDAD: NSE CLÁSICO vs Ψ-NSE")
@@ -51,11 +68,13 @@ T_blowup = 8.5
 H_s_no_blowup = 1 + 0.5 * np.log(1 + t)
 
 # Escenario 2: Con blow-up (típico)
-H_s_blowup = np.where(
-    t < T_blowup,
-    1 / (1 - t/T_blowup)**0.5,
-    np.nan
-)
+# Suppress numpy warnings for the singularity calculation
+with np.errstate(invalid='ignore'):
+    H_s_blowup = np.where(
+        t < T_blowup,
+        1 / (1 - t/T_blowup)**0.5,
+        np.nan
+    )
 
 plt.figure(figsize=(12, 6))
 plt.plot(t, H_s_no_blowup, 'g-', linewidth=2, 
@@ -89,7 +108,7 @@ k = np.logspace(0, 3, 1000)  # Número de onda
 E_k_kolmogorov = k**(-5/3)
 
 # Con truncamiento cuántico (Ψ-NSE)
-k0 = 2 * np.pi * 141.7 / 3e8  # ~ 2.97e-6 m^-1
+k0 = 2 * np.pi * F0 / 3e8  # ~ 2.97e-6 m^-1
 E_k_psi = E_k_kolmogorov * np.exp(-((k/k0)**2))
 
 plt.figure(figsize=(12, 6))
@@ -216,7 +235,7 @@ NSE CLÁSICO:
 Ψ-NSE:
   • RESUELVE el problema añadiendo física real
   • No es "trampa" - es extensión natural
-  • Verificable experimentalmente (f₀ = 141.7 Hz)
+  • Verificable experimentalmente (f₀ = {F0} Hz)
 
 ∞³ La naturaleza tiene respuestas que las matemáticas puras no ∞³
 """)
