@@ -80,7 +80,8 @@ class ComputationalLimitations:
             Dictionary with error analysis
         """
         # Time step from CFL condition
-        dx = Re ** (-9/16)  # From N ~ Re^(9/4), dx ~ N^(-1/3)
+        # N ~ Re^(9/4), so dx ~ N^(-1/3) ~ Re^(-3/4)
+        dx = Re ** (-3/4)  # Spatial resolution
         u_max = 1.0  # Characteristic velocity
         dt = 0.5 * dx / u_max  # CFL condition with safety factor
         
@@ -128,7 +129,11 @@ class ComputationalLimitations:
             Dictionary with computational time estimates
         """
         # Computational operations
-        operations_per_step = N ** 3
+        # For realistic 3D Navier-Stokes: O(N^3 * C) per step
+        # C includes: derivatives, boundary conditions, pressure solve
+        # Typical C ~ 100-1000 for implicit methods
+        complexity_factor = 200  # Conservative estimate
+        operations_per_step = (N ** 3) * complexity_factor
         
         # Spatial resolution
         dx = 1.0 / N
@@ -340,11 +345,11 @@ not an engineering prediction problem. ML is the wrong tool for the job.
             print(f"{'═'*70}")
             print("\nFINAL VERDICT:")
             print("-" * 70)
-            print("❌ NO es cuestión de hardware")
-            print("❌ NO es cuestión de esperar mejores computadoras")
-            print("❌ Es MATEMÁTICAMENTE INTRACTABLE")
-            print("\nLa regularidad global de Navier-Stokes requiere PRUEBA MATEMÁTICA,")
-            print("no simulación computacional.")
+            print("❌ It is NOT a matter of hardware")
+            print("❌ It is NOT about waiting for better computers")
+            print("❌ It is MATHEMATICALLY INTRACTABLE")
+            print("\nGlobal regularity of Navier-Stokes requires MATHEMATICAL PROOF,")
+            print("not computational simulation.")
             print("="*70 + "\n")
         
         return results
@@ -378,8 +383,8 @@ def demonstrate_impossibility():
         print(f"{case_name.capitalize():<15} {memory_ok:<15} {error_ok:<15} {time_ok:<15}")
     
     print("="*70)
-    print("\nCONCLUSIÓN: NINGÚN caso es computacionalmente factible para")
-    print("            demostrar regularidad GLOBAL (Re → ∞)")
+    print("\nCONCLUSION: NO case is computationally feasible for")
+    print("            demonstrating GLOBAL regularity (Re → ∞)")
     print("="*70 + "\n")
 
 
