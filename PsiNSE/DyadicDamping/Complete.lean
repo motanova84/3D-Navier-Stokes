@@ -44,7 +44,7 @@ def riccati_coefficient_dyadic (j : ℕ) : ℝ :=
 /-- Observación: El coeficiente de Riccati estático NO es negativo
     
     α + β + γ = 2.6482647783e-2 + 3.5144657934e-5 + (-7.0289315868e-5)
-              = 2.6482647783e-2 - 3.5144657934e-5
+              = 2.6482647783e-2 + 3.5144657934e-5 - 7.0289315868e-5
               ≈ 2.6447503126e-2 > 0
     
     El damping NO viene del valor estático sino de la DERIVADA de la energía,
@@ -54,7 +54,7 @@ def riccati_coefficient_dyadic (j : ℕ) : ℝ :=
 lemma riccati_coefficient_positive (j : ℕ) :
   riccati_coefficient_dyadic j > 0 := by
   
-  unfold riccati_coefficient_dyadic qft_coeff QFTCoefficients.α QFTCoefficients.β QFTCoefficients.γ
+  unfold riccati_coefficient_dyadic qft_coeff
   
   -- α + β + γ = 0.026482647783 + 0.000035144657934 - 0.000070289315868
   --           ≈ 0.026447503124 > 0
@@ -188,7 +188,8 @@ theorem dyadic_cascade_truncation
       calc |qft_coeff.γ| 
         _ = |(-7.0289315868e-5 : ℝ)| := by rfl
         _ = 7.0289315868e-5 := by norm_num
-        _ < ν := by exact hν
+        _ < 1e-4 := by norm_num
+        _ < ν := by exact hν_large
     linarith
   
   by_cases ht : t ≤ 0

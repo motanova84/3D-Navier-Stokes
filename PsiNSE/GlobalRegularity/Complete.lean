@@ -23,18 +23,9 @@ structure QFTCoefficients where
 /-- Global QFT coefficients instance -/
 def qft_coeff : QFTCoefficients := {}
 
-/-- Alpha coefficient accessor -/
-def QFTCoefficients.α : ℝ := qft_coeff.α
-
-/-- Beta coefficient accessor -/
-def QFTCoefficients.β : ℝ := qft_coeff.β
-
-/-- Gamma coefficient accessor -/
-def QFTCoefficients.γ : ℝ := qft_coeff.γ
-
 /-- Gamma is negative (provides damping) -/
 lemma qft_coeff.γ_negative : qft_coeff.γ < 0 := by
-  unfold qft_coeff QFTCoefficients.γ
+  unfold qft_coeff
   norm_num
 
 /-! ## Viscosity and Physical Parameters -/
