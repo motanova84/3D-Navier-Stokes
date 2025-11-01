@@ -18,7 +18,9 @@ except ImportError:
     sys.exit(1)
 
 # Physical constants
-F0 = 141.7  # Hz - Coherence resonance frequency
+F0 = 141.7001  # Hz - Coherence resonance frequency (matching other scripts)
+C_LIGHT = 3e8  # m/s - Speed of light
+KATO_EPSILON = 0.01  # Small epsilon for Kato's local existence theorem
 
 # Ensure artifacts directory exists
 os.makedirs('artifacts', exist_ok=True)
@@ -36,7 +38,7 @@ print("-" * 70)
 
 d = 3  # Dimensión
 s_critical = (d + 1) / 2  # s crítico para control no-lineal
-s_local = d / 2 + 0.01    # s para existencia local
+s_local = d / 2 + KATO_EPSILON  # s para existencia local (Kato)
 
 gap = s_critical - s_local
 
@@ -108,7 +110,7 @@ k = np.logspace(0, 3, 1000)  # Número de onda
 E_k_kolmogorov = k**(-5/3)
 
 # Con truncamiento cuántico (Ψ-NSE)
-k0 = 2 * np.pi * F0 / 3e8  # ~ 2.97e-6 m^-1
+k0 = 2 * np.pi * F0 / C_LIGHT  # ~ 2.97e-6 m^-1
 E_k_psi = E_k_kolmogorov * np.exp(-((k/k0)**2))
 
 plt.figure(figsize=(12, 6))
