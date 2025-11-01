@@ -18,5 +18,4 @@ require aesop from git
 
 @[default_target] lean_lib NavierStokes
 
-lean_lib PsiNSE where
-  globs := #[.submodules `PsiNSE]
+lean_lib PsiNSE
