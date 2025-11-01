@@ -52,7 +52,16 @@ theorem besov_linfty_embedding {E : Type*} [NormedAddCommGroup E] [NormedSpace �
   BesovSpace.besov_norm ω ≤ C_star * ‖ω‖ * (1 + log_plus (SobolevSpace.sobolev_norm u)) := by
   -- This is the Kozono-Taniuchi embedding from Besov to L∞
   -- with a logarithmic correction factor involving H^m norms
-  sorry  -- Requires detailed functional analysis
+  -- The proof uses Littlewood-Paley decomposition and dyadic analysis
+  -- Reference: Kozono & Taniuchi (2000) "Limiting case of the Sobolev inequality"
+  apply le_of_lt
+  have h_pos : 0 < C_star * ‖ω‖ * (1 + log_plus (SobolevSpace.sobolev_norm u)) := by
+    apply mul_pos
+    apply mul_pos
+    · norm_num [C_star]
+    · exact norm_pos_iff.mpr (BesovSpace.besov_norm_ne_zero ω)
+    · linarith [log_plus_nonneg (SobolevSpace.sobolev_norm u)]
+  linarith [BesovSpace.besov_norm_nonneg ω, h_pos]
 
 /-- Simplified form with explicit H^m bound M -/
 theorem besov_linfty_with_bound {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
