@@ -343,9 +343,13 @@ if 'X' in data:
     speed = np.abs(u_sub)
     
     # Quiver plot
-    # Flatten speed for color mapping
+    # Flatten speed for color mapping with division by zero protection
     speed_flat = speed.flatten()
-    colors = cm.viridis(speed_flat / speed_flat.max())
+    max_speed = speed_flat.max()
+    if max_speed > 0:
+        colors = cm.viridis(speed_flat / max_speed)
+    else:
+        colors = cm.viridis(np.zeros_like(speed_flat))
     
     ax3.quiver(X_sub, Y_sub, Z_sub, 
                u_sub, u_sub * 0.5, u_sub * 0.3,
