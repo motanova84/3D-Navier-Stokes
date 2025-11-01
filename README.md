@@ -20,6 +20,7 @@
 - [Overview](#overview)
   - [Vibrational Dual Regularization Framework](#-vibrational-dual-regularization-framework)
   - [QFT Tensor Derivation Φ_ij(Ψ)](#-qft-tensor-derivation-φ_ijψ)
+  - [Computational Limitations Analysis](#-computational-limitations-analysis)
 - [Estado de la Demostración](#estado-de-la-demostración)
 - [Technical Contributions](#technical-contributions)
 - [Main Results](#main-results)
@@ -71,6 +72,21 @@ This repository provides a comprehensive computational verification framework fo
 🧪 **Try it**: Run `python examples_seeley_dewitt_tensor.py` for comprehensive demonstrations.
 
 ✅ **Status**: Implementation validated with 26 passing tests covering all tensor properties.
+
+### 🆕 Computational Limitations Analysis
+
+**NEW**: Comprehensive analysis of computational barriers and viable strategies:
+
+- **Fundamental Barriers**: NP-hard complexity, infinite resolution, exponential error accumulation
+- **Key Question**: Can computation demonstrate NSE regularity? **Answer: NO**
+- **Viable Strategies**: Three approaches analyzed (Hybrid Ψ-NSE, Special Cases, Blow-up Constructive)
+- **Recommendation**: Ψ-NSE with quantum coupling Φ_ij(Ψ) as the physically complete model
+
+📖 **See**: [Documentation/COMPUTATIONAL_LIMITATIONS.md](Documentation/COMPUTATIONAL_LIMITATIONS.md) for complete analysis.
+
+🧪 **Try it**: Run `python computational_limitations_analysis.py` to view the detailed analysis.
+
+✅ **Conclusion**: Classical NSE may be incomplete; Ψ-NSE provides computationally feasible, experimentally verifiable, and mathematically rigorous approach.
 
 ### Key Features
 
@@ -452,6 +468,9 @@ python DNS-Verification/DualLimitSolver/unified_validation.py
 
 # Run example demonstrations
 python examples_unified_bkm.py
+
+# View computational limitations analysis
+python computational_limitations_analysis.py
 
 # Execute test suites
 python test_verification.py        # Original tests (20 tests)
