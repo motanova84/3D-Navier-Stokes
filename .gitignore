@@ -58,6 +58,11 @@ Results/Figures/*.png
 Results/Figures/*.jpg
 Results/Figures/*.pdf
 delta_star.json
+
+# Artifacts (generated analysis output)
+artifacts/*.png
+artifacts/*.jpg
+artifacts/*.pdf
 # IDE
 .vscode/
 .idea/
@@ -99,3 +104,6 @@ ai_agent_workspace/
 Phi_tensor_symbolic.txt
 Phi_tensor.tex
 Phi_tensor_metadata.json
+
+# Artifacts (generated visualization files)
+artifacts/

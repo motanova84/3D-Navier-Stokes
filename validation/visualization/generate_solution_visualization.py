@@ -345,9 +345,8 @@ if 'X' in data:
     # Quiver plot
     ax3.quiver(X_sub, Y_sub, Z_sub, 
                u_sub, u_sub * 0.5, u_sub * 0.3,
-               length=0.3, normalize=True, alpha=0.6,
-               cmap=cmap_coherence, 
-               colors=cm.viridis(speed / speed.max()))
+               length=0.3, alpha=0.6,
+               cmap=cmap_coherence)
 
 ax3.set_xlabel('x', color='white', fontsize=12)
 ax3.set_ylabel('y', color='white', fontsize=12)
@@ -394,7 +393,7 @@ ax5.set_facecolor(QCAL_COLORS['grid'])
 ax5.axis('off')
 
 # Ecuación del tensor
-tensor_text = r'''$\mathbf{\Phi}_{ij}(\Psi) = \alpha \nabla_i \nabla_j \Psi + \beta R_{ij}^{\text{eff}} \Psi + \gamma \delta_{ij} \Box \Psi$
+tensor_text = r'''$\mathbf{\Phi}_{ij}(\Psi) = \alpha \nabla_i \nabla_j \Psi + \beta R_{ij}^{\text{eff}} \Psi + \gamma \delta_{ij} \nabla^2 \Psi$
 
 Coeficientes (DeWitt-Schwinger):
 ''' + f'''
