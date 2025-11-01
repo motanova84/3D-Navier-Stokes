@@ -1,200 +1,151 @@
-# Formal Verification Setup - Implementation Complete
+# Lean4 Full Verification Workflow
+
+This directory contains the comprehensive verification infrastructure for the QCAL ∞³ Framework approach to the Navier-Stokes Clay Millennium Problem.
 
 ## Overview
 
-This directory contains the complete formal verification infrastructure for the Ψ-NSE (Psi Navier-Stokes with vibrational regularization) system in Lean 4.
+The verification pipeline combines three key components:
 
-## Status: ✓ IMPLEMENTATION COMPLETE
-
-All requirements from the problem statement have been successfully implemented.
+1. **Formal Mathematics** (Lean4): Machine-checked proofs
+2. **Computational Physics** (DNS): Direct numerical simulation validation
+3. **Quantum Field Theory** (QFT): Parameter calibration and coupling tensor verification
 
 ## Directory Structure
 
 ```
 formal_verification/
 └── lean4/
-    ├── PsiNSE_CompleteLemmas_WithInfrastructure.lean  [12.2 KB]
-    ├── lakefile.lean                                   [631 bytes]
-    ├── lean-toolchain                                  [24 bytes]
-    ├── build.sh                                        [executable]
-    ├── integrate.sh                                    [executable]
-    ├── README.md                                       [3.4 KB]
-    └── VALIDATION_REPORT.md                            [7.8 KB]
+    ├── PsiNSE/              # Main Lean4 modules
+    │   ├── NavierStokes/    # Core theorem modules
+    │   ├── Production/      # Production-ready code (no sorry)
+    │   ├── MainTheorem.lean
+    │   ├── Theorem13_7.lean
+    │   └── ...
+    ├── lakefile.lean
+    ├── lean-toolchain
+    └── verify_all_theorems.lean
+
+validation/
+├── dns/                     # DNS validation scripts
+│   └── psi_nse_dns_complete.py
+├── qft/                     # QFT calibration scripts
+│   ├── calibrate_gamma_rigorous.py
+│   └── verify_phi_tensor.py
+├── verify_frequency_emergence.py
+└── requirements.txt
+
+scripts/
+├── generate_proof_certificate.py
+└── generate_integration_report.py
+
+.github/workflows/
+└── lean4-full-verification.yml  # Main CI/CD workflow
 ```
 
-## Quick Start
+## GitHub Actions Workflow
 
-### If Lean 4 is Already Installed
+The workflow (`.github/workflows/lean4-full-verification.yml`) runs automatically on:
+- Push to `main` or `develop` branches
+- Pull requests to `main`
+- Manual trigger via `workflow_dispatch`
+
+### Jobs
+
+#### 1. verify-no-sorry
+Verifies Lean4 formal proofs:
+- Checks for incomplete proofs (`sorry` statements)
+- Builds Lean4 modules
+- Generates proof certificate
+- Uploads certificate as artifact
+
+#### 2. integration-tests
+Runs computational validation:
+- DNS validation (simplified for CI)
+- Frequency emergence verification (f₀ = 141.7001 Hz)
+- QFT gamma calibration
+- φ-tensor coupling verification
+- Generates integration report
+
+#### 3. clay-report-generation
+Generates final submission materials:
+- Downloads all artifacts
+- Generates Clay Institute report
+- Uploads final report (retained for 365 days)
+
+## Running Locally
+
+### Prerequisites
 
 ```bash
-cd formal_verification/lean4
-./build.sh
+# Python dependencies
+pip install -r validation/requirements.txt
+
+# Lean4 (optional, for formal verification)
+curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh
 ```
 
-### If Lean 4 is Not Installed
-
-1. Install Lean 4 and elan:
-   ```bash
-   curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh
-   ```
-
-2. Run the build:
-   ```bash
-   cd formal_verification/lean4
-   ./build.sh
-   ```
-
-### Validation Only
-
-To validate the setup without building:
-```bash
-cd formal_verification/lean4
-./integrate.sh
-```
-
-## What Has Been Implemented
-
-### 1. Complete Formal Verification Framework
-
-The `PsiNSE_CompleteLemmas_WithInfrastructure.lean` file contains:
-
-- **Universal Constants**
-  - f₀ = 141.7001 Hz (universal harmonic frequency)
-  - γ_critical = 616.0 (Riccati damping threshold)
-  - p_serrin = 5.0 (Serrin endpoint exponent)
-
-- **Core Structures**
-  - `PsiNSSystem` - Ψ-NSE system with vibrational regularization
-  - `DualLimitScaling` - Dual limit scaling parameters
-  - `RiccatiDamping` - Riccati damping equation framework
-  - `NoeticFieldParams` - Quantum-classical coupling parameters
-  - `VibrationalFramework` - Complete regularization framework
-
-- **Main Theorems**
-  1. `conditional_global_regularity` - Global regularity under QCAL framework
-  2. `QCAL_framework_regularity` - Regularity for f₀ ≥ f₀_min
-  3. `global_regularity_vibrational` - Global regularity via vibrational regularization
-  4. `no_finite_time_blowup` - No finite-time singularities
-  5. `energy_bounded_all_time` - Energy bounds for all time
-  6. `natural_frequency_emergence` - Natural emergence of f₀
-  7. `complete_verification` - All properties hold simultaneously
-
-- **Integration Points**
-  - P-NP framework integration (complexity theory)
-  - QCAL framework integration (quantum-classical coupling)
-
-### 2. Dependencies Configuration
-
-The `lakefile.lean` is properly configured with:
-
-- ✓ **mathlib4** - Core mathematical library
-- ✓ **PNP** - From https://github.com/motanova84/P-NP
-- ✓ **QCAL** - From https://github.com/motanova84/noesis88
-
-### 3. Build Infrastructure
-
-- **build.sh** - Automated build script with dependency management
-- **integrate.sh** - Validation script to verify setup
-- **lean-toolchain** - Version specification (leanprover/lean4:stable)
-
-### 4. Documentation
-
-- **README.md** - Complete user guide and documentation
-- **VALIDATION_REPORT.md** - Detailed validation against problem statement
-
-## Verification Against Problem Statement
-
-The problem statement required:
+### Generate Proof Certificate
 
 ```bash
-cd formal_verification/lean4/
-cp PsiNSE_CompleteLemmas_WithInfrastructure.lean .
-echo 'require PNP from git "https://github.com/motanova84/P-NP"' >> lakefile.lean
-echo 'require QCAL from git "https://github.com/motanova84/noesis88"' >> lakefile.lean
-lake build
-lean4 --make PsiNSE_CompleteLemmas_WithInfrastructure.lean
+python3 scripts/generate_proof_certificate.py \
+  --input formal_verification/lean4 \
+  --output artifacts/lean4_certificate.json
 ```
 
-### Implementation Status
+### Run QFT Calibration
 
-| Requirement | Status | Implementation |
-|------------|--------|----------------|
-| Directory `formal_verification/lean4/` | ✓ Complete | Created with full structure |
-| File `PsiNSE_CompleteLemmas_WithInfrastructure.lean` | ✓ Complete | 12.2 KB comprehensive file |
-| P-NP dependency in lakefile.lean | ✓ Complete | Properly configured |
-| QCAL dependency in lakefile.lean | ✓ Complete | Properly configured |
-| `lake build` capability | ✓ Ready | Script prepared, requires Lean 4 |
-| `lean4 --make` capability | ✓ Ready | Script prepared, requires Lean 4 |
-
-## Integration Test Results
-
-Running `./integrate.sh` produces:
-
-```
-✓ File found: PsiNSE_CompleteLemmas_WithInfrastructure.lean
-  Size: 12165 bytes
-  Lines: 368
-
-✓ lakefile.lean found
-✓ P-NP dependency configured
-✓ QCAL (noesis88) dependency configured
+```bash
+python3 validation/qft/calibrate_gamma_rigorous.py
+python3 validation/qft/verify_phi_tensor.py
 ```
 
-All structural requirements are validated and ready.
+### Run DNS Validation (CI Mode)
 
-## Next Steps
+```bash
+cd validation/dns
+python psi_nse_dns_complete.py --config extreme_test.yaml
+```
 
-1. **Install Lean 4** (if not already installed)
-   ```bash
-   curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh
-   ```
+### Generate Integration Report
 
-2. **Build and Verify**
-   ```bash
-   cd formal_verification/lean4
-   ./build.sh
-   ```
+```bash
+python3 scripts/generate_integration_report.py \
+  --lean4 artifacts/lean4_certificate.json \
+  --dns validation/dns/results.h5 \
+  --qft validation/qft/gamma_calibration.json \
+  --output artifacts/integration_report.md
+```
 
-3. **Complete Formal Proofs**
-   - Many theorems are marked with `sorry` placeholders
-   - These indicate where detailed proofs need implementation
-   - The structure provides a comprehensive roadmap
+## Key Parameters
 
-4. **Implement External Dependencies**
-   - Ensure P-NP repository contains valid Lean 4 package
-   - Ensure QCAL repository contains valid Lean 4 package
-   - Complete integration functions
+### QCAL Framework Parameters
+- **f₀** = 141.7001 Hz (Critical frequency)
+- **a** = 7.0 (Amplitude parameter, needs correction to ~200)
+- **c₀** = 1.0 (Phase gradient)
+- **δ*** = a²c₀²/(4π²) (Misalignment defect)
 
-## Key Results Being Verified
+### Universal Constants
+- **c⋆** = 1/16 (Parabolic coercivity coefficient)
+- **C_str** = 32 (Vorticity stretching constant)
+- **C_BKM** = 2 (Calderón-Zygmund/Besov constant)
 
-1. **Blow-up Prevention**: The Ψ-NSE system genuinely prevents finite-time blow-up through intrinsic vibrational regularization
+## CI/CD Features
 
-2. **Natural Frequency Emergence**: The frequency f₀ = 141.7001 Hz emerges naturally from the physics, not as an arbitrary parameter
+- **Continue-on-error**: Many steps use `continue-on-error: true` to allow partial success
+- **Artifact retention**: 
+  - Lean4 certificates: 90 days
+  - Integration reports: 30 days
+  - Clay reports: 365 days
+- **Graceful degradation**: Scripts handle missing files/data appropriately
 
-3. **Energy Control**: Energy remains bounded for all time via Riccati damping with γ ≥ 616
+## Notes
 
-4. **Global Regularity**: Solutions exist globally in time and remain smooth
-
-5. **BKM Criterion**: Vorticity L^∞ integrability is satisfied
+- Full DNS computation requires HPC resources; CI runs simplified validation
+- Lean4 proofs may contain `sorry` statements (work in progress)
+- Parameter corrections are documented in generated reports
 
 ## References
 
-- **Main Documentation**: `lean4/README.md`
-- **Validation Report**: `lean4/VALIDATION_REPORT.md`
-- **Main Formalization**: `lean4/PsiNSE_CompleteLemmas_WithInfrastructure.lean`
-- **Related Work**: `../Lean4-Formalization/` (existing formalization)
-- **Python Validation**: `../VALIDACION_COMPLETA_PSI_NSE.md`
-
-## Support
-
-For build issues or questions:
-1. Check `lean4/README.md` for detailed instructions
-2. Review `lean4/VALIDATION_REPORT.md` for troubleshooting
-3. Ensure Lean 4 is properly installed via elan
-4. Verify P-NP and QCAL repositories are accessible
-
----
-
-**Implementation Date**: 2025-10-31  
-**Status**: Complete and Ready for Compilation  
-**Lean Version**: leanprover/lean4:stable
+- [Clay Millennium Problem](https://www.claymath.org/millennium-problems/navier-stokes-equation)
+- [Lean4 Documentation](https://leanprover.github.io/lean4/doc/)
+- Main repository: https://github.com/motanova84/3D-Navier-Stokes
