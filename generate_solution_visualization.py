@@ -405,6 +405,8 @@ ax5.set_facecolor(QCAL_COLORS['grid'])
 ax5.axis('off')
 
 # Ecuación del tensor (usar notación compatible con matplotlib)
+# Nota: ∇² se usa en lugar de □ (Box operator) ya que matplotlib no soporta \Box
+# Ambos son equivalentes en este contexto (d'Alembertian/Laplacian)
 tensor_text = r'''$\mathbf{\Phi}_{ij}(\Psi) = \alpha \nabla_i \nabla_j \Psi + \beta R_{ij}^{\mathrm{eff}} \Psi + \gamma \delta_{ij} \nabla^2 \Psi$
 
 Coeficientes (DeWitt-Schwinger):
