@@ -17,3 +17,5 @@ require aesop from git
   "https://github.com/JLimperg/aesop" @ "master"
 
 @[default_target] lean_lib NavierStokes
+
+lean_lib PsiNSE
