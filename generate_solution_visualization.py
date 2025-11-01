@@ -331,6 +331,8 @@ ax3.set_facecolor(QCAL_COLORS['background'])
 if 'X' in data:
     X, Y, Z = data['X'], data['Y'], data['Z']
     u_field = data['u_field']
+    v_field = data.get('v_field', u_field * 0.5)  # Fallback if v_field not available
+    w_field = data.get('w_field', u_field * 0.3)  # Fallback if w_field not available
     
     # Reducir resolución para visualización
     step = 4
@@ -338,9 +340,11 @@ if 'X' in data:
     Y_sub = Y[::step, ::step, ::step]
     Z_sub = Z[::step, ::step, ::step]
     u_sub = u_field[::step, ::step, ::step]
+    v_sub = v_field[::step, ::step, ::step]
+    w_sub = w_field[::step, ::step, ::step]
     
-    # Magnitud para color
-    speed = np.abs(u_sub)
+    # Magnitud para color (velocidad total)
+    speed = np.sqrt(u_sub**2 + v_sub**2 + w_sub**2)
     
     # Quiver plot
     # Flatten speed for color mapping with division by zero protection
@@ -352,7 +356,7 @@ if 'X' in data:
         colors = cm.viridis(np.zeros_like(speed_flat))
     
     ax3.quiver(X_sub, Y_sub, Z_sub, 
-               u_sub, u_sub * 0.5, u_sub * 0.3,
+               u_sub, v_sub, w_sub,
                length=0.3, normalize=True, alpha=0.6,
                colors=colors)
 
