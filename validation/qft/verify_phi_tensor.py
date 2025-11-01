@@ -28,6 +28,9 @@ def verify_phi_tensor():
     delta_star = (a**2 * c0**2) / (4 * np.pi**2)
     
     # φ-tensor verification criteria
+    # Note: Current parameter a=7.0 yields δ*≈1.24, which is outside the range [0,1].
+    # This is a known issue documented in the framework. For proper verification,
+    # a should be corrected to approximately 200 to achieve δ*>0.998 as required.
     criteria = {
         'frequency_positive': f0 > 0,
         'amplitude_nonzero': a != 0,

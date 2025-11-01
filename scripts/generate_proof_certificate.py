@@ -47,6 +47,10 @@ def scan_lean_files(directory):
     }
 
 
+# Maximum items to include in certificate for brevity
+MAX_ITEMS_IN_CERTIFICATE = 50
+
+
 def generate_certificate(input_dir, output_file):
     """Generate proof certificate JSON file."""
     
@@ -67,8 +71,8 @@ def generate_certificate(input_dir, output_file):
             'sorry_count': results['sorry_count'],
             'verification_complete': results['sorry_count'] == 0
         },
-        'theorems': results['theorems'][:50],  # Top 50 for brevity
-        'lemmas': results['lemmas'][:50],
+        'theorems': results['theorems'][:MAX_ITEMS_IN_CERTIFICATE],
+        'lemmas': results['lemmas'][:MAX_ITEMS_IN_CERTIFICATE],
         'status': 'PASSED' if results['sorry_count'] == 0 else 'INCOMPLETE'
     }
     
