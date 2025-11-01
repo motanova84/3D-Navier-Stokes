@@ -30,6 +30,9 @@ structure SobolevSpace (s : ℝ) where
 
 notation "H^" s => SobolevSpace s
 
+/-- Alias for toFun as val for compatibility -/
+def SobolevSpace.val {s : ℝ} (u : H^s) : (Fin 3 → ℝ) → (Fin 3 → ℝ) := u.toFun
+
 /-- Norma en el espacio de Sobolev -/
 noncomputable def sobolevNorm {s : ℝ} (u : H^s) : ℝ := 
   1  -- Placeholder simplificado
