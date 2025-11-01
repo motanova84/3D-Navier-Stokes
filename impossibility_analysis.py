@@ -110,7 +110,7 @@ k = np.logspace(0, 3, 1000)  # Número de onda
 E_k_kolmogorov = k**(-5/3)
 
 # Con truncamiento cuántico (Ψ-NSE)
-k0 = 2 * np.pi * F0 / C_LIGHT  # ~ 2.97e-6 m^-1
+k0 = 2 * np.pi * F0 / C_LIGHT  # k0 ≈ 2.968e-6 m^-1
 E_k_psi = E_k_kolmogorov * np.exp(-((k/k0)**2))
 
 plt.figure(figsize=(12, 6))
@@ -152,7 +152,7 @@ omega_psi = 10 * (1 + np.tanh(t_vort - 5))  # Saturación
 plt.figure(figsize=(12, 6))
 plt.semilogy(t_vort, omega_classical, 'r-', linewidth=2,
              label='NSE clásico (exponencial)')
-plt.plot(t_vort, omega_psi, 'g-', linewidth=2,
+plt.semilogy(t_vort, omega_psi, 'g-', linewidth=2,
          label='Ψ-NSE (saturado por Φ$_{ij}$)')
 plt.axhline(1e6, color='orange', linestyle='--', linewidth=2, alpha=0.7,
             label='Umbral crítico BKM')
