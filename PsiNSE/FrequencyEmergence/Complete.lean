@@ -152,7 +152,7 @@ theorem frequency_emergence_complete
   ∃ u : ℝ≥0 → H^s,
     solves_psi_nse u u₀ ν L ∧
     -- La frecuencia dominante emerge espontáneamente
-    |dominant_frequency (fun t => (u t).toFun) T - f₀| < 
+    |dominant_frequency (fun t => (u t).val) T - f₀| < 
       1 / T  -- Precisión mejora con tiempo de observación
     := by
   
@@ -205,7 +205,7 @@ theorem frequency_emergence_complete
     
     -- PASO 4: Frecuencia dominante está en máximo espectral
     have dominant_near_omega0 :
-      |dominant_frequency (fun t => (u t).toFun) T - ω₀ / (2 * π)| < 
+      |dominant_frequency (fun t => (u t).val) T - ω₀ / (2 * π)| < 
       1 / T := by
       
       -- Por definición, dominant_frequency es el argmax
@@ -221,8 +221,8 @@ theorem frequency_emergence_complete
       sorry
     
     -- PASO 5: f₀ = ω₀ / (2π)
-    calc |dominant_frequency (fun t => (u t).toFun) T - f₀|
-      _ = |dominant_frequency (fun t => (u t).toFun) T - ω₀ / (2 * π)| := by
+    calc |dominant_frequency (fun t => (u t).val) T - f₀|
+      _ = |dominant_frequency (fun t => (u t).val) T - ω₀ / (2 * π)| := by
           rw [f₀_def_from_omega]
       _ < 1 / T := dominant_near_omega0
 
