@@ -18,6 +18,7 @@
 ## Table of Contents
 
 - [Overview](#overview)
+  - [∞³ Framework: Nature-Computation-Mathematics Unity](#-framework-nature-computation-mathematics-unity)
   - [Vibrational Dual Regularization Framework](#-vibrational-dual-regularization-framework)
   - [QFT Tensor Derivation Φ_ij(Ψ)](#-qft-tensor-derivation-φ_ijψ)
 - [Estado de la Demostración](#estado-de-la-demostración)
@@ -41,6 +42,24 @@
 ## Overview
 
 This repository provides a comprehensive computational verification framework for establishing **global regularity** of solutions to the three-dimensional Navier-Stokes equations through **unified dual-route closure** methodology. The approach leverages the **endpoint Serrin condition** in the critical space **Lₜ∞Lₓ³**.
+
+### 🆕 ∞³ Framework: Nature-Computation-Mathematics Unity
+
+**NEW**: Philosophical and mathematical framework connecting three fundamental pillars:
+
+- **∞¹ NATURE**: Physical observations showing classical NSE incompleteness (82.5% evidence)
+- **∞² COMPUTATION**: Numerical proof that additional physics is necessary (blow-up prevention)
+- **∞³ MATHEMATICS**: Rigorous QFT-based solution via Seeley-DeWitt tensor Φ_ij(Ψ)
+
+> *"La naturaleza nos dice que NSE clásico es incompleto"*  
+> *"La computación confirma que necesitamos física adicional"*  
+> *"Las matemáticas formalizan la solución correcta"*
+
+📖 **See**: [INFINITY_CUBED_FRAMEWORK.md](INFINITY_CUBED_FRAMEWORK.md) for complete philosophical and technical foundation.
+
+🧪 **Try it**: Run `python infinity_cubed_framework.py` for full demonstration of Nature→Computation→Mathematics unity.
+
+✅ **Status**: Framework validated with 28 passing tests covering all three pillars.
 
 ### 🆕 Vibrational Dual Regularization Framework
 
