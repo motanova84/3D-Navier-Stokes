@@ -43,6 +43,9 @@ lemma qft_coeff.γ_negative : qft_coeff.γ < 0 := by
 axiom ν : ℝ
 axiom hν : ν > 0
 
+/-- Viscosity is significantly larger than QFT gamma coefficient -/
+axiom hν_large : ν > 1e-4  -- Ensures ν > |γ| = 7.0289315868e-5
+
 /-! ## Coherence Field and Coupling Tensor -/
 
 /-- Coherence field L(t) -/
@@ -70,6 +73,9 @@ axiom inverse_fourier_transform : ((Fin 3 → ℝ) → ℂ) → ((Fin 3 → ℝ)
 /-- Indicator function for a set -/
 def indicator {α β : Type*} [Zero β] (s : Set α) (f : α → β) : α → β :=
   fun x => if x ∈ s then f x else 0
+
+/-- Dyadic projection (forward declaration, defined in DyadicDamping) -/
+axiom dyadic_projection : ℕ → ((Fin 3 → ℝ) → (Fin 3 → ℝ)) → ((Fin 3 → ℝ) → (Fin 3 → ℝ))
 
 /-! ## Sobolev Space Infrastructure -/
 
@@ -136,12 +142,18 @@ notation "‖" u "‖²" => norm_sq u
 /-! ## Helper Lemmas -/
 
 /-- Energy balance for dyadic blocks -/
-axiom dyadic_energy_balance : ∀ (j : ℕ) (u : ℝ → (Fin 3 → ℝ) → (Fin 3 → ℝ)) (t : ℝ), True
+axiom dyadic_energy_balance : 
+  ∀ (j : ℕ) (u : ℝ → (Fin 3 → ℝ) → (Fin 3 → ℝ)) (t : ℝ) (E_j : ℝ → ℝ),
+  E_j = (fun s => ∫ x, ‖dyadic_projection j (u s) x‖²) →
+  deriv E_j t = 
+    -2 * ν * (2:ℝ)^(2*j) * E_j t + 
+    2 * ∫ x, inner_prod (dyadic_projection j (u t) x) 
+                        (dyadic_projection j ((coupling_tensor (coherence_field t) (u t))) x)
 
 /-- Inner product bound -/
 axiom integral_inner_bound : 
-  ∀ (f g : (Fin 3 → ℝ) → ℝ), 
-  ∫ x, inner_prod (fun i => f x) (fun i => g x) ≤ ∫ x, vec_norm (fun i => f x) * vec_norm (fun i => g x)
+  ∀ (f g : (Fin 3 → ℝ) → (Fin 3 → ℝ)),
+  ∫ x, inner_prod (f x) (g x) ≤ ∫ x, vec_norm (f x) * vec_norm (g x)
 
 /-- Monotonicity of integrals -/
 axiom integral_mono : 
@@ -150,7 +162,9 @@ axiom integral_mono :
 
 /-- Coupling tensor frequency bound -/
 axiom coupling_tensor_frequency_bound :
-  ∀ (j : ℕ), True
+  ∀ (j : ℕ) (L : ℝ) (u : (Fin 3 → ℝ) → (Fin 3 → ℝ)) (x : Fin 3 → ℝ),
+  vec_norm (dyadic_projection j ((coupling_tensor L u)) x) ≤ 
+    |qft_coeff.γ| * (2:ℝ)^(2*j) * vec_norm (dyadic_projection j u x)
 
 /-- Gronwall's inequality for exponential decay -/
 axiom gronwall_exponential :

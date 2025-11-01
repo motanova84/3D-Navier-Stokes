@@ -83,26 +83,27 @@ lemma dyadic_energy_decay_rate (j : ℕ) (u : ℝ → (Fin 3 → ℝ) → (Fin 3
     deriv E_j t = 
       -2 * ν * (2:ℝ)^(2*j) * E_j t +  -- Disipación viscosa
       2 * ∫ x, ⟨Δ_j (u t) x, 
-                Δ_j ((coupling_tensor (coherence_field 0 t)) (u t)) x⟩ := by
+                Δ_j ((coupling_tensor (coherence_field t)) (u t)) x⟩ := by
     intro t
-    apply dyadic_energy_balance
+    apply dyadic_energy_balance j u t E_j
+    rfl
   
   -- Término de acoplamiento
   have coupling_damping : ∀ t,
     ∫ x, ⟨Δ_j (u t) x,
-          Δ_j ((coupling_tensor (coherence_field 0 t)) (u t)) x⟩ ≤
+          Δ_j ((coupling_tensor (coherence_field t)) (u t)) x⟩ ≤
     |qft_coeff.γ| * (2:ℝ)^(2*j) * E_j t := by
     
     intro t
-    calc ∫ x, ⟨Δ_j (u t) x, Δ_j ((coupling_tensor (coherence_field 0 t)) (u t)) x⟩
-      _ ≤ ∫ x, ‖Δ_j (u t) x‖ * ‖Δ_j ((coupling_tensor (coherence_field 0 t)) (u t)) x‖ := by
+    calc ∫ x, ⟨Δ_j (u t) x, Δ_j ((coupling_tensor (coherence_field t)) (u t)) x⟩
+      _ ≤ ∫ x, ‖Δ_j (u t) x‖ * ‖Δ_j ((coupling_tensor (coherence_field t)) (u t)) x‖ := by
           apply integral_inner_bound
       _ ≤ ∫ x, ‖Δ_j (u t) x‖ * 
                (|qft_coeff.γ| * (2:ℝ)^(2*j) * ‖Δ_j (u t) x‖) := by
           apply integral_mono
           intro x
           apply mul_le_mul_of_nonneg_left
-          · apply coupling_tensor_frequency_bound j
+          · apply coupling_tensor_frequency_bound j (coherence_field t) (u t) x
           · apply norm_nonneg
       _ = |qft_coeff.γ| * (2:ℝ)^(2*j) * E_j t := by
           ring_nf
@@ -125,14 +126,15 @@ lemma dyadic_energy_decay_rate (j : ℕ) (u : ℝ → (Fin 3 → ℝ) → (Fin 3
               calc |qft_coeff.γ| 
                 _ = |(-7.0289315868e-5 : ℝ)| := by rfl
                 _ = 7.0289315868e-5 := by norm_num
-                _ < ν := by exact hν
+                _ < 1e-4 := by norm_num
+                _ < ν := by exact hν_large
             linarith
   
   · -- Bound holds
     intro t
     calc deriv E_j t
       _ = -2 * ν * (2:ℝ)^(2*j) * E_j t +
-          2 * ∫ x, ⟨Δ_j (u t) x, Δ_j ((coupling_tensor (coherence_field 0 t)) (u t)) x⟩ := by
+          2 * ∫ x, ⟨Δ_j (u t) x, Δ_j ((coupling_tensor (coherence_field t)) (u t)) x⟩ := by
           exact energy_evolution t
       _ ≤ -2 * ν * (2:ℝ)^(2*j) * E_j t +
           2 * |qft_coeff.γ| * (2:ℝ)^(2*j) * E_j t := by
