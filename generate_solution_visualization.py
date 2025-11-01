@@ -331,6 +331,8 @@ ax3.set_facecolor(QCAL_COLORS['background'])
 if 'X' in data:
     X, Y, Z = data['X'], data['Y'], data['Z']
     u_field = data['u_field']
+    v_field = data.get('v_field', u_field * 0.5)  # Fallback if v_field not available
+    w_field = data.get('w_field', u_field * 0.3)  # Fallback if w_field not available
     
     # Reducir resolución para visualización
     step = 4
@@ -338,16 +340,25 @@ if 'X' in data:
     Y_sub = Y[::step, ::step, ::step]
     Z_sub = Z[::step, ::step, ::step]
     u_sub = u_field[::step, ::step, ::step]
+    v_sub = v_field[::step, ::step, ::step]
+    w_sub = w_field[::step, ::step, ::step]
     
-    # Magnitud para color
-    speed = np.abs(u_sub)
+    # Magnitud para color (velocidad total)
+    speed = np.sqrt(u_sub**2 + v_sub**2 + w_sub**2)
     
     # Quiver plot
+    # Flatten speed for color mapping with division by zero protection
+    speed_flat = speed.flatten()
+    max_speed = speed_flat.max()
+    if max_speed > 0:
+        colors = cm.viridis(speed_flat / max_speed)
+    else:
+        colors = cm.viridis(np.zeros_like(speed_flat))
+    
     ax3.quiver(X_sub, Y_sub, Z_sub, 
-               u_sub, u_sub * 0.5, u_sub * 0.3,
+               u_sub, v_sub, w_sub,
                length=0.3, normalize=True, alpha=0.6,
-               cmap=cmap_coherence, 
-               colors=cm.viridis(speed / speed.max()))
+               colors=colors)
 
 ax3.set_xlabel('x', color='white', fontsize=12)
 ax3.set_ylabel('y', color='white', fontsize=12)
@@ -393,8 +404,10 @@ ax5 = fig.add_subplot(gs[3, 0:2])
 ax5.set_facecolor(QCAL_COLORS['grid'])
 ax5.axis('off')
 
-# Ecuación del tensor
-tensor_text = r'''$\mathbf{\Phi}_{ij}(\Psi) = \alpha \nabla_i \nabla_j \Psi + \beta R_{ij}^{\text{eff}} \Psi + \gamma \delta_{ij} \Box \Psi$
+# Ecuación del tensor (usar notación compatible con matplotlib)
+# Nota: ∇² se usa en lugar de □ (Box operator) ya que matplotlib no soporta \Box
+# Ambos son equivalentes en este contexto (d'Alembertian/Laplacian)
+tensor_text = r'''$\mathbf{\Phi}_{ij}(\Psi) = \alpha \nabla_i \nabla_j \Psi + \beta R_{ij}^{\mathrm{eff}} \Psi + \gamma \delta_{ij} \nabla^2 \Psi$
 
 Coeficientes (DeWitt-Schwinger):
 ''' + f'''

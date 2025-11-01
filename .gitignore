@@ -99,3 +99,6 @@ ai_agent_workspace/
 Phi_tensor_symbolic.txt
 Phi_tensor.tex
 Phi_tensor_metadata.json
+
+# Visualization metadata files
+solution_visualization_metadata.json
