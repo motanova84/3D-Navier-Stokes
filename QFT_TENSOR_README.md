@@ -231,7 +231,7 @@ If you use this code in your research, please cite:
   author = {Mota Burruezo, José Manuel},
   year = {2025},
   url = {https://github.com/motanova84/3D-Navier-Stokes},
-  doi = {10.5281/zenodo.XXXXX},
+  doi = {10.5281/zenodo.17488796},
   license = {CC-BY-4.0}
 }
 ```

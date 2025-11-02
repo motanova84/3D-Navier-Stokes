@@ -8,7 +8,7 @@
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9+-green.svg)](https://www.python.org/)
 [![Documentation](https://img.shields.io/badge/docs-complete-brightgreen.svg)](./Documentation/)
 [![Code Quality](https://img.shields.io/badge/quality-A+-blue.svg)]()
-[![DOI](https://img.shields.io/badge/DOI-pending-lightgrey.svg)]()
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17488796.svg)](https://zenodo.org/records/17488796)
 [![arXiv](https://img.shields.io/badge/arXiv-pending-red.svg)]()
 
 </div>
