@@ -1,281 +1,327 @@
 #!/usr/bin/env python3
 """
-═══════════════════════════════════════════════════════════════
-    PARAMETRIC SWEEP MONITOR
-    
-    Monitors and reports progress across all simulation packages
-    Generates visual progress reports
-═══════════════════════════════════════════════════════════════
+parametric_sweep_monitor.py
+
+Script to monitor parametric sweep progress and generate visual reports.
 """
 
 import json
+import sys
 from pathlib import Path
-from typing import Dict, List
 from datetime import datetime
+from typing import Dict, List, Tuple
+
+# Optional dependencies for visualization
+try:
+    import matplotlib.pyplot as plt
+    import matplotlib.patches as mpatches
+    import numpy as np
+    VISUALIZATION_AVAILABLE = True
+except ImportError:
+    VISUALIZATION_AVAILABLE = False
+    print("⚠️  Warning: matplotlib/numpy not available. Visual reports will be skipped.")
 
 
-class ParametricSweepMonitor:
-    """
-    Monitors progress of parametric sweep execution
-    """
+def load_priority_summary(packages_dir: Path) -> Dict:
+    """Cargar el resumen de prioridades."""
+    summary_file = packages_dir / "priority_summary.json"
     
-    def __init__(self, package_dir: str = "parametric_sweep_packages"):
-        self.package_dir = Path(package_dir)
-        self.results_dir = self.package_dir / "results"
-        
-    def load_metadata(self) -> Dict:
-        """Load package metadata"""
-        metadata_file = self.package_dir / "metadata.json"
-        
-        if not metadata_file.exists():
-            return None
-        
-        with open(metadata_file, 'r') as f:
-            return json.load(f)
+    if not summary_file.exists():
+        print(f"⚠️  Advertencia: No se encontró {summary_file}")
+        return {'HIGH': [], 'MEDIUM': [], 'LOW': []}
     
-    def get_progress(self) -> Dict:
-        """
-        Get overall progress statistics
-        
-        Returns:
-            Dictionary with progress information
-        """
-        metadata = self.load_metadata()
-        
-        if not metadata:
-            return {
-                'error': 'No packages found',
-                'total_packages': 0,
-                'completed': 0,
-                'pending': 0
-            }
-        
-        total_packages = metadata['total_packages']
-        total_simulations = metadata['total_simulations']
-        
-        # Count completed packages and simulations
-        completed_packages = 0
-        completed_simulations = 0
-        failed_simulations = 0
-        
-        progress_by_priority = {
-            'HIGH': {'total': 0, 'completed': 0, 'pending': 0},
-            'MEDIUM': {'total': 0, 'completed': 0, 'pending': 0},
-            'LOW': {'total': 0, 'completed': 0, 'pending': 0}
-        }
-        
-        for pkg_info in metadata['packages']:
-            priority = pkg_info['priority']
-            progress_by_priority[priority]['total'] += 1
-            
-            # Check if results exist
-            results_file = self.results_dir / f"package_{pkg_info['package_id']:04d}_results.json"
-            
-            if results_file.exists():
-                completed_packages += 1
-                progress_by_priority[priority]['completed'] += 1
-                
-                # Load results to count simulations
-                with open(results_file, 'r') as f:
-                    results = json.load(f)
-                    completed_simulations += results.get('completed', 0)
-                    failed_simulations += results.get('failed', 0)
-            else:
-                progress_by_priority[priority]['pending'] += 1
-        
-        pending_packages = total_packages - completed_packages
-        pending_simulations = total_simulations - completed_simulations - failed_simulations
-        
-        return {
-            'total_packages': total_packages,
-            'completed_packages': completed_packages,
-            'pending_packages': pending_packages,
-            'total_simulations': total_simulations,
-            'completed_simulations': completed_simulations,
-            'failed_simulations': failed_simulations,
-            'pending_simulations': pending_simulations,
-            'progress_by_priority': progress_by_priority,
-            'completion_percentage': (completed_packages / total_packages * 100) if total_packages > 0 else 0
-        }
+    with open(summary_file, 'r') as f:
+        return json.load(f)
+
+
+def scan_results(results_dir: Path) -> Dict[int, Dict]:
+    """Escanear directorio de resultados y cargar datos."""
+    results = {}
     
-    def get_package_status(self, package_id: int) -> Dict:
-        """Get status of a specific package"""
-        results_file = self.results_dir / f"package_{package_id:04d}_results.json"
-        
-        if not results_file.exists():
-            return {'status': 'pending', 'package_id': package_id}
-        
-        with open(results_file, 'r') as f:
-            return json.load(f)
+    if not results_dir.exists():
+        return results
     
-    def print_progress_report(self):
-        """Print a formatted progress report"""
-        print("\n" + "═"*70)
-        print("  PARAMETRIC SWEEP PROGRESS REPORT")
-        print("═"*70 + "\n")
-        
-        progress = self.get_progress()
-        
-        if 'error' in progress:
-            print(f"❌ {progress['error']}")
-            return
-        
-        # Overall progress
-        print("📊 OVERALL PROGRESS")
-        print("-"*70)
-        print(f"  Packages:    {progress['completed_packages']}/{progress['total_packages']} "
-              f"({progress['completion_percentage']:.1f}% complete)")
-        print(f"  Simulations: {progress['completed_simulations']}/{progress['total_simulations']} completed")
-        
-        if progress['failed_simulations'] > 0:
-            print(f"  Failed:      {progress['failed_simulations']} simulations")
-        
-        # Progress bar
-        bar_length = 50
-        filled = int(bar_length * progress['completion_percentage'] / 100)
-        bar = "█" * filled + "░" * (bar_length - filled)
-        print(f"\n  [{bar}] {progress['completion_percentage']:.1f}%\n")
-        
-        # By priority
-        print("🎯 PROGRESS BY PRIORITY")
-        print("-"*70)
-        
-        for priority in ['HIGH', 'MEDIUM', 'LOW']:
-            stats = progress['progress_by_priority'][priority]
-            total = stats['total']
-            completed = stats['completed']
-            pending = stats['pending']
-            
-            if total > 0:
-                pct = (completed / total * 100)
-                bar_len = 30
-                filled = int(bar_len * pct / 100)
-                bar = "█" * filled + "░" * (bar_len - filled)
-                
-                print(f"  {priority:6s}: [{bar}] {completed}/{total} "
-                      f"({pct:.0f}% complete, {pending} pending)")
-        
-        print("\n" + "═"*70 + "\n")
+    for result_file in results_dir.glob("results_package_*.json"):
+        try:
+            with open(result_file, 'r') as f:
+                data = json.load(f)
+                package_id = data['package_id']
+                results[package_id] = data
+        except Exception as e:
+            print(f"⚠️  Error cargando {result_file}: {e}")
     
-    def generate_detailed_report(self, output_file: str = None) -> str:
-        """
-        Generate detailed markdown report
+    return results
+
+
+def get_package_priority(package_id: int, priority_summary: Dict) -> str:
+    """Determinar la prioridad de un paquete."""
+    for priority in ['HIGH', 'MEDIUM', 'LOW']:
+        pkg_ids = [pkg['package_id'] for pkg in priority_summary.get(priority, [])]
+        if package_id in pkg_ids:
+            return priority
+    return 'UNKNOWN'
+
+
+def analyze_results(
+    priority_summary: Dict,
+    results: Dict[int, Dict]
+) -> Dict:
+    """Analizar resultados y generar estadísticas."""
+    
+    stats = {
+        'total_packages': 0,
+        'completed': 0,
+        'pending': 0,
+        'failed': 0,
+        'success_rate': 0.0,
+        'by_priority': {
+            'HIGH': {'total': 0, 'completed': 0, 'failed': 0},
+            'MEDIUM': {'total': 0, 'completed': 0, 'failed': 0},
+            'LOW': {'total': 0, 'completed': 0, 'failed': 0}
+        },
+        'total_execution_time': 0.0
+    }
+    
+    # Contar totales por prioridad
+    for priority in ['HIGH', 'MEDIUM', 'LOW']:
+        stats['by_priority'][priority]['total'] = len(
+            priority_summary.get(priority, [])
+        )
+        stats['total_packages'] += stats['by_priority'][priority]['total']
+    
+    # Analizar resultados completados
+    for pkg_id, data in results.items():
+        priority = get_package_priority(pkg_id, priority_summary)
         
-        Args:
-            output_file: Path to save report, or None for console
-            
-        Returns:
-            Report as string
-        """
-        progress = self.get_progress()
+        if data['status'] == 'completed':
+            stats['completed'] += 1
+            if priority in stats['by_priority']:
+                stats['by_priority'][priority]['completed'] += 1
+        else:
+            stats['failed'] += 1
+            if priority in stats['by_priority']:
+                stats['by_priority'][priority]['failed'] += 1
         
-        if 'error' in progress:
-            return f"# Error\n\n{progress['error']}\n"
+        stats['total_execution_time'] += data.get('execution_time', 0.0)
+    
+    stats['pending'] = stats['total_packages'] - stats['completed'] - stats['failed']
+    
+    if stats['completed'] + stats['failed'] > 0:
+        stats['success_rate'] = (
+            100.0 * stats['completed'] / (stats['completed'] + stats['failed'])
+        )
+    
+    return stats
+
+
+def create_progress_visualization(
+    stats: Dict,
+    output_file: Path
+) -> None:
+    """Create visualization of progress."""
+    
+    if not VISUALIZATION_AVAILABLE:
+        print("⚠️  Skipping visualization (matplotlib not available)")
+        return
+    
+    fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+    fig.suptitle(
+        'Barrido Paramétrico - Progreso de Ejecución',
+        fontsize=16,
+        fontweight='bold'
+    )
+    
+    # 1. Gráfico de torta general
+    ax1 = axes[0, 0]
+    labels = ['Completados', 'Pendientes', 'Fallidos']
+    sizes = [stats['completed'], stats['pending'], stats['failed']]
+    colors = ['#28a745', '#ffc107', '#dc3545']
+    explode = (0.1, 0, 0)
+    
+    ax1.pie(
+        sizes,
+        explode=explode,
+        labels=labels,
+        colors=colors,
+        autopct='%1.1f%%',
+        shadow=True,
+        startangle=90
+    )
+    ax1.set_title('Estado General')
+    
+    # 2. Progreso por prioridad
+    ax2 = axes[0, 1]
+    priorities = ['HIGH', 'MEDIUM', 'LOW']
+    x = np.arange(len(priorities))
+    width = 0.25
+    
+    completed = [stats['by_priority'][p]['completed'] for p in priorities]
+    failed = [stats['by_priority'][p]['failed'] for p in priorities]
+    pending = [
+        stats['by_priority'][p]['total'] - 
+        stats['by_priority'][p]['completed'] - 
+        stats['by_priority'][p]['failed']
+        for p in priorities
+    ]
+    
+    ax2.bar(x - width, completed, width, label='Completados', color='#28a745')
+    ax2.bar(x, failed, width, label='Fallidos', color='#dc3545')
+    ax2.bar(x + width, pending, width, label='Pendientes', color='#ffc107')
+    
+    ax2.set_xlabel('Prioridad')
+    ax2.set_ylabel('Número de Paquetes')
+    ax2.set_title('Progreso por Prioridad')
+    ax2.set_xticks(x)
+    ax2.set_xticklabels(priorities)
+    ax2.legend()
+    ax2.grid(axis='y', alpha=0.3)
+    
+    # 3. Tabla de estadísticas
+    ax3 = axes[1, 0]
+    ax3.axis('off')
+    
+    table_data = [
+        ['Métrica', 'Valor'],
+        ['Total de Paquetes', f"{stats['total_packages']}"],
+        ['Completados', f"{stats['completed']}"],
+        ['Pendientes', f"{stats['pending']}"],
+        ['Fallidos', f"{stats['failed']}"],
+        ['Tasa de Éxito', f"{stats['success_rate']:.1f}%"],
+        ['Tiempo Total', f"{stats['total_execution_time']:.1f}s"]
+    ]
+    
+    table = ax3.table(
+        cellText=table_data,
+        cellLoc='left',
+        loc='center',
+        colWidths=[0.6, 0.4]
+    )
+    table.auto_set_font_size(False)
+    table.set_fontsize(10)
+    table.scale(1, 2)
+    
+    # Estilo de la cabecera
+    for i in range(2):
+        table[(0, i)].set_facecolor('#4CAF50')
+        table[(0, i)].set_text_props(weight='bold', color='white')
+    
+    ax3.set_title('Estadísticas Generales')
+    
+    # 4. Barra de progreso visual
+    ax4 = axes[1, 1]
+    ax4.axis('off')
+    
+    progress_percent = (
+        100.0 * (stats['completed'] + stats['failed']) / 
+        max(stats['total_packages'], 1)
+    )
+    
+    # Crear barra de progreso
+    rect_bg = mpatches.Rectangle(
+        (0.1, 0.4), 0.8, 0.2,
+        facecolor='#e0e0e0',
+        edgecolor='black',
+        linewidth=2
+    )
+    ax4.add_patch(rect_bg)
+    
+    rect_progress = mpatches.Rectangle(
+        (0.1, 0.4), 0.8 * (progress_percent / 100.0), 0.2,
+        facecolor='#4CAF50' if progress_percent == 100 else '#2196F3',
+        edgecolor='black',
+        linewidth=2
+    )
+    ax4.add_patch(rect_progress)
+    
+    ax4.text(
+        0.5, 0.5,
+        f'{progress_percent:.1f}%',
+        ha='center',
+        va='center',
+        fontsize=20,
+        fontweight='bold'
+    )
+    
+    ax4.text(
+        0.5, 0.2,
+        f'{stats["completed"] + stats["failed"]} / {stats["total_packages"]} paquetes procesados',
+        ha='center',
+        va='center',
+        fontsize=12
+    )
+    
+    ax4.set_xlim(0, 1)
+    ax4.set_ylim(0, 1)
+    ax4.set_title('Progreso Total', fontsize=14, fontweight='bold')
+    
+    plt.tight_layout()
+    plt.savefig(output_file, dpi=150, bbox_inches='tight')
+    print(f"✅ Reporte visual guardado en: {output_file}")
+
+
+def print_summary(stats: Dict) -> None:
+    """Imprimir resumen en consola."""
+    print("\n" + "="*70)
+    print("  RESUMEN DE BARRIDO PARAMÉTRICO")
+    print("="*70)
+    
+    print(f"\n📊 ESTADÍSTICAS GENERALES:")
+    print(f"   Total de paquetes:    {stats['total_packages']}")
+    print(f"   ✅ Completados:       {stats['completed']}")
+    print(f"   ⏳ Pendientes:        {stats['pending']}")
+    print(f"   ❌ Fallidos:          {stats['failed']}")
+    print(f"   📈 Tasa de éxito:     {stats['success_rate']:.1f}%")
+    print(f"   ⏱️  Tiempo total:      {stats['total_execution_time']:.1f}s")
+    
+    print(f"\n📋 PROGRESO POR PRIORIDAD:")
+    for priority in ['HIGH', 'MEDIUM', 'LOW']:
+        data = stats['by_priority'][priority]
+        total = data['total']
+        completed = data['completed']
+        failed = data['failed']
+        pending = total - completed - failed
         
-        # Build report
-        report = []
-        report.append("# Parametric Sweep Progress Report")
-        report.append("")
-        report.append(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-        report.append("")
-        
-        # Summary
-        report.append("## Summary")
-        report.append("")
-        report.append(f"- **Total Packages**: {progress['total_packages']}")
-        report.append(f"- **Completed Packages**: {progress['completed_packages']}")
-        report.append(f"- **Pending Packages**: {progress['pending_packages']}")
-        report.append(f"- **Total Simulations**: {progress['total_simulations']}")
-        report.append(f"- **Completed Simulations**: {progress['completed_simulations']}")
-        report.append(f"- **Failed Simulations**: {progress['failed_simulations']}")
-        report.append(f"- **Overall Progress**: {progress['completion_percentage']:.1f}%")
-        report.append("")
-        
-        # By priority
-        report.append("## Progress by Priority")
-        report.append("")
-        report.append("| Priority | Total | Completed | Pending | Progress |")
-        report.append("|----------|-------|-----------|---------|----------|")
-        
-        for priority in ['HIGH', 'MEDIUM', 'LOW']:
-            stats = progress['progress_by_priority'][priority]
-            if stats['total'] > 0:
-                pct = (stats['completed'] / stats['total'] * 100)
-                report.append(f"| {priority} | {stats['total']} | "
-                            f"{stats['completed']} | {stats['pending']} | "
-                            f"{pct:.1f}% |")
-        
-        report.append("")
-        
-        # Package details
-        report.append("## Package Details")
-        report.append("")
-        
-        metadata = self.load_metadata()
-        for pkg_info in metadata['packages']:
-            pkg_id = pkg_info['package_id']
-            priority = pkg_info['priority']
-            
-            results_file = self.results_dir / f"package_{pkg_id:04d}_results.json"
-            
-            if results_file.exists():
-                with open(results_file, 'r') as f:
-                    results = json.load(f)
-                    status = f"✓ Completed ({results['completed']}/{results['total_simulations']} successful)"
-            else:
-                status = "⏳ Pending"
-            
-            report.append(f"- **Package {pkg_id:04d}** [{priority}]: {status}")
-        
-        report_text = "\n".join(report)
-        
-        # Save to file if requested
-        if output_file:
-            output_path = Path(output_file)
-            output_path.parent.mkdir(exist_ok=True, parents=True)
-            with open(output_path, 'w') as f:
-                f.write(report_text)
-            print(f"✓ Detailed report saved to: {output_file}")
-        
-        return report_text
+        if total > 0:
+            percent = 100.0 * completed / total
+            print(f"   {priority:7s}: {completed:3d}/{total:3d} ({percent:5.1f}%) "
+                  f"| Fallidos: {failed:2d} | Pendientes: {pending:2d}")
+    
+    print("\n" + "="*70 + "\n")
 
 
 def main():
-    """Main entry point"""
-    import argparse
+    """Función principal."""
+    packages_dir = Path('parametric_sweep_packages')
+    results_dir = Path('parametric_sweep_results')
+    artifacts_dir = Path('artifacts')
     
-    parser = argparse.ArgumentParser(
-        description='Monitor parametric sweep progress'
-    )
-    parser.add_argument(
-        '--package-dir',
-        type=str,
-        default='parametric_sweep_packages',
-        help='Package directory'
-    )
-    parser.add_argument(
-        '--detailed',
-        action='store_true',
-        help='Generate detailed markdown report'
-    )
-    parser.add_argument(
-        '--output',
-        type=str,
-        help='Output file for detailed report'
-    )
+    artifacts_dir.mkdir(exist_ok=True)
     
-    args = parser.parse_args()
+    print("\n🔍 Analizando resultados del barrido paramétrico...\n")
     
-    monitor = ParametricSweepMonitor(package_dir=args.package_dir)
+    # Cargar datos
+    priority_summary = load_priority_summary(packages_dir)
+    results = scan_results(results_dir)
     
-    if args.detailed:
-        output_file = args.output or str(monitor.package_dir / "progress_report.md")
-        report = monitor.generate_detailed_report(output_file)
-        if not args.output:
-            print(report)
-    else:
-        monitor.print_progress_report()
+    print(f"   Paquetes definidos: {sum(len(v) for v in priority_summary.values())}")
+    print(f"   Resultados encontrados: {len(results)}")
+    
+    # Analizar
+    stats = analyze_results(priority_summary, results)
+    
+    # Mostrar resumen
+    print_summary(stats)
+    
+    # Generar visualización
+    output_file = artifacts_dir / 'parametric_sweep_progress.png'
+    try:
+        create_progress_visualization(stats, output_file)
+    except Exception as e:
+        print(f"⚠️  No se pudo generar la visualización: {e}")
+        print("   (Asegúrate de tener matplotlib instalado)")
+    
+    return 0
 
 
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+    sys.exit(main())

@@ -1,0 +1,64 @@
+{
+  "HIGH": [
+    {
+      "package_id": 1,
+      "priority": "HIGH",
+      "description": "Critical Reynolds number sweep",
+      "parameters": {
+        "Re": [100, 500, 1000],
+        "grid_size": [[64, 64, 64]]
+      }
+    },
+    {
+      "package_id": 2,
+      "priority": "HIGH",
+      "description": "High resolution validation",
+      "parameters": {
+        "Re": [1000],
+        "grid_size": [[128, 128, 128]]
+      }
+    }
+  ],
+  "MEDIUM": [
+    {
+      "package_id": 3,
+      "priority": "MEDIUM",
+      "description": "Time step sensitivity",
+      "parameters": {
+        "Re": [500],
+        "dt": [0.001, 0.01, 0.1],
+        "grid_size": [[32, 32, 32]]
+      }
+    },
+    {
+      "package_id": 4,
+      "priority": "MEDIUM",
+      "description": "Domain size effects",
+      "parameters": {
+        "Re": [500],
+        "grid_size": [[32, 32, 32], [64, 64, 64]]
+      }
+    }
+  ],
+  "LOW": [
+    {
+      "package_id": 5,
+      "priority": "LOW",
+      "description": "Extended time integration",
+      "parameters": {
+        "Re": [100],
+        "T_final": [10.0],
+        "grid_size": [[32, 32, 32]]
+      }
+    },
+    {
+      "package_id": 6,
+      "priority": "LOW",
+      "description": "Low Reynolds exploration",
+      "parameters": {
+        "Re": [10, 50],
+        "grid_size": [[32, 32, 32]]
+      }
+    }
+  ]
+}

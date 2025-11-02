@@ -1,23 +1,28 @@
 #!/bin/bash
 # batch_execution.sh
-# Batch execution script for parameter sweep packages
+#
+# Script para ejecutar múltiples paquetes en secuencia o paralelo
+# Uso: ./batch_execution.sh [--mode sequential|parallel] [--priority HIGH|MEDIUM|LOW|ALL]
 
-set -euo pipefail
+set -e  # Exit on error
 
-# Default values
+# ═══════════════════════════════════════════════════════════════
+# CONFIGURACIÓN
+# ═══════════════════════════════════════════════════════════════
+
+PACKAGES_DIR="parametric_sweep_packages"
+RESULTS_DIR="parametric_sweep_results"
+LOGS_DIR="parametric_sweep_logs"
+
 MODE="sequential"
 PRIORITY="ALL"
-MAX_PARALLEL=1
-PACKAGE_DIR="parametric_sweep_packages"
+MAX_PARALLEL=4
+CONTINUE_ON_ERROR=true
 
-# Color codes
-GREEN='\033[0;32m'
-BLUE='\033[0;34m'
-YELLOW='\033[1;33m'
-RED='\033[0;31m'
-NC='\033[0m' # No Color
+# ═══════════════════════════════════════════════════════════════
+# PARSEAR ARGUMENTOS
+# ═══════════════════════════════════════════════════════════════
 
-# Parse command line arguments
 while [[ $# -gt 0 ]]; do
     case $1 in
         --mode)
@@ -32,169 +37,259 @@ while [[ $# -gt 0 ]]; do
             MAX_PARALLEL="$2"
             shift 2
             ;;
-        --package-dir)
-            PACKAGE_DIR="$2"
-            shift 2
-            ;;
-        --help)
-            echo "Usage: $0 [OPTIONS]"
-            echo ""
-            echo "Options:"
-            echo "  --mode MODE              Execution mode: sequential or parallel (default: sequential)"
-            echo "  --priority PRIORITY      Priority filter: HIGH, MEDIUM, LOW, or ALL (default: ALL)"
-            echo "  --max-parallel N         Maximum parallel jobs for parallel mode (default: 1)"
-            echo "  --package-dir DIR        Package directory (default: parametric_sweep_packages)"
-            echo "  --help                   Show this help message"
-            exit 0
+        --stop-on-error)
+            CONTINUE_ON_ERROR=false
+            shift
             ;;
         *)
-            echo "Unknown option: $1"
-            echo "Use --help for usage information"
+            echo "Opción desconocida: $1"
             exit 1
             ;;
     esac
 done
 
-# Display banner
-echo -e "${BLUE}╔═══════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${BLUE}║  BATCH EXECUTION - PARAMETRIC SWEEP                          ║${NC}"
-echo -e "${BLUE}╚═══════════════════════════════════════════════════════════════╝${NC}"
-echo ""
-echo "Configuration:"
-echo "  Mode: $MODE"
-echo "  Priority: $PRIORITY"
-echo "  Max Parallel: $MAX_PARALLEL"
-echo "  Package Directory: $PACKAGE_DIR"
-echo ""
+# ═══════════════════════════════════════════════════════════════
+# FUNCIONES AUXILIARES
+# ═══════════════════════════════════════════════════════════════
 
-# Check if package directory exists
-if [ ! -d "$PACKAGE_DIR" ]; then
-    echo -e "${RED}❌ Error: Package directory not found: $PACKAGE_DIR${NC}"
-    echo "Run 'python3 parametric_sweep_orchestrator.py' first to generate packages."
-    exit 1
-fi
+log() {
+    echo -e "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOGS_DIR/batch.log"
+}
 
-# Get list of packages to run based on priority
 get_packages_by_priority() {
     local priority=$1
-    local packages=()
     
-    for package_file in "$PACKAGE_DIR"/package_*.json; do
-        if [ -f "$package_file" ] && [[ "$package_file" =~ package_[0-9]+\.json$ ]]; then
-            # Extract package priority, status, and id in a single Python call
-            read -r pkg_priority pkg_status pkg_id < <(python3 -c "
+    if [ "$priority" == "ALL" ]; then
+        # Todos los paquetes, ordenados por prioridad
+        python3 << EOF
 import json
-try:
-    pkg = json.load(open('$package_file'))
-    print(pkg.get('priority', ''), pkg.get('status', ''), pkg.get('id', ''))
-except:
-    print('', '', '')
-" 2>/dev/null)
-            
-            # Filter by priority and status (only if all fields exist)
-            if [ -n "$pkg_priority" ] && [ -n "$pkg_status" ] && [ -n "$pkg_id" ]; then
-                if [ "$pkg_status" = "pending" ]; then
-                    if [ "$priority" = "ALL" ] || [ "$pkg_priority" = "$priority" ]; then
-                        packages+=("$pkg_id")
-                    fi
-                fi
-            fi
-        fi
-    done
-    
-    echo "${packages[@]}"
+with open('$PACKAGES_DIR/priority_summary.json', 'r') as f:
+    priorities = json.load(f)
+
+packages = []
+for p in ['HIGH', 'MEDIUM', 'LOW']:
+    for pkg in priorities[p]:
+        packages.append(pkg['package_id'])
+
+print(' '.join(map(str, packages)))
+EOF
+    else
+        # Solo paquetes de prioridad especificada
+        python3 << EOF
+import json
+with open('$PACKAGES_DIR/priority_summary.json', 'r') as f:
+    priorities = json.load(f)
+
+packages = [pkg['package_id'] for pkg in priorities['$priority']]
+print(' '.join(map(str, packages)))
+EOF
+    fi
 }
 
-# Sequential execution
-run_sequential() {
-    local packages=($1)
-    local total=${#packages[@]}
-    local current=0
+is_package_completed() {
+    local pkg_id=$1
+    [ -f "$RESULTS_DIR/results_package_$(printf '%04d' $pkg_id).json" ]
+}
+
+run_package_safe() {
+    local pkg_id=$1
+    local log_file="$LOGS_DIR/package_$(printf '%04d' $pkg_id).log"
     
-    echo -e "${YELLOW}📋 Running $total packages sequentially...${NC}"
-    echo ""
+    log "🚀 Iniciando paquete $pkg_id"
     
-    for pkg_id in "${packages[@]}"; do
-        current=$((current + 1))
-        echo -e "${BLUE}[$current/$total] Running package $pkg_id...${NC}"
+    if is_package_completed $pkg_id; then
+        log "⏭️  Paquete $pkg_id ya completado, saltando..."
+        return 0
+    fi
+    
+    # Ejecutar con timeout de 24 horas
+    if timeout 86400 python3 run_package.py \
+        --package-id $pkg_id \
+        --output-dir "$RESULTS_DIR" \
+        > "$log_file" 2>&1; then
+        log "✅ Paquete $pkg_id completado exitosamente"
+        return 0
+    else
+        local exit_code=$?
+        log "❌ Paquete $pkg_id falló (exit code: $exit_code)"
         
-        if python3 run_package.py --package-id "$pkg_id"; then
-            echo -e "${GREEN}✅ Package $pkg_id completed${NC}"
+        if [ "$CONTINUE_ON_ERROR" = false ]; then
+            log "🛑 Deteniendo ejecución (--stop-on-error activo)"
+            exit 1
+        fi
+        return 1
+    fi
+}
+
+# ═══════════════════════════════════════════════════════════════
+# SETUP
+# ═══════════════════════════════════════════════════════════════
+
+# Crear directorios primero
+mkdir -p "$RESULTS_DIR" "$LOGS_DIR"
+
+log "╔═══════════════════════════════════════════════════════════════╗"
+log "║  EJECUCIÓN BATCH - BARRIDO PARAMÉTRICO                        ║"
+log "╚═══════════════════════════════════════════════════════════════╝"
+
+# Obtener lista de paquetes
+PACKAGES=$(get_packages_by_priority "$PRIORITY")
+N_PACKAGES=$(echo $PACKAGES | wc -w)
+
+log "Modo:       $MODE"
+log "Prioridad:  $PRIORITY"
+log "Paquetes:   $N_PACKAGES"
+
+if [ "$MODE" == "parallel" ]; then
+    log "Paralelos:  $MAX_PARALLEL"
+fi
+
+# ═══════════════════════════════════════════════════════════════
+# EJECUCIÓN SECUENCIAL
+# ═══════════════════════════════════════════════════════════════
+
+if [ "$MODE" == "sequential" ]; then
+    log "\n🔄 Modo SECUENCIAL activado\n"
+    
+    success_count=0
+    failed_count=0
+    skipped_count=0
+    
+    for pkg_id in $PACKAGES; do
+        if is_package_completed $pkg_id; then
+            log "⏭️  Paquete $pkg_id ya completado, saltando..."
+            skipped_count=$((skipped_count + 1))
+            continue
+        fi
+        
+        if run_package_safe $pkg_id; then
+            success_count=$((success_count + 1))
         else
-            echo -e "${RED}❌ Package $pkg_id failed${NC}"
+            failed_count=$((failed_count + 1))
         fi
-        echo ""
+        
+        # Reporte intermedio cada 5 paquetes
+        total_processed=$((success_count + failed_count))
+        if [ $((total_processed % 5)) -eq 0 ] && [ $total_processed -gt 0 ]; then
+            log "\n📊 PROGRESO: $total_processed/$N_PACKAGES paquetes"
+            log "   ✅ Éxitos:  $success_count"
+            log "   ❌ Fallos:   $failed_count"
+            log "   ⏭️  Saltados: $skipped_count\n"
+        fi
     done
     
-    echo -e "${GREEN}✅ Sequential execution completed!${NC}"
-}
+    log "\n╔═══════════════════════════════════════════════════════════════╗"
+    log "║  RESUMEN FINAL - EJECUCIÓN SECUENCIAL                         ║"
+    log "╚═══════════════════════════════════════════════════════════════╝"
+    log "Total procesados: $((success_count + failed_count))"
+    log "Éxitos:           $success_count"
+    log "Fallos:           $failed_count"
+    log "Saltados:         $skipped_count"
+    
+    # Evitar división por cero
+    if [ $((success_count + failed_count)) -gt 0 ]; then
+        log "Tasa de éxito:    $(bc <<< "scale=1; 100*$success_count/($success_count+$failed_count)")%"
+    else
+        log "Tasa de éxito:    N/A (no se procesaron paquetes)"
+    fi
 
-# Parallel execution
-run_parallel() {
-    local packages=($1)
-    local max_parallel=$2
-    local total=${#packages[@]}
+# ═══════════════════════════════════════════════════════════════
+# EJECUCIÓN PARALELA
+# ═══════════════════════════════════════════════════════════════
+
+elif [ "$MODE" == "parallel" ]; then
+    log "\n⚡ Modo PARALELO activado (max $MAX_PARALLEL simultáneos)\n"
     
-    echo -e "${YELLOW}📋 Running $total packages in parallel (max $max_parallel simultaneous)...${NC}"
-    echo ""
-    
-    local pids=()
-    local current=0
-    
-    for pkg_id in "${packages[@]}"; do
-        current=$((current + 1))
+    # Usar GNU parallel si está disponible
+    if command -v parallel &> /dev/null; then
+        log "Usando GNU parallel"
         
-        # Wait if we've reached max parallel jobs
-        while [ ${#pids[@]} -ge $max_parallel ]; do
-            # Check for completed jobs
-            for i in "${!pids[@]}"; do
-                if ! kill -0 "${pids[$i]}" 2>/dev/null; then
-                    wait "${pids[$i]}"
-                    unset 'pids[$i]'
-                fi
+        # Crear función wrapper para parallel
+        run_one_package() {
+            pkg_id=$1
+            log_file="$LOGS_DIR/package_$(printf '%04d' $pkg_id).log"
+            
+            if [ -f "$RESULTS_DIR/results_package_$(printf '%04d' $pkg_id).json" ]; then
+                return 0
+            fi
+            
+            if timeout 86400 python3 run_package.py \
+                --package-id $pkg_id \
+                --output-dir "$RESULTS_DIR" \
+                > "$log_file" 2>&1; then
+                return 0
+            else
+                return 1
+            fi
+        }
+        export -f run_one_package
+        export LOGS_DIR RESULTS_DIR
+        
+        echo $PACKAGES | tr ' ' '\n' | \
+        parallel -j $MAX_PARALLEL --progress --joblog "$LOGS_DIR/parallel.log" \
+            run_one_package {}
+        
+        # Análisis de joblog
+        success_count=$(awk 'NR>1 && $7==0' "$LOGS_DIR/parallel.log" | wc -l)
+        failed_count=$(awk 'NR>1 && $7!=0' "$LOGS_DIR/parallel.log" | wc -l)
+        
+        log "\n╔═══════════════════════════════════════════════════════════════╗"
+        log "║  RESUMEN FINAL - EJECUCIÓN PARALELA                           ║"
+        log "╚═══════════════════════════════════════════════════════════════╝"
+        log "Total procesados: $N_PACKAGES"
+        log "Éxitos:           $success_count"
+        log "Fallos:           $failed_count"
+        
+    else
+        # Fallback: paralelización manual con backgrounding
+        log "GNU parallel no disponible, usando backgrounding"
+        
+        pids=()
+        active_count=0
+        
+        for pkg_id in $PACKAGES; do
+            if is_package_completed $pkg_id; then
+                continue
+            fi
+            
+            # Esperar si ya hay MAX_PARALLEL procesos activos
+            while [ $active_count -ge $MAX_PARALLEL ]; do
+                sleep 5
+                
+                # Revisar procesos terminados
+                for i in "${!pids[@]}"; do
+                    if ! kill -0 ${pids[$i]} 2>/dev/null; then
+                        unset 'pids[$i]'
+                        active_count=$((active_count - 1))
+                    fi
+                done
+                pids=("${pids[@]}")  # Re-index array
             done
-            pids=("${pids[@]}")  # Reindex array
-            sleep 1
+            
+            # Lanzar nuevo proceso
+            run_package_safe $pkg_id &
+            pids+=($!)
+            active_count=$((active_count + 1))
+            
+            log "Lanzado paquete $pkg_id (PID: $!, activos: $active_count)"
         done
         
-        # Start new job
-        echo -e "${BLUE}[$current/$total] Starting package $pkg_id...${NC}"
-        (python3 run_package.py --package-id "$pkg_id" > "$PACKAGE_DIR/logs/package_${pkg_id}.log" 2>&1) &
-        pids+=($!)
-    done
-    
-    # Wait for all remaining jobs
-    echo -e "${YELLOW}⏳ Waiting for remaining jobs to complete...${NC}"
-    for pid in "${pids[@]}"; do
-        wait "$pid"
-    done
-    
-    echo -e "${GREEN}✅ Parallel execution completed!${NC}"
-}
-
-# Create logs directory
-mkdir -p "$PACKAGE_DIR/logs"
-
-# Get packages to run
-PACKAGES=$(get_packages_by_priority "$PRIORITY")
-
-if [ -z "$PACKAGES" ]; then
-    echo -e "${YELLOW}⚠️  No pending packages found with priority: $PRIORITY${NC}"
-    exit 0
+        # Esperar a que terminen todos
+        log "\nEsperando a que terminen todos los procesos..."
+        wait
+        
+        log "\n✅ Todos los procesos han terminado"
+    fi
 fi
 
-# Run based on mode
-if [ "$MODE" = "sequential" ]; then
-    run_sequential "$PACKAGES"
-elif [ "$MODE" = "parallel" ]; then
-    run_parallel "$PACKAGES" "$MAX_PARALLEL"
-else
-    echo -e "${RED}❌ Error: Invalid mode: $MODE${NC}"
-    echo "Valid modes: sequential, parallel"
-    exit 1
-fi
+# ═══════════════════════════════════════════════════════════════
+# GENERAR REPORTE FINAL
+# ═══════════════════════════════════════════════════════════════
 
-echo ""
-echo -e "${GREEN}╔═══════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${GREEN}║  BATCH EXECUTION COMPLETED                                    ║${NC}"
-echo -e "${GREEN}╚═══════════════════════════════════════════════════════════════╝${NC}"
+log "\n📊 Generando reporte final..."
+python3 parametric_sweep_monitor.py
+
+log "\n✅ EJECUCIÓN BATCH COMPLETADA"
+log "   Ver logs en: $LOGS_DIR/"
+log "   Ver resultados en: $RESULTS_DIR/"
+log "   Ver reporte en: artifacts/parametric_sweep_progress.png"
