@@ -24,6 +24,25 @@ _dns_module_dir = os.path.join(_current_dir, 'DNS-Verification', 'DualLimitSolve
 if _dns_module_dir not in sys.path:
     sys.path.insert(0, _dns_module_dir)
 
+# Try to import simulation modules (may not be available in all environments)
+try:
+    from unified_bkm import (
+        riccati_besov_closure,
+        compute_optimal_dual_scaling,
+        unified_bkm_verification
+    )
+    SIMULATION_MODULES_AVAILABLE = True
+except ImportError:
+    SIMULATION_MODULES_AVAILABLE = False
+
+# Computational cost estimation constants
+# These values can be adjusted based on benchmark results
+BASE_TIME_MINUTES = 5.0  # Base time per simulation (minutes)
+BASE_MEMORY_GB = 2.0     # Base memory per simulation (GB)
+BASE_DISK_GB = 0.5       # Base disk per simulation (GB)
+BASE_N_VALUE = 64        # Reference grid resolution
+BASE_RE_VALUE = 1000     # Reference Reynolds number
+
 
 def load_package(package_id: int, packages_dir: str = 'parametric_sweep_packages') -> Dict[str, Any]:
     """
@@ -117,32 +136,30 @@ def estimate_computational_cost(package: Dict[str, Any]) -> Dict[str, float]:
     n_simulations = len(params)
     
     # Estimaciones base por simulación (pueden ajustarse según benchmarks reales)
-    base_time_minutes = 5.0  # 5 minutos por simulación
-    base_memory_gb = 2.0     # 2 GB por simulación
-    base_disk_gb = 0.5       # 500 MB de resultados por simulación
+    # Estas constantes están definidas a nivel de módulo para facilitar ajustes
     
     # Ajustar según parámetros
     total_time_minutes = 0
-    total_memory_gb = base_memory_gb  # Memoria peak, no acumulativa
+    total_memory_gb = BASE_MEMORY_GB  # Memoria peak, no acumulativa
     total_disk_gb = 0
     
     for p in params:
-        N = p.get('N', 64)
-        Re = p.get('Re', 1000)
+        N = p.get('N', BASE_N_VALUE)
+        Re = p.get('Re', BASE_RE_VALUE)
         
         # El tiempo escala con N^3 y log(Re)
-        N_factor = (N / 64) ** 3
-        Re_factor = np.log10(Re / 1000 + 1) + 1
+        N_factor = (N / BASE_N_VALUE) ** 3
+        Re_factor = np.log10(Re / BASE_RE_VALUE + 1) + 1
         
-        sim_time = base_time_minutes * N_factor * Re_factor
+        sim_time = BASE_TIME_MINUTES * N_factor * Re_factor
         total_time_minutes += sim_time
         
         # La memoria escala con N^3
-        sim_memory = base_memory_gb * (N / 64) ** 3
+        sim_memory = BASE_MEMORY_GB * (N / BASE_N_VALUE) ** 3
         total_memory_gb = max(total_memory_gb, sim_memory)
         
         # El disco es acumulativo
-        total_disk_gb += base_disk_gb * (N / 64) ** 2
+        total_disk_gb += BASE_DISK_GB * (N / BASE_N_VALUE) ** 2
     
     return {
         'time_hours': total_time_minutes / 60.0,
@@ -165,12 +182,9 @@ def _run_single_simulation(params: Dict[str, Any], output_dir: str) -> Dict[str,
         Dict con resultados de la simulación
     """
     try:
-        # Importar módulos de simulación
-        from unified_bkm import (
-            riccati_besov_closure,
-            compute_optimal_dual_scaling,
-            unified_bkm_verification
-        )
+        # Check if simulation modules are available
+        if not SIMULATION_MODULES_AVAILABLE:
+            raise ImportError("Simulation modules (unified_bkm) not available")
         
         # Extraer parámetros
         f0 = params.get('f0', 141.7)
