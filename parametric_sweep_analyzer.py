@@ -20,8 +20,11 @@ from scipy.interpolate import griddata
 from scipy.stats import linregress
 import seaborn as sns
 
-plt.style.use('dark_background')
-sns.set_palette("husl")
+# Configure plotting style (will be set when functions are called)
+def _configure_plot_style():
+    """Configure matplotlib and seaborn plotting styles for dark theme."""
+    plt.style.use('dark_background')
+    sns.set_palette("husl")
 
 # ═══════════════════════════════════════════════════════════════
 # CARGA Y CONSOLIDACIÓN DE DATOS
@@ -99,6 +102,7 @@ def plot_stability_map(df, output_file='artifacts/stability_map.png'):
     """
     Genera mapa de calor mostrando estabilidad en espacio (f₀, Re).
     """
+    _configure_plot_style()
     
     # Check minimum data points
     if len(df) < 4:
@@ -151,7 +155,7 @@ def plot_stability_map(df, output_file='artifacts/stability_map.png'):
     stability_values = (~df['blowup_detected']).astype(int)
     
     # Check if all values are the same or data is coplanar
-    if len(stability_values.unique()) == 1:
+    if len(np.unique(stability_values)) == 1:
         # All stable or all unstable - no variation to interpolate
         axes[0].scatter(df['f0'], df['Re'], 
                        c=~df['blowup_detected'], 
@@ -348,6 +352,7 @@ def plot_frequency_emergence_validation(df, output_file='artifacts/frequency_eme
     """
     Valida que f₀ = 141.7 Hz emerge espontáneamente del sistema.
     """
+    _configure_plot_style()
     
     fig = plt.figure(figsize=(18, 12))
     fig.patch.set_facecolor('#0a0a0a')
@@ -478,8 +483,11 @@ def plot_frequency_emergence_validation(df, output_file='artifacts/frequency_eme
     ax4.legend(fontsize=10)
     ax4.grid(alpha=0.3)
     
-    cbar2 = plt.colorbar(plt.cm.ScalarMappable(cmap='plasma'), ax=ax4)
-    cbar2.set_label('$Re$', fontsize=10)
+    # Create proper colorbar from scatter data
+    scatter_for_cbar = ax4.collections[0] if len(ax4.collections) > 0 else None
+    if scatter_for_cbar is not None:
+        cbar2 = plt.colorbar(scatter_for_cbar, ax=ax4)
+        cbar2.set_label('$Re$', fontsize=10)
     
     # ─────────────────────────────────────────────────────────────
     # Panel 5: Potencia espectral promedio
@@ -532,6 +540,7 @@ def plot_classical_vs_psi_comparison(df, output_file='artifacts/classical_vs_psi
     """
     Compara comportamiento de NSE clásico (cuando falla) vs Ψ-NSE (estable).
     """
+    _configure_plot_style()
     
     fig, axes = plt.subplots(2, 2, figsize=(16, 12))
     fig.patch.set_facecolor('#0a0a0a')
