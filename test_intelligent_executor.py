@@ -154,16 +154,29 @@ class TestIntelligentExecutor(unittest.TestCase):
     def test_can_run_package(self):
         """Test checking if a package can run"""
         resources = get_available_resources()
-        can_run, checks = can_run_package(1, resources)
         
-        # Check return types
-        self.assertIsInstance(can_run, bool)
-        self.assertIsInstance(checks, dict)
+        # Find a valid package from the test setup
+        priority_file = Path(self.packages_dir) / 'priority_summary.json'
+        with open(priority_file, 'r') as f:
+            priorities = json.load(f)
         
-        # Check checks structure
-        self.assertIn('memory', checks)
-        self.assertIn('disk', checks)
-        self.assertIn('cpu', checks)
+        # Get first available package ID
+        all_packages = []
+        for level in ['HIGH', 'MEDIUM', 'LOW']:
+            all_packages.extend([pkg['package_id'] for pkg in priorities.get(level, [])])
+        
+        if all_packages:
+            pkg_id = all_packages[0]
+            can_run, checks = can_run_package(pkg_id, resources)
+            
+            # Check return types
+            self.assertIsInstance(can_run, bool)
+            self.assertIsInstance(checks, dict)
+            
+            # Check checks structure
+            self.assertIn('memory', checks)
+            self.assertIn('disk', checks)
+            self.assertIn('cpu', checks)
     
     def test_get_next_package_to_run(self):
         """Test selecting next package to run"""

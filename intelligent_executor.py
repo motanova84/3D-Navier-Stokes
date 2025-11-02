@@ -13,6 +13,8 @@
 import psutil
 import json
 import numpy as np
+import time
+import os
 from pathlib import Path
 from datetime import datetime, timedelta
 from parametric_sweep_orchestrator import (
@@ -36,7 +38,8 @@ def get_available_resources():
     memory = psutil.virtual_memory()
     memory_available_gb = memory.available / (1024**3)
     
-    disk = psutil.disk_usage('/')
+    # Use current working directory for cross-platform compatibility
+    disk = psutil.disk_usage(os.getcwd())
     disk_available_gb = disk.free / (1024**3)
     
     return {
@@ -161,7 +164,6 @@ def run_continuous_mode(max_runtime_hours=None,
             print(f"\n⏸️  No hay paquetes ejecutables")
             print(f"   Esperando {check_interval_minutes} minutos antes de reintentar...")
             
-            import time
             time.sleep(check_interval_minutes * 60)
             
             # Reintentar una vez
@@ -190,7 +192,6 @@ def run_continuous_mode(max_runtime_hours=None,
             continue
         
         # Pequeña pausa entre paquetes
-        import time
         time.sleep(10)
     
     # Resumen final
@@ -224,8 +225,6 @@ def run_opportunistic_mode(target_cpu_usage=80,
     print(f"   (Ejecuta solo cuando uso < {target_cpu_usage}%)")
     
     packages_completed = 0
-    
-    import time
     
     while True:
         # Monitorear uso de CPU
