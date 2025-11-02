@@ -8,7 +8,7 @@
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9+-green.svg)](https://www.python.org/)
 [![Documentation](https://img.shields.io/badge/docs-complete-brightgreen.svg)](./Documentation/)
 [![Code Quality](https://img.shields.io/badge/quality-A+-blue.svg)]()
-[![DOI](https://img.shields.io/badge/DOI-pending-lightgrey.svg)]()
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17488796.svg)](https://zenodo.org/records/17488796)
 [![arXiv](https://img.shields.io/badge/arXiv-pending-red.svg)]()
 
 </div>
@@ -167,6 +167,57 @@ This repository provides a comprehensive computational verification framework fo
 
 ✅ **Status**: Phase II validation completed - demonstrates that quantum coupling term prevents singularities.
 
+### 🆕 Visualización del Tensor de Acoplamiento Φ_ij
+
+**NUEVO**: Visualización interactiva de 4 paneles que muestra los efectos del tensor de acoplamiento cuántico Φ_ij en las ecuaciones de Navier-Stokes y sus mecanismos de estabilización a través de la coherencia cuántica.
+
+![Visualización del Acoplamiento Phi](Phi_coupling_visualization.png)
+
+#### Descripción Detallada de los Paneles
+
+**Panel 1: Respuesta Resonante del Acoplamiento Cuántico (Superior Izquierda)**
+- Muestra el espectro de respuesta en frecuencia del tensor Φ_ij
+- La respuesta resonante alcanza su pico en la frecuencia natural **f₀ = 141.7001 Hz**
+- Esta frecuencia representa el mínimo de coherencia del campo de vacío cuántico
+- La curva lorentziana demuestra cómo el acoplamiento responde selectivamente a frecuencias cercanas a f₀
+- El área sombreada indica la amplitud efectiva del acoplamiento en el dominio de frecuencias
+
+**Panel 2: Evolución Temporal del Campo de Coherencia Ψ(x,t) (Superior Derecha)**
+- Visualiza la dinámica temporal del campo de coherencia cuántica Ψ
+- Muestra cuatro instantáneas temporales: t = 0, 0.25T₀, 0.5T₀, 0.75T₀
+- El campo oscila a la frecuencia resonante f₀ mientras exhibe decaimiento espacial exponencial
+- La amplitud modulada espacialmente demuestra la naturaleza oscilatoria del acoplamiento
+- Este patrón de coherencia previene la formación de singularidades en el flujo
+
+**Panel 3: Comparación Energética NSE Clásico vs Ψ-NSE (Inferior Izquierda)**
+- **Curva Roja (NSE Clásico)**: Muestra el crecimiento exponencial de la energía que conduce al "blow-up"
+- **Curva Verde (Ψ-NSE Estabilizado)**: Demuestra la saturación energética mediante el acoplamiento cuántico
+- La escala logarítmica revela claramente la diferencia dramática entre ambos comportamientos
+- El sistema Ψ-NSE alcanza un estado estacionario estable, evitando la explosión finita
+- Esta es la evidencia clave de que el acoplamiento Φ_ij previene singularidades
+
+**Panel 4: Estructura Espacial del Campo Coherente (Inferior Derecha)**
+- Mapa de contorno 2D que muestra el patrón de interferencia del campo Ψ en el espacio
+- Los patrones de interferencia coherente revelan la estructura geométrica del acoplamiento
+- La modulación espacial a la frecuencia característica f₀/100 en direcciones x e y
+- Colores representan la amplitud local del campo coherente (púrpura oscuro = mínimo, amarillo = máximo)
+- Este patrón espacial estabiliza el flujo al introducir una escala de longitud característica
+
+#### Significado Físico
+
+El tensor de acoplamiento Φ_ij actúa como un **regulador cuántico geométrico** que:
+
+1. **Introduce una frecuencia natural universal** (f₀ = 141.7001 Hz) que organiza la dinámica del fluido
+2. **Previene blow-up mediante saturación energética** - la energía se estabiliza en lugar de diverger
+3. **Crea patrones de interferencia coherente** que proporcionan estructura espacial reguladora
+4. **Acopla la dinámica clásica del fluido con coherencia cuántica** del campo de vacío
+
+🔗 **Script**: [`visualize_phi_coupling.py`](visualize_phi_coupling.py)
+
+📊 **Ejecutar**: `python visualize_phi_coupling.py` para generar la visualización en alta resolución (300 DPI)
+
+✅ **Producción**: Imagen de 4457×2963 píxeles guardada como `Phi_coupling_visualization.png`
+
 ### Key Features
 
 **Unified BKM-CZ-Besov Framework** - Three independent convergent routes:
@@ -231,6 +282,7 @@ This framework establishes **13 verifiable technical contributions** across mult
 2. **Persistent misalignment defect**: δ* = a²c₀²/(4π²) - First formula independent of f₀
 3. **Entropy-Lyapunov functional**: Φ(X) = log log(1+X²) - Osgood closure in critical space B⁰_{∞,1}
 4. **Scale-dependent dyadic Riccati**: α*_j = C_eff - ν·c(d)·2^(2j) - Exponential damping at Kolmogorov scales
+   - **Updated**: Corrected QFT coefficient analysis (see `NavierStokes/DyadicDamping/Complete.lean`)
 5. **Parabolic coercivity in B⁰_{∞,1}**: Universal constants c_⋆, C_⋆ via high/low split + Nash interpolation
 6. **Double-route closure**: Independent Riccati and BGW-Serrin pathways to BKM criterion
 
@@ -1136,6 +1188,9 @@ NavierStokes-Clay-Resolution/
 │   ├── NavierStokes/
 │   │   ├── UniformConstants.lean  # Universal constants (c⋆, C_str, C_BKM)
 │   │   ├── DyadicRiccati.lean     # Dyadic Riccati inequality
+│   │   ├── DyadicDamping/         # QFT-corrected dyadic energy decay
+│   │   │   ├── Complete.lean      # Corrected viscous damping analysis
+│   │   │   └── Tests.lean         # Test suite for QFT coefficients
 │   │   ├── ParabolicCoercivity.lean # Parabolic coercivity lemma
 │   │   ├── MisalignmentDefect.lean # QCAL construction
 │   │   ├── GlobalRiccati.lean     # Global Riccati estimates

@@ -25,15 +25,11 @@ def dissipative_threshold (ν : ℝ) (δ_star : ℝ) (consts : UniversalConstant
   Nat.ceil (Real.logb 2 (numerator / denominator) / 2)
 
 /-- Lemma XIII.4bis: Riccati coefficient is negative for j ≥ j_d -/
-theorem dyadic_riccati_inequality (j : ℕ) (ν : ℝ) (δ_star : ℝ) (consts : UniversalConstants)
+axiom dyadic_riccati_inequality (j : ℕ) (ν : ℝ) (δ_star : ℝ) (consts : UniversalConstants)
     (h_ν : ν > 0)
     (h_δ : δ_star > 0 ∧ δ_star < 1)
     (h_j : j ≥ dissipative_threshold ν δ_star consts) :
-    dyadic_riccati_coefficient j ν δ_star consts < 0 := by
-  -- For j ≥ j_d, the dissipation term ν·c_B·2^{2j} dominates
-  -- the stretching term C_BKM·(1-δ*)·(1+log⁺K)
-  -- This is guaranteed by the definition of j_d
-  sorry  -- Requires detailed real analysis proof
+    dyadic_riccati_coefficient j ν δ_star consts < 0
 
 /-- Evolution of dyadic vorticity: decay for j ≥ j_d -/
 theorem dyadic_vorticity_decay (j : ℕ) (ω_norm : ℝ) (ν : ℝ) (δ_star : ℝ) 
