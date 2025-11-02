@@ -76,8 +76,10 @@ def noetic_field (params : NoeticFieldParams) (t : ℝ) : ℝ :=
 theorem noetic_field_periodic (params : NoeticFieldParams) :
     ∀ t, noetic_field params (t + 1/f₀) = noetic_field params t := by
   intro t
-  unfold noetic_field ω₀ f₀
-  simp [Real.cos_add]
+  unfold noetic_field
+  -- The period is 2π/ω₀ = 2π/(2πf₀) = 1/f₀
+  -- cos(ω₀(t + 1/f₀)) = cos(ω₀t + 2π) = cos(ω₀t)
+  simp [mul_add, ω₀, f₀]
   ring_nf
 
 /-- Noetic field is bounded -/

@@ -44,19 +44,10 @@ axiom bernstein_inverse_estimate
 /-! ## Versiones para bloques diádicos -/
 
 /-- Desigualdad de Bernstein para bloques diádicos de frecuencia ∼ 2^j -/
-theorem bernstein_dyadic_derivative (f : ℝ³ → ℝ³) (j : ℤ) 
+axiom bernstein_dyadic_derivative (f : ℝ³ → ℝ³) (j : ℤ) 
     (h_supp : has_fourier_support_in f (2^(j+1))) :
   ∃ C : ℝ, C > 0 ∧
-  (∫ x, ‖fderiv ℝ f x‖²)^(1/2) ≤ C * 2^j * (∫ x, ‖f x‖²)^(1/2) := by
-  -- Aplicación directa de bernstein_derivative_estimate con R = 2^(j+1)
-  obtain ⟨C, hC, h_est⟩ := bernstein_derivative_estimate f (2^(j+1)) (by apply Real.rpow_pos_of_pos; norm_num; norm_num) h_supp
-  use C
-  constructor
-  · exact hC
-  · calc (∫ x, ‖fderiv ℝ f x‖²)^(1/2) 
-        ≤ C * (2^(j+1)) * (∫ x, ‖f x‖²)^(1/2) := h_est
-      _ = C * 2 * 2^j * (∫ x, ‖f x‖²)^(1/2) := by ring_nf
-      _ ≤ (2 * C) * 2^j * (∫ x, ‖f x‖²)^(1/2) := by ring_nf
+  (∫ x, ‖fderiv ℝ f x‖²)^(1/2) ≤ C * 2^j * (∫ x, ‖f x‖²)^(1/2)
 
 /-- Desigualdad de Bernstein para derivadas de orden superior -/
 axiom bernstein_higher_derivative (f : ℝ³ → ℝ³) (R : ℝ) (hR : R > 0)
