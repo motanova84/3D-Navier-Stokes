@@ -116,7 +116,7 @@ example (δ : ℝ) (h : δ = 1/(4 * Real.pi^2)) : δ > 0 := by
 /-- Test: Bernstein inequality exists for valid parameters -/
 example (p q : ℝ) (hp : 1 ≤ p) (hq : p ≤ q) (hq_fin : q < ∞)
         (f : (Fin 3 → ℝ) → ℂ) (R : ℝ) (hR : R > 0)
-        (h_supp : Function.support (f) ⊆ Metric.ball 0 R) :
+        (h_supp : Function.support (fun x => f x) ⊆ Metric.ball 0 R) :
   ∃ C > 0, True := by
   -- Apply the Bernstein inequality theorem
   -- Note: We use True here since the actual norm computation is axiomatized
