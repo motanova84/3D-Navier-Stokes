@@ -1,0 +1,548 @@
+{
+  "HIGH": [
+    {
+      "package_id": 14,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 15,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 16,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 17,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    }
+  ],
+  "MEDIUM": [
+    {
+      "package_id": 2,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 5,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 6,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 7,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 9,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 10,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 11,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 12,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 13,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 18,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 19,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 20,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 21,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 22,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 23,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    }
+  ],
+  "LOW": [
+    {
+      "package_id": 0,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 1,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 3,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 4,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 8,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 24,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 25,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 26,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 27,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 28,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 29,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 30,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 31,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 32,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 33,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 34,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 35,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 36,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 37,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 38,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 39,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 40,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 41,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 42,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 43,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 44,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 45,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 46,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 47,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 48,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 49,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 50,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 51,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 52,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 53,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 54,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 55,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 56,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 57,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 58,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 59,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 60,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 61,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 62,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 63,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 64,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 65,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 66,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 67,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 68,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 69,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 70,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 71,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 72,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 73,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 74,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 75,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 76,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 77,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 78,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 79,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 80,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 81,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 82,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 83,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 84,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 85,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 86,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 87,
+      "size": 10,
+      "estimated_time_hours": 0.1372615111111111,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 88,
+      "size": 10,
+      "estimated_time_hours": 0.14117546666666664,
+      "estimated_memory_gb": 0.067108864
+    },
+    {
+      "package_id": 89,
+      "size": 10,
+      "estimated_time_hours": 0.17758435555555555,
+      "estimated_memory_gb": 0.067108864
+    }
+  ]
+}
