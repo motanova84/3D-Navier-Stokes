@@ -12,6 +12,12 @@ import Mathlib.MeasureTheory.Integral.Bochner
 
 open Real MeasureTheory
 
+/-! ## Fourier transform definition -/
+
+/-- Fourier integral (placeholder for Mathlib's Fourier transform) -/
+noncomputable def fourierIntegral (f : (Fin 3 → ℝ) → ℂ) : (Fin 3 → ℝ) → ℂ := 
+  fun ξ => ∫ x, f x * Complex.exp (-(2 * π * Complex.I) * (inner x ξ : ℂ))
+
 /-! ## Parseval's Identity -/
 
 /-- Parseval identity: Fourier transform is L² isometry -/

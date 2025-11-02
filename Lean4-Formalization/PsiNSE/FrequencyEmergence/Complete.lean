@@ -12,6 +12,12 @@ import PsiNSE.Foundation.ParsevalIdentity
 
 open Real Complex
 
+/-! ## Fourier transform definition -/
+
+/-- Fourier integral (placeholder for Mathlib's Fourier transform) -/
+noncomputable def fourierIntegral (f : (Fin 3 → ℝ) → ℂ) : (Fin 3 → ℝ) → ℂ := 
+  fun ξ => ∫ x, f x * Complex.exp (-(2 * π * Complex.I) * (inner x ξ : ℂ))
+
 /-! ## Riemann zeta function and numerical verification -/
 
 /-- Riemann zeta function for Re(s) > 1 -/
@@ -43,10 +49,19 @@ theorem riemann_hypothesis_numerical_verification :
 theorem verified_zeros_on_critical_line :
   ∀ z ∈ verified_zeros, z.re = 1/2 := by
   intro z hz
-  cases' hz with h h <;> simp [verified_zeros] at h <;> {
-    try { simp [h] }
-    sorry
-  }
+  -- All zeros in the table are defined with Re(z) = 1/2
+  simp [verified_zeros] at hz
+  rcases hz with h1 | h2 | h3 | h4 | h5 | h6 | h7 | h8 | h9 | h10
+  · simp [h1]
+  · simp [h2]
+  · simp [h3]
+  · simp [h4]
+  · simp [h5]
+  · simp [h6]
+  · simp [h7]
+  · simp [h8]
+  · simp [h9]
+  · simp [h10]
 
 /-! ## Fourier peak amplitude and natural frequency -/
 

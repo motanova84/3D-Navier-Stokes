@@ -11,6 +11,12 @@ import Mathlib.Topology.Support
 
 open Real Set
 
+/-! ## Fourier transform definition -/
+
+/-- Fourier integral (placeholder for Mathlib's Fourier transform) -/
+noncomputable def fourierIntegral (f : (Fin 3 → ℝ) → ℂ) : (Fin 3 → ℝ) → ℂ := 
+  fun ξ => ∫ x, f x * Complex.exp (-(2 * π * Complex.I) * (inner x ξ : ℂ))
+
 /-! ## Dyadic frequency bands -/
 
 /-- Dyadic annulus in frequency space -/
