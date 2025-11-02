@@ -81,10 +81,15 @@ get_packages_by_priority() {
     
     for package_file in "$PACKAGE_DIR"/package_*.json; do
         if [ -f "$package_file" ] && [[ "$package_file" =~ package_[0-9]+\.json$ ]]; then
-            # Extract package priority and status
-            pkg_priority=$(python3 -c "import json; pkg=json.load(open('$package_file')); print(pkg.get('priority', ''))" 2>/dev/null)
-            pkg_status=$(python3 -c "import json; pkg=json.load(open('$package_file')); print(pkg.get('status', ''))" 2>/dev/null)
-            pkg_id=$(python3 -c "import json; pkg=json.load(open('$package_file')); print(pkg.get('id', ''))" 2>/dev/null)
+            # Extract package priority, status, and id in a single Python call
+            read -r pkg_priority pkg_status pkg_id < <(python3 -c "
+import json
+try:
+    pkg = json.load(open('$package_file'))
+    print(pkg.get('priority', ''), pkg.get('status', ''), pkg.get('id', ''))
+except:
+    print('', '', '')
+" 2>/dev/null)
             
             # Filter by priority and status (only if all fields exist)
             if [ -n "$pkg_priority" ] && [ -n "$pkg_status" ] && [ -n "$pkg_id" ]; then

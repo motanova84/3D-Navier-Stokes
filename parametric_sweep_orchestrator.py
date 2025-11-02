@@ -10,6 +10,11 @@ import itertools
 from datetime import datetime
 from typing import Dict, List, Any
 
+# Constants for time estimation
+BASE_GRID_SIZE = 32
+BASE_TIME_STEP = 0.01
+BASE_COMPUTATION_TIME_MINUTES = 5.0
+
 
 class ParametricSweepOrchestrator:
     """Orchestrates the generation of parametric sweep packages"""
@@ -68,8 +73,8 @@ class ParametricSweepOrchestrator:
     def _estimate_time(self, grid: int, dt: float) -> float:
         """Estimate computation time in minutes"""
         # Simple heuristic: time scales with grid^3 and inversely with dt
-        base_time = (grid / 32) ** 3 * (0.01 / dt)
-        return round(base_time * 5, 2)  # 5 minutes base for 32^3 grid
+        base_time = (grid / BASE_GRID_SIZE) ** 3 * (BASE_TIME_STEP / dt)
+        return round(base_time * BASE_COMPUTATION_TIME_MINUTES, 2)
     
     def create_packages(self) -> None:
         """Create parameter sweep packages"""

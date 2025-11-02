@@ -9,6 +9,7 @@ import sys
 import json
 import argparse
 import time
+import subprocess
 import psutil
 from datetime import datetime, timedelta
 from typing import Dict, List, Any, Optional
@@ -69,7 +70,6 @@ class IntelligentExecutor:
     def run_package(self, package_id: int) -> bool:
         """Run a specific package"""
         try:
-            import subprocess
             result = subprocess.run(
                 [sys.executable, "run_package.py", "--package-id", str(package_id)],
                 capture_output=True,
