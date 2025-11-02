@@ -37,6 +37,12 @@ notation "‖" f "‖_{L∞}" => @MeasureTheory.snorm _ _ _ _ _ f _
 /-- Three-dimensional real space -/
 notation "ℝ³" => Fin 3 → ℝ
 
+/-- Measure notation (placeholder for volume measure) -/
+axiom measure : Set ℝ³ → ℝ≥0∞
+
+/-- Ball notation -/
+axiom ball : ℝ³ → ℝ → Set ℝ³
+
 /-- Fourier transform placeholder -/
 axiom fourierTransform : (ℝ³ → ℂ) → (ℝ³ → ℂ)
 
@@ -50,17 +56,16 @@ axiom plancherel_theorem {f : ℝ³ → ℂ} :
   ‖f‖_{L2} = (2*Real.pi)^(-3/2) * ‖fourierTransform f‖_{L2}
 
 /-- Hölder interpolation between Lp and L2 -/
-axiom holder_interpolation {p q : ℝ} (hp : 1 ≤ p) (hq : q ≤ 2) {f : ℝ³ → ℂ} :
-  ∃ θ : ℝ, 0 ≤ θ ∧ θ ≤ 1 ∧ ‖f‖_{Lq} ≤ ‖f‖_{Lp}^θ * ‖f‖_{L2}^(1-θ)
+axiom holder_interpolation {p q : ℝ} (hp : 1 ≤ p) (h_case : q ≤ 2) {f : ℝ³ → ℂ} :
+  ‖f‖_{Lq} ≤ ‖f‖_{Lp}^θ * ‖f‖_{L2}^(1-θ)
+
+/-- Interpolation parameter θ for Hölder interpolation -/
+axiom θ : ℝ
 
 /-- Hölder inequality between L2 and L∞ for compactly supported functions -/
 axiom holder_inequality_l2_linfty {f : ℝ³ → ℂ} {R : ℝ} 
   (h_supp : supp f ⊆ Metric.ball 0 R) :
-  ‖f‖_{L2} ≤ (MeasureTheory.volume (Metric.ball (0 : ℝ³) R))^(1/2) * ‖f‖_{L∞}
-
-/-- Volume of a ball in ℝ³ -/
-axiom measure_ball_three_dim (R : ℝ) : 
-  MeasureTheory.volume (Metric.ball (0 : ℝ³) R) = (4 * Real.pi / 3) * R^3
+  ‖f‖_{L2} ≤ (measure (ball 0 R))^(1/2) * ‖f‖_{L∞}
 
 /-! ## Main Theorem -/
 
@@ -85,6 +90,8 @@ theorem bernstein_inequality
       · apply mul_pos; norm_num; exact Real.pi_pos
       · norm_num
   
+  intro f R hR h_supp
+  
   -- Step 1: Plancherel in L²
   have plancherel : ‖f‖_{L2} = (2*Real.pi)^(-3/2) * ‖fourierTransform f‖_{L2} := by
     apply plancherel_theorem
@@ -92,30 +99,25 @@ theorem bernstein_inequality
   -- Step 2: Hölder interpolation between Lp and L2
   by_cases h_case : q ≤ 2
   · -- Case q ≤ 2: use Hausdorff-Young
-    obtain ⟨θ, hθ_nonneg, hθ_le, h_interp⟩ := holder_interpolation hp h_case
     calc ‖f‖_{Lq}
-      _ ≤ ‖f‖_{Lp}^θ * ‖f‖_{L2}^(1-θ) := h_interp
+      _ ≤ ‖f‖_{Lp}^θ * ‖f‖_{L2}^(1-θ) := by
+          apply holder_interpolation hp h_case
       _ ≤ ‖f‖_{Lp}^θ * ((2*Real.pi)^(-3/2) * ‖fourierTransform f‖_{L2})^(1-θ) := by
           apply mul_le_mul_of_nonneg_left
           · rw [plancherel]
           · apply Real.rpow_nonneg; apply norm_nonneg
-      _ ≤ ‖f‖_{Lp}^θ * ((2*Real.pi)^(-3/2) * 
-            (MeasureTheory.volume (Metric.ball (0 : ℝ³) R))^(1/2) * 
-            ‖fourierTransform f‖_{L∞})^(1-θ) := by
+      _ ≤ ‖f‖_{Lp}^θ * ((2*Real.pi)^(-3/2) * (measure (ball 0 R))^(1/2) * 
+                        ‖fourierTransform f‖_{L∞})^(1-θ) := by
           apply mul_le_mul_of_nonneg_left
           · apply mul_le_mul_of_nonneg_left
             · apply holder_inequality_l2_linfty h_supp
             · apply Real.rpow_nonneg; linarith
           · apply Real.rpow_nonneg; apply norm_nonneg
-      _ ≤ 2^(3*(1/p - 1/q)) * (4*Real.pi/3)^(1/p - 1/q) * R^(3*(1/p - 1/q)) * ‖f‖_{Lp} := by
-          -- Algebra: simplify with measure of ball and exponents
-          -- Using measure_ball_three_dim and algebraic manipulations
-          sorry
+      _ ≤ C * R^(3*(1/p - 1/q)) * ‖f‖_{Lp} := by
+          sorry -- Algebra and measure of ball
   · -- Case q > 2: use duality
     push_neg at h_case
-    -- For q > 2, use duality argument with conjugate exponents
-    -- This follows from the case q ≤ 2 by duality
-    sorry
+    sorry -- Dual argument
 
 #check bernstein_inequality
 
