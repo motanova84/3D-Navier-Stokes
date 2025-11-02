@@ -109,4 +109,5 @@ Phi_tensor_metadata.json
 artifacts/
 
 # Parametric sweep packages (generated data)
+# Parametric sweep packages and results
 parametric_sweep_packages/
