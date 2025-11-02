@@ -90,34 +90,32 @@ theorem bernstein_inequality
       · apply mul_pos; norm_num; exact Real.pi_pos
       · norm_num
   
-  intro f R hR h_supp
-  
-  -- Step 1: Plancherel in L²
-  have plancherel : ‖f‖_{L2} = (2*Real.pi)^(-3/2) * ‖fourierTransform f‖_{L2} := by
-    apply plancherel_theorem
-  
-  -- Step 2: Hölder interpolation between Lp and L2
-  by_cases h_case : q ≤ 2
-  · -- Case q ≤ 2: use Hausdorff-Young
-    calc ‖f‖_{Lq}
-      _ ≤ ‖f‖_{Lp}^θ * ‖f‖_{L2}^(1-θ) := by
-          apply holder_interpolation hp h_case
-      _ ≤ ‖f‖_{Lp}^θ * ((2*Real.pi)^(-3/2) * ‖fourierTransform f‖_{L2})^(1-θ) := by
-          apply mul_le_mul_of_nonneg_left
-          · rw [plancherel]
-          · apply Real.rpow_nonneg; apply norm_nonneg
-      _ ≤ ‖f‖_{Lp}^θ * ((2*Real.pi)^(-3/2) * (measure (ball 0 R))^(1/2) * 
-                        ‖fourierTransform f‖_{L∞})^(1-θ) := by
-          apply mul_le_mul_of_nonneg_left
-          · apply mul_le_mul_of_nonneg_left
-            · apply holder_inequality_l2_linfty h_supp
-            · apply Real.rpow_nonneg; linarith
-          · apply Real.rpow_nonneg; apply norm_nonneg
-      _ ≤ C * R^(3*(1/p - 1/q)) * ‖f‖_{Lp} := by
-          sorry -- Algebra and measure of ball
-  · -- Case q > 2: use duality
-    push_neg at h_case
-    sorry -- Dual argument
+  · -- Step 1: Plancherel in L²
+    have plancherel : ‖f‖_{L2} = (2*Real.pi)^(-3/2) * ‖fourierTransform f‖_{L2} := by
+      apply plancherel_theorem
+    
+    -- Step 2: Hölder interpolation between Lp and L2
+    by_cases h_case : q ≤ 2
+    · -- Case q ≤ 2: use Hausdorff-Young
+      calc ‖f‖_{Lq}
+        _ ≤ ‖f‖_{Lp}^θ * ‖f‖_{L2}^(1-θ) := by
+            apply holder_interpolation hp h_case
+        _ ≤ ‖f‖_{Lp}^θ * ((2*Real.pi)^(-3/2) * ‖fourierTransform f‖_{L2})^(1-θ) := by
+            apply mul_le_mul_of_nonneg_left
+            · rw [plancherel]
+            · apply Real.rpow_nonneg; apply norm_nonneg
+        _ ≤ ‖f‖_{Lp}^θ * ((2*Real.pi)^(-3/2) * (measure (ball 0 R))^(1/2) * 
+                          ‖fourierTransform f‖_{L∞})^(1-θ) := by
+            apply mul_le_mul_of_nonneg_left
+            · apply mul_le_mul_of_nonneg_left
+              · apply holder_inequality_l2_linfty h_supp
+              · apply Real.rpow_nonneg; linarith
+            · apply Real.rpow_nonneg; apply norm_nonneg
+        _ ≤ 2^(3*(1/p - 1/q)) * (4*Real.pi/3)^(1/p - 1/q) * R^(3*(1/p - 1/q)) * ‖f‖_{Lp} := by
+            sorry -- Algebra and measure of ball
+    · -- Case q > 2: use duality
+      push_neg at h_case
+      sorry -- Dual argument
 
 #check bernstein_inequality
 
