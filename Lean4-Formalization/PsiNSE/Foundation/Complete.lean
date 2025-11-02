@@ -15,8 +15,20 @@ import Mathlib.MeasureTheory.Integral.IntervalIntegral
 import Mathlib.Topology.MetricSpace.Lipschitz
 import Mathlib.Topology.UniformSpace.Cauchy
 import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+import PsiNSE.Foundation.LittlewoodPaley
+import PsiNSE.Foundation.BernsteinInequality
+import PsiNSE.Foundation.DyadicSupport
+import PsiNSE.Foundation.ParsevalIdentity
 
 open Real MeasureTheory Filter Topology
+
+/-! 
+## Note on Fourier Transform Conventions
+
+This file uses Mathlib's `fourierTransform` for Sobolev space definitions,
+while the auxiliary modules (LittlewoodPaley, etc.) define their own `fourierIntegral`
+as a placeholder. Once Mathlib's Fourier theory is complete, these should be unified.
+-/
 
 /-! ## Espacios de Sobolev -/
 
