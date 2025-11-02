@@ -231,6 +231,7 @@ This framework establishes **13 verifiable technical contributions** across mult
 2. **Persistent misalignment defect**: δ* = a²c₀²/(4π²) - First formula independent of f₀
 3. **Entropy-Lyapunov functional**: Φ(X) = log log(1+X²) - Osgood closure in critical space B⁰_{∞,1}
 4. **Scale-dependent dyadic Riccati**: α*_j = C_eff - ν·c(d)·2^(2j) - Exponential damping at Kolmogorov scales
+   - **Updated**: Corrected QFT coefficient analysis (see `NavierStokes/DyadicDamping/Complete.lean`)
 5. **Parabolic coercivity in B⁰_{∞,1}**: Universal constants c_⋆, C_⋆ via high/low split + Nash interpolation
 6. **Double-route closure**: Independent Riccati and BGW-Serrin pathways to BKM criterion
 
@@ -1136,6 +1137,9 @@ NavierStokes-Clay-Resolution/
 │   ├── NavierStokes/
 │   │   ├── UniformConstants.lean  # Universal constants (c⋆, C_str, C_BKM)
 │   │   ├── DyadicRiccati.lean     # Dyadic Riccati inequality
+│   │   ├── DyadicDamping/         # QFT-corrected dyadic energy decay
+│   │   │   ├── Complete.lean      # Corrected viscous damping analysis
+│   │   │   └── Tests.lean         # Test suite for QFT coefficients
 │   │   ├── ParabolicCoercivity.lean # Parabolic coercivity lemma
 │   │   ├── MisalignmentDefect.lean # QCAL construction
 │   │   ├── GlobalRiccati.lean     # Global Riccati estimates
