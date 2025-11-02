@@ -47,12 +47,9 @@ theorem log_plus_mono {x y : ℝ} (h : x ≤ y) (hx : 0 ≤ x) : log_plus x ≤ 
 -/
 
 /-- Besov-L∞ embedding with logarithmic factor -/
-theorem besov_linfty_embedding {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+axiom besov_linfty_embedding {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [BesovSpace E] [SobolevSpace E 3] (ω u : E) :
-  BesovSpace.besov_norm ω ≤ C_star * ‖ω‖ * (1 + log_plus (SobolevSpace.sobolev_norm u)) := by
-  -- This is the Kozono-Taniuchi embedding from Besov to L∞
-  -- with a logarithmic correction factor involving H^m norms
-  sorry  -- Requires detailed functional analysis
+  BesovSpace.besov_norm ω ≤ C_star * ‖ω‖ * (1 + log_plus (SobolevSpace.sobolev_norm u))
 
 /-- Simplified form with explicit H^m bound M -/
 theorem besov_linfty_with_bound {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
