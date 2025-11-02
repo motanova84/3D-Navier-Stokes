@@ -2,8 +2,8 @@
 """
 run_package.py
 
-Script para ejecutar un paquete individual del barrido paramétrico.
-Carga la configuración del paquete y ejecuta la simulación.
+Script to execute an individual parametric sweep package.
+Loads package configuration and runs the simulation.
 """
 
 import argparse
@@ -14,9 +14,32 @@ from pathlib import Path
 from datetime import datetime
 import numpy as np
 
+# Simulation result bounds (for placeholder simulation)
+VELOCITY_MIN = 0.5
+VELOCITY_MAX = 2.0
+VORTICITY_MIN = 1.0
+VORTICITY_MAX = 10.0
+ENERGY_MIN = 0.1
+ENERGY_MAX = 1.0
+ENSTROPHY_MIN = 1.0
+ENSTROPHY_MAX = 100.0
+CONVERGENCE_PROBABILITY = 0.95
+
 
 def load_package_config(packages_dir: Path, package_id: int) -> dict:
-    """Cargar configuración del paquete."""
+    """
+    Load package configuration from JSON file.
+    
+    Args:
+        packages_dir: Directory containing package configurations
+        package_id: Unique identifier for the package
+        
+    Returns:
+        Dictionary with package configuration parameters
+        
+    Raises:
+        FileNotFoundError: If configuration file does not exist
+    """
     config_file = packages_dir / f"package_{package_id:04d}.json"
     
     if not config_file.exists():
@@ -57,11 +80,11 @@ def simulate_navier_stokes(config: dict) -> dict:
         'success': True,
         'n_steps': int(n_steps),
         'final_time': float(T_final),
-        'max_velocity': float(np.random.uniform(0.5, 2.0)),
-        'max_vorticity': float(np.random.uniform(1.0, 10.0)),
-        'energy': float(np.random.uniform(0.1, 1.0)),
-        'enstrophy': float(np.random.uniform(1.0, 100.0)),
-        'convergence': bool(np.random.choice([True, False], p=[0.95, 0.05])),
+        'max_velocity': float(np.random.uniform(VELOCITY_MIN, VELOCITY_MAX)),
+        'max_vorticity': float(np.random.uniform(VORTICITY_MIN, VORTICITY_MAX)),
+        'energy': float(np.random.uniform(ENERGY_MIN, ENERGY_MAX)),
+        'enstrophy': float(np.random.uniform(ENSTROPHY_MIN, ENSTROPHY_MAX)),
+        'convergence': bool(np.random.choice([True, False], p=[CONVERGENCE_PROBABILITY, 1-CONVERGENCE_PROBABILITY])),
         'execution_time': float(n_steps * dt * 0.1)
     }
     

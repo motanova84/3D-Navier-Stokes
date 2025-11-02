@@ -2,7 +2,7 @@
 """
 parametric_sweep_monitor.py
 
-Script para monitorear el progreso del barrido paramétrico y generar reportes visuales.
+Script to monitor parametric sweep progress and generate visual reports.
 """
 
 import json
@@ -10,9 +10,16 @@ import sys
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Tuple
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-import numpy as np
+
+# Optional dependencies for visualization
+try:
+    import matplotlib.pyplot as plt
+    import matplotlib.patches as mpatches
+    import numpy as np
+    VISUALIZATION_AVAILABLE = True
+except ImportError:
+    VISUALIZATION_AVAILABLE = False
+    print("⚠️  Warning: matplotlib/numpy not available. Visual reports will be skipped.")
 
 
 def load_priority_summary(packages_dir: Path) -> Dict:
@@ -111,7 +118,11 @@ def create_progress_visualization(
     stats: Dict,
     output_file: Path
 ) -> None:
-    """Crear visualización del progreso."""
+    """Create visualization of progress."""
+    
+    if not VISUALIZATION_AVAILABLE:
+        print("⚠️  Skipping visualization (matplotlib not available)")
+        return
     
     fig, axes = plt.subplots(2, 2, figsize=(14, 10))
     fig.suptitle(
