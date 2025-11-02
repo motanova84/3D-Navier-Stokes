@@ -14,7 +14,7 @@ structure QFTCoefficients where
   α : ℝ := 2.6482647783e-2
   /-- Beta coefficient (positive contribution) -/
   β : ℝ := 3.5144657934e-5
-  /-- Gamma coefficient (negative contribution, dominant for damping) -/
+  /-- Gamma coefficient (negative contribution, but smaller magnitude than α) -/
   γ : ℝ := -7.0289315868e-5
 
 /-- Default QFT coefficients -/
@@ -68,7 +68,7 @@ lemma gamma_dominates_high_scales (j : ℕ) (hj : j ≥ 10) :
     calc qft_coeff.α + qft_coeff.β + qft_coeff.γ
       _ = 2.6482647783e-2 + 3.5144657934e-5 + (-7.0289315868e-5) := by
           rw [α_val, β_val, γ_val]
-      _ = 2.6482647783e-2 - 3.5144657934e-5 := by ring
+      _ = 2.6482647783e-2 + 3.5144657934e-5 - 7.0289315868e-5 := by ring
       _ = 2.6447503125e-2 := by norm_num
       _ > 0 := by norm_num
   
