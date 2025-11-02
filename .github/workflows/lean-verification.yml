@@ -20,7 +20,7 @@ jobs:
       
       - name: Check for sorry statements
         run: |
-          SORRY_COUNT=$(find Lean4-Formalization PsiNSE -name "*.lean" -exec grep -c "sorry" {} \; | awk '{s+=$1} END {print s}')
+          SORRY_COUNT=$(find Lean4-Formalization -name "*.lean" -exec grep -c "sorry" {} \; | awk '{s+=$1} END {print s}')
           echo "Sorry count: $SORRY_COUNT"
           if [ "$SORRY_COUNT" -gt 0 ]; then
             echo "❌ Found $SORRY_COUNT sorry statements"

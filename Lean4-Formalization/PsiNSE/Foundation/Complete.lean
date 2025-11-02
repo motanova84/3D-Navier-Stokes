@@ -22,6 +22,14 @@ import PsiNSE.Foundation.ParsevalIdentity
 
 open Real MeasureTheory Filter Topology
 
+/-! 
+## Note on Fourier Transform Conventions
+
+This file uses Mathlib's `fourierTransform` for Sobolev space definitions,
+while the auxiliary modules (LittlewoodPaley, etc.) define their own `fourierIntegral`
+as a placeholder. Once Mathlib's Fourier theory is complete, these should be unified.
+-/
+
 /-! ## Espacios de Sobolev -/
 
 /-- Espacio de Sobolev H^s(ℝ³, ℝ³) -/

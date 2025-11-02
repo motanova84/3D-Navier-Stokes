@@ -85,7 +85,7 @@ theorem fourier_peak_amplitude_lower_bound
     sorry  -- Requires stationary phase theorem
 
 /-- Method of stationary phase for oscillatory integrals -/
-theorem stationary_phase (φ ψ : ℝ → ℝ) (ω : ℝ) (hω : ω → ∞) :
+theorem stationary_phase (φ ψ : ℝ → ℝ) (ω : ℝ) (M : ℝ) (hω : ω > M) (hM : M > 0) :
   ∫ x in Set.Icc a b, φ x * exp (I * ω * ψ x) = 
     (2 * π / (ω * abs (deriv (deriv ψ) x₀)))^(1/2) * 
     φ x₀ * exp (I * (ω * ψ x₀ - π/4 * sgn (deriv (deriv ψ) x₀))) + 
