@@ -9,6 +9,7 @@
 [![Documentation](https://img.shields.io/badge/docs-complete-brightgreen.svg)](./Documentation/)
 [![Code Quality](https://img.shields.io/badge/quality-A+-blue.svg)]()
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17488796.svg)](https://zenodo.org/records/17488796)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17479481.svg)](https://zenodo.org/records/17479481)
 [![arXiv](https://img.shields.io/badge/arXiv-pending-red.svg)]()
 
 </div>
@@ -1358,12 +1359,23 @@ This is a research framework under active development. Contributions are welcome
 
 ## Citation
 
+If you use this work, please cite both official Zenodo publications:
+
 ```bibtex
 @software{navierstokes_clay_2024,
   title = {3D Navier-Stokes Clay Millennium Problem Resolution Framework},
-  author = {motanova84},
+  author = {Mota Burruezo, José Manuel},
   year = {2024},
-  url = {https://github.com/motanova84/3D-Navier-Stokes}
+  url = {https://github.com/motanova84/3D-Navier-Stokes},
+  doi = {10.5281/zenodo.17488796}
+}
+
+@article{mota_quantum_coherent_2024,
+  title = {A Quantum-Coherent Regularization of 3D Navier–Stokes: Global Smoothness via Spectral Vacuum Coupling and Entropy-Lyapunov Control},
+  author = {Mota Burruezo, José Manuel},
+  year = {2024},
+  doi = {10.5281/zenodo.17479481},
+  url = {https://zenodo.org/records/17479481}
 }
 ```
 
