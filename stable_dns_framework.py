@@ -32,11 +32,14 @@ import matplotlib.pyplot as plt
 from typing import Tuple, Dict, Optional
 from dataclasses import dataclass
 import time
+import os
 
-# Import existing Seeley-DeWitt tensor implementation
-import sys
-sys.path.insert(0, 'NavierStokes')
-from seeley_dewitt_tensor import SeeleyDeWittTensor, SeeleyDeWittParams
+# Import Seeley-DeWitt tensor from proper package location
+from NavierStokes.seeley_dewitt_tensor import SeeleyDeWittTensor, SeeleyDeWittParams
+
+
+# Universal constants
+UNIVERSAL_COHERENCE_FREQUENCY = 141.7001  # Hz - from QFT, not adjustable
 
 
 @dataclass
@@ -120,7 +123,7 @@ class StableByDesignDNS:
             m_psi=1.0,
             I=1.0,
             A_eff=1.0,
-            f0=141.7001,  # Universal coherence frequency
+            f0=UNIVERSAL_COHERENCE_FREQUENCY,
             c0=1.0,
             epsilon_0=self.config.nu,
             lambda_scale=1.0,
@@ -128,7 +131,12 @@ class StableByDesignDNS:
         )
         
         self.phi_tensor = SeeleyDeWittTensor(params)
-        print("✓ Quantum-geometric regularizer initialized (f₀ = 141.7001 Hz)")
+        self._verbose_log(f"✓ Quantum-geometric regularizer initialized (f₀ = {UNIVERSAL_COHERENCE_FREQUENCY} Hz)")
+        
+    def _verbose_log(self, message: str):
+        """Helper method for verbose logging (can be disabled)"""
+        # Can be extended to use proper logging framework
+        print(message)
         
     def _initialize_diagnostics(self):
         """Initialize diagnostic arrays"""
@@ -166,7 +174,8 @@ class StableByDesignDNS:
         self.v = np.real(ifftn(self.v_hat))
         self.w = np.real(ifftn(self.w_hat))
         
-        print(f"✓ Initial conditions set (E₀ = {self._compute_energy():.6e})")
+        E0 = self._compute_energy()
+        self._verbose_log(f"✓ Initial conditions set (E₀ = {E0:.6e})")
         
     def _project_divergence_free(self):
         """Project velocity field to divergence-free subspace"""
