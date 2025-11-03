@@ -12,3 +12,6 @@ require mathlib from git
 @[default_target]
 lean_lib NavierStokes where
   globs := #[.submodules `NavierStokes]
+
+lean_lib PsiNSE where
+  globs := #[.submodules `PsiNSE]

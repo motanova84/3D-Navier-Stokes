@@ -1,0 +1,25 @@
+Dependency tree for Theorem13_7:
+
+├─ BKMClosure
+│  └─ GlobalRiccati
+│     ├─ DyadicRiccati
+│     │  └─ UniformConstants
+│     ├─ MisalignmentDefect
+│     │  ├─ BasicDefinitions
+│     │  └─ UniformConstants
+│     └─ ParabolicCoercivity
+│        ├─ DyadicRiccati
+│        │  └─ UniformConstants
+│        └─ UniformConstants
+├─ DyadicRiccati
+│  └─ UniformConstants
+└─ GlobalRiccati
+   ├─ DyadicRiccati
+   │  └─ UniformConstants
+   ├─ MisalignmentDefect
+   │  ├─ BasicDefinitions
+   │  └─ UniformConstants
+   └─ ParabolicCoercivity
+      ├─ DyadicRiccati
+      │  └─ UniformConstants
+      └─ UniformConstants

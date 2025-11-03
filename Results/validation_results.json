@@ -1,0 +1,5561 @@
+{
+  "config": {
+    "a_range": [
+      0.1,
+      250.0
+    ],
+    "a_samples": 100,
+    "a_critical_values": [
+      0.5,
+      1.0,
+      2.45,
+      5.0,
+      7.0,
+      10.0,
+      20.0,
+      50.0,
+      100.0,
+      150.0,
+      200.0,
+      250.0
+    ],
+    "\u03b1_range": [
+      1.1,
+      4.0
+    ],
+    "\u03b1_samples": 20,
+    "f0_range": [
+      10.0,
+      100000.0
+    ],
+    "f0_samples": 50,
+    "\u03bd_range": [
+      1e-05,
+      0.1
+    ],
+    "\u03bd_samples": 20,
+    "M_range": [
+      1.0,
+      1000.0
+    ],
+    "M_samples": 20,
+    "\u03b4_star_threshold": 0.998,
+    "damping_threshold": 0.0
+  },
+  "amplitude_sweep": {
+    "a_values": [
+      0.1,
+      0.10822376196140102,
+      0.11712382653077985,
+      0.12675581122475543,
+      0.1371799074121221,
+      0.14846125645656533,
+      0.16067035679245836,
+      0.17388350447760378,
+      0.18818326997598395,
+      0.2036590141499895,
+      0.22040744668662063,
+      0.23853323044733007,
+      0.2581496355181586,
+      0.2793792470473963,
+      0.3023547312941286,
+      0.3272196646747913,
+      0.3541294309885407,
+      0.38325219242830216,
+      0.4147699404454562,
+      0.44887963303513523,
+      0.48579442554915503,
+      0.5,
+      0.525745002728073,
+      0.5689810202763907,
+      0.615772664989472,
+      0.6664123431815815,
+      0.7212165079662294,
+      0.7805276368077009,
+      0.8447163717017145,
+      0.9141838353594469,
+      0.9893641378690137,
+      1.0,
+      1.0707270894988286,
+      1.1587811365954495,
+      1.2540765389226762,
+      1.3572088082974532,
+      1.4688224300110035,
+      1.5896148902907739,
+      1.7203410349712727,
+      1.8618177866116121,
+      2.014929249537577,
+      2.18063223471019,
+      2.359962238946335,
+      2.45,
+      2.554039915856232,
+      2.7640780789354147,
+      2.991389280574328,
+      3.2373940143476263,
+      3.5036295918402205,
+      3.791759749482365,
+      4.103585045428009,
+      4.441054111447659,
+      4.806275830150127,
+      5.0,
+      5.2015325136300214,
+      5.629294165895832,
+      6.092233918206142,
+      6.593244733771146,
+      7.0,
+      7.135457486209091,
+      7.722260524731894,
+      8.357320848325084,
+      9.044607021241875,
+      9.788413973012968,
+      10.0,
+      10.593389837950072,
+      11.464565001866323,
+      12.4073835375299,
+      13.42773722529442,
+      14.532002371505055,
+      15.727079654762784,
+      17.020437249050406,
+      18.42015749320193,
+      19.934987398358032,
+      20.0,
+      21.574393309034292,
+      23.34862005938568,
+      25.268754994341492,
+      27.346797255685747,
+      29.595732766060294,
+      32.02961537947346,
+      34.66365470543362,
+      37.51431115553048,
+      40.599398806420616,
+      43.9381967220205,
+      47.55156943057158,
+      50.0,
+      51.462097309452126,
+      55.69421769252598,
+      60.27437758182382,
+      65.2311989178691,
+      70.59565744144258,
+      76.40127626451292,
+      82.68433535997876,
+      89.48409827934996,
+      96.84305751514987,
+      100.0,
+      104.80720004133839,
+      113.42629469114748,
+      122.7542031681847,
+      132.84921663435068,
+      143.77441997794568,
+      150.0,
+      155.59808603831695,
+      168.39410225060396,
+      182.2424323767319,
+      197.22961620806157,
+      200.0,
+      213.4493103623972,
+      231.00287355485287,
+      249.99999999999994,
+      250.0
+    ],
+    "results": [
+      {
+        "a": 0.1,
+        "\u03b4_star": 0.0002533029591058445,
+        "damping": -10.104506742357493,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.10822376196140102,
+        "\u03b4_star": 0.00029667811842046157,
+        "damping": -10.104068340212914,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.11712382653077985,
+        "\u03b4_star": 0.00034748076477356295,
+        "damping": -10.10355486684559,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.12675581122475543,
+        "\u03b4_star": 0.0004069827681612152,
+        "damping": -10.102953467189561,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.1371799074121221,
+        "\u03b4_star": 0.0004766737913913074,
+        "damping": -10.102249084899682,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.14846125645656533,
+        "\u03b4_star": 0.0005582985845468465,
+        "damping": -10.101424085408366,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.16067035679245836,
+        "\u03b4_star": 0.0006539006656884481,
+        "damping": -10.100457814435277,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.17388350447760378,
+        "\u03b4_star": 0.0007658734813645523,
+        "damping": -10.09932608089694,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.18818326997598395,
+        "\u03b4_star": 0.0008970203277586626,
+        "damping": -10.09800055127071,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.2036590141499895,
+        "\u03b4_star": 0.0010506245326298892,
+        "damping": -10.096448040250666,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.22040744668662063,
+        "\u03b4_star": 0.0012305316550872485,
+        "damping": -10.094629679936682,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.23853323044733007,
+        "\u03b4_star": 0.0014412457611107227,
+        "damping": -10.092499946756826,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.2581496355181586,
+        "\u03b4_star": 0.001688042185125541,
+        "damping": -10.09000552176168,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.2793792470473963,
+        "\u03b4_star": 0.001977099600672825,
+        "damping": -10.087083955757429,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.3023547312941286,
+        "\u03b4_star": 0.002315654706632781,
+        "damping": -10.083662105858627,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.3272196646747913,
+        "\u03b4_star": 0.0027121834016484163,
+        "damping": -10.079654304319009,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.3541294309885407,
+        "\u03b4_star": 0.003176612982543296,
+        "damping": -10.074960213796048,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.38325219242830216,
+        "\u03b4_star": 0.0037205706792282425,
+        "damping": -10.069462315354741,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.4147699404454562,
+        "\u03b4_star": 0.004357674748294344,
+        "damping": -10.063022966321505,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.44887963303513523,
+        "\u03b4_star": 0.005103875412967866,
+        "damping": -10.055480954330104,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.48579442554915503,
+        "\u03b4_star": 0.005977854185031607,
+        "damping": -10.046647461288368,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.5,
+        "\u03b4_star": 0.006332573977646111,
+        "damping": -10.043062231394936,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.525745002728073,
+        "\u03b4_star": 0.007001491565939384,
+        "damping": -10.036301336221552,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.5689810202763907,
+        "\u03b4_star": 0.008200414836258023,
+        "damping": -10.02418355864564,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.615772664989472,
+        "\u03b4_star": 0.009604639647623186,
+        "damping": -10.009990753858244,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.6664123431815815,
+        "\u03b4_star": 0.011249321479788688,
+        "damping": -9.993367597799201,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.7212165079662294,
+        "\u03b4_star": 0.013175635775877456,
+        "damping": -9.973897921332664,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.7805276368077009,
+        "\u03b4_star": 0.01543180879046609,
+        "damping": -9.951094291241896,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.8447163717017145,
+        "\u03b4_star": 0.01807432495830713,
+        "damping": -9.924385807091664,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.9141838353594469,
+        "\u03b4_star": 0.0211693410107771,
+        "damping": -9.893103808446545,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 0.9893641378690137,
+        "\u03b4_star": 0.0247943422431718,
+        "damping": -9.856465134618075,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 1.0,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851048134636939,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 1.0707270894988286,
+        "\u03b4_star": 0.02904008239834041,
+        "damping": -9.813552517840039,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 1.1587811365954495,
+        "\u03b4_star": 0.034012855732627766,
+        "damping": -9.763291619005114,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 1.2540765389226762,
+        "\u03b4_star": 0.039837158146447366,
+        "damping": -9.704424131040888,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 1.3572088082974532,
+        "\u03b4_star": 0.046658804002237424,
+        "damping": -9.63547627655464,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 1.4688224300110035,
+        "\u03b4_star": 0.05464857666091717,
+        "damping": -9.554721911069468,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 1.5896148902907739,
+        "\u03b4_star": 0.06400650412987285,
+        "damping": -9.460139308122587,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 1.7203410349712727,
+        "\u03b4_star": 0.07496686686548872,
+        "damping": -9.349360544318785,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 1.8618177866116121,
+        "\u03b4_star": 0.08780406310309566,
+        "damping": -9.219612217168276,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 2.014929249537577,
+        "\u03b4_star": 0.10283947855584633,
+        "damping": -9.067646011549927,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 2.18063223471019,
+        "\u03b4_star": 0.12044953246890794,
+        "damping": -8.889657376496084,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 2.359962238946335,
+        "\u03b4_star": 0.1410751014660191,
+        "damping": -8.681190276331115,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 2.45,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570314109261098,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 2.554039915856232,
+        "\u03b4_star": 0.165232557119182,
+        "damping": -8.437025631560152,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 2.7640780789354147,
+        "\u03b4_star": 0.1935266935726424,
+        "damping": -8.151050656569115,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 2.991389280574328,
+        "\u03b4_star": 0.2266658688707755,
+        "damping": -7.816105822939171,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 3.2373940143476263,
+        "\u03b4_star": 0.26547973906069194,
+        "damping": -7.423805617024627,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 3.5036295918402205,
+        "\u03b4_star": 0.3109400290518121,
+        "damping": -6.964328604369382,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 3.791759749482365,
+        "\u03b4_star": 0.36418486024140073,
+        "damping": -6.426171545118247,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 4.103585045428009,
+        "\u03b4_star": 0.4265472439605011,
+        "damping": -5.795861404577801,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 4.441054111447659,
+        "\u03b4_star": 0.49958845408812025,
+        "damping": -5.057618048965286,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 4.806275830150127,
+        "\u03b4_star": 0.5851371143339745,
+        "damping": -4.192959181762685,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 5.0,
+        "\u03b4_star": 0.6332573977646111,
+        "damping": -3.7065970383810334,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 5.2015325136300214,
+        "\u03b4_star": 0.685334978759735,
+        "damping": -3.180237630057304,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 5.629294165895832,
+        "\u03b4_star": 0.802690551677309,
+        "damping": -1.9940993965980707,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 6.092233918206142,
+        "\u03b4_star": 0.9401418893254919,
+        "damping": -0.6048489096260132,
+        "closure": false,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": false,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 6.593244733771146,
+        "\u03b4_star": 1.101130155596785,
+        "damping": 1.022294420813141,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 7.0,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4378540578748713,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 7.135457486209091,
+        "\u03b4_star": 1.2896857733192846,
+        "damping": 2.928066952563854,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 7.722260524731894,
+        "\u03b4_star": 1.5105293279346252,
+        "damping": 5.160180666722808,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 8.357320848325084,
+        "\u03b4_star": 1.769189749746707,
+        "damping": 7.7745176612641105,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 9.044607021241875,
+        "\u03b4_star": 2.0721427334936697,
+        "damping": 10.836529187680634,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 9.788413973012968,
+        "\u03b4_star": 2.4269728606472856,
+        "damping": 14.422874256233225,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 10.0,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494812637418667,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 10.593389837950072,
+        "\u03b4_star": 2.842563483253634,
+        "damping": 18.62333883311996,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 11.464565001866323,
+        "\u03b4_star": 3.329319123153276,
+        "damping": 23.543083677639576,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 12.4073835375299,
+        "\u03b4_star": 3.8994259544581267,
+        "damping": 29.30527709509178,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 13.42773722529442,
+        "\u03b4_star": 4.567156890595747,
+        "damping": 36.05417851771654,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 14.532002371505055,
+        "\u03b4_star": 5.349228913929915,
+        "damping": 43.95875011268477,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 15.727079654762784,
+        "\u03b4_star": 6.265221593885598,
+        "damping": 53.21688683557678,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 17.020437249050406,
+        "\u03b4_star": 7.338067271391533,
+        "damping": 64.06037083087925,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 18.42015749320193,
+        "\u03b4_star": 8.59462518165654,
+        "damping": 76.76067421543004,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 19.934987398358032,
+        "\u03b4_star": 10.066353888734135,
+        "damping": 91.63575552043424,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 20.0,
+        "\u03b4_star": 10.132118364233778,
+        "damping": 92.30045134061749,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 21.574393309034292,
+        "\u03b4_star": 11.790098866615391,
+        "damping": 109.05801994441987,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 23.34862005938568,
+        "\u03b4_star": 13.809014944342033,
+        "damping": 129.46364270610223,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 561512.0516841259,
+          "relative_error": 1.246807216768455e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 25.268754994341492,
+        "\u03b4_star": 16.17364670902064,
+        "damping": 153.36348891202076,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 638509.9789640581,
+          "relative_error": 1.4177769601976433e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 27.346797255685747,
+        "\u03b4_star": 18.943193915174497,
+        "damping": 181.3559033233636,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 747847.3201435814,
+          "relative_error": 1.6605546274552493e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 29.595732766060294,
+        "\u03b4_star": 22.18699358059824,
+        "damping": 214.14169022028221,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 875907.3979600549,
+          "relative_error": 1.9449051213095257e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 32.02961537947346,
+        "\u03b4_star": 25.98625587373516,
+        "damping": 252.5416583921803,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 1025896.2613570029,
+          "relative_error": 2.2779473004708237e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 34.66365470543362,
+        "\u03b4_star": 30.43609725139812,
+        "damping": 297.51717050170834,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 1201568.9575375305,
+          "relative_error": 2.6680190446660267e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 37.51431115553048,
+        "\u03b4_star": 35.64792174746703,
+        "damping": 350.1942112862027,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 1407323.5414739586,
+          "relative_error": 3.1248859976828106e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 40.599398806420616,
+        "\u03b4_star": 41.75221002933145,
+        "damping": 411.8915771561817,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 1648311.1834427877,
+          "relative_error": 3.659986055210646e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 43.9381967220205,
+        "\u03b4_star": 48.90178604752098,
+        "damping": 484.1538929317958,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 1930565.1311829728,
+          "relative_error": 4.2867157183556444e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 47.55156943057158,
+        "\u03b4_star": 57.275643060751634,
+        "damping": 568.7902823079514,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 2261151.75531047,
+          "relative_error": 5.020765481834543e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 50.0,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9399222630091,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 2500000.0,
+          "relative_error": 5.551115123125783e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 51.462097309452126,
+        "\u03b4_star": 67.08342482286342,
+        "damping": 667.9196601827952,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 2648347.4594875197,
+          "relative_error": 5.880512653461167e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 55.69421769252598,
+        "\u03b4_star": 78.57067412043658,
+        "damping": 784.0237807659672,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 3101845.8843824742,
+          "relative_error": 6.887481439360408e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 60.27437758182382,
+        "\u03b4_star": 92.02498006088453,
+        "damping": 920.0093695528906,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 3633000.5928762658,
+          "relative_error": 8.066881813376149e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 65.2311989178691,
+        "\u03b4_star": 107.78317801149528,
+        "damping": 1079.2808946705472,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 4255109.312262606,
+          "relative_error": 9.44824066154172e-10,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 70.59565744144258,
+        "\u03b4_star": 126.23978244354521,
+        "damping": 1265.8257994622757,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 4983746.849589507,
+          "relative_error": 1.1066141002634715e-09,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 76.40127626451292,
+        "\u03b4_star": 147.85686380201187,
+        "damping": 1484.3143301525508,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 5837155.014846425,
+          "relative_error": 1.2961087791577396e-09,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 82.68433535997876,
+        "\u03b4_star": 173.17561667331958,
+        "damping": 1740.216457827875,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 6836699.313921434,
+          "relative_error": 1.5180521981509174e-09,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 89.48409827934996,
+        "\u03b4_star": 202.82990886606726,
+        "damping": 2039.9388219349005,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 8007403.844868363,
+          "relative_error": 1.7780008232089723e-09,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 96.84305751514987,
+        "\u03b4_star": 237.56215061283166,
+        "damping": 2390.985123745566,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 9378577.788882624,
+          "relative_error": 2.082462599891116e-09,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 100.0,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.080889842979,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 10000000.0,
+          "relative_error": 2.220446049250313e-09,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 104.80720004133839,
+        "\u03b4_star": 278.24188118656264,
+        "damping": 2802.143985321002,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 10984549.180505123,
+          "relative_error": 2.4390598830648365e-09,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 113.42629469114748,
+        "\u03b4_star": 325.88753825692845,
+        "damping": 3283.708977118551,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 12865524.32736303,
+          "relative_error": 2.856720266422703e-09,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 122.7542031681847,
+        "\u03b4_star": 381.691954993474,
+        "damping": 3847.736322744477,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 15068594.395455968,
+          "relative_error": 3.3459000893145613e-09,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 132.84921663435068,
+        "\u03b4_star": 447.0522232484982,
+        "damping": 4508.3467326215405,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 17648914.360360637,
+          "relative_error": 3.918846216501989e-09,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 143.77441997794568,
+        "\u03b4_star": 523.6046704595661,
+        "damping": 5282.078923130235,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 20671083.839994706,
+          "relative_error": 4.589902644623824e-09,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 150.0,
+        "\u03b4_star": 569.93165798815,
+        "damping": 5750.315835809596,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 22500000.0,
+          "relative_error": 4.9960036108132044e-09,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 155.59808603831695,
+        "\u03b4_star": 613.2658259361241,
+        "damping": 6188.303671754441,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 24210764.378787484,
+          "relative_error": 5.375869611420888e-09,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 168.39410225060396,
+        "\u03b4_star": 718.2804021419796,
+        "damping": 7249.708774312042,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 28356573.672786865,
+          "relative_error": 6.2964241982015035e-09,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 182.2424323767319,
+        "\u03b4_star": 841.2774922093607,
+        "damping": 8492.867045420466,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 33212304.158587698,
+          "relative_error": 7.37461295554358e-09,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 197.22961620806157,
+        "\u03b4_star": 985.3363906177873,
+        "damping": 9948.901582376537,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 38899521.50957926,
+          "relative_error": 8.637428885367285e-09,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 200.0,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64476016286,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 40000000.0,
+          "relative_error": 8.881784197001252e-09,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 213.4493103623972,
+        "\u03b4_star": 1154.0636848918232,
+        "damping": 11654.264947669191,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 45560608.09418296,
+          "relative_error": 1.0116487224417039e-08,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 231.00287355485287,
+        "\u03b4_star": 1351.683548347426,
+        "damping": 13651.651777354053,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 53362327.59059934,
+          "relative_error": 1.1848816947734729e-08,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 249.99999999999994,
+        "\u03b4_star": 1583.143494411527,
+        "damping": 15991.06766290276,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 62499999.99999997,
+          "relative_error": 1.387778780781445e-08,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "a": 250.0,
+        "\u03b4_star": 1583.1434944115279,
+        "damping": 15991.067662902768,
+        "closure": true,
+        "physical_valid": true,
+        "constraints": [],
+        "\u03b4_star_exceeds_threshold": true,
+        "numerical_stability": true,
+        "stability_metrics": {
+          "condition_number": 62500000.0,
+          "relative_error": 1.3877787807814457e-08,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      }
+    ],
+    "summary": {
+      "total": 112,
+      "stable": 112,
+      "closure": 55,
+      "threshold_exceeded": 55
+    }
+  },
+  "multi_parameter_sweep": {
+    "results": [
+      {
+        "a": 1.0,
+        "\u03b1": 1.5,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851183134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 1.5,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570449109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 1.5,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.437719057874871,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 1.5,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494677637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 1.5,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9397872630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 1.5,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.0807548429793,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 1.5,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64462516286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.0,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851183134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.0,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570449109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.0,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.437719057874871,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.0,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494677637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.0,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9397872630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.0,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.0807548429793,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.0,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64462516286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.5,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851183134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.5,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570449109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.5,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.437719057874871,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.5,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494677637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.5,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9397872630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.5,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.0807548429793,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.5,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64462516286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 3.0,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851183134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 3.0,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570449109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 3.0,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.437719057874871,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 3.0,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494677637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 3.0,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9397872630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 3.0,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.0807548429793,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 3.0,
+        "f0": 100,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64462516286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 1.5,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851183134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 1.5,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570449109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 1.5,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.437719057874871,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 1.5,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494677637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 1.5,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9397872630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 1.5,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.0807548429793,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 1.5,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64462516286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.0,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851183134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.0,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570449109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.0,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.437719057874871,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.0,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494677637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.0,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9397872630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.0,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.0807548429793,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.0,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64462516286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.5,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851183134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.5,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570449109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.5,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.437719057874871,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.5,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494677637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.5,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9397872630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.5,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.0807548429793,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.5,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64462516286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 3.0,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851183134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 3.0,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570449109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 3.0,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.437719057874871,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 3.0,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494677637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 3.0,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9397872630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 3.0,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.0807548429793,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 3.0,
+        "f0": 1000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64462516286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 1.5,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851183134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 1.5,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570449109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 1.5,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.437719057874871,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 1.5,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494677637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 1.5,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9397872630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 1.5,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.0807548429793,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 1.5,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64462516286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.0,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851183134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.0,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570449109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.0,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.437719057874871,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.0,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494677637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.0,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9397872630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.0,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.0807548429793,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.0,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64462516286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.5,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851183134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.5,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570449109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.5,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.437719057874871,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.5,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494677637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.5,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9397872630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.5,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.0807548429793,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.5,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64462516286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 3.0,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851183134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 3.0,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570449109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 3.0,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.437719057874871,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 3.0,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494677637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 3.0,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9397872630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 3.0,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.0807548429793,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 3.0,
+        "f0": 10000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64462516286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 1.5,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851183134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 1.5,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570449109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 1.5,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.437719057874871,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 1.5,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494677637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 1.5,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9397872630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 1.5,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.0807548429793,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 1.5,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64462516286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.0,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851183134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.0,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570449109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.0,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.437719057874871,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.0,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494677637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.0,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9397872630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.0,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.0807548429793,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.0,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64462516286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.5,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851183134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.5,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570449109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.5,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.437719057874871,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.5,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494677637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.5,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9397872630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.5,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.0807548429793,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.5,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64462516286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 3.0,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851183134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 3.0,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570449109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 3.0,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.437719057874871,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 3.0,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494677637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 3.0,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9397872630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 3.0,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.0807548429793,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 3.0,
+        "f0": 50000,
+        "\u03bd": 0.0001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64462516286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 1.5,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851048134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 1.5,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570314109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 1.5,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4378540578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 1.5,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494812637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 1.5,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9399222630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 1.5,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.080889842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 1.5,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64476016286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.0,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851048134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.0,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570314109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.0,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4378540578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.0,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494812637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.0,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9399222630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.0,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.080889842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.0,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64476016286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.5,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851048134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.5,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570314109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.5,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4378540578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.5,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494812637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.5,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9399222630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.5,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.080889842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.5,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64476016286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 3.0,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851048134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 3.0,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570314109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 3.0,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4378540578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 3.0,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494812637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 3.0,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9399222630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 3.0,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.080889842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 3.0,
+        "f0": 100,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64476016286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 1.5,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851048134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 1.5,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570314109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 1.5,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4378540578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 1.5,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494812637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 1.5,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9399222630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 1.5,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.080889842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 1.5,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64476016286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.0,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851048134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.0,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570314109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.0,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4378540578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.0,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494812637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.0,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9399222630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.0,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.080889842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.0,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64476016286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.5,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851048134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.5,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570314109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.5,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4378540578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.5,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494812637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.5,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9399222630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.5,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.080889842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.5,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64476016286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 3.0,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851048134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 3.0,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570314109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 3.0,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4378540578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 3.0,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494812637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 3.0,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9399222630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 3.0,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.080889842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 3.0,
+        "f0": 1000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64476016286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 1.5,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851048134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 1.5,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570314109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 1.5,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4378540578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 1.5,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494812637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 1.5,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9399222630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 1.5,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.080889842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 1.5,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64476016286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.0,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851048134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.0,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570314109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.0,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4378540578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.0,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494812637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.0,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9399222630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.0,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.080889842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.0,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64476016286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.5,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851048134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.5,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570314109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.5,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4378540578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.5,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494812637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.5,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9399222630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.5,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.080889842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.5,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64476016286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 3.0,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851048134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 3.0,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570314109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 3.0,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4378540578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 3.0,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494812637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 3.0,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9399222630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 3.0,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.080889842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 3.0,
+        "f0": 10000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64476016286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 1.5,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851048134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 1.5,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570314109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 1.5,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4378540578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 1.5,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494812637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 1.5,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9399222630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 1.5,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.080889842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 1.5,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64476016286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.0,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851048134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.0,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570314109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.0,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4378540578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.0,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494812637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.0,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9399222630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.0,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.080889842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.0,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64476016286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.5,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851048134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.5,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570314109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.5,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4378540578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.5,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494812637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.5,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9399222630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.5,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.080889842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.5,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64476016286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 3.0,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.851048134636939,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 3.0,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.570314109261098,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 3.0,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4378540578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 3.0,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.494812637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 3.0,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9399222630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 3.0,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.080889842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 3.0,
+        "f0": 50000,
+        "\u03bd": 0.001,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.64476016286,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 1.5,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.849698134636938,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 1.5,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.568964109261097,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 1.5,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4392040578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 1.5,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.496162637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 1.5,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9412722630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 1.5,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.082239842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 1.5,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.646110162861,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.0,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.849698134636938,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.0,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.568964109261097,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.0,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4392040578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.0,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.496162637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.0,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9412722630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.0,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.082239842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.0,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.646110162861,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.5,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.849698134636938,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.5,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.568964109261097,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.5,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4392040578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.5,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.496162637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.5,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9412722630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.5,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.082239842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.5,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.646110162861,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 3.0,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.849698134636938,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 3.0,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.568964109261097,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 3.0,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4392040578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 3.0,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.496162637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 3.0,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9412722630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 3.0,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.082239842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 3.0,
+        "f0": 100,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.646110162861,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 1.5,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.849698134636938,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 1.5,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.568964109261097,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 1.5,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4392040578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 1.5,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.496162637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 1.5,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9412722630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 1.5,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.082239842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 1.5,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.646110162861,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.0,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.849698134636938,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.0,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.568964109261097,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.0,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4392040578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.0,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.496162637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.0,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9412722630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.0,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.082239842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.0,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.646110162861,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.5,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.849698134636938,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.5,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.568964109261097,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.5,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4392040578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.5,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.496162637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.5,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9412722630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.5,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.082239842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.5,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.646110162861,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 3.0,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.849698134636938,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 3.0,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.568964109261097,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 3.0,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4392040578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 3.0,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.496162637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 3.0,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9412722630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 3.0,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.082239842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 3.0,
+        "f0": 1000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.646110162861,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 1.5,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.849698134636938,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 1.5,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.568964109261097,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 1.5,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4392040578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 1.5,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.496162637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 1.5,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9412722630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 1.5,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.082239842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 1.5,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.646110162861,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.0,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.849698134636938,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.0,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.568964109261097,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.0,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4392040578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.0,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.496162637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.0,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9412722630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.0,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.082239842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.0,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.646110162861,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.5,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.849698134636938,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.5,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.568964109261097,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.5,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4392040578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.5,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.496162637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.5,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9412722630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.5,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.082239842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.5,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.646110162861,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 3.0,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.849698134636938,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 3.0,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.568964109261097,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 3.0,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4392040578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 3.0,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.496162637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 3.0,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9412722630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 3.0,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.082239842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 3.0,
+        "f0": 10000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.646110162861,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 1.5,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.849698134636938,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 1.5,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.568964109261097,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 1.5,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4392040578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 1.5,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.496162637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 1.5,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9412722630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 1.5,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.082239842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 1.5,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.646110162861,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.0,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.849698134636938,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.0,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.568964109261097,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.0,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4392040578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.0,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.496162637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.0,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9412722630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.0,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.082239842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.0,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.646110162861,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 2.5,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.849698134636938,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 2.5,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.568964109261097,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 2.5,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4392040578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 2.5,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.496162637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 2.5,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9412722630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 2.5,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.082239842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 2.5,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.646110162861,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 1.0,
+        "\u03b1": 3.0,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.025330295910584444,
+        "damping": -9.849698134636938,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 2.45,
+        "\u03b1": 3.0,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 0.15204510120328316,
+        "damping": -8.568964109261097,
+        "closure": false,
+        "stable": true
+      },
+      {
+        "a": 7.0,
+        "\u03b1": 3.0,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1.2411844996186379,
+        "damping": 2.4392040578748713,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 10.0,
+        "\u03b1": 3.0,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 2.5330295910584444,
+        "damping": 15.496162637418667,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 50.0,
+        "\u03b1": 3.0,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 63.32573977646111,
+        "damping": 629.9412722630091,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 100.0,
+        "\u03b1": 3.0,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 253.30295910584445,
+        "damping": 2550.082239842979,
+        "closure": true,
+        "stable": true
+      },
+      {
+        "a": 200.0,
+        "\u03b1": 3.0,
+        "f0": 50000,
+        "\u03bd": 0.01,
+        "\u03b4_star": 1013.2118364233778,
+        "damping": 10230.646110162861,
+        "closure": true,
+        "stable": true
+      }
+    ],
+    "total_configs": 336
+  },
+  "edge_cases": {
+    "edge_cases": [
+      {
+        "name": "Minimal amplitude (a \u2192 0)",
+        "params": {
+          "a": 0.01,
+          "\u03bd": 0.001
+        },
+        "result": {
+          "a": 0.01,
+          "\u03b4_star": 2.5330295910584444e-06,
+          "damping": -10.107041328434699,
+          "closure": false,
+          "physical_valid": true,
+          "constraints": [],
+          "\u03b4_star_exceeds_threshold": false
+        }
+      },
+      {
+        "name": "Large amplitude (a = 200, RECOMMENDED)",
+        "params": {
+          "a": 200.0,
+          "\u03bd": 0.001
+        },
+        "result": {
+          "a": 200.0,
+          "\u03b4_star": 1013.2118364233778,
+          "damping": 10230.64476016286,
+          "closure": true,
+          "physical_valid": true,
+          "constraints": [],
+          "\u03b4_star_exceeds_threshold": true
+        },
+        "stability": {
+          "condition_number": 40000000.0,
+          "relative_error": 8.881784197001252e-09,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "name": "Very large amplitude (a = 250, BOUNDARY)",
+        "params": {
+          "a": 250.0,
+          "\u03bd": 0.001
+        },
+        "result": {
+          "a": 250.0,
+          "\u03b4_star": 1583.1434944115279,
+          "damping": 15991.067662902768,
+          "closure": true,
+          "physical_valid": true,
+          "constraints": [],
+          "\u03b4_star_exceeds_threshold": true
+        },
+        "stability": {
+          "condition_number": 62500000.0,
+          "relative_error": 1.3877787807814457e-08,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "name": "Small viscosity (\u03bd = 1e-5)",
+        "params": {
+          "a": 200.0,
+          "\u03bd": 1e-05
+        },
+        "result": {
+          "a": 200.0,
+          "\u03b4_star": 1013.2118364233778,
+          "damping": 10230.644611662861,
+          "closure": true,
+          "physical_valid": true,
+          "constraints": [],
+          "\u03b4_star_exceeds_threshold": true
+        },
+        "stability": {
+          "condition_number": 3999999999.9999995,
+          "relative_error": 8.881784197001251e-07,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      },
+      {
+        "name": "Large viscosity (\u03bd = 0.1)",
+        "params": {
+          "a": 200.0,
+          "\u03bd": 0.1
+        },
+        "result": {
+          "a": 200.0,
+          "\u03b4_star": 1013.2118364233778,
+          "damping": 10230.65961016286,
+          "closure": true,
+          "physical_valid": true,
+          "constraints": [],
+          "\u03b4_star_exceeds_threshold": true
+        },
+        "stability": {
+          "condition_number": 400000.0,
+          "relative_error": 8.881784197001252e-11,
+          "convergence_rate": 0.0,
+          "is_stable": true,
+          "error_message": ""
+        }
+      }
+    ],
+    "total_tested": 5
+  },
+  "recommendations": [
+    "\u2713 RECOMMENDED: Use a \u2248 213.4 for optimal results",
+    "  - Achieves \u03b4* = 1154.063685",
+    "  - Damping coefficient: \u0394 = 11654.264948",
+    "  - Closure satisfied: True",
+    "\u2713 \u03b4* threshold (0.998) can be exceeded"
+  ],
+  "summary": {
+    "total_tests": 453
+  }
+}

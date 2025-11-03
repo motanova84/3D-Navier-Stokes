@@ -1,0 +1,12 @@
+{
+  "package_id": 6,
+  "Re": 50,
+  "dt": 0.01,
+  "T_final": 1.0,
+  "grid_size": [
+    32,
+    32,
+    32
+  ],
+  "priority": "LOW"
+}

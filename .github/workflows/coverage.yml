@@ -1,0 +1,95 @@
+name: Test Coverage
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  python-coverage:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install coverage
+          pip install -r requirements.txt
+
+      - name: Run Python tests with coverage
+        run: |
+          bash Scripts/run_python_coverage.sh
+
+      - name: Upload Python coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./coverage.xml
+          flags: python
+          name: python-coverage
+          fail_ci_if_error: false
+
+      - name: Upload coverage HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-coverage-report
+          path: coverage_html_report/
+
+      - name: Comment coverage on PR
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "## Python Coverage Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Full coverage report generated. See artifacts for HTML report." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          python -m coverage report >> $GITHUB_STEP_SUMMARY
+
+  lean-coverage:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache Lean
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.elan
+            .lake
+            lake-packages
+          key: ${{ runner.os }}-lean-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lakefile.lean') }}
+          restore-keys: |
+            ${{ runner.os }}-lean-
+
+      - name: Install Lean (elan)
+        run: |
+          bash Scripts/setup_lean.sh || echo "Lean setup skipped"
+        continue-on-error: true
+
+      - name: Run Lean coverage analysis
+        run: |
+          bash Scripts/run_lean_coverage.sh
+
+      - name: Comment Lean coverage on PR
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "## Lean4 Formalization Coverage" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          bash Scripts/run_lean_coverage.sh >> $GITHUB_STEP_SUMMARY
