@@ -3,13 +3,18 @@
 Expansión de detalles técnicos para cada lema.
 """
 
+import os
+
+
 def generate_detailed_proofs():
     """
     Genera archivo con todos los detalles técnicos expandidos.
+    
+    Creates a LaTeX file with expanded technical details for auxiliary lemmas.
+    The file is saved to artifacts/paper/technical_details_expanded.tex
     """
     
-    details = r"""
-\documentclass{article}
+    details = r"""\documentclass{article}
 \usepackage{amsmath,amsthm,amssymb}
 
 \title{Detalles Técnicos Completos: Lemas Auxiliares}
@@ -173,6 +178,9 @@ Detalles en: E.M. Stein, \textit{Singular Integrals}, Princeton 1970.
 
 \end{document}
 """
+    
+    # Ensure the output directory exists
+    os.makedirs('artifacts/paper', exist_ok=True)
     
     with open('artifacts/paper/technical_details_expanded.tex', 'w') as f:
         f.write(details)
