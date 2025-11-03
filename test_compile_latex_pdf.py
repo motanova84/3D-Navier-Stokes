@@ -35,7 +35,7 @@ class TestCompileLaTeXPDF(unittest.TestCase):
             for file in self.artifacts_dir.glob("psi_nse_global_regularity.*"):
                 try:
                     file.unlink()
-                except:
+                except OSError:
                     pass
     
     def test_rigorous_proof_file_exists(self):

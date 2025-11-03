@@ -105,7 +105,7 @@ cuántica, teoría cuántica de campos, problema del milenio
         print(f"✅ PDF compilado: artifacts/paper/psi_nse_global_regularity.pdf")
         
     except subprocess.CalledProcessError:
-        print("⚠️  pdflatex no disponible. Instalando Overleaf online:")
+        print("⚠️  pdflatex no disponible. Usa Overleaf online:")
         print("   1. Ir a https://www.overleaf.com")
         print("   2. Subir archivo .tex")
         print("   3. Compilar online")
