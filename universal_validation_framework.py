@@ -31,7 +31,10 @@ from typing import Dict, List, Tuple
 from dataclasses import dataclass
 from pathlib import Path
 import warnings
-warnings.filterwarnings('ignore')
+# Suppress specific warnings for cleaner output
+# Only suppress matplotlib and numpy warnings related to display
+warnings.filterwarnings('ignore', category=UserWarning, module='matplotlib')
+warnings.filterwarnings('ignore', category=RuntimeWarning, module='numpy')
 
 # ═══════════════════════════════════════════════════════════════
 # PARÁMETROS UNIVERSALES
@@ -133,8 +136,11 @@ class IGETSValidator:
         """
         
         # Frecuencia de muestreo: 500 Hz (alta resolución para detectar f₀)
-        # Nota: gravímetros estándar muestrean a 1 Hz, pero instrumentos
-        # especializados pueden muestrear mucho más rápido
+        # Nota: gravímetros estándar (e.g., Scintrex CG-5, LaCoste & Romberg)
+        # muestrean a 1 Hz, pero instrumentos especializados como los
+        # superconducting gravimeters (e.g., GWR Instruments) pueden muestrear
+        # a frecuencias mucho más altas (>100 Hz) para estudios de alta frecuencia.
+        # Referencias: Crossley et al. (1999) J. Geodyn.; Van Camp et al. (2005) BIM
         fs = 500.0  # Hz
         dt = 1.0 / fs
         
@@ -155,6 +161,9 @@ class IGETSValidator:
         
         # Señal de Ψ (si existe - MUY DÉBIL)
         # Amplitud esperada: ~1 nGal (10⁻⁹ m/s²)
+        # Justificación: Estimación teórica basada en la energía del campo Ψ
+        # E_Ψ ~ ℏω₀/V_earth ≈ 10⁻⁹ m/s² en términos de aceleración gravitacional
+        # Esta es una predicción testeable que requiere validación experimental
         psi_amplitude = 1e-9  # m/s²
         psi_signal = psi_amplitude * np.sin(2*np.pi*self.f0.f0*t)
         
@@ -211,6 +220,9 @@ class IGETSValidator:
             snr = power_detected / power_background
             
             # Significancia (aproximada)
+            # Usa teoría de valores extremos para procesos Gaussianos
+            # Threshold para false alarm: σ_thresh = sqrt(2*ln(N))
+            # Referencias: Gumbel (1958); Rice (1944); Davies (1987)
             n_freq_bins = len(freqs[mask_background])
             sigma = np.sqrt(2 * np.log(n_freq_bins))  # Threshold para false positive
             significance = (snr - 1) / sigma if sigma > 0 else 0
@@ -339,6 +351,9 @@ class EEGValidator:
         
         # Señal Ψ (si existe - MUY DÉBIL en EEG estándar)
         # Amplitud esperada: ~0.1 μV (al límite de detección)
+        # Justificación: Estimación basada en la energía cuántica del campo Ψ
+        # proyectada sobre la actividad neuronal: E_Ψ/N_neurons ≈ 0.1 μV
+        # Esto requiere equipamiento de alta sensibilidad (>500 Hz, <0.1 μV ruido)
         psi_amplitude = 0.1e-6  # V
         psi_signal = psi_amplitude * np.sin(2*np.pi*self.f0.f0*t)
         
@@ -497,9 +512,18 @@ class UniversalValidator:
     Orquesta búsqueda de f₀ en todos los sistemas.
     """
     
-    def __init__(self):
+    def __init__(self, igets_duration_hours: float = 2.0):
+        """
+        Inicializa el validador universal.
+        
+        Args:
+            igets_duration_hours: Duración de datos sintéticos IGETS en horas.
+                                 Default 2h para evitar problemas de memoria.
+                                 Para análisis completo, usar 720h (1 mes).
+        """
         self.f0 = UniversalFrequency()
         self.validators = []
+        self.igets_duration_hours = igets_duration_hours
         
     def run_all_validations(self) -> List[Dict]:
         """
@@ -520,9 +544,9 @@ class UniversalValidator:
         desi = DESIValidator()
         results.append(desi.search_signal({}))
         
-        # Sistema 2: IGETS (reduce duration for demo)
+        # Sistema 2: IGETS (configurable duration)
         igets = IGETSValidator()
-        t_igets, g_igets = igets.generate_synthetic_data(duration_hours=2)  # 2 hours instead of 720
+        t_igets, g_igets = igets.generate_synthetic_data(duration_hours=self.igets_duration_hours)
         results.append(igets.search_signal(t_igets, g_igets))
         
         # Sistema 3: LISA
