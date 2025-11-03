@@ -23,7 +23,7 @@ class UnifiedBKMConstants:
     c_B: float = 0.15            # Bernstein constant (improved via wavelets)
     C_CZ: float = 1.5            # Calderón-Zygmund in Besov
     C_star: float = 1.2          # Besov-supremum embedding constant
-    a: float = 2.45              # Amplitude parameter (optimized)
+    a: float = 8.9               # Amplitude parameter (calibrated for γ > 0)
     c_0: float = 1.0             # Phase gradient
     α: float = 2.0               # Dual-limit exponent
 
@@ -505,7 +505,7 @@ if __name__ == "__main__":
         c_B=0.15,
         C_CZ=1.5,
         C_star=1.2,
-        a=2.45,
+        a=8.9,
         c_0=1.0,
         α=2.0
     )

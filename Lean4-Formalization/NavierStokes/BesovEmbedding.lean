@@ -34,7 +34,13 @@ theorem log_plus_nonneg (x : ℝ) : log_plus x ≥ 0 := by
   exact le_max_left 0 _
 
 /-- log⁺ is monotone -/
-axiom log_plus_mono {x y : ℝ} (h : x ≤ y) (hx : 0 ≤ x) : log_plus x ≤ log_plus y
+theorem log_plus_mono {x y : ℝ} (h : x ≤ y) (hx : 0 ≤ x) : log_plus x ≤ log_plus y := by
+  unfold log_plus
+  apply max_le_max
+  · rfl
+  · apply Real.log_le_log
+    · linarith
+    · linarith
 
 /-!
 ## Main Embedding Theorem
