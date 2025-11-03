@@ -14,7 +14,6 @@
 [![arXiv](https://img.shields.io/badge/arXiv-pending-red.svg)]()
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17488796.svg)](https://zenodo.org/records/17488796)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17479481.svg)](https://zenodo.org/records/17479481)
-[![arXiv](https://img.shields.io/badge/arXiv-pending-red.svg)]()
 
 
 </div>
