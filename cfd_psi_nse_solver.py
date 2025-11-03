@@ -95,6 +95,12 @@ class PsiNSECFDSolver:
     BETA_QFT = 1.0 / (384.0 * np.pi**2)  # Curvature coupling
     GAMMA_QFT = 1.0 / (192.0 * np.pi**2) # Trace coupling
     
+    # Numerical constants
+    BLOWUP_THRESHOLD = 1e6  # Vorticity threshold for blow-up detection
+    EPSILON_STABILITY = 1e-10  # Small constant to prevent division by zero
+    COHERENCE_WIDTH = 0.3  # Spatial width of coherence field
+    TEMPORAL_MODULATION_AMPLITUDE = 0.1  # Amplitude of temporal oscillation
+    
     def __init__(self, problem: CFDProblem, enable_stabilization: bool = True):
         """
         Initialize the Ψ-NSE CFD solver.
@@ -212,7 +218,7 @@ class PsiNSECFDSolver:
         X, Y, Z = np.meshgrid(x, y, z, indexing='ij')
         
         # Coherence field with spatial modulation
-        Psi = np.exp(-((X - self.Lx/2)**2 + (Y - self.Ly/2)**2 + (Z - self.Lz/2)**2) / (0.3**2))
+        Psi = np.exp(-((X - self.Lx/2)**2 + (Y - self.Ly/2)**2 + (Z - self.Lz/2)**2) / (self.COHERENCE_WIDTH**2))
         
         return Psi
     
@@ -249,7 +255,7 @@ class PsiNSECFDSolver:
         grad_Psi_sq_real = np.real(ifftn(grad_Psi_sq))
         
         # Coupling strength
-        coupling = -self.ALPHA_QFT * grad_Psi_sq_real * (1.0 + 0.1 * temporal_phase)
+        coupling = -self.ALPHA_QFT * grad_Psi_sq_real * (1.0 + self.TEMPORAL_MODULATION_AMPLITUDE * temporal_phase)
         
         return coupling
     
@@ -288,7 +294,7 @@ class PsiNSECFDSolver:
         
         # Stability indicator (ratio of coupling to stretching)
         coupling = self.compute_coupling_tensor(t)
-        stability_indicator = np.mean(np.abs(coupling)) / (max_vorticity + 1e-10)
+        stability_indicator = np.mean(np.abs(coupling)) / (max_vorticity + self.EPSILON_STABILITY)
         
         return {
             'time': t,
@@ -402,11 +408,9 @@ class PsiNSECFDSolver:
         # Initial state
         u0 = self.velocity_field.flatten()
         
-        # Time integration
-        t_eval = np.arange(0, t_final + dt_output/2, dt_output)  # Avoid floating point issues
-        t_eval = t_eval[t_eval <= t_final]  # Ensure all values within t_span
-        if t_eval[-1] < t_final:
-            t_eval = np.append(t_eval, t_final)  # Always include final time
+        # Time integration using linspace for cleaner time point generation
+        n_outputs = int(t_final / dt_output) + 1
+        t_eval = np.linspace(0, t_final, n_outputs)
         
         print("Integrating equations...")
         sol = solve_ivp(
@@ -442,7 +446,7 @@ class PsiNSECFDSolver:
         print(f"✓ Final energy: {self.energy_history[-1]:.6f}")
         
         # Check for blow-up
-        blowup_detected = max(self.max_vorticity_history) > 1e6
+        blowup_detected = max(self.max_vorticity_history) > self.BLOWUP_THRESHOLD
         
         if blowup_detected:
             print(f"⚠ WARNING: Numerical blow-up detected!")
@@ -484,7 +488,7 @@ class PsiNSECFDSolver:
         axes[1, 0].set_ylabel('Max Vorticity (log scale)')
         axes[1, 0].set_title('Maximum Vorticity (Blow-up Indicator)')
         axes[1, 0].grid(True, alpha=0.3)
-        axes[1, 0].axhline(y=1e6, color='r', linestyle='--', label='Blow-up threshold')
+        axes[1, 0].axhline(y=self.BLOWUP_THRESHOLD, color='r', linestyle='--', label='Blow-up threshold')
         axes[1, 0].legend()
         
         # Stability indicator
