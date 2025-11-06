@@ -27,8 +27,6 @@ jobs:
         run: |
           curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
           echo "$HOME/.elan/bin" >> $GITHUB_PATH
-          source $HOME/.elan/env
-          elan default leanprover/lean4:${{ env.LEAN_VERSION }}
           
       - name: 📦 Install Dependencies
         run: |
