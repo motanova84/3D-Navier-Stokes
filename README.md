@@ -1162,6 +1162,8 @@ This project is available for academic and research purposes. See LICENSE file f
 
 ## Authors
 
+José Manuel Mota Burruezo 
+
 3D-Navier-Stokes Research Team
 
 ### Principal Investigators
