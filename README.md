@@ -147,6 +147,7 @@ See comprehensive comparison report: [`Results/Comparison/`](Results/Comparison/
 
 ## Table of Contents
 
+- [🌟 QCAL ∞³: Dynamic and Physical Validation](#-qcal-∞³-dynamic-and-physical-validation)
 - [🔥 DEFINITIVE DEMONSTRATION: Classical NSE vs Ψ-NSE](#-definitive-demonstration-classical-nse-vs-ψ-nse)
 - [Overview](#overview)
   - [∞³ Framework: Nature-Computation-Mathematics Unity](#-framework-nature-computation-mathematics-unity)
@@ -1400,9 +1401,15 @@ docker-compose up lean4-builder
 
 ## Documentation
 
-- **[VERIFICATION_GUIDE.md](Documentation/VERIFICATION_GUIDE.md)**: Complete guide for end-to-end verification scripts
+### Core Framework Documentation
+
+- **[QCAL_ROOT_FREQUENCY_VALIDATION.md](QCAL_ROOT_FREQUENCY_VALIDATION.md)**: 🌟 **Complete validation of the QCAL ∞³ framework, Root Frequency 141.7001Hz as universal constant, physical necessity, and connection to primes/elliptic curves**
+- **[INFINITY_CUBED_FRAMEWORK.md](INFINITY_CUBED_FRAMEWORK.md)**: ∞³ Framework (Nature-Computation-Mathematics Unity)
+- **[FREQUENCY_SCALE_CORRECTION.md](FREQUENCY_SCALE_CORRECTION.md)**: Frequency validation and dimensional analysis
+
 ### Main Documentation
 
+- **[VERIFICATION_GUIDE.md](Documentation/VERIFICATION_GUIDE.md)**: Complete guide for end-to-end verification scripts
 - **[CLAY_PROOF.md](Documentation/CLAY_PROOF.md)**: Executive summary for Clay Institute
 - **[VERIFICATION_ROADMAP.md](Documentation/VERIFICATION_ROADMAP.md)**: Detailed implementation plan
 - **[FORMAL_PROOF_ROADMAP.md](Documentation/FORMAL_PROOF_ROADMAP.md)**: 📊 **Formal proof status, theorem dependencies, and Lean file dependency graphs**
