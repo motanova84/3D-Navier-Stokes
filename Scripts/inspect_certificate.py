@@ -85,7 +85,7 @@ def inspect_dns_data(dns_data: Dict[str, Any]):
     
     print(f"\nData Files:       {len(data_files)} files")
     print(f"Total Size:       {format_size(stats.get('total_data_bytes', 0))}")
-    print(f"Master Hash:      {master_hash[:32] if master_hash != 'no_data_files' else master_hash}...")
+    print(f"Master Hash:      {master_hash[:32] + '...' if master_hash != 'no_data_files' else master_hash}")
     
     if data_files:
         print(f"\nData File Details:")
