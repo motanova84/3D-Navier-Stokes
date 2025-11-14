@@ -920,6 +920,46 @@ bash Scripts/lint.sh
 ```
 
 
+---
+
+## Estado de Validación Formal y Relación con el Problema Clay
+
+🔎 **Validación en Lean4 — Estado actual:**
+
+- El sistema formal incluye más de 80 teoremas estructurados.
+- Algunos lemas auxiliares y pasos clave todavía contienen el marcador `axiom`, indicando que **la verificación está incompleta**.
+- La prueba completa de regularidad global aún no ha sido **validada en su totalidad en Lean4**.
+
+Puedes seguir el progreso en:  
+[`Lean4-Formalization/NavierStokes/`](Lean4-Formalization/NavierStokes/)  
+Roadmap detallado: [`docs/formal_proof_status.md`](docs/formal_proof_status.md)
+
+---
+
+🧪 **¿Es esto una solución al Problema Clay?**
+
+- ❌ NO directamente.  
+  El problema Clay pregunta por las ecuaciones clásicas de Navier–Stokes en 3D:
+  $$\partial_t u + (u \cdot \nabla) u = -\nabla p + \nu \Delta u, \quad \nabla \cdot u = 0$$
+
+- ✅ Nuestra propuesta demuestra regularidad para una versión extendida:
+  $$\partial_t u + (u \cdot \nabla) u = -\nabla p + \nu \Delta u + \nabla \times (\Psi \omega)$$
+
+- ⚠️ Aunque el sistema es físicamente motivado y matemáticamente coherente, **no resuelve el enunciado exacto de Clay**.
+
+- 🧩 Sin embargo, **si logramos demostrar que el límite del sistema extendido (QCAL) con ε → 0 recupera regularidad en el sistema clásico** (donde ε es el parámetro de regularización vibracional), entonces se abriría la posibilidad de reclasificación.
+
+---
+
+📌 Resumen:
+
+| Pregunta                                      | Estado              |
+|----------------------------------------------|---------------------|
+| ¿La prueba está verificada en Lean4?         | 🔶 Parcialmente     |
+| ¿Contiene marcadores `axiom`?                | ✅ Sí (33 axiomas)  |
+| ¿Resuelve NS clásico como en Clay?           | ❌ No               |
+| ¿Demuestra regularidad de un sistema coherente? | ✅ Sí           |
+| ¿Puede derivarse Clay desde QCAL?            | 🔄 A investigar     |
 
 ---
 
@@ -1579,6 +1619,22 @@ This project implements the QCAL Infinity-Cubed framework for regularization of 
 ## License
 
 MIT License
+
+---
+
+## 🧠 Resumen Visual para el Lector
+
+```
+Clay NS puro ─── ? ───► ∞ blow-up posible  
+
+Clay NS + Ψ ───► δ* > 0 ──► γ > 0 ──► ∫‖ω‖∞ dt < ∞ ──► u ∈ C^∞  
+```
+
+✓ Formalización parcial en Lean4  
+✓ Prueba condicional con parámetro físico a > 200  
+✓ NS modificado, pero con motivación física profunda
+
+---
 
 ## References
 
