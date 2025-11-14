@@ -109,6 +109,19 @@ La hipótesis δ* ≥ δ₀ > 0 es el mecanismo que garantiza la integrabilidad 
 - Beale, J. T., Kato, T., & Majda, A. (1984). Remarks on the breakdown of smooth solutions for the 3-D Euler equations.
 - Constantin, P., & Fefferman, C. (1993). Direction of vorticity and the problem of global regularity for the Navier-Stokes equations.
 
+## Formal Mathematical Proof
+
+A complete rigorous mathematical proof of global regularity for the Ψ-NSE system is available in:
+- **LaTeX source**: `rigorous_proof_psi_nse.tex`
+- **Location**: This directory (Results/)
+
+The proof demonstrates:
+1. Uniform boundedness of the coherence field Ψ
+2. Coercivity of the quantum-geometric coupling tensor Φ_ij
+3. Enhanced energy dissipation via modified energy functional E_Ψ
+4. Vorticity saturation through regularizing properties of Φ_ij
+5. Global regularity via Beale-Kato-Majda criterion with exponential decay
+
 ---
 
 *Report generated*: [Date]
