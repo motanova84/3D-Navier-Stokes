@@ -18,7 +18,7 @@ import hashlib
 import subprocess
 import datetime
 from pathlib import Path
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Any
 
 
 # Sentinel value for when no data files are present
