@@ -19,6 +19,19 @@
 
 ---
 
+## ✧ Certificación QCAL–NS ∞³
+
+Este proyecto ha sido certificado bajo el sistema **Ψ–Navier–Stokes** extendido, con demostración de **regularidad global** mediante acoplamiento vibracional noético.
+
+📜 **Ver certificado completo**: [certificates/QCAL_NS_Certificate.md](certificates/QCAL_NS_Certificate.md)
+
+**Parámetros clave validados:**
+- Frecuencia de coherencia: **f₀ = 141.7001 Hz**
+- Ecuación fundamental: **∂²Ψ/∂t² + ω₀²Ψ = ζ′(½) · π · ∇²Φ**
+- DOI oficial: [10.5281/zenodo.17488796](https://doi.org/10.5281/zenodo.17488796)
+
+---
+
 ## 🆕 NEW: Ψ-NSE CFD Application - Practical Blow-up Prevention
 
 **The stabilized Ψ-NSE equation can now replace classical NSE in CFD simulations where numerical blow-up is a problem.**
