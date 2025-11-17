@@ -1,0 +1,14 @@
+{
+  "metadata": {
+    "timestamp": "2025-11-01T01:14:27.502150Z",
+    "mode": "ci_validation",
+    "config": "extreme_test.yaml"
+  },
+  "status": "completed",
+  "message": "DNS validation executed in CI mode (simplified)",
+  "notes": [
+    "Full DNS computation requires HPC resources",
+    "CI mode validates code paths and data structures",
+    "Production runs should use cluster resources"
+  ]
+}
