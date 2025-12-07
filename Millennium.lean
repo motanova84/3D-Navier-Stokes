@@ -5,12 +5,9 @@ import Mathlib.Analysis.Calculus.FDeriv.Basic
 import Mathlib.NumberTheory.LSeries.Basic
 import Mathlib.Computability.TuringMachine
 
-namespace Millennium
+open GRH
 
-/-- Yang-Mills Theory structure -/
-structure YangMillsTheory where
-  non_perturbative : Prop
-  spectrum : Type
+namespace Millennium
 
 /-- Navier-Stokes regularidad global vía Ψ-NSE + GRH (coherencia vibracional) -/
 theorem navier_stokes_global_regularity :
