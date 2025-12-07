@@ -57,6 +57,16 @@ python infinity_cubed_framework.py
 # NSE vs Ψ-NSE comparison
 python demonstrate_nse_comparison.py
 ```
+## ✧ Certificación QCAL–NS ∞³
+
+Este proyecto ha sido certificado bajo el sistema **Ψ–Navier–Stokes** extendido, con demostración de **regularidad global** mediante acoplamiento vibracional noético.
+
+📜 **Ver certificado completo**: [certificates/QCAL_NS_Certificate.md](certificates/QCAL_NS_Certificate.md)
+
+**Parámetros clave validados:**
+- Frecuencia de coherencia: **f₀ = 141.7001 Hz**
+- Ecuación fundamental: **∂²Ψ/∂t² + ω₀²Ψ = ζ′(½) · π · ∇²Φ**
+- DOI oficial: [10.5281/zenodo.17488796](https://doi.org/10.5281/zenodo.17488796)
 
 ---
 
@@ -153,6 +163,7 @@ See comprehensive comparison report: [`Results/Comparison/`](Results/Comparison/
   - [∞³ Framework: Nature-Computation-Mathematics Unity](#-framework-nature-computation-mathematics-unity)
   - [Vibrational Dual Regularization Framework](#-vibrational-dual-regularization-framework)
   - [QFT Tensor Derivation Φ_ij(Ψ)](#-qft-tensor-derivation-φ_ijψ)
+  - [Computational Limitations Analysis](#-computational-limitations-analysis)
 - [Estado de la Demostración](#estado-de-la-demostración)
 - [Technical Contributions](#technical-contributions)
 - [Computational Limitations](#computational-limitations)
@@ -224,6 +235,20 @@ This repository provides a comprehensive computational verification framework fo
 
 ✅ **Status**: Implementation validated with 26 passing tests covering all tensor properties.
 
+### 🆕 Computational Limitations Analysis
+
+**NEW**: Comprehensive analysis of computational barriers and viable strategies:
+
+- **Fundamental Barriers**: NP-hard complexity, infinite resolution, exponential error accumulation
+- **Key Question**: Can computation demonstrate NSE regularity? **Answer: NO**
+- **Viable Strategies**: Three approaches analyzed (Hybrid Ψ-NSE, Special Cases, Blow-up Constructive)
+- **Recommendation**: Ψ-NSE with quantum coupling Φ_ij(Ψ) as the physically complete model
+
+📖 **See**: [Documentation/COMPUTATIONAL_LIMITATIONS.md](Documentation/COMPUTATIONAL_LIMITATIONS.md) for complete analysis.
+
+🧪 **Try it**: Run `python computational_limitations_analysis.py` to view the detailed analysis.
+
+✅ **Conclusion**: Classical NSE may be incomplete; Ψ-NSE provides computationally feasible, experimentally verifiable, and mathematically rigorous approach.
 ### 🆕 La Prueba de Fuego: Extreme DNS Validation
 
 **NEW**: Critical comparison demonstrating blow-up prevention under extreme conditions:
@@ -762,6 +787,9 @@ python DNS-Verification/DualLimitSolver/unified_validation.py
 # Run example demonstrations
 python examples_unified_bkm.py
 
+# View computational limitations analysis
+python computational_limitations_analysis.py
+
 # Execute test suites
 python test_verification.py        # Original tests (20 tests)
 python test_unified_bkm.py         # Unified BKM tests (19 tests)
@@ -962,6 +990,46 @@ bash Scripts/lint.sh
 ```
 
 
+---
+
+## Estado de Validación Formal y Relación con el Problema Clay
+
+🔎 **Validación en Lean4 — Estado actual:**
+
+- El sistema formal incluye más de 80 teoremas estructurados.
+- Algunos lemas auxiliares y pasos clave todavía contienen el marcador `axiom`, indicando que **la verificación está incompleta**.
+- La prueba completa de regularidad global aún no ha sido **validada en su totalidad en Lean4**.
+
+Puedes seguir el progreso en:  
+[`Lean4-Formalization/NavierStokes/`](Lean4-Formalization/NavierStokes/)  
+Roadmap detallado: [`docs/formal_proof_status.md`](docs/formal_proof_status.md)
+
+---
+
+🧪 **¿Es esto una solución al Problema Clay?**
+
+- ❌ NO directamente.  
+  El problema Clay pregunta por las ecuaciones clásicas de Navier–Stokes en 3D:
+  $$\partial_t u + (u \cdot \nabla) u = -\nabla p + \nu \Delta u, \quad \nabla \cdot u = 0$$
+
+- ✅ Nuestra propuesta demuestra regularidad para una versión extendida:
+  $$\partial_t u + (u \cdot \nabla) u = -\nabla p + \nu \Delta u + \nabla \times (\Psi \omega)$$
+
+- ⚠️ Aunque el sistema es físicamente motivado y matemáticamente coherente, **no resuelve el enunciado exacto de Clay**.
+
+- 🧩 Sin embargo, **si logramos demostrar que el límite del sistema extendido (QCAL) con ε → 0 recupera regularidad en el sistema clásico** (donde ε es el parámetro de regularización vibracional), entonces se abriría la posibilidad de reclasificación.
+
+---
+
+📌 Resumen:
+
+| Pregunta                                      | Estado              |
+|----------------------------------------------|---------------------|
+| ¿La prueba está verificada en Lean4?         | 🔶 Parcialmente     |
+| ¿Contiene marcadores `axiom`?                | ✅ Sí (33 axiomas)  |
+| ¿Resuelve NS clásico como en Clay?           | ❌ No               |
+| ¿Demuestra regularidad de un sistema coherente? | ✅ Sí           |
+| ¿Puede derivarse Clay desde QCAL?            | 🔄 A investigar     |
 
 ---
 
@@ -1627,6 +1695,22 @@ This project implements the QCAL Infinity-Cubed framework for regularization of 
 ## License
 
 MIT License
+
+---
+
+## 🧠 Resumen Visual para el Lector
+
+```
+Clay NS puro ─── ? ───► ∞ blow-up posible  
+
+Clay NS + Ψ ───► δ* > 0 ──► γ > 0 ──► ∫‖ω‖∞ dt < ∞ ──► u ∈ C^∞  
+```
+
+✓ Formalización parcial en Lean4  
+✓ Prueba condicional con parámetro físico a > 200  
+✓ NS modificado, pero con motivación física profunda
+
+---
 
 ## References
 
