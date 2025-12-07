@@ -5,7 +5,7 @@ import Mathlib.Analysis.Calculus.FDeriv.Basic
 import Mathlib.NumberTheory.LSeries.Basic
 import Mathlib.Computability.TuringMachine
 
-open GRH
+open GRH BSD
 
 namespace Millennium
 
