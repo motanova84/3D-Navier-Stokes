@@ -1,0 +1,9 @@
+ROOT FREQUENCY VALIDATION SUMMARY
+======================================================================
+
+Root Frequency: f₀ = 0.011162 Hz
+Angular Frequency: ω₀ = 0.070136 rad/s
+Misalignment Defect: δ* = 2.006413
+
+Status: VALIDATED
+======================================================================
