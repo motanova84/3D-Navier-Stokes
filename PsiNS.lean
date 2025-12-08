@@ -35,8 +35,6 @@ noncomputable section
 -- Kolmogorov constant (dimensionless, typical value)
 @[reducible] def C : ℝ := 1.5
 
--- Differential operators, field definitions, Madelung forms omitted for brevity (included above)
-
 -- Kolmogorov–QCAL corrected energy cascade ε(k)
 @[simp] def k_cutoff : ℝ := ω₀ / cₛ
 
