@@ -20,21 +20,24 @@ open Real Set Topology
 
 noncomputable section
 
--- Constants and parameters
-@[reducible] def f₀ : ℝ := 141.7001
-@[reducible] def ω₀ : ℝ := 2 * π * f₀
-@[reducible] def ω∞ : ℝ := 2 * π * 888.0  -- ≈ 5580.5 rad/s
-@[reducible] def ζ' : ℝ := -0.207886
-@[reducible] def γE : ℝ := 0.5772
-@[reducible] def ε : ℝ := 1e-3            -- small vibration amplitude
-@[reducible] def ℏ : ℝ := 1.0545718e-34  -- Planck constant (J·s)
-@[reducible] def m : ℝ := 1.0e-27         -- representative particle mass (kg)
+-- Constants and parameters (imported from QCAL)
+open QCAL in
+@[reducible] def f₀ : ℝ := QCAL.f₀
+@[reducible] def ω₀ : ℝ := QCAL.ω₀
+@[reducible] def ω∞ : ℝ := QCAL.ω∞
+@[reducible] def ζ' : ℝ := QCAL.ζ'
+@[reducible] def γE : ℝ := QCAL.γE
+@[reducible] def ε : ℝ := QCAL.ε
+@[reducible] def ℏ : ℝ := QCAL.ℏ
+@[reducible] def m : ℝ := QCAL.m
 
 -- Type alias for 3D vectors (ℝ³)
 abbrev ℝ³ := Fin 3 → ℝ
 
 -- Placeholder for H¹(ℝ³) space membership
--- In a full formalization, this would use Sobolev spaces from Mathlib
+-- WARNING: This is a significant simplification of the actual Sobolev space H¹(ℝ³)
+-- A proper definition would require: u, ∇u ∈ L²(ℝ³) with ∫(|u|² + |∇u|²) < ∞
+-- This placeholder only captures bounded continuous functions for formalization purposes
 def H¹ : Set (ℝ³ → ℝ³) := 
   {u | Continuous u ∧ ∃ (C : ℝ), ∀ x, ‖u x‖ ≤ C}
 
@@ -42,11 +45,16 @@ def H¹ : Set (ℝ³ → ℝ³) :=
 def divOp (v : ℝ³) : ℝ := v 0 + v 1 + v 2
 
 -- Gradient operator (returns matrix/tensor)
--- Placeholder: in full version would compute ∂uᵢ/∂xⱼ
+-- WARNING: Placeholder implementation - returns 0
+-- In full formalization, would use fderiv to compute ∂uᵢ/∂xⱼ
+-- This makes all gradient-dependent computations symbolic only
 def gradOp (u : ℝ³ → ℝ³) (x : ℝ³) : (Fin 3 → Fin 3 → ℝ) := 
   fun i j => 0  -- Placeholder for ∂uᵢ/∂xⱼ
 
--- Laplacian operator 
+-- Laplacian operator
+-- WARNING: Placeholder implementation - returns 0
+-- In full formalization, would compute Δf = ∑ᵢ ∂²f/∂xᵢ²
+-- This makes Φ and psiEvol symbolic only
 def laplacian (f : ℝ³ → ℝ) : ℝ³ → ℝ := 
   fun x => 0  -- Placeholder for Δf
 
@@ -85,18 +93,15 @@ def derivTime (f : ℝ³ → ℝ) : ℝ³ → ℝ := fun x => 0  -- ∂f/∂t pl
 @[simp] def psiEvol (Ψ : ℝ³ → ℝ) (Φ : ℝ³ → ℝ) (R : ℝ³ → ℝ) : ℝ³ → ℝ :=
   fun x ↦ derivTime Ψ x + ω∞^2 * Ψ x - ζ' * π * laplacian Φ x - R x
 
--- Placeholder for smooth solution space: C^∞ ∩ L^∞([0, ∞); H¹(ℝ³))
-def SmoothSolutionSpace : Set (ℝ → ℝ³ → ℝ³) :=
-  {u | ∀ t ≥ 0, ContDiff ℝ ⊤ (u t) ∧ u t ∈ H¹}
-
 -- Energy bound constant
 def C₀ : ℝ := 1000  -- Placeholder constant
 
 -- Main theorem: global regularity
+-- Statement: For initial data u₀ ∈ H¹ with div(u₀) = 0, there exists a global smooth solution
 theorem global_smooth_solution_exists
   (u₀ : InitialData) :
   ∃ u : ℝ × ℝ³ → ℝ³,
-    (∀ t ≥ 0, (fun x => u (t, x)) ∈ SmoothSolutionSpace) ∧
+    (∀ t ≥ 0, ContDiff ℝ ⊤ (fun x => u (t, x)) ∧ (fun x => u (t, x)) ∈ H¹) ∧
     (∀ t ≥ 0, ∀ x, gradNormSq (fun y => u (t, y)) x ≤ C₀) := by
   -- Proof sketch:
   -- 1. Define Ψ(t,x) := ‖∇u(t,x)‖²
