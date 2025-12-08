@@ -43,9 +43,11 @@ noncomputable section
 @[reducible] def spectral_decay_exp : ℝ := -5/3
 
 -- Kolmogorov–QCAL corrected energy cascade ε(k)
+/-- Cutoff wavenumber for quantum turbulence energy cascade -/
 @[simp] def k_cutoff : ℝ := ω₀ / cₛ
 
-@[simp] def epsilon_k (k : ℝ) (ε₀ : ℝ) : ℝ :=
+/-- Energy spectrum function for quantum turbulence with QCAL correction -/
+def epsilon_k (k : ℝ) (ε₀ : ℝ) : ℝ :=
   if k > 0 ∧ k < k_cutoff then C * ε₀^energy_injection_exp * k^spectral_decay_exp
   else 0
 
