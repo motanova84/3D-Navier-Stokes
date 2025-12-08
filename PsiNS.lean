@@ -16,14 +16,14 @@ import QCAL.NoeticField
 
 namespace PsiNS
 
-open Real Set Topology
+open Real Set Topology QCAL
 
 noncomputable section
 
--- Constants and parameters
-@[reducible] def f₀ : ℝ := 141.7001
-@[reducible] def ω₀ : ℝ := 2 * π * f₀
-@[reducible] def ω∞ : ℝ := 2 * π * 888.0
+-- Import fundamental frequency constants from QCAL module
+-- f₀, ω₀, ω∞ are defined in QCAL.Frequency
+
+-- Additional constants and parameters
 @[reducible] def ζ' : ℝ := -0.207886
 @[reducible] def γE : ℝ := 0.5772
 @[reducible] def ε : ℝ := 1e-3
@@ -38,7 +38,7 @@ noncomputable section
 -- Differential operators, field definitions, Madelung forms omitted for brevity (included above)
 
 -- Kolmogorov–QCAL corrected energy cascade ε(k)
-@[simp] def k_cutoff : ℝ := (2 * π * f₀) / cₛ
+@[simp] def k_cutoff : ℝ := ω₀ / cₛ
 
 @[simp] def epsilon_k (k : ℝ) (ε₀ : ℝ) : ℝ :=
   if k < k_cutoff then C * ε₀^(2/3) * k^(-5/3)

@@ -12,9 +12,11 @@ namespace QCAL
     Ψ : ℝ (time) → (ℝ × ℝ × ℝ) (space) → ℝ (field value) -/
 def NoeticField : Type := ℝ → (ℝ × ℝ × ℝ) → ℝ
 
-/-- Field coherence property (placeholder for full definition) -/
+/-- Field coherence property with magnitude -/
 structure FieldCoherence where
   field : NoeticField
-  coherent : Bool
+  coherenceMagnitude : ℝ
+  -- Coherence magnitude should be between 0 and 1
+  coherence_bounded : 0 ≤ coherenceMagnitude ∧ coherenceMagnitude ≤ 1
 
 end QCAL
