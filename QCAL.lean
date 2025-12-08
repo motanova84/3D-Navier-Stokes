@@ -5,4 +5,5 @@ Root module for quantum coherence and frequency analysis
 
 import QCAL.Frequency
 import QCAL.NoeticField
-import QCAL.FrequencyValidation.F0Derivation
+-- Note: QCAL.FrequencyValidation.F0Derivation contains similar definitions
+-- and is imported separately when needed to avoid naming conflicts

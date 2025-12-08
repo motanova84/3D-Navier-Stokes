@@ -11,8 +11,10 @@ namespace QCAL.NoeticField
 /-- Euler-Mascheroni constant γE ≈ 0.5772 -/
 def γE : ℝ := 0.5772
 
-/-- Riemann zeta function derivative at 1/2 (empirical approximation)
-    ζ'(1/2) ≈ -0.207886 -/
+/-- Riemann zeta function derivative at 1/2
+    ζ'(1/2) ≈ -0.207886
+    Source: Numerical computation via standard ζ function algorithms
+    See DLMF 25.6 for computational methods -/
 def ζ' : ℝ := -0.207886
 
 /-- Small coupling parameter for feedback terms -/

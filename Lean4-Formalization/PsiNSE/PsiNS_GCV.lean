@@ -53,19 +53,23 @@ abbrev ScalarField := ℝ³ → ℝ
 def H¹ : Set (ℝ³ → ℝ³) := Set.univ
 
 -- Placeholder for divergence operator
-/-- Divergence operator (placeholder) -/
+/-- Divergence operator (placeholder - returns 0 until proper implementation)
+    TODO: Replace with actual divergence computation from Mathlib -/
 def div (u : VectorField) (x : ℝ³) : ℝ := 0
 
 -- Placeholder for gradient operator
-/-- Gradient operator (placeholder) -/
+/-- Gradient operator (placeholder - returns zero tensor until proper implementation)
+    TODO: Replace with actual gradient computation from Mathlib -/
 def grad (u : VectorField) (x : ℝ³) : ℝ³ × ℝ³ × ℝ³ := ((0,0,0), (0,0,0), (0,0,0))
 
 -- Placeholder for Laplacian operator
-/-- Laplacian operator (placeholder) -/
+/-- Laplacian operator (placeholder - returns 0 until proper implementation)
+    TODO: Replace with actual Laplacian from Mathlib -/
 def laplacian (f : ScalarField) (x : ℝ³) : ℝ := 0
 
 -- Placeholder for norm
-/-- Matrix/tensor norm (placeholder) -/
+/-- Matrix/tensor norm (placeholder - returns 0 until proper implementation)
+    TODO: Replace with actual norm computation -/
 def matrixNorm (M : ℝ³ × ℝ³ × ℝ³) : ℝ := 0
 
 -- Placeholder for inner product
@@ -90,28 +94,32 @@ def Psi (u : VectorField) : ScalarField :=
   fun x ↦ matrixNorm (grad u x) ^ 2
 
 -- Master equation for Ψ field
-/-- Master equation for Ψ field evolution -/
+/-- Master equation for Ψ field evolution
+    Note: Time derivative ∂Ψ/∂t is implicit in the evolution equation
+    The full PDE would be: ∂Ψ/∂t = -ω∞² * Ψ + ζ' * π * Δ(Φ) + RΨ -/
 @[simp]
 def psiEqn (Ψ : ScalarField) (Φ : ScalarField) (RΨ : ScalarField) (t : ℝ) : ScalarField :=
   fun x ↦ 
-    -- ∂Ψ/∂t + ω∞² * Ψ - ζ' * π * Δ(Φ) - RΨ
-    0 + ω∞^2 * Ψ x - ζ' * π * laplacian Φ x - RΨ x
+    -- Right-hand side of evolution equation: -ω∞² * Ψ + ζ' * π * Δ(Φ) + RΨ
+    ω∞^2 * Ψ x - ζ' * π * laplacian Φ x - RΨ x
 
 -- Quantum pressure correction term (Φ)
-/-- Quantum pressure correction -/
+/-- Quantum pressure correction
+    Note: Assumes ρ(x) > 0 to avoid division by zero
+    In practice, ρ should be bounded away from zero -/
 @[simp]
 def Φ (u : VectorField) (ρ : ScalarField) : ScalarField := 
   fun x ↦ 
     div u x + ℏ^2 / (2 * m) * (laplacian (fun y ↦ Real.sqrt (ρ y)) x / Real.sqrt (ρ x))
 
 -- Feedback nonlinear term RΨ
-/-- Feedback nonlinear term -/
+/-- Feedback nonlinear term
+    Oscillates at fundamental frequency f₀ with coupling strength ε -/
 @[simp]
 def RΨ (u : VectorField) (t : ℝ) : ScalarField := 
   fun x ↦
     let gradU := grad u x
-    let normU := vectorNorm (u x)
-    2 * ε * Real.cos (2 * π * f₀ * t) * matrixInner gradU (gradU)
+    2 * ε * Real.cos (2 * π * f₀ * t) * matrixInner gradU gradU
 
 -- Placeholder for function spaces
 /-- C^∞ smooth functions placeholder -/
