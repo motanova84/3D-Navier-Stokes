@@ -41,22 +41,28 @@ noncomputable section
 @[simp] def k_cutoff : ℝ := ω₀ / cₛ
 
 @[simp] def epsilon_k (k : ℝ) (ε₀ : ℝ) : ℝ :=
-  if k < k_cutoff then C * ε₀^(2/3) * k^(-5/3)
+  if k > 0 ∧ k < k_cutoff then C * ε₀^(2/3) * k^(-5/3)
   else 0
 
 -- Theorem: Quantum turbulence energy spectrum obeys corrected law
 lemma kolmogorov_qcal_spectrum (ε₀ : ℝ) (k : ℝ) :
   k ≥ 0 →
-  (k < k_cutoff → epsilon_k k ε₀ = C * ε₀^(2/3) * k^(-5/3)) ∧
-  (k ≥ k_cutoff → epsilon_k k ε₀ = 0) := by
+  ((0 < k ∧ k < k_cutoff) → epsilon_k k ε₀ = C * ε₀^(2/3) * k^(-5/3)) ∧
+  ((k = 0 ∨ k ≥ k_cutoff) → epsilon_k k ε₀ = 0) := by
   intro hk
   constructor
-  · intro h_lt
-    simp [epsilon_k, h_lt]
-  · intro h_ge
+  · intro ⟨h_pos, h_lt⟩
+    simp [epsilon_k, h_pos, h_lt]
+  · intro h_boundary
     simp [epsilon_k]
-    -- When k ≥ k_cutoff, the condition k < k_cutoff is false
-    have h_not_lt : ¬(k < k_cutoff) := by linarith
-    simp [h_not_lt]
+    cases h_boundary with
+    | inl h_zero =>
+      simp [h_zero]
+    | inr h_ge =>
+      -- When k ≥ k_cutoff, the condition k > 0 ∧ k < k_cutoff is false
+      have h_not_both : ¬(k > 0 ∧ k < k_cutoff) := by
+        intro ⟨_, h_lt⟩
+        linarith
+      simp [h_not_both]
 
 end PsiNS
