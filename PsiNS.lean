@@ -32,20 +32,27 @@ noncomputable section
 @[reducible] def ν : ℝ := 1e-6  -- kinematic viscosity (example)
 @[reducible] def cₛ : ℝ := 200.0 -- speed of sound (m/s) for superfluid He⁴
 
--- Kolmogorov constant (dimensionless, typical value)
+-- Kolmogorov cascade constants
+/-- Kolmogorov constant (dimensionless, typical value for 3D turbulence) -/
 @[reducible] def C : ℝ := 1.5
+
+/-- Energy injection exponent in Kolmogorov cascade law -/
+@[reducible] def energy_injection_exp : ℝ := 2/3
+
+/-- Spectral decay exponent in Kolmogorov cascade law (inertial range scaling) -/
+@[reducible] def spectral_decay_exp : ℝ := -5/3
 
 -- Kolmogorov–QCAL corrected energy cascade ε(k)
 @[simp] def k_cutoff : ℝ := ω₀ / cₛ
 
 @[simp] def epsilon_k (k : ℝ) (ε₀ : ℝ) : ℝ :=
-  if k > 0 ∧ k < k_cutoff then C * ε₀^(2/3) * k^(-5/3)
+  if k > 0 ∧ k < k_cutoff then C * ε₀^energy_injection_exp * k^spectral_decay_exp
   else 0
 
 -- Theorem: Quantum turbulence energy spectrum obeys corrected law
 lemma kolmogorov_qcal_spectrum (ε₀ : ℝ) (k : ℝ) :
   k ≥ 0 →
-  ((0 < k ∧ k < k_cutoff) → epsilon_k k ε₀ = C * ε₀^(2/3) * k^(-5/3)) ∧
+  ((0 < k ∧ k < k_cutoff) → epsilon_k k ε₀ = C * ε₀^energy_injection_exp * k^spectral_decay_exp) ∧
   ((k = 0 ∨ k ≥ k_cutoff) → epsilon_k k ε₀ = 0) := by
   intro hk
   constructor
