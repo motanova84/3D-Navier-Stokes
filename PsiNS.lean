@@ -45,7 +45,7 @@ noncomputable section
   else 0
 
 -- Theorem: Quantum turbulence energy spectrum obeys corrected law
-theorem kolmogorov_qcal_spectrum (ε₀ : ℝ) (k : ℝ) :
+lemma kolmogorov_qcal_spectrum (ε₀ : ℝ) (k : ℝ) :
   k ≥ 0 →
   (k < k_cutoff → epsilon_k k ε₀ = C * ε₀^(2/3) * k^(-5/3)) ∧
   (k ≥ k_cutoff → epsilon_k k ε₀ = 0) := by
