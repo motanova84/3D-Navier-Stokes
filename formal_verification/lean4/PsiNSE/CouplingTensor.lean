@@ -22,52 +22,65 @@ where α, β, γ are Seeley-DeWitt coefficients from QFT.
 For formal verification, we axiomatize the essential properties rather than
 constructing the full tensor field theory, which would require extensive
 additional formalization of differential geometry and QFT.
+
+Note: In a full formalization, f₀ and ω₀ would be imported from PsiNSE.Basic.
+For this standalone verification module, we axiomatize them here.
 -/
 
 namespace PsiNSE
 
--- Fundamental frequency (Hz)
+-- Seeley-DeWitt coefficients from QFT
+-- These are the fundamental constants from heat kernel expansion
+axiom a₁ : ℝ  -- gradient coupling = 1/(720π²) ≈ 1.407e-04
+axiom a₂ : ℝ  -- curvature coupling = 1/(2880π²) ≈ 3.518e-05
+axiom a₃ : ℝ  -- trace coupling = -1/(1440π²) ≈ -7.036e-05
+
+-- Fundamental frequency from QCAL framework (Hz)
 axiom f₀ : ℝ
 axiom f₀_value : f₀ = 141.7001
 axiom f₀_positive : f₀ > 0
 
--- Angular frequency
+-- Angular frequency ω₀ = 2πf₀ (rad/s)
 axiom ω₀ : ℝ  
 axiom ω₀_def : ω₀ = 2 * Real.pi * f₀
+axiom ω₀_positive : ω₀ > 0
 
--- Seeley-DeWitt coefficients from QFT
-axiom a₁ : ℝ  -- gradient coupling ~ 1.407e-04
-axiom a₂ : ℝ  -- curvature coupling ~ 3.518e-05
-axiom a₃ : ℝ  -- trace coupling ~ -7.036e-05
-
--- Axiom: coefficients are small but non-zero
+-- Property: Seeley-DeWitt coefficients are small but non-zero
 axiom seeley_dewitt_small : |a₁| < 1 ∧ |a₂| < 1 ∧ |a₃| < 1
 axiom seeley_dewitt_nonzero : a₁ ≠ 0 ∧ a₂ ≠ 0 ∧ a₃ ≠ 0
 
--- Coupling tensor type
+-- Coupling tensor type (abstract)
 axiom CouplingTensor : Type
 
--- Axiom: coupling tensor exists and is well-defined
-axiom coupling_well_defined : CouplingTensor
+-- Tensor component accessor (abstracted)
+axiom Φ_component : CouplingTensor → ℝ → (Fin 3 → ℝ) → Fin 3 → Fin 3 → ℝ
 
--- Axiom: tensor is bounded
+-- Property: coupling tensor exists and is well-defined
+axiom coupling_well_defined : Nonempty CouplingTensor
+
+-- Property: tensor is uniformly bounded
 axiom coupling_bounded : ∀ (ct : CouplingTensor), 
-  ∃ C > 0, ∀ t x i j, True  -- simplified for axiomatization
+  ∃ C > 0, ∀ t x i j, |Φ_component ct t x i j| ≤ C
 
--- Axiom: tensor oscillates at fundamental frequency ω₀
-axiom coupling_oscillatory : ∀ (ct : CouplingTensor), 
-  ∃ amplitude_bound > 0, True  -- simplified for axiomatization
+-- Property: tensor oscillates at fundamental frequency ω₀
+axiom coupling_oscillatory : ∀ (ct : CouplingTensor), ∀ i j,
+  ∃ B : (Fin 3 → ℝ) → ℝ, ∃ θ : (Fin 3 → ℝ) → ℝ, ∀ t x,
+    Φ_component ct t x i j = B x * Real.cos (ω₀ * t + θ x)
 
--- Axiom: tensor is symmetric (Φ_ij = Φ_ji)
-axiom coupling_symmetric : ∀ (ct : CouplingTensor), True
+-- Property: tensor is symmetric (Φ_ij = Φ_ji)
+axiom coupling_symmetric : ∀ (ct : CouplingTensor), ∀ t x i j,
+  Φ_component ct t x i j = Φ_component ct t x j i
 
--- Axiom: divergence-free (conservation law)
-axiom coupling_divergence_free : ∀ (ct : CouplingTensor), True
+-- Property: conservation law (energy-momentum tensor constraint)
+axiom coupling_conservation : ∀ (ct : CouplingTensor), 
+  True  -- Full statement requires differential geometry
 
--- Axiom: classical limit (Φ → 0 as Ψ → 0)
-axiom coupling_classical_limit : ∀ (ct : CouplingTensor), True
+-- Property: classical limit (Φ → 0 as coherent field amplitude → 0)
+axiom coupling_classical_limit : ∀ (ct : CouplingTensor),
+  True  -- Full statement requires field amplitude parameter
 
--- Axiom: resonance amplification at ω = ω₀
-axiom coupling_resonance : ∀ (ct : CouplingTensor), True
+-- Property: resonance effect (non-trivial at resonant frequencies)
+axiom coupling_resonance : ∀ (ct : CouplingTensor),
+  ∃ t x i j, Φ_component ct t x i j ≠ 0
 
 end PsiNSE
