@@ -35,6 +35,11 @@ axiom a₁ : ℝ  -- gradient coupling = 1/(720π²) ≈ 1.407e-04
 axiom a₂ : ℝ  -- curvature coupling = 1/(2880π²) ≈ 3.518e-05
 axiom a₃ : ℝ  -- trace coupling = -1/(1440π²) ≈ -7.036e-05
 
+-- Constrain coefficients to their QFT-derived values
+axiom a₁_value : a₁ = 1 / (720 * (Real.pi * Real.pi))
+axiom a₂_value : a₂ = 1 / (2880 * (Real.pi * Real.pi))
+axiom a₃_value : a₃ = -1 / (1440 * (Real.pi * Real.pi))
+
 -- Fundamental frequency from QCAL framework (Hz)
 axiom f₀ : ℝ
 axiom f₀_value : f₀ = 141.7001
@@ -72,8 +77,10 @@ axiom coupling_symmetric : ∀ (ct : CouplingTensor), ∀ t x i j,
   Φ_component ct t x i j = Φ_component ct t x j i
 
 -- Property: conservation law (energy-momentum tensor constraint)
+-- Proper statement would be: ∂_i Φ^ij = 0 for each j (Einstein summation)
+-- This expresses that the energy-momentum tensor is covariantly conserved
 axiom coupling_conservation : ∀ (ct : CouplingTensor), 
-  True  -- Full statement requires differential geometry
+  True  -- Placeholder: full statement requires differential geometry with derivatives
 
 -- Property: classical limit (Φ → 0 as coherent field amplitude → 0)
 axiom coupling_classical_limit : ∀ (ct : CouplingTensor),

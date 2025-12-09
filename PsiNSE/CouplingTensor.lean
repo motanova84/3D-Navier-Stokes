@@ -32,13 +32,13 @@ Reference: Birrell & Davies (1982), "Quantum Fields in Curved Space"
 namespace PsiNSE
 
 /-- Seeley-DeWitt coefficient a₁ for gradient coupling ≈ 1.407e-04 -/
-def a₁ : ℝ := 1 / (720 * Real.pi^2)
+def a₁ : ℝ := 1 / (720 * (Real.pi * Real.pi))
 
 /-- Seeley-DeWitt coefficient a₂ for curvature coupling ≈ 3.518e-05 -/
-def a₂ : ℝ := 1 / (2880 * Real.pi^2)
+def a₂ : ℝ := 1 / (2880 * (Real.pi * Real.pi))
 
 /-- Seeley-DeWitt coefficient a₃ for trace term ≈ -7.036e-05 -/
-def a₃ : ℝ := -1 / (1440 * Real.pi^2)
+def a₃ : ℝ := -1 / (1440 * (Real.pi * Real.pi))
 
 /-- a₁ approximates the documented value -/
 lemma a₁_approx : |a₁ - 0.00014072387| < 0.00000001 := by
@@ -123,12 +123,13 @@ lemma coupling_trace (ct : CouplingTensor) (t : ℝ) (x : Fin 3 → ℝ) :
 
 /-- Energy-momentum tensor divergence vanishes (conservation law)
     Note: This is a placeholder - full divergence requires derivatives
-    For proper formulation: ∂Φ_ij/∂x_i = 0 -/
+    Proper formulation (Einstein summation): ∂Φ_ij/∂x^i = 0 for each j -/
 theorem coupling_conservation (ct : CouplingTensor) :
     True := by
-  -- Conservation ∇·Φ = 0 follows from energy-momentum tensor properties
-  -- Full statement requires differential geometry infrastructure
-  -- This is a geometric consistency requirement from QFT
+  -- Conservation ∇·Φ = 0 follows from energy-momentum tensor properties in QFT
+  -- Full statement: ∂_i Φ^ij = 0 (covariant derivative vanishes)
+  -- Requires differential geometry and tensor calculus infrastructure
+  -- This is a fundamental consistency requirement from QFT
   trivial
 
 /-- Coupling preserves positivity in weak sense -/
