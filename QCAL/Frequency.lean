@@ -10,6 +10,14 @@ namespace QCAL.Frequency
 
 /-- Fundamental frequency f₀ = 141.7001 Hz
     Derived from quantum coherence analysis -/
+Fundamental frequency constants and definitions
+-/
+
+import Mathlib.Data.Real.Basic
+
+namespace QCAL
+
+/-- Fundamental frequency f₀ = 141.7001 Hz -/
 def f₀ : ℝ := 141.7001
 
 /-- Angular frequency ω₀ = 2πf₀ -/
@@ -20,6 +28,8 @@ def f∞ : ℝ := 888.0
 
 /-- Peak coherent angular frequency ω∞ = 2πf∞ -/
 def ω∞ : ℝ := 2 * Real.pi * f∞
+/-- Upper frequency bound ω∞ = 2π × 888.0 ≈ 5580.5 rad/s -/
+def ω∞ : ℝ := 2 * Real.pi * 888.0
 
 /-- Proof that f₀ is positive -/
 theorem f₀_pos : f₀ > 0 := by norm_num [f₀]
@@ -52,3 +62,6 @@ theorem frequency_validated : 100 < f₀ ∧ f₀ < 200 := by
   · norm_num [f₀]
 
 end QCAL.Frequency
+  · norm_num
+
+end QCAL
