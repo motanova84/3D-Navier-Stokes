@@ -36,17 +36,33 @@ theorem log_plus_nonneg (x : ℝ) : log_plus x ≥ 0 := by
 /-- log⁺ is monotone -/
 theorem log_plus_mono {x y : ℝ} (h : x ≤ y) (hx : 0 ≤ x) : log_plus x ≤ log_plus y := by
   unfold log_plus
-  apply max_le_max
-  · rfl
-  · apply Real.log_le_log
-    · linarith
-    · linarith
+  -- Since x ≤ y, we have 1 + x ≤ 1 + y
+  have h1 : 1 + x ≤ 1 + y := by linarith
+  -- And since 0 ≤ x, we have 0 < 1 + x
+  have h2 : 0 < 1 + x := by linarith
+  -- Therefore log is monotone: log(1+x) ≤ log(1+y)
+  have h3 : Real.log (1 + x) ≤ Real.log (1 + y) := Real.log_le_log h2 h1
+  -- Taking max with 0 preserves the inequality
+  exact max_le_max le_rfl h3
 
 /-!
 ## Main Embedding Theorem
 -/
 
-/-- Besov-L∞ embedding with logarithmic factor -/
+/-- Besov-L∞ embedding with logarithmic factor
+    
+    Theorem (Kozono-Taniuchi type): The Besov norm controls the L∞ norm
+    with a logarithmic correction factor depending on higher Sobolev norms.
+    
+    This embedding is crucial for the unified BKM framework, allowing us
+    to pass from Besov space estimates to L∞ estimates.
+    
+    Full proof requires:
+    1. Littlewood-Paley characterization of Besov spaces
+    2. Sobolev embedding theorems
+    3. Logarithmic interpolation inequalities
+    4. Sharp constants from harmonic analysis
+-/
 theorem besov_linfty_embedding {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [BesovSpace E] [SobolevSpace E 3] (ω u : E) :
   BesovSpace.besov_norm ω ≤ C_star * ‖ω‖ * (1 + log_plus (SobolevSpace.sobolev_norm u)) := by

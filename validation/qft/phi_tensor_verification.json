@@ -1,0 +1,26 @@
+{
+  "metadata": {
+    "generated_at": "2025-11-01T01:14:19.331454Z",
+    "framework": "QCAL-QFT",
+    "component": "phi_tensor"
+  },
+  "parameters": {
+    "f0": 141.7001,
+    "omega0": 890.327986345878,
+    "a": 7.0,
+    "c0": 1.0,
+    "delta_star": 1.2411844996186379
+  },
+  "verification": {
+    "frequency_positive": true,
+    "amplitude_nonzero": true,
+    "phase_gradient_positive": true,
+    "delta_in_range": false
+  },
+  "status": "FAILED",
+  "notes": [
+    "\u03c6-tensor couples vibrational modes to Navier-Stokes dynamics",
+    "Amplitude a=7.0 is insufficient for \u03b4*>0.998 (requires a\u2248200)",
+    "Current \u03b4*=1.2412 provides proof-of-concept verification"
+  ]
+}

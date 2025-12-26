@@ -47,8 +47,6 @@ theorem misalignment_bounded (S : (Fin 3 → ℝ) → (Fin 3 → ℝ) → ℝ)
                               (ω : (Fin 3 → ℝ) → (Fin 3 → ℝ)) 
                               (x : Fin 3 → ℝ) : 
   0 ≤ misalignment_defect S ω x ∧ misalignment_defect S ω x ≤ 2 := by
-  -- The misalignment defect is a normalized quantity
-  -- bounded between 0 (perfect alignment) and 2 (opposite directions)
   constructor
   · -- Lower bound: 0 ≤ δ
     -- δ = 1 - S/(||S|| ||ω||² + ε)
@@ -66,5 +64,17 @@ theorem misalignment_bounded (S : (Fin 3 → ℝ) → (Fin 3 → ℝ) → ℝ)
     -- Then δ = 1 - (-||S|| ||ω||²)/(||S|| ||ω||² + ε) ≈ 1 + 1 = 2
     unfold misalignment_defect
     norm_num
+  · -- Lower bound: misalignment_defect ≥ 0
+    -- Since misalignment_defect = 1 - (ratio), we need ratio ≤ 1
+    -- This follows from Cauchy-Schwarz inequality
+    rw [misalignment_defect]
+    apply sub_nonneg.mpr
+    -- The ratio (S x (ω x)) / (‖S x‖ * ‖ω x‖^2 + 1e-12) is bounded by algebraic inequalities
+    sorry  -- Full proof requires Cauchy-Schwarz and norm properties
+  · -- Upper bound: misalignment_defect ≤ 2
+    -- Since misalignment_defect = 1 - (ratio), we need ratio ≥ -1
+    -- The ratio is always ≥ -1 by triangle inequality
+    rw [misalignment_defect]
+    sorry  -- Full proof requires detailed analysis of the ratio bounds
 
 end NavierStokes
