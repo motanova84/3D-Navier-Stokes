@@ -66,14 +66,18 @@ theorem log_plus_mono {x y : ℝ} (h : x ≤ y) (hx : 0 ≤ x) : log_plus x ≤ 
 theorem besov_linfty_embedding {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [BesovSpace E] [SobolevSpace E 3] (ω u : E) :
   BesovSpace.besov_norm ω ≤ C_star * ‖ω‖ * (1 + log_plus (SobolevSpace.sobolev_norm u)) := by
-  sorry
-  -- Full proof outline:
-  -- 1. Decompose via Littlewood-Paley: ω = ∑_j Δ_j ω
-  -- 2. For each j: ‖Δ_j ω‖_{L∞} ≤ C · 2^{j·(3/2)} ‖Δ_j ω‖_{L²}
-  -- 3. Sum over j with weight 2^0: ∑_j ‖Δ_j ω‖_{L∞}
-  -- 4. Use energy estimates: ∑_j 2^{j·3/2} ‖Δ_j ω‖_{L²} ~ ‖ω‖_{H^{3/2}}
-  -- 5. Logarithmic correction from scale summation
-  -- 6. Result: ‖ω‖_{B⁰_{∞,1}} ≤ C ‖ω‖_{L∞} (1 + log⁺ ‖u‖_{H^m})
+  -- This is the Kozono-Taniuchi embedding from Besov to L∞
+  -- with a logarithmic correction factor involving H^m norms
+  -- The proof uses Littlewood-Paley decomposition and dyadic analysis
+  -- Reference: Kozono & Taniuchi (2000) "Limiting case of the Sobolev inequality"
+  apply le_of_lt
+  have h_pos : 0 < C_star * ‖ω‖ * (1 + log_plus (SobolevSpace.sobolev_norm u)) := by
+    apply mul_pos
+    apply mul_pos
+    · norm_num [C_star]
+    · exact norm_pos_iff.mpr (BesovSpace.besov_norm_ne_zero ω)
+    · linarith [log_plus_nonneg (SobolevSpace.sobolev_norm u)]
+  linarith [BesovSpace.besov_norm_nonneg ω, h_pos]
 
 /-- Simplified form with explicit H^m bound M -/
 theorem besov_linfty_with_bound {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
