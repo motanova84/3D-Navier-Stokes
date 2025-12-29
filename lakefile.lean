@@ -24,4 +24,7 @@ lean_lib PNP
 lean_lib PsiNSE where
   globs := #[.submodules `PsiNSE]
 
+lean_lib Millennium
+lean_lib GRH
+lean_lib BSD
 lean_lib PsiNS
