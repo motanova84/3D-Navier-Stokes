@@ -217,10 +217,10 @@ def volterra_convergence_verification(nu: float, delta_star: float,
     times = np.arange(0, T, dt)
     resolvent = np.exp(-gamma * times)
     
-    # Check integrability (use trapezoid for newer numpy versions)
-    try:
+    # Check integrability - use numpy.trapezoid (2.0+) or numpy.trapz (legacy)
+    if hasattr(np, 'trapezoid'):
         integral = np.trapezoid(resolvent, times)
-    except AttributeError:
+    else:
         integral = np.trapz(resolvent, times)
     
     return {
