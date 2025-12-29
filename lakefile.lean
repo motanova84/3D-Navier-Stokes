@@ -27,3 +27,4 @@ lean_lib PsiNSE where
 lean_lib Millennium
 lean_lib GRH
 lean_lib BSD
+lean_lib PsiNS
