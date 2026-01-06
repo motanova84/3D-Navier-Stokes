@@ -87,16 +87,19 @@ Todas las dependencias son bibliotecas científicas bien establecidas:
 # 1. Verificar versión de Python
 python --version  # Debe ser 3.9+
 
-# 2. Instalar dependencias exactas
-pip install -r ENV.lock
+# 2. Instalar dependencias
+pip install -r requirements.txt
 
-# 3. Verificar Lean toolchain
+# 3. Verificar entorno
+bash Scripts/verify_environment.sh
+
+# 4. Verificar Lean toolchain
 cat lean-toolchain  # leanprover/lean4:v4.25.0-rc2
 
-# 4. Verificar dependencias Lean
+# 5. Verificar dependencias Lean
 lake update && lake build
 
-# 5. Ejecutar tests de regresión
+# 6. Ejecutar tests de regresión
 bash Scripts/run_regression_tests.sh --strict
 ```
 

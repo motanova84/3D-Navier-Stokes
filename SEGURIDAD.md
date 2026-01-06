@@ -400,13 +400,19 @@ permissions:
    python -m venv venv
    source venv/bin/activate
    
-   # Instalar desde ENV.lock
-   pip install -r ENV.lock
+   # Instalar dependencias
+   pip install -r requirements.txt
+   
+   # Verificar entorno
+   bash Scripts/verify_environment.sh
    ```
 
 2. **Verificación de Integridad**
    ```bash
-   # Verificar checksums
+   # Verificar entorno completo
+   bash Scripts/verify_environment.sh
+   
+   # Verificar checksums (opcional)
    shasum -a 256 -c ENV.lock.sha256
    
    # Verificar versión de Lean
@@ -437,8 +443,9 @@ permissions:
    # Actualizar requirements
    pip freeze > requirements.txt
    
-   # Actualizar ENV.lock
-   pip freeze | grep -E "(numpy|scipy|matplotlib|PyPDF2|sympy|psutil)" > ENV.lock
+   # Actualizar ENV.lock (mantener formato de documentación)
+   # Editar manualmente ENV.lock con las nuevas versiones
+   # y ejecutar verify_environment.sh para validar
    
    # Actualizar Lake
    lake update
