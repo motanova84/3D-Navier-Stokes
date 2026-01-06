@@ -1484,6 +1484,14 @@ docker-compose up lean4-builder
 - **[QCAL_PARAMETERS.md](Documentation/QCAL_PARAMETERS.md)**: Parameter specifications and analysis
 - **[MATHEMATICAL_APPENDICES.md](Documentation/MATHEMATICAL_APPENDICES.md)**: Technical appendices A-F
 
+### Security and Reproducibility
+
+- **[SEGURIDAD.md](SEGURIDAD.md)**: 🔒 **Documentación completa de seguridad** (español) - Security analysis, best practices, CI/CD
+- **[RESUMEN_DE_SEGURIDAD.md](RESUMEN_DE_SEGURIDAD.md)**: 📋 **Resumen ejecutivo de seguridad** (español) - Security summary and verification status
+- **[SECURITY_SUMMARY.md](SECURITY_SUMMARY.md)**: Security summary (English)
+- **[ENV.lock](ENV.lock)**: 🔐 **Environment lock file** - Exact dependency versions for reproducibility
+- **[Scripts/verify_environment.sh](Scripts/verify_environment.sh)**: ✅ **Environment verification script** - Validate environment integrity
+
 ### Lean Formalization
 
 The Lean 4 formalization provides rigorous formal verification of the mathematical framework. For detailed information about:
@@ -1576,6 +1584,29 @@ conda activate navier-stokes-qcal
 # Despliegue automático
 ./Scripts/deploy.sh
 ```
+
+### Verify Environment Reproducibility
+
+To ensure your environment matches the locked dependencies for reproducible results:
+
+```bash
+# Verify environment integrity
+bash Scripts/verify_environment.sh
+
+# Install dependencies (use requirements.txt for installation)
+pip install -r requirements.txt
+
+# Re-verify after installation
+bash Scripts/verify_environment.sh
+```
+
+This ensures:
+- ✅ Python version matches requirements (3.9+)
+- ✅ All packages match exact versions from ENV.lock
+- ✅ Lean toolchain is correctly configured
+- ✅ Results will be reproducible across different systems
+
+**Note**: ENV.lock documents the exact dependency versions for verification purposes. For installation, use `requirements.txt`.
 
 ## Current Status
 - Lean4 Formalization (40%)
