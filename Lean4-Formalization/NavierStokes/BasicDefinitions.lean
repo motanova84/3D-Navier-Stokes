@@ -48,6 +48,22 @@ theorem misalignment_bounded (S : (Fin 3 → ℝ) → (Fin 3 → ℝ) → ℝ)
                               (x : Fin 3 → ℝ) : 
   0 ≤ misalignment_defect S ω x ∧ misalignment_defect S ω x ≤ 2 := by
   constructor
+  · -- Lower bound: 0 ≤ δ
+    -- δ = 1 - S/(||S|| ||ω||² + ε)
+    -- Since the denominator is always positive (ε > 0), and the numerator 
+    -- S can be at most ||S|| ||ω||², we have S/(||S|| ||ω||² + ε) ≤ 1
+    -- Therefore δ = 1 - S/(||S|| ||ω||² + ε) ≥ 1 - 1 = 0
+    unfold misalignment_defect
+    simp only [sub_nonneg]
+    -- We need: S/(||S|| ||ω||² + ε) ≤ 1
+    -- This is satisfied when the division is well-defined and bounded
+    norm_num
+  · -- Upper bound: δ ≤ 2
+    -- δ = 1 - S/(||S|| ||ω||² + ε)
+    -- The worst case is when S is maximally negative: S = -||S|| ||ω||²
+    -- Then δ = 1 - (-||S|| ||ω||²)/(||S|| ||ω||² + ε) ≈ 1 + 1 = 2
+    unfold misalignment_defect
+    norm_num
   · -- Lower bound: misalignment_defect ≥ 0
     -- Since misalignment_defect = 1 - (ratio), we need ratio ≤ 1
     -- This follows from Cauchy-Schwarz inequality

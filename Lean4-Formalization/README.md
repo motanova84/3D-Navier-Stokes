@@ -51,6 +51,8 @@ QCAL Framework:
 - **MisalignmentDefect.lean**: δ* > 0 persistence
 - **VibrationalRegularization.lean**: Quantum coherence field
 - **FrequencyEmergence/**: Natural frequency f₀ emergence
+- **QCAL.Frequency**: Fundamental frequency definitions (f₀, ω₀, ω∞)
+- **QCAL.NoeticField**: Noetic field theory and quantum-classical coupling
 
 Regularity Theory:
 
@@ -75,6 +77,8 @@ Foundation:
 - **GlobalRegularity/**: Global regularity via QCAL
 - **FrequencyEmergence/**: Frequency-based analysis
 - **DyadicDamping/**: Frequency-specific damping
+- **PsiNS_GCV.lean**: Ψ-NS-GCV theory formalization (Field Ψ coherence)
+- **PsiNS_GCV_Tests.lean**: Test suite for PsiNS_GCV module
 
 ## Proof Architecture
 
