@@ -179,7 +179,7 @@ if [ $ERRORS -gt 0 ]; then
     echo -e "${RED}❌ VERIFICATION FAILED${NC}"
     echo ""
     echo "To fix missing packages, run:"
-    echo "  pip install -r ENV.lock"
+    echo "  pip install -r requirements.txt"
     echo ""
     exit 1
 elif [ $WARNINGS -gt 0 ]; then
@@ -187,7 +187,7 @@ elif [ $WARNINGS -gt 0 ]; then
     echo ""
     echo "Environment is functional but has version mismatches."
     echo "For exact reproducibility, run:"
-    echo "  pip install -r ENV.lock"
+    echo "  pip install -r requirements.txt"
     echo ""
     exit 0
 else

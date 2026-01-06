@@ -8,6 +8,10 @@ import unittest
 import os
 import sys
 
+# Required packages for the project (must match ENV.lock)
+REQUIRED_PACKAGES = ['numpy', 'scipy', 'matplotlib', 'sympy', 'psutil', 'PyPDF2']
+
+
 class TestSecurityDocumentation(unittest.TestCase):
     """Test cases for security and reproducibility documentation"""
     
@@ -30,8 +34,7 @@ class TestSecurityDocumentation(unittest.TestCase):
             content = f.read()
         
         # Check for required packages
-        required_packages = ['numpy', 'scipy', 'matplotlib', 'sympy', 'psutil', 'PyPDF2']
-        for package in required_packages:
+        for package in REQUIRED_PACKAGES:
             self.assertIn(
                 package,
                 content,

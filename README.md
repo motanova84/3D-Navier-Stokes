@@ -1593,8 +1593,8 @@ To ensure your environment matches the locked dependencies for reproducible resu
 # Verify environment integrity
 bash Scripts/verify_environment.sh
 
-# Install exact dependency versions
-pip install -r ENV.lock
+# Install dependencies (use requirements.txt for installation)
+pip install -r requirements.txt
 
 # Re-verify after installation
 bash Scripts/verify_environment.sh
@@ -1605,6 +1605,8 @@ This ensures:
 - ✅ All packages match exact versions from ENV.lock
 - ✅ Lean toolchain is correctly configured
 - ✅ Results will be reproducible across different systems
+
+**Note**: ENV.lock documents the exact dependency versions for verification purposes. For installation, use `requirements.txt`.
 
 ## Current Status
 - Lean4 Formalization (40%)
