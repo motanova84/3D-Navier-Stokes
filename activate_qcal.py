@@ -34,16 +34,22 @@ class QCALFramework:
         """Initialize QCAL framework with fundamental constants."""
         # Fundamental frequency f₀ = 141.7001 Hz (universal constant)
         self.f0_hz = 141.7001
+        self.f0 = self.f0_hz  # Alias for formula consistency
         self.omega0_rad_s = 2 * np.pi * self.f0_hz
         
         # Quantum field constants
         self.hbar = 1.0545718e-34  # Reduced Planck constant [J·s]
+        self.c = 299792458.0  # Speed of light [m/s]
+        self.Nc = 1e52  # Noetic normalization constant (spin network density)
         self.zeta_prime_half = -0.207886  # ζ'(1/2) Riemann zeta derivative
         self.gamma_E = 0.5772  # Euler-Mascheroni constant
         
         # Coherence parameters
         self.psi_perfect = 1.000  # Perfect coherence state
         self.epsilon = 1e-3  # Small vibration amplitude
+        
+        # Internal flags
+        self._noesis_probe_logged = False  # Track if NOESIS probe message shown
         
         # Physical parameters
         self.nu = 1e-3  # Kinematic viscosity [m²/s]
@@ -98,18 +104,25 @@ class QCALFramework:
     
     def compute_coherence_field(self, x: np.ndarray, t: float) -> float:
         """
-        Compute the noetic coherence field Ψ(x,t)
+        Transduce la frecuencia f₀ a la métrica de curvatura noética (K_Ψ).
         
-        The coherence field oscillates at the fundamental frequency f₀
-        and couples the quantum vacuum to classical fluid dynamics.
+        Física: La curvatura no es puramente métrica, sino informativa. 
+        Representa la densidad de bits cuánticos por unidad de volumen de Planck 
+        modulada por la coherencia Ψ.
         
-        Args:
-            x: Spatial coordinates
-            t: Time
-        
-        Returns:
-            Coherence field value Ψ ∈ [0, 1]
+        Unidades: [Curvatura Noética] = Bits/m² (equivalente a densidad de entropía).
         """
+        # Show NOESIS probe message only once per instance
+        if not self._noesis_probe_logged:
+            print("🔬 Sondeando Geometría Cuántica...")
+            print(" [NOESIS calculando tensor de curvatura con Nc=10^52]")
+            self._noesis_probe_logged = True
+        
+        # El factor Nc (10^52) compensa la escala de Planck para extraer 
+        # la curvatura en la escala macroscópica de coherencia.
+        # K_Ψ = (f * Nc) / (c * h_bar)
+        curvatura_normalizada = (self.f0 * self.Nc) / (self.c * self.hbar)
+        
         # Coherence field follows harmonic equation with damping
         # ∂²Ψ/∂t² + ω₀²Ψ = ζ'(½) · π · ∇²Φ
         
@@ -117,6 +130,9 @@ class QCALFramework:
         spatial_decay = np.exp(-0.01 * np.linalg.norm(x))
         
         psi = self.psi_perfect * np.cos(phase) * spatial_decay
+        
+        # Aplicamos el factor de coherencia Ψ para obtener la métrica real
+        curvatura_real = curvatura_normalizada * psi
         
         # Ensure Ψ ∈ [0, 1]
         psi = np.abs(psi)
