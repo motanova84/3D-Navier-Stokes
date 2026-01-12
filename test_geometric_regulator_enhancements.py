@@ -7,23 +7,31 @@ Tests:
 2. Infinite Seal (Echo Effect)
 3. Quantum Clock (Phase Transduction)
 4. Integrated System
+
+Note: This module uses creative terminology from the problem statement
+(e.g., "ontological firewall", "quantum clock") as metaphorical representations
+of mathematical regularization techniques applied to the Navier-Stokes equations.
 """
 
 import sys
 import os
 import numpy as np
 
-# Set matplotlib backend before importing matplotlib
-import matplotlib
-matplotlib.use('Agg')
+# Add scripts directory to path if not already in path
+_SCRIPTS_DIR = os.path.join(os.path.dirname(__file__), 'scripts', 'geometrías_reguladoras')
+if _SCRIPTS_DIR not in sys.path:
+    sys.path.insert(0, _SCRIPTS_DIR)
 
-# Add scripts directory to path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'scripts', 'geometrías_reguladoras'))
-
-from singularity_elimination import SingularityEliminator
-from infinite_seal import InfiniteSeal
-from quantum_clock import QuantumClock
-from integrated_geometric_regulator import IntegratedGeometricRegulator
+# Import modules (will be available after path modification)
+try:
+    from singularity_elimination import SingularityEliminator
+    from infinite_seal import InfiniteSeal
+    from quantum_clock import QuantumClock
+    from integrated_geometric_regulator import IntegratedGeometricRegulator
+except ImportError as e:
+    print(f"Error importing modules: {e}")
+    print(f"Please ensure scripts are in: {_SCRIPTS_DIR}")
+    sys.exit(1)
 
 
 def test_singularity_eliminator():
