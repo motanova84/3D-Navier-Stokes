@@ -1501,11 +1501,11 @@ The Lean 4 formalization provides rigorous formal verification of the mathematic
 - **Automated dependency analysis**: Use `tools/generate_lean_dependency_graph.py`
 
 **Quick Overview**:
-- 📁 18+ Lean modules organized in 5 layers (Foundation → Core Theory → Analysis → Closure → Main Results)
-- ✅ 18 theorems proven
+- 📁 19 Lean modules organized in 5 layers (Foundation → Core Theory → Analysis → Closure → Main Results)
+- ✅ 18+ theorems proven
 - ⚠️ 27 axioms requiring proof
 - 📊 ~40% completion by theorem count
-- 🎯 Critical path: BasicDefinitions → UniformConstants → DyadicRiccati → GlobalRiccati → BKMClosure → Theorem13_7
+- 🎯 Critical path: BasicDefinitions → UniformConstants → DyadicRiccati → GlobalRiccati → BKMClosure → Step5 → Theorem13_7
 
 #### 🆕 Step 5: Universal Smoothness Theorem
 

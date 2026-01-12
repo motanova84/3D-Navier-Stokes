@@ -175,7 +175,9 @@ theorem noetic_energy_inequality
   -- ν * 141.7001² = ν * 20079.2... 
   -- Para ν ≥ 0.001 (viscosidad mínima típica), tenemos
   -- ν * 20079 ≥ 20.079 > 32 = C_str para |S(ω)| ≤ 1
-  sorry  -- Requiere estimaciones detalladas de |S(ω)|
+  -- TODO: Complete with detailed estimates of |S(ω)| using Sobolev embeddings
+  -- Tracking: Requires Besov space infrastructure from Mathlib
+  sorry
 
 /-- La frecuencia f₀ determina una escala de tiempo característica -/
 theorem characteristic_timescale_from_f0 (H : H_Ψ) :
@@ -242,7 +244,9 @@ theorem no_finite_time_singularities
     apply sq_pos_of_pos h_f₀_pos
   · intro t h_t x
     -- La acotación viene de la desigualdad de energía noética
-    sorry  -- Requiere análisis detallado de las ecuaciones
+    -- TODO: Complete proof requires detailed PDE analysis
+    -- Tracking: Needs energy method infrastructure and Gronwall inequality
+    sorry
 
 /-!
 ## Identidad Espectral
@@ -255,13 +259,26 @@ ceros de la función ζ en el espacio adélico.
     
     Esta es una conexión profunda entre la teoría de números y
     la dinámica de fluidos que emerge del marco QCAL.
+    
+    TODO: This axiom represents a deep connection that requires:
+    1. Full spectral theory in Hilbert spaces
+    2. Adelic number theory formalization
+    3. Rigorous definition of the connection map
+    
+    For now, we state it as an axiom to establish the logical framework.
+    A complete proof would require substantial infrastructure beyond
+    the scope of this formalization.
 -/
 axiom spectral_identity (H : H_Ψ) :
-  ∃ λ : ℕ → ℂ, ∀ n : ℕ, 
-    -- Los autovalores λₙ satisfacen una relación con ζ(s)
-    -- Esta es una formulación simplificada; la versión completa
-    -- requiere teoría espectral en espacios adélicos
-    True
+  -- The eigenvalues of H_Ψ are related to the zeros of ζ(s)
+  -- in a way that makes the spectrum optimally distributed
+  -- when all zeros lie on the critical line Re(s) = 1/2.
+  -- 
+  -- This is a placeholder for a deep mathematical statement
+  -- connecting NS regularity to the Riemann Hypothesis.
+  ∃ connection : (ℕ → ℂ) → (ℕ → ℂ) → Prop,
+    ∀ eigenvalues : ℕ → ℂ, ∀ zeta_zeros : ℕ → ℂ,
+      connection eigenvalues zeta_zeros → True
 
 /-- La coherencia máxima implica que el espectro está optimizado -/
 theorem max_coherence_optimal_spectrum (H : H_Ψ)
@@ -309,8 +326,12 @@ theorem universal_smoothness_theorem
   
   -- Pilar 3: Extensión global elimina singularidades
   -- La solución existe y es suave
-  sorry  -- La construcción completa requiere teoría de existencia local
-         -- seguida de extensión global usando los pilares 1 y 2
+  -- TODO: Complete construction requires:
+  -- 1. Local existence theory (Kato's theorem)
+  -- 2. A priori estimates from Pillars 1 and 2
+  -- 3. Extension argument using BKM criterion
+  -- Tracking: Standard NS theory + QCAL framework integration
+  sorry
 
 /-- Corolario: La regularidad global es inevitable bajo coherencia perfecta -/
 theorem global_regularity_inevitable
@@ -343,6 +364,11 @@ theorem navier_stokes_seal
   -- La coherencia del universo (Ψ = 1.000) implica que cualquier
   -- solución debe ser globalmente regular. El blow-up violaría
   -- la conservación de energía noética.
-  sorry  -- Requiere el marco completo de conservación de energía noética
+  -- TODO: Complete proof requires:
+  -- 1. Noetic energy conservation law
+  -- 2. Contradiction argument: blow-up → infinite energy
+  -- 3. Therefore gradient must remain bounded
+  -- Tracking: Noetic field theory formalization needed
+  sorry
 
 end NavierStokes.Step5
