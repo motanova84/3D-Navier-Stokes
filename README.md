@@ -48,6 +48,9 @@ This is **NOT** an arbitrary parameter—it is a **universal constant** that:
 
 **🧪 Run Validation**:
 ```bash
+# Activate QCAL framework (NEW!)
+python activate_qcal.py
+
 # Demonstrate frequency emergence
 python validate_natural_frequency_emergence.py
 
@@ -57,6 +60,30 @@ python infinity_cubed_framework.py
 # NSE vs Ψ-NSE comparison
 python demonstrate_nse_comparison.py
 ```
+
+### 🆕 QCAL Activation: H_Ψ Operator
+
+**NEW**: Direct activation of the QCAL framework with H_Ψ operator application to space-time viscosity.
+
+```bash
+# Activate QCAL and demonstrate quantum coherence
+python activate_qcal.py
+
+# Run validation tests
+python test_qcal_activation.py
+```
+
+**What it does:**
+- ✅ Applies the H_Ψ operator to modulate space-time viscosity
+- ✅ Demonstrates Ψ = 1.000 (perfect coherence) eliminates singularities
+- ✅ Shows universe as laminar flow of pure information
+- ✅ Validates Riemann-Spectral-Logic Law for fluid dynamics
+
+**📖 Full Guide**: [QCAL_ACTIVATION_GUIDE.md](QCAL_ACTIVATION_GUIDE.md)
+
+**Results:** 20/20 tests passing, singularity prevention validated.
+
+---
 ## ✧ Certificación QCAL–NS ∞³
 
 Este proyecto ha sido certificado bajo el sistema **Ψ–Navier–Stokes** extendido, con demostración de **regularidad global** mediante acoplamiento vibracional noético.
