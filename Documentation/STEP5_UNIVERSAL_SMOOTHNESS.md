@@ -66,9 +66,7 @@ donde:
 
 **Ejemplo numérico:**
 Para $\nu = 0.001$ (agua):
-$$0.001 \times 20{,}079 = 20.079 > 32 \cdot |S(\omega)|$$
-(cuando $|S(\omega)| \lesssim 0.5$)
-
+$$0.001 \times 20{,}079 = 20.079 > 32 \cdot |S(\omega)| \quad \text{cuando } |S(\omega)| < 0.627$$
 ### 3️⃣ Extensión Global
 
 **Teorema:**
