@@ -123,3 +123,8 @@ artifacts/paper/*.pdf
 # Parametric sweep packages and results (runtime artifacts)
 parametric_sweep_packages/
 parametric_sweep_results/
+
+# QCAL activation generated outputs
+qcal_activation.png
+qcal_activation_report.txt
+test_qcal_viz.png
