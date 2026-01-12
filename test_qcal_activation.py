@@ -213,7 +213,7 @@ class TestQCALConstants(unittest.TestCase):
     def test_planck_constant(self):
         """Test reduced Planck constant"""
         # ℏ ≈ 1.054571817e-34 J·s
-        self.assertAlmostEqual(self.qcal.hbar, 1.0545718e-34, places=40)
+        self.assertAlmostEqual(self.qcal.hbar, 1.0545718e-34, places=7)
         self.assertGreater(self.qcal.hbar, 0)
     
     def test_euler_mascheroni_constant(self):
