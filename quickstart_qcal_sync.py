@@ -105,8 +105,14 @@ def main():
     
     print("\n7️⃣  Exporting State")
     print("-" * 80)
-    protocol.export_sync_state('/tmp/quickstart_sync_state.json')
-    print(f"   State exported to /tmp/quickstart_sync_state.json")
+    
+    # Use tempfile for cross-platform compatibility
+    import tempfile
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+        export_path = f.name
+    
+    protocol.export_sync_state(export_path)
+    print(f"   State exported to {export_path}")
     
     print("\n" + "="*80)
     print("  ✅ Quick Start Complete!")

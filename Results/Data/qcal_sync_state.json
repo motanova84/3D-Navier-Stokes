@@ -1,14 +1,14 @@
 {
-  "timestamp": "2026-01-14T02:33:34.804098",
+  "timestamp": "2026-01-14T02:39:20.797843",
   "unification_factor": 0.14285714285714285,
   "coherence_score": 1.0,
   "turbulence": 0.0,
   "psix_pulses": 0,
   "token_scarcity": 1.0,
   "validated_repos": [
-    "contracts/PSIX",
+    "src/oscillators",
     "formal/PsiNSE",
-    "src/oscillators"
+    "contracts/PSIX"
   ],
   "constants": {
     "f0": 141.7001,

@@ -17,6 +17,7 @@ import unittest
 import numpy as np
 import json
 import os
+import tempfile
 from qcal_sync_protocol import (
     QCALSyncProtocol, 
     ProtocolConstants, 
@@ -332,7 +333,10 @@ class TestStateExport(unittest.TestCase):
     
     def setUp(self):
         self.protocol = QCALSyncProtocol()
-        self.test_file = "/tmp/test_qcal_sync_state.json"
+        # Use tempfile for cross-platform compatibility
+        self.test_file_handle = tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False)
+        self.test_file = self.test_file_handle.name
+        self.test_file_handle.close()
     
     def tearDown(self):
         if os.path.exists(self.test_file):

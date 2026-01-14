@@ -399,10 +399,17 @@ def main():
     axes[2].grid(True, alpha=0.3)
     
     plt.tight_layout()
+    
+    # Ensure directory exists
+    import os
+    os.makedirs('Results/Figures', exist_ok=True)
+    
     plt.savefig('Results/Figures/qcal_sync_protocol.png', dpi=150, bbox_inches='tight')
     print(f"\n📊 Visualización guardada en Results/Figures/qcal_sync_protocol.png")
     
     # Export state
+    import os
+    os.makedirs('Results/Data', exist_ok=True)
     protocol.export_sync_state('Results/Data/qcal_sync_state.json')
     
     print("\n🔮 Consecuencia del Protocolo:")
