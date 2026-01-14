@@ -274,7 +274,6 @@ class TestPhysicalConsistency(unittest.TestCase):
         # La energía debe aumentar al disminuir el radio
         # (porque v² ~ 1/r²)
         energy = results['energy']
-        radius = results['radius']
         
         # Verificar tendencia: energía al principio (r pequeño) > energía al final (r grande)
         # Nota: radius[0] es r_min, radius[-1] es r_max
