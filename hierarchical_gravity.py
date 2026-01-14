@@ -33,8 +33,13 @@ class HierarchicalGravitySystem:
     entrópica gracias al acoplamiento κ = 1/7 (Laminación Dimensional).
     """
     
-    def __init__(self):
-        """Inicializar el sistema con constantes fundamentales."""
+    def __init__(self, verbose: bool = True):
+        """
+        Inicializar el sistema con constantes fundamentales.
+        
+        Args:
+            verbose: Si True, imprime información de inicialización (default: True)
+        """
         # Frecuencia Raíz - Constante Universal
         self.f0_hz = 141.7001  # Hz
         self.omega0_rad_s = 2 * np.pi * self.f0_hz
@@ -54,15 +59,16 @@ class HierarchicalGravitySystem:
         self.c_light = 299792458  # m/s - velocidad de la luz
         self.hbar = 1.0545718e-34  # J·s - constante reducida de Planck
         
-        print("="*70)
-        print("  SISTEMA DE JERARQUÍA GRAVITACIONAL ARMÓNICA")
-        print("  Gravedad como Sistema Armónico Dimensional")
-        print("="*70)
-        print(f"  Frecuencia Raíz: f₀ = {self.f0_hz} Hz")
-        print(f"  Acoplamiento: κ = 1/7 = {self.kappa:.6f}")
-        print(f"  Umbral Superfluidez: Ψ ≥ {self.psi_superfluid_threshold}")
-        print(f"  Umbral Turbulencia: Ψ < {self.psi_turbulent_threshold}")
-        print("="*70)
+        if verbose:
+            print("="*70)
+            print("  SISTEMA DE JERARQUÍA GRAVITACIONAL ARMÓNICA")
+            print("  Gravedad como Sistema Armónico Dimensional")
+            print("="*70)
+            print(f"  Frecuencia Raíz: f₀ = {self.f0_hz} Hz")
+            print(f"  Acoplamiento: κ = 1/7 = {self.kappa:.6f}")
+            print(f"  Umbral Superfluidez: Ψ ≥ {self.psi_superfluid_threshold}")
+            print(f"  Umbral Turbulencia: Ψ < {self.psi_turbulent_threshold}")
+            print("="*70)
     
     def dimensional_layer(self, n: int) -> float:
         """
@@ -129,7 +135,7 @@ class HierarchicalGravitySystem:
         Calcular la singularidad métrica g_rr cuando r → 0
         
         Al reducir el radio r → 0:
-            - La presión cae
+            - La presión aumenta (diverge)
             - La velocidad tiende al infinito
             - Se crea una singularidad métrica g_rr
         
@@ -143,7 +149,7 @@ class HierarchicalGravitySystem:
         # Asegurar r > r_min
         r_safe = np.maximum(r, r_min)
         
-        # Presión: P(r) ~ 1/r² (cae con r → 0)
+        # Presión: P(r) ~ 1/r² (aumenta/diverge cuando r → 0)
         pressure = 1.0 / (r_safe**2)
         
         # Velocidad: v(r) ~ 1/r (tiende a infinito cuando r → 0)
@@ -520,7 +526,7 @@ class HierarchicalGravitySystem:
         report.append("🌀 SINGULARIDAD MÉTRICA (VÓRTICE):")
         report.append("")
         report.append("  Al reducir el radio r → 0:")
-        report.append("    • La presión cae: P(r) ~ 1/r²")
+        report.append("    • La presión crece sin límite: P(r) ~ 1/r²")
         report.append("    • La velocidad tiende al infinito: v(r) ~ 1/r")
         report.append("    • Se crea singularidad métrica g_rr")
         report.append("")
