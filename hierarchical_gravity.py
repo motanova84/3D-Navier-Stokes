@@ -17,7 +17,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
-from typing import Dict, Tuple, Optional, List
+from typing import Dict, Tuple
 import warnings
 
 # Epsilon para estabilidad numérica en singularidades
