@@ -104,7 +104,7 @@ Al reducir el radio radial `r → 0` en el vórtice, se observan tres fenómenos
 P(r) ~ 1/r²
 ```
 
-La presión cae dramáticamente al acercarse al centro del vórtice, creando un gradiente de presión que acelera el flujo.
+La presión aumenta (diverge) dramáticamente al acercarse al centro del vórtice, creando un gradiente de presión que acelera el flujo.
 
 #### 2. Velocidad Infinita
 
