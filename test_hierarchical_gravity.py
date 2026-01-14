@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 """
 Tests para el Sistema de Jerarquía Gravitacional Armónica
 """

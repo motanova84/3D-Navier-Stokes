@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 """
 ═══════════════════════════════════════════════════════════════════════════
     SISTEMA DE JERARQUÍA GRAVITACIONAL ARMÓNICA
@@ -20,8 +20,9 @@ from matplotlib.gridspec import GridSpec
 from typing import Dict, Tuple, Optional, List
 import warnings
 
-# Suprimir advertencias de división por cero
-warnings.filterwarnings('ignore', category=RuntimeWarning)
+# Epsilon para estabilidad numérica en singularidades
+# Valor elegido para evitar división por cero manteniendo precisión física
+NUMERICAL_EPSILON = 1e-10
 
 
 class HierarchicalGravitySystem:
@@ -97,12 +98,7 @@ class HierarchicalGravitySystem:
         if psi <= 0:
             return np.inf  # Resistencia infinita
         
-        denominator = self.kappa * psi
-        
-        if denominator == 0:
-            return np.inf
-        
-        return self.nu_base / denominator
+        return self.nu_base / (self.kappa * psi)
     
     def computational_complexity_state(self, psi: float) -> str:
         """
@@ -259,7 +255,7 @@ class HierarchicalGravitySystem:
         energy = 0.5 * velocity**2
         
         # Curvatura del espacio-tiempo: R ~ 1/r³
-        curvature = 1.0 / (r**3 + 1e-10)
+        curvature = 1.0 / (r**3 + NUMERICAL_EPSILON)
         
         return {
             'radius': r,
