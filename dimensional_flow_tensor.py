@@ -24,14 +24,22 @@ from typing import Tuple, Optional, List, Dict
 from dataclasses import dataclass
 import warnings
 
+# Physical Constants
+EPSILON_REGULARIZATION = 1e-10  # Regularization to prevent mathematical singularities
+KAPPA_DIMENSIONAL_COUPLING = 1/7  # The 1/7 factor for dimensional harmony
+SUPERFLUID_COHERENCE_THRESHOLD = 0.95  # Minimum coherence for superfluidity
+SUPERFLUID_UNIFORMITY_THRESHOLD = 0.05  # Maximum coherence std for superfluidity
+
 @dataclass
 class DimensionalFlowConfig:
     """Configuration for dimensional flow tensor system."""
     f0: float = 141.7001  # Root frequency (Hz)
     num_layers: int = 7   # Number of gravity layers
-    kappa: float = 1/7    # Dimensional coupling factor (1/7)
+    kappa: float = KAPPA_DIMENSIONAL_COUPLING  # Dimensional coupling factor (1/7)
     viscosity_base: float = 1e-3  # Base kinematic viscosity
     geometry_type: str = "calabi_yau"  # Geometric constraint type
+    superfluid_threshold: float = SUPERFLUID_COHERENCE_THRESHOLD  # Superfluidity threshold
+    uniformity_threshold: float = SUPERFLUID_UNIFORMITY_THRESHOLD  # Coherence uniformity
     
 
 class DimensionalFlowTensor:
@@ -96,6 +104,7 @@ class DimensionalFlowTensor:
         # Modulation by coherence field Ψ
         # When Ψ = 1 (perfect coherence), coupling → 0 (superfluid)
         # When Ψ = 0 (decoherence), coupling → 1 (turbulent)
+        # Physical interpretation: High coherence allows frictionless layer sliding
         coupling = base_coupling * (1.0 - psi_coherence)
         
         return coupling
@@ -124,8 +133,7 @@ class DimensionalFlowTensor:
         # When Ψ = 1, ν_eff is minimal (laminar flow)
         # When Ψ → 0, ν_eff → ∞ (turbulent flow)
         
-        epsilon = 1e-10  # Prevent division by zero
-        nu_eff = nu_base / (self.kappa * (coherence + epsilon))
+        nu_eff = nu_base / (self.kappa * (coherence + EPSILON_REGULARIZATION))
         
         return nu_eff
     
@@ -151,8 +159,9 @@ class DimensionalFlowTensor:
         # Check coherence uniformity
         coherence_std = np.std(psi_field)
         
-        # Superfluidity threshold: Ψ_mean > 0.95 and σ(Ψ) < 0.05
-        is_superfluid = (mean_coherence > 0.95) and (coherence_std < 0.05)
+        # Superfluidity threshold: Ψ_mean > threshold and σ(Ψ) < uniformity
+        is_superfluid = (mean_coherence > self.config.superfluid_threshold) and \
+                       (coherence_std < self.config.uniformity_threshold)
         
         # P=NP resolution metric
         # When superfluid: P = NP (polynomial = non-polynomial)
@@ -231,6 +240,13 @@ class VortexQuantumBridge:
         - Pressure → 0 (minimum)
         - This creates quantum tunnel for interdimensional jumps
         
+        Physical Interpretation:
+        The regularization parameter ε prevents true mathematical singularity
+        while preserving the physical behavior near r=0. In reality, quantum
+        effects and molecular structure provide natural cutoffs at small scales.
+        The vortex core becomes a region of extreme spacetime curvature where
+        interdimensional tunneling becomes possible.
+        
         Args:
             r: Radial distance from core
             theta: Angular position
@@ -240,11 +256,9 @@ class VortexQuantumBridge:
             v_theta: Tangential velocity
             p: Pressure field
         """
-        epsilon = 1e-10  # Regularization to prevent true singularity
-        
-        # Tangential velocity: v_θ = Γ/(2πr)
-        # At r → 0, v → ∞ (quantum bridge opens)
-        v_theta = circulation / (2 * np.pi * (r + epsilon))
+        # Regularization to prevent true singularity while maintaining physics
+        # This represents quantum/molecular scale cutoff in real fluids
+        v_theta = circulation / (2 * np.pi * (r + EPSILON_REGULARIZATION))
         
         # Pressure from Bernoulli: p + ½ρv² = const
         # At core: v → ∞ ⟹ p → -∞ (creates tunnel)
@@ -274,8 +288,7 @@ class VortexQuantumBridge:
         
         # Tunnel metric: g_rr ∝ 1/(r² + ε)
         # As r → 0, curvature → ∞ (tunnel throat)
-        epsilon = 1e-10
-        g_rr = 1.0 / (r**2 + epsilon)
+        g_rr = 1.0 / (r**2 + EPSILON_REGULARIZATION)
         
         # Modulated by resonance
         tunnel_metric = g_rr * (1.0 + 0.5 * resonance)
