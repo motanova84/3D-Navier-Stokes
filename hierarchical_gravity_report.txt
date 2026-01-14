@@ -35,7 +35,7 @@
 🌀 SINGULARIDAD MÉTRICA (VÓRTICE):
 
   Al reducir el radio r → 0:
-    • La presión cae: P(r) ~ 1/r²
+    • La presión crece sin límite: P(r) ~ 1/r²
     • La velocidad tiende al infinito: v(r) ~ 1/r
     • Se crea singularidad métrica g_rr
 
