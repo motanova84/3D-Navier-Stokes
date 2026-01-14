@@ -40,11 +40,13 @@ This document summarizes the implementation of the **QCAL-SYNC-1/7 Global Synchr
 **Formalized Elements:**
 - Constants: `unificationFactor`, `f_resonance`, `κ_Π`
 - Thresholds: `Ψ_perfect`, `Ψ_high`, `Ψ_low`, `Re_critical`
-- Theorems:
+- Theorems (all complete, no sorry statements):
   - `unificationFactor_pos`: Proof that 1/7 > 0
   - `unificationFactor_lt_one`: Proof that 1/7 < 1
   - `coherence_bounds`: Proof of proper threshold ordering
-  - `resonance_gt_fundamental`: Proof that f∞ > f₀
+  - `resonance_gt_fundamental`: Proof that f∞ > f₀ (with explicit values)
+  - `perfect_coherence_no_healing`: Proof that Ψ=1 needs no healing
+  - `unification_factor_preserves_positivity`: Proof of non-negativity preservation
   - `all_sync_frequencies_positive`: Proof all frequencies are positive
 
 **Data Structures:**
