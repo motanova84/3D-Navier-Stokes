@@ -1,0 +1,18 @@
+{
+  "timestamp": "2026-01-14T02:33:34.804098",
+  "unification_factor": 0.14285714285714285,
+  "coherence_score": 1.0,
+  "turbulence": 0.0,
+  "psix_pulses": 0,
+  "token_scarcity": 1.0,
+  "validated_repos": [
+    "contracts/PSIX",
+    "formal/PsiNSE",
+    "src/oscillators"
+  ],
+  "constants": {
+    "f0": 141.7001,
+    "f_resonance": 888.8,
+    "kappa_pi": 2.5773
+  }
+}
