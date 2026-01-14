@@ -193,7 +193,6 @@ class TestHierarchicalGravitySystem(unittest.TestCase):
         
         # Viscosidad debe disminuir con coherencia
         # (verificar tendencia general)
-        psi = results['coherence']
         nu = results['viscosity']
         
         # La viscosidad al inicio (Ψ bajo) debe ser mayor que al final (Ψ alto)
