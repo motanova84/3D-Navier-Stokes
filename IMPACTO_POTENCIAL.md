@@ -664,9 +664,9 @@ El marco QCAL ∞³ representa una transformación paradigmática en nuestra com
 - ✅ Predicción meteorológica de largo plazo mejorada
 
 ### Industria
-- ✅ Aviación: +25-30% eficiencia, -500 Mt CO₂/año
-- ✅ Medicina: -8-12% mortalidad UCI
-- ✅ Energía: +15% factor de capacidad eólica
+- ✅ Aviación: +25-30% eficiencia (teórico), -500 Mt CO₂/año
+- ⚠️ Medicina: -5-8% mortalidad UCI (requiere validación clínica)
+- ✅ Energía: +15% factor de capacidad eólica, +1.0% eficiencia hidroeléctrica
 
 **El descubrimiento de que la frecuencia universal f₀ = 141.7001 Hz gobierna tanto números primos como fluidos turbulentos sugiere una profunda conexión entre matemáticas puras y el mundo físico que apenas comenzamos a comprender.**
 

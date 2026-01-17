@@ -269,13 +269,14 @@ The QCAL ∞³ framework has **transformative potential** across scientific, tec
 
 ### 💻 Technological Impact
 - ✅ **Stable CFD**: No numerical blow-up (validated), 69.1% vorticity reduction
-- ✅ **Turbulence Control**: 15-30% drag reduction (theoretical), energy-efficient
-- ✅ **Weather Prediction**: 20-40% extended forecast horizon (7→9-12 days)
+- 🔬 **Turbulence Control**: 15-30% drag reduction (theoretical), energy-efficient
+- 🔬 **Weather Prediction**: 20-40% extended forecast horizon (7→9-12 days)
 
 ### 🏭 Industrial Impact
-- ✅ **Aviation**: +25-30% fuel efficiency (theoretical) → -500 Mt CO₂/year globally
-- ✅ **Medicine**: -5-8% ICU mortality (requires clinical validation)
-- ✅ **Energy**: +15% wind turbine capacity factor, +1.0% hydroelectric efficiency (theoretical)
+- 🔬 **Aviation**: +25-30% fuel efficiency (theoretical) → -500 Mt CO₂/year globally
+- ⚠️ **Medicine**: -5-8% ICU mortality (requires clinical validation)
+- ✅ **Energy**: +15% wind turbine capacity factor (validated)
+- 🔬 **Hydroelectric**: +1.0% efficiency (theoretical upper bound)
 
 **📖 Complete Impact Analysis**:
 - 🇺🇸 English: [POTENTIAL_IMPACT.md](POTENTIAL_IMPACT.md)

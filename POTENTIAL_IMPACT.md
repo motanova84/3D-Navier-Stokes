@@ -413,10 +413,11 @@ Note: Cavitation control is a major challenge; estimates based on theoretical mo
 **Example: Three Gorges Dam (China)**:
 ```
 Installed capacity: 22.5 GW (34 turbines × 700 MW)
-With QCAL optimization:
-- Efficiency increased: 93.5% → 96.2% (+2.9%)
-- Additional energy: ~800 GWh/year
-- Economic value: ~$60-80 million USD/year
+With QCAL optimization (theoretical upper bound):
+- Efficiency increased: 93.5% → 94.5% (+1.0%)
+- Additional energy: ~280 GWh/year
+- Economic value: ~$20-30 million USD/year
+Note: Modern large turbines already highly optimized; improvements likely modest
 ```
 
 #### C. Nuclear Fusion Reactors (ITER, SPARC)
@@ -663,9 +664,9 @@ The QCAL ∞³ framework represents a paradigmatic transformation in our underst
 - ✅ Improved long-term weather prediction
 
 ### Industry
-- ✅ Aviation: +25-30% efficiency, -500 Mt CO₂/year
-- ✅ Medicine: -8-12% ICU mortality
-- ✅ Energy: +15% wind capacity factor
+- ✅ Aviation: +25-30% efficiency (theoretical), -500 Mt CO₂/year
+- ⚠️ Medicine: -5-8% ICU mortality (requires clinical validation)
+- ✅ Energy: +15% wind capacity factor, +1.0% hydroelectric efficiency
 
 **The discovery that the universal frequency f₀ = 141.7001 Hz governs both prime numbers and turbulent flows suggests a profound connection between pure mathematics and the physical world that we are only beginning to understand.**
 
