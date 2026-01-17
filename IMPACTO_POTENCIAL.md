@@ -201,9 +201,10 @@ Ganancia neta = 13-29.5%
 
 **Ejemplo Numérico (Boeing 787)**:
 ```
-Consumo actual: 2.5 L/100km/pasajero
-Con control QCAL: 2.0 L/100km/pasajero (-20%)
+Consumo actual: 3.5 L/100km/pasajero (típico larga distancia)
+Con control QCAL: 2.8 L/100km/pasajero (-20%)
 Ahorro anual (flota global 787): ~500 millones USD
+Nota: Estimaciones basadas en predicciones teóricas; requiere validación en vuelo
 ```
 
 ### 3. Predicción Meteorológica Mejorada
@@ -227,12 +228,14 @@ Ahorro anual (flota global 787): ~500 millones USD
 **Impacto Esperado**:
 ```
 Horizonte de predicción útil:
-- Actual: 7-10 días
-- Con QCAL: 12-18 días (+40-80%)
+- Actual: 7-10 días (limitado por caos y condiciones iniciales)
+- Con QCAL: 9-12 días (+20-40% mejora vía estabilidad numérica)
+Nota: Límites caóticos fundamentales permanecen; QCAL aborda solo cuestiones numéricas
 
 Precisión de pronósticos extremos:
-- Huracanes (trayectoria): +25% precisión a 5 días
-- Precipitación intensa: +30% detección de eventos >50mm/h
+- Huracanes (trayectoria): +10-15% precisión a 5 días
+- Precipitación intensa: +15-20% detección de eventos >50mm/h
+Nota: Mejoras dependen de mejor representación de procesos sub-malla
 ```
 
 **Beneficio Económico Global**:
@@ -338,10 +341,15 @@ Parámetros optimizados:
 - Volumen tidal: Personalizado (6-8 mL/kg predicho por QCAL)
 ```
 
-**Impacto**:
-- Reducción de mortalidad en UCI: 8-12%
-- Días de ventilación mecánica: -15%
-- Costos hospitalarios: -$5,000-8,000 USD por paciente
+**Impacto Potencial** (requiere validación clínica extensa):
+- Reducción de mortalidad en UCI: 5-8% (estimación teórica)
+- Días de ventilación mecánica: -10-15%
+- Costos hospitalarios: -$3,000-5,000 USD por paciente
+**Nota**: Estas son proyecciones teóricas basadas en mejores ajustes de ventilador. Implementación clínica requiere:
+  - Ensayos clínicos aleatorizados prospectivos (RCT)
+  - Aprobación regulatoria FDA/EMA
+  - Estudios de validación multi-céntricos
+  - Cronología de 5-10 años para adopción clínica
 
 #### C. Diseño de Dispositivos Médicos
 - **Válvulas cardíacas artificiales**: Flujo óptimo sin trombosis
@@ -396,18 +404,20 @@ El acoplamiento cuántico Φ_ij(Ψ) suprime nucleación de burbujas:
 
 ```
 Ventajas:
-- Vida útil de álabes: +35%
-- Eficiencia mantenida: >96% durante 15 años (vs 92% actual)
-- Mantenimiento predictivo: Reducción de paradas no programadas en 60%
+- Vida útil de álabes: +20-25% (reducción de daño por cavitación)
+- Eficiencia mantenida: >94% durante 15 años (vs 91-92% actual)
+- Mantenimiento predictivo: 40% reducción de paradas no programadas
+Nota: Control de cavitación es desafío mayor; estimaciones basadas en modelos teóricos
 ```
 
 **Ejemplo: Presa de las Tres Gargantas (China)**:
 ```
 Capacidad instalada: 22.5 GW (34 turbinas × 700 MW)
-Con optimización QCAL:
-- Eficiencia incrementada: 93.5% → 96.2% (+2.9%)
-- Energía adicional: ~800 GWh/año
-- Valor económico: ~$60-80 millones USD/año
+Con optimización QCAL (límite teórico superior):
+- Eficiencia incrementada: 93.5% → 94.5% (+1.0%)
+- Energía adicional: ~280 GWh/año
+- Valor económico: ~$20-30 millones USD/año
+Nota: Turbinas grandes modernas ya muy optimizadas; mejoras probablemente modestas
 ```
 
 #### C. Reactores de Fusión Nuclear (ITER, SPARC)
@@ -453,19 +463,19 @@ Q_fusion (ganancia energética):
 | **CFD estable** | Prevención de blow-up | 100% (validado en DNS extremo) |
 | **Reducción de vorticidad** | Intensidad turbulenta | -69.1% |
 | **Overhead computacional** | Costo adicional | +5-10% |
-| **Control de turbulencia** | Reducción de arrastre | 15-30% |
-| **Predicción meteorológica** | Horizonte útil | +40-80% (7→12-18 días) |
+| **Control de turbulencia** | Reducción de arrastre | 15-30% (teórico) |
+| **Predicción meteorológica** | Horizonte útil | +20-40% (7→9-12 días) |
 
 ### Impacto Industrial
 
 | Sector | Aplicación | Beneficio Esperado |
 |--------|------------|---------------------|
-| **Aviación** | Eficiencia combustible | +25-30% (nueva generación) |
-| **Aeronáutica** | Emisiones CO₂ global | -500 Mt/año |
-| **Medicina** | Mortalidad UCI (ventiladores) | -8-12% |
+| **Aviación** | Eficiencia combustible | +25-30% (nueva generación, teórico) |
+| **Aeronáutica** | Emisiones CO₂ global | -500 Mt/año (teórico) |
+| **Medicina** | Mortalidad UCI (ventiladores) | -5-8% (requiere ensayos clínicos) |
 | **Energía eólica** | Coeficiente de potencia | +11.5% (Cp: 0.52→0.58) |
-| **Energía hidroeléctrica** | Eficiencia turbinas | +2.9% (93.5%→96.2%) |
-| **Fusión nuclear** | Ganancia energética | Q: 10→13-15 |
+| **Energía hidroeléctrica** | Eficiencia turbinas | +1.0% (93.5%→94.5%, teórico) |
+| **Fusión nuclear** | Ganancia energética | Q: 10→13-15 (teórico) |
 
 ---
 
@@ -475,7 +485,7 @@ Q_fusion (ganancia energética):
 
 **Aviación comercial**:
 ```
-Flota global: ~28,000 aviones
+Flota comercial grande global: ~28,000 aviones (excluye regional/carga/negocios)
 Consumo anual: ~340 millones toneladas combustible
 Emisiones CO₂: ~1,070 Mt/año
 

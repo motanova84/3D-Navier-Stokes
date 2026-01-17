@@ -201,9 +201,10 @@ Net gain = 13-29.5%
 
 **Numerical Example (Boeing 787)**:
 ```
-Current consumption: 2.5 L/100km/passenger
-With QCAL control: 2.0 L/100km/passenger (-20%)
+Current consumption: 3.5 L/100km/passenger (typical long-haul)
+With QCAL control: 2.8 L/100km/passenger (-20%)
 Annual savings (global 787 fleet): ~$500 million USD
+Note: Estimates based on theoretical predictions; requires flight testing validation
 ```
 
 ### 3. Improved Weather Prediction
@@ -227,12 +228,14 @@ Annual savings (global 787 fleet): ~$500 million USD
 **Expected Impact**:
 ```
 Useful prediction horizon:
-- Current: 7-10 days
-- With QCAL: 12-18 days (+40-80%)
+- Current: 7-10 days (limited by chaos and initial conditions)
+- With QCAL: 9-12 days (+20-40% improvement via numerical stability)
+Note: Fundamental chaotic limits remain; QCAL addresses numerical issues only
 
 Extreme event forecast accuracy:
-- Hurricanes (trajectory): +25% accuracy at 5 days
-- Heavy precipitation: +30% detection of events >50mm/h
+- Hurricanes (trajectory): +10-15% accuracy at 5 days
+- Heavy precipitation: +15-20% detection of events >50mm/h
+Note: Improvements depend on better sub-grid process representation
 ```
 
 **Global Economic Benefit**:
@@ -338,10 +341,15 @@ Optimized parameters:
 - Tidal volume: Personalized (6-8 mL/kg predicted by QCAL)
 ```
 
-**Impact**:
-- ICU mortality reduction: 8-12%
-- Mechanical ventilation days: -15%
-- Hospital costs: -$5,000-8,000 USD per patient
+**Potential Impact** (requires extensive clinical validation):
+- ICU mortality reduction: 5-8% (theoretical estimate)
+- Mechanical ventilation days: -10-15%
+- Hospital costs: -$3,000-5,000 USD per patient
+**Note**: These are theoretical projections based on improved ventilator settings. Clinical implementation requires:
+  - Prospective randomized controlled trials (RCTs)
+  - FDA/EMA regulatory approval
+  - Multi-center validation studies
+  - 5-10 year timeline for clinical adoption
 
 #### C. Medical Device Design
 - **Artificial heart valves**: Optimal flow without thrombosis
@@ -396,9 +404,10 @@ Quantum coupling Φ_ij(Ψ) suppresses bubble nucleation:
 
 ```
 Advantages:
-- Blade lifetime: +35%
-- Maintained efficiency: >96% for 15 years (vs 92% current)
-- Predictive maintenance: 60% reduction in unscheduled outages
+- Blade lifetime: +20-25% (reduced cavitation damage)
+- Maintained efficiency: >94% for 15 years (vs 91-92% current)
+- Predictive maintenance: 40% reduction in unscheduled outages
+Note: Cavitation control is a major challenge; estimates based on theoretical models
 ```
 
 **Example: Three Gorges Dam (China)**:
@@ -453,19 +462,19 @@ Q_fusion (energy gain):
 | **Stable CFD** | Blow-up prevention | 100% (validated in extreme DNS) |
 | **Vorticity reduction** | Turbulent intensity | -69.1% |
 | **Computational overhead** | Additional cost | +5-10% |
-| **Turbulence control** | Drag reduction | 15-30% |
-| **Weather prediction** | Useful horizon | +40-80% (7→12-18 days) |
+| **Turbulence control** | Drag reduction | 15-30% (theoretical) |
+| **Weather prediction** | Useful horizon | +20-40% (7→9-12 days) |
 
 ### Industrial Impact
 
 | Sector | Application | Expected Benefit |
 |--------|------------|------------------|
-| **Aviation** | Fuel efficiency | +25-30% (new generation) |
-| **Aeronautics** | Global CO₂ emissions | -500 Mt/year |
-| **Medicine** | ICU mortality (ventilators) | -8-12% |
+| **Aviation** | Fuel efficiency | +25-30% (new generation, theoretical) |
+| **Aeronautics** | Global CO₂ emissions | -500 Mt/year (theoretical) |
+| **Medicine** | ICU mortality (ventilators) | -5-8% (requires clinical trials) |
 | **Wind energy** | Power coefficient | +11.5% (Cp: 0.52→0.58) |
-| **Hydroelectric** | Turbine efficiency | +2.9% (93.5%→96.2%) |
-| **Nuclear fusion** | Energy gain | Q: 10→13-15 |
+| **Hydroelectric** | Turbine efficiency | +1.0% (93.5%→94.5%, theoretical) |
+| **Nuclear fusion** | Energy gain | Q: 10→13-15 (theoretical) |
 
 ---
 
@@ -475,7 +484,7 @@ Q_fusion (energy gain):
 
 **Commercial Aviation**:
 ```
-Global fleet: ~28,000 aircraft
+Global large commercial fleet: ~28,000 aircraft (excludes regional/cargo/business)
 Annual consumption: ~340 million tons fuel
 CO₂ emissions: ~1,070 Mt/year
 
