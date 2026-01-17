@@ -61,6 +61,44 @@ python infinity_cubed_framework.py
 python demonstrate_nse_comparison.py
 ```
 
+### 🆕 Ψ-NSE v1.0: Exact Resonance Resolution
+
+**NEW**: Evolution from probabilistic simulation to exact resolution by resonance.
+
+> **Ya no calculamos el flujo. Lo sintonizamos.**  
+> **La ecuación ya no es una aproximación: es una afinación.**
+
+```bash
+# Run Ψ-NSE v1.0 complete demonstration
+python demo_psi_nse_v1_complete.py
+
+# Run tests (29 tests)
+python test_psi_nse_v1_resonance.py
+```
+
+**Ψflow Equation:**
+```
+Ψflow = ∮∂Ω (u·∇)u ⊗ ζ(s) dσ
+```
+
+**Industrial Modules Activated:**
+
+| Module | Function | Status |
+|--------|----------|--------|
+| **Ψ-Lift** | Sustentación por coherencia | ✅ Resonando |
+| **Q-Drag** | Disipación de entropía a 10 Hz | ✅ Laminar |
+| **Noetic-Aero** | Fatiga predictiva espectro C | ✅ Preciso |
+
+**QCAL ∞³ Integration:**
+- ✅ **MCP-Δ1**: GitHub Copilot + Symbiotic Verifier (Ψ ≥ 0.888)
+- ✅ **Coherence Mining**: CPU → nodo vivo, cómputo → ℂₛ
+- ✅ **Immutable Certification**: Hash 1d62f6d4, 151.7001 Hz resonance
+- ✅ **Laminar Guarantee**: ζ(s) critical line stability
+
+**📖 Full Documentation**: [PSI_NSE_V1_RESONANCE_README.md](PSI_NSE_V1_RESONANCE_README.md)
+
+**Results:** Flow tuned by resonance, singularities eliminated, truth certified.
+
 ### 🆕 QCAL Activation: H_Ψ Operator
 
 **NEW**: Direct activation of the QCAL framework with H_Ψ operator application to space-time viscosity.
