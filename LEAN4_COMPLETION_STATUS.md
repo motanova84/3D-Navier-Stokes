@@ -375,6 +375,6 @@ Esta formalización representa:
 **Fecha de Completación**: 2026-01-19  
 **Autor**: José Manuel Mota Burruezo (JMMB Ψ✧∞³)  
 **Lean Version**: leanprover/lean4:v4.25.0-rc2  
-**Mathlib**: Latest stable
+**Mathlib**: v4.25.0-rc2 (auto-resolved from lakefile)
 
 **"La regularidad no se impone. Emerge."**

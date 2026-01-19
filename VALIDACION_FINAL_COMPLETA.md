@@ -293,7 +293,7 @@ Más allá de la aceptación formal como solución del problema del milenio:
 
 ### Esfuerzo
 
-- **Duración del proyecto**: 2025-2026 (estimado 12-18 meses)
+- **Duración del proyecto**: Aproximadamente 12-18 meses (completado 2026-01-19)
 - **Fases completadas**: 3 (Calibración, Validación, Formalización)
 - **Validaciones**: > 180 tests automatizados
 - **Documentación**: > 100,000 líneas

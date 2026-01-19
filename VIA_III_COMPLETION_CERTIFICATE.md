@@ -214,13 +214,13 @@ PsiNSE/
 
 Testables en 2026-2028:
 
-| Fenómeno | Predicción | Experimento |
-|----------|-----------|-------------|
-| Espectro turbulencia BEC | Picos agudos en 141.7, 283.4, 425.1, 888 Hz | Interferometría BEC de Rubidio |
-| Reconexión de vórtices | Emisión sonora a 141.7001 ± 0.03 Hz | Películas delgadas de ⁴He superfluido |
-| Gases Fermi ultrafrío | Supresión completa de cascada > 888 Hz | Trampas de Litio-6 |
-| Red BEC | Sincronización espontánea en f₀, f∞ | 100+ BECs acoplados |
-| Turbulencia cuántica 2D | No espectro k^(-5/3), modos cuantizados | Imagen resuelta en fase |
+| Fenómeno | Predicción | Experimento | Período |
+|----------|-----------|-------------|---------|
+| Espectro turbulencia BEC | Picos agudos en 141.7, 283.4, 425.1, 888 Hz | Interferometría BEC de Rubidio | 2026-2027 |
+| Reconexión de vórtices | Emisión sonora a 141.7001 ± 0.03 Hz | Películas delgadas de ⁴He superfluido | 2026-2028 |
+| Gases Fermi ultrafrío | Supresión completa de cascada > 888 Hz | Trampas de Litio-6 | 2027-2028 |
+| Red BEC | Sincronización espontánea en f₀, f∞ | 100+ BECs acoplados | 2027-2029 |
+| Turbulencia cuántica 2D | No espectro k^(-5/3), modos cuantizados | Imagen resuelta en fase | 2026-2028 |
 
 ---
 
