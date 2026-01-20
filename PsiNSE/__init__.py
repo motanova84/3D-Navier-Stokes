@@ -43,6 +43,14 @@ from .qcal_integration import (
     QCALChainCertification
 )
 
+# Visualization and validation
+from .visualization import (
+    FlowFieldVisualizer,
+    AerodynamicPerformancePlotter,
+    QCALDashboard,
+    ValidationSuite
+)
+
 __all__ = [
     # Core
     'PsiNSEAeroConfig',
@@ -60,6 +68,12 @@ __all__ = [
     'MCPDelta1Verifier',
     'CoherenceMiningNetwork',
     'QCALChainCertification',
+    
+    # Visualization
+    'FlowFieldVisualizer',
+    'AerodynamicPerformancePlotter',
+    'QCALDashboard',
+    'ValidationSuite',
 ]
 
 # Package metadata
