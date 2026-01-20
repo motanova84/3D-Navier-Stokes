@@ -14,3 +14,4 @@ import NavierStokes.MisalignmentDefect
 import NavierStokes.BKMCriterion
 import NavierStokes.BKMClosure
 import NavierStokes.UnifiedBKM
+import NavierStokes.SarnakCoherence  -- NLS-QCAL-Sarnak framework (∞³)
