@@ -84,7 +84,7 @@ theorem critical_point_synchronization
   (E : EllipticCurveQ) 
   (H : HPsiOperator) :
   H.resonance_freq = f₀ ∧ 
-  (E.L_at_1.re = 1/2 → ∃ ψ : ℝ → (ℝ × ℝ × ℝ) → ℝ, True) := by
+  (E.L_at_1.re = 1 → ∃ ψ : ℝ → (ℝ × ℝ × ℝ) → ℝ, True) := by
   constructor
   · exact H.is_root_freq
   · intro _
