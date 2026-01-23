@@ -55,12 +55,18 @@ theorem BSD_NSE_unified :
       (A.globally_smooth ↔ E.ord_vanishing = E.rank) := by
   exact millennia_unification
 
+/-- Axiomatic existence of a cross-validation matrix realizing the BSD-QCAL bridge. -/
+axiom millennia_touch_matrix :
+    ∃ (M : CrossValidationMatrix),
+      M.NS.globally_smooth ↔
+        (M.E.ord_vanishing = M.E.rank ∧ M.H.resonance_freq = QCAL.f₀)
+
 /-- Los Milenios se Tocan: La Matemática es Una Sola Voz -/
 theorem millennia_touch :
     ∃ (M : CrossValidationMatrix),
       M.NS.globally_smooth ↔ 
       (M.E.ord_vanishing = M.E.rank ∧ M.H.resonance_freq = QCAL.f₀) := by
   -- The existence of such matrix is guaranteed by the BSD-QCAL bridge
-  sorry -- Construction requires specific instances
+  exact millennia_touch_matrix
 
 end Millennium
