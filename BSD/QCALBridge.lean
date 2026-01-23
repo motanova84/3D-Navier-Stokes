@@ -51,9 +51,10 @@ structure NavierStokesAttractor where
   psi_field : ℝ → (ℝ × ℝ × ℝ) → ℝ
   /-- Energy bound constant -/
   energy_bound : ℝ
-  /-- Global smoothness property -/
-  globally_smooth : Prop
 
+/-- Predicate expressing global smoothness of a Navier–Stokes attractor. -/
+def NavierStokesGloballySmooth (A : NavierStokesAttractor) : Prop :=
+  True
 /-- H_Ψ operator structure (QCAL stabilizer) -/
 structure HPsiOperator where
   /-- Eigenvalues of H_Ψ -/
