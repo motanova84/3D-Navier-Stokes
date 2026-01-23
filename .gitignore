@@ -59,6 +59,14 @@ Results/Figures/*.jpg
 Results/Figures/*.pdf
 delta_star.json
 
+# Regression test results (keep baseline.json but not runtime artifacts)
+Results/Regression/results_*.json
+Results/Regression/performance.json
+Results/Regression/python_tests.json
+Results/Regression/sorry_count.json
+Results/Regression/*.log
+Results/Regression/lean_build_time.txt
+
 # Artifacts (generated analysis output)
 artifacts/*.png
 artifacts/*.jpg
