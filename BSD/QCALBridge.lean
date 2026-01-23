@@ -118,9 +118,10 @@ structure LFunctionPsiCorrespondence where
   /-- Coherence field -/
   psi : ℝ → (ℝ × ℝ × ℝ) → ℝ
   /-- L-function has analytical properties matching Ψ evolution -/
-  analytical_correspondence : 
-    ∀ (s : ℂ), s.re = 1 → ∃ (t : ℝ) (x : ℝ × ℝ × ℝ), 
-      Complex.abs (E.L_at_1 - s) < ε → |psi t x| < ε
+  analytical_correspondence :
+    ∀ (s : ℂ), s.re = 1 →
+      Complex.abs (E.L_at_1 - s) < ε →
+      ∃ (t : ℝ) (x : ℝ × ℝ × ℝ), |psi t x| < ε
 
 /-- Theorem: Ψ-field analyticity implies L-function analyticity -/
 theorem psi_analyticity_implies_L_analyticity
