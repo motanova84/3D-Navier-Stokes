@@ -98,7 +98,7 @@ theorem critical_point_synchronization (E : EllipticCurveQ) (H : HPsiOperator) :
   (E.L_at_1.re = 1/2 → ∃ ψ : ℝ → (ℝ × ℝ × ℝ) → ℝ, True)
 ```
 
-**Meaning**: The critical point s=1 in BSD corresponds exactly to the resonance frequency f₀ = 141.7001 Hz in QCAL.
+**Meaning**: This theorem states that the resonance frequency of the QCAL operator is fixed to the root frequency f₀ = 141.7001 Hz, and that under the condition `E.L_at_1.re = 1/2` (i.e. the real part of L(E, 1) equals 1/2), there exists a QCAL field ψ that formally links the BSD side to the fluid side.
 
 | BSD Property | QCAL Property | Status |
 |-------------|---------------|---------|
