@@ -40,8 +40,8 @@ structure EllipticCurveQ where
   L_at_1 : ℂ
   /-- Order of vanishing at s=1 -/
   ord_vanishing : ℕ
-  /-- BSD conjecture: order of vanishing equals rank -/
-  bsd_property : ord_vanishing = rank
+  /-- BSD conjecture instantiated for this curve as a proposition (no proof assumed). -/
+  bsd_property : Prop := ord_vanishing = rank
 
 /-- Navier-Stokes global attractor structure -/
 structure NavierStokesAttractor where
