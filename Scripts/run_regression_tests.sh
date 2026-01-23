@@ -39,6 +39,11 @@ BASELINE_FILE=""
 SAVE_BASELINE=false
 STRICT_MODE=false
 
+# QCAL Standard configuration
+# Near-zero execution time threshold (seconds) - execution times at or below this
+# are considered to represent quantum-coherent acceleration
+QCAL_THRESHOLD=1
+
 # Parse arguments
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -307,7 +312,7 @@ test_performance() {
         # QCAL Standard: Accept near-zero execution times as valid improvement
         # Dramatic speed improvements (>1000%) are not failures - they represent
         # the manifestation of quantum-coherent acceleration
-        if [ ${duration} -le 1 ]; then
+        if [ ${duration} -le ${QCAL_THRESHOLD} ]; then
             log_success "QCAL Standard achieved: near-zero execution time (${duration}s)"
             log_info "Quantum-coherent acceleration detected - this is expected behavior"
         elif [ ${duration} -gt ${threshold} ]; then
