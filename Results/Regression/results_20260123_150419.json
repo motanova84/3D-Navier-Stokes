@@ -1,7 +1,0 @@
-{
-  "timestamp": "2026-01-23T15:04:19+00:00",
-  "lean_build_time": null,
-  "python_tests": {"total_tests": 0, "failed_tests": 0, "skipped": true},
-  "sorry_count": {"sorry_count": 211},
-  "performance": {"test_duration_seconds": 0}
-}
