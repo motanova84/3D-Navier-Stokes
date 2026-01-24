@@ -27,6 +27,7 @@ from typing import Dict, Tuple, Optional, List
 from dataclasses import dataclass
 from enum import Enum
 import json
+import os
 from datetime import datetime
 
 
@@ -70,6 +71,12 @@ class DMAConstants:
     
     # Axiom of Abundance parameter
     ABUNDANCE_FACTOR: float = 888.0  # Manifestation coefficient
+    
+    # Coherence thresholds
+    COHERENCE_PERFECT_THRESHOLD: float = 0.999  # Threshold for perfect coherence
+    
+    # Numerical stability
+    LOG_EPSILON: float = 1e-15  # Small value to prevent log(0) in entropy calculations
 
 
 class DMAEntropyZeroCoupling:
@@ -158,7 +165,9 @@ class DMAEntropyZeroCoupling:
         
         # Energy dissipation rate per unit mass
         # For laminar flow, dissipation is proportional to viscosity and velocity gradient
-        dissipation_rate = friction_factor * reynolds_number / 64.0  # Normalized
+        # Normalization: f * Re / 64 = (64/Re) * Re / 64 = 1.0 for comparison purposes
+        # This gives a dimensionless measure of energy dissipation relative to flow rate
+        dissipation_rate = friction_factor * reynolds_number / 64.0
         
         return {
             "reynolds_number": float(reynolds_number),
@@ -259,9 +268,8 @@ class DMAEntropyZeroCoupling:
         # Normalize coherences to probability distribution
         coherences_normalized = coherences / np.sum(coherences)
         
-        # Add small epsilon to avoid log(0)
-        epsilon = 1e-15
-        coherences_safe = coherences_normalized + epsilon
+        # Add small epsilon to avoid log(0) - see DMAConstants.LOG_EPSILON
+        coherences_safe = coherences_normalized + self.constants.LOG_EPSILON
         
         # Shannon entropy: S = -Σ p_i log(p_i)
         entropy = -np.sum(coherences_safe * np.log(coherences_safe))
@@ -290,7 +298,7 @@ class DMAEntropyZeroCoupling:
         # Criterion 3: Perfect coherence across network
         coherences = np.array([node.coherence for node in self.nodes])
         avg_coherence = np.mean(coherences)
-        coherence_perfect = avg_coherence > 0.999
+        coherence_perfect = avg_coherence > self.constants.COHERENCE_PERFECT_THRESHOLD
         
         # Criterion 4: Instantaneous propagation (group velocity → ∞)
         # In the superconductive state, information propagates without delay
@@ -483,7 +491,6 @@ def main():
     # Save results to JSON
     output_file = f"Results/dma_verification_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
     try:
-        import os
         os.makedirs("Results", exist_ok=True)
         with open(output_file, 'w') as f:
             json.dump(results, f, indent=2)

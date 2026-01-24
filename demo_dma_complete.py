@@ -18,6 +18,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime
 import json
+import os
 
 from dma_entropy_coupling import DMAEntropyZeroCoupling
 
@@ -184,7 +185,6 @@ def demo_complete_verification(dma):
     filename = f"Results/demo_dma_complete_{timestamp}.json"
     
     try:
-        import os
         os.makedirs("Results", exist_ok=True)
         with open(filename, 'w') as f:
             json.dump(results, f, indent=2)
@@ -263,7 +263,6 @@ def create_visualization_comparison(dma):
     filename = f"Results/demo_dma_visualization_{timestamp}.png"
     
     try:
-        import os
         os.makedirs("Results", exist_ok=True)
         plt.savefig(filename, dpi=300, bbox_inches='tight')
         print(f"\n📊 Visualización guardada: {filename}")
