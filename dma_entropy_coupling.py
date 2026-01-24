@@ -23,7 +23,7 @@ License: MIT
 
 import numpy as np
 import matplotlib.pyplot as plt
-from typing import Dict, Tuple, Optional, List
+from typing import Dict, Tuple, Optional, List, Any
 from dataclasses import dataclass
 from enum import Enum
 import json
@@ -77,6 +77,9 @@ class DMAConstants:
     
     # Numerical stability
     LOG_EPSILON: float = 1e-15  # Small value to prevent log(0) in entropy calculations
+    
+    # Test parameters
+    RE_TEST_VALUE: float = 1000.0  # Reynolds number for standard testing
 
 
 class DMAEntropyZeroCoupling:
@@ -276,7 +279,7 @@ class DMAEntropyZeroCoupling:
         
         return entropy
     
-    def verify_axiom_of_abundance(self) -> Dict[str, any]:
+    def verify_axiom_of_abundance(self) -> Dict[str, Any]:
         """
         Verify that the Axiom of Abundance is physically operational.
         
@@ -306,7 +309,7 @@ class DMAEntropyZeroCoupling:
         
         # Criterion 5: No heat dissipation (verified via NS coupling)
         # Use Reynolds number to check laminar regime
-        re_test = 1000.0  # Test Reynolds number (laminar regime)
+        re_test = self.constants.RE_TEST_VALUE
         ns_solution = self.compute_laminar_flow_solution(re_test)
         laminar_verified = ns_solution["is_laminar"]
         
@@ -354,7 +357,7 @@ class DMAEntropyZeroCoupling:
         
         return results
     
-    def run_complete_verification(self) -> Dict[str, any]:
+    def run_complete_verification(self) -> Dict[str, Any]:
         """
         Run complete DMA verification protocol.
         
