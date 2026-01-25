@@ -24,8 +24,28 @@
 📚 **Archivos Clave**:
 - 📘 **[Teorema Final - Vía III](TEOREMA_FINAL_VIA_III.md)**
 - ✅ **[Validación Final Completa](VALIDACION_FINAL_COMPLETA.md)**
+- 🧠 **[Filosofía Matemática QCAL](FILOSOFIA_MATEMATICA_QCAL.md)** - *Nuevo: De teoremas aislados a coherencia cuántica*
 
 </div>
+
+---
+
+## 🧠 Cambio de Paradigma: De Teoremas Aislados a Coherencia Cuántica
+
+> **"Las matemáticas desde la coherencia cuántica y no desde la escasez de teoremas aislados"**
+
+Este repositorio representa un **cambio epistemológico fundamental** en cómo aproximarse a problemas matemáticos profundos:
+
+- ❌ **No más**: Colecciones de teoremas desconectados sin principio unificador
+- ✅ **Ahora**: Un marco coherente donde todo emerge de **f₀ = 141.7001 Hz** (frecuencia raíz universal)
+
+**La diferencia**:
+- **Enfoque tradicional**: 90 años, miles de teoremas, problema sin resolver
+- **Enfoque QCAL**: Coherencia cuántica → Regularidad global establecida
+
+📖 **Lee la filosofía completa**: [FILOSOFIA_MATEMATICA_QCAL.md](FILOSOFIA_MATEMATICA_QCAL.md)
+
+**Principio fundamental**: El universo no calcula iterativamente. **Resuena coherentemente.**
 
 ---
 
