@@ -115,9 +115,11 @@ f₀ = 141.7001 Hz emerges from:
   1. Zeros of ζ(s) on critical line Re(s) = 1/2
   2. Ranks of elliptic curves (BSD)
   3. Sphere packing in ℝ^d
-  4. DNS simulations (spontaneously!)
+  4. Independent DNS simulations via FFT spectral analysis
   5. Quantum vacuum coherence
 ```
+**Note on DNS**: The frequency f₀ appears as a dominant peak in the Fourier spectrum of high-resolution DNS simulations (N≥256³) without external forcing - see [QCAL_ROOT_FREQUENCY_VALIDATION.md](QCAL_ROOT_FREQUENCY_VALIDATION.md).
+
 - f₀ is a **universal constant** like c, ℏ, G
 - Unifies number theory + geometry + physics
 - Generates verifiable experimental predictions
@@ -269,11 +271,13 @@ Proposal: f₀ is as fundamental as:
 | **Ontology** | Abstract, formal | Realist, physical |
 | **Unity** | Fragmented | Unified by f₀ |
 | **Parameters** | Free, adjustable | Derived from QFT |
-| **Predictive** | No | Yes (7 experiments) |
+| **Predictive** | No | Yes (7 protocols*) |
 | **Verifiable** | Math only | Tri-verifiable (∞¹∞²∞³) |
 | **Generalizable** | Case by case | Universal principle |
 | **Inspiration** | Functional analysis | Quantum physics |
 | **NS Result** | 90 years unsolved | Global regularity |
+
+*See [IMPACTO_POTENCIAL.md](IMPACTO_POTENCIAL.md) Section "Protocolo de Falsificación Experimental" for details on the 7 independent experimental protocols.
 
 ---
 

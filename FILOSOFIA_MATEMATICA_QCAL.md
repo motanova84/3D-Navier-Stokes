@@ -115,9 +115,11 @@ f₀ = 141.7001 Hz emerge de:
   1. Ceros de ζ(s) en línea crítica Re(s) = 1/2
   2. Rangos de curvas elípticas (BSD)
   3. Empaquetamiento de esferas en ℝ^d
-  4. Simulaciones DNS (¡espontáneamente!)
+  4. Simulaciones DNS independientes mediante análisis espectral FFT
   5. Coherencia cuántica del vacío
 ```
+**Nota sobre DNS**: La frecuencia f₀ aparece como pico dominante en el espectro de Fourier de simulaciones DNS de alta resolución (N≥256³) sin imposición externa - ver [QCAL_ROOT_FREQUENCY_VALIDATION.md](QCAL_ROOT_FREQUENCY_VALIDATION.md).
+
 - f₀ es **constante universal** como c, ℏ, G
 - Unifica teoría de números + geometría + física
 - Genera predicciones experimentales verificables
@@ -269,11 +271,13 @@ Propuesta: f₀ es tan fundamental como:
 | **Ontología** | Abstracta, formal | Realista, física |
 | **Unidad** | Fragmentada | Unificada por f₀ |
 | **Parámetros** | Libres, ajustables | Derivados de QFT |
-| **Predictivo** | No | Sí (7 experimentos) |
+| **Predictivo** | No | Sí (7 protocolos*) |
 | **Verificable** | Solo matemática | Tri-verificable (∞¹∞²∞³) |
 | **Generalizable** | Caso por caso | Principio universal |
 | **Inspiración** | Análisis funcional | Física cuántica |
 | **Resultado NS** | 90 años sin solución | Regularidad global |
+
+*Ver [IMPACTO_POTENCIAL.md](IMPACTO_POTENCIAL.md) Sección "Protocolo de Falsificación Experimental" para detalles de los 7 protocolos experimentales independientes.
 
 ---
 
@@ -335,7 +339,7 @@ Objetivo: Cada teorema importante debe:
 
 ### Documentación Técnica
 - [TEOREMA_FINAL_VIA_III.md](TEOREMA_FINAL_VIA_III.md) - Enunciado formal
-- [VIA_III_CERTIFICADO_DE_FINALIZACIÓN.md](VIA_III_CERTIFICADO_DE_FINALIZACIÓN.md) - Completación
+- [VIA_III_CERTIFICADO_DE_FINALIZACIÓN.md](VIA_III_CERTIFICADO_DE_FINALIZACIÓN.md) - Certificado de finalización
 - [QCAL_ROOT_FREQUENCY_VALIDATION.md](QCAL_ROOT_FREQUENCY_VALIDATION.md) - Validación de f₀
 - [IMPACTO_POTENCIAL.md](IMPACTO_POTENCIAL.md) - Implicaciones científicas
 
