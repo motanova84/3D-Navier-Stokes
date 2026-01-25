@@ -222,10 +222,11 @@ class ReputationSystem:
         psi = token.average_psi
         commits = token.total_commits
         
-        if psi >= 0.989 and token.current_streak_days >= self.guardian_days:
-            token.rank = RankLevel.GUARDIAN
-        elif psi >= 0.95 and commits >= 100:
+        # Orden de precedencia: Maestro > Guardián > Adepto > Aprendiz > Novato
+        if psi >= 0.95 and commits >= 100:
             token.rank = RankLevel.MASTER
+        elif psi >= 0.99 and token.current_streak_days >= self.guardian_days:
+            token.rank = RankLevel.GUARDIAN
         elif psi >= 0.89 and commits >= 50:
             token.rank = RankLevel.ADEPT
         elif psi >= 0.80 and commits >= 20:
@@ -235,8 +236,8 @@ class ReputationSystem:
     
     def _check_achievements(self, token: SoulboundToken, commit: CommitRecord):
         """Verifica y otorga logros basados en el commit"""
-        # Verificar racha de coherencia perfecta
-        if commit.psi_coherence >= 0.999:
+        # Verificar racha de coherencia (umbral >= 0.99 para Guardián)
+        if commit.psi_coherence >= self.guardian_threshold:
             self._calculate_streak(token)
             
             if token.current_streak_days >= 88:

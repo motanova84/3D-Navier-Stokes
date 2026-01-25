@@ -307,7 +307,6 @@ class QCALEnterpriseBridge:
         else:
             # Valores simulados basados en hash
             # Convertir código hash a número usando algoritmo de hash
-            import hashlib
             hash_num = int(hashlib.md5(code_hash.encode()).hexdigest()[:8], 16)
             np.random.seed(hash_num % (2**32))
             metrics = {
