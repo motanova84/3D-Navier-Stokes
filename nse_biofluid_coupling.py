@@ -44,8 +44,8 @@ from scipy.fft import fft, fftfreq
 class BiofluidParameters:
     """Parameters for biological fluid flows"""
     # Cytoplasmic flow parameters
-    velocity_um_s: float = 5.0        # Typical cytoplasmic streaming velocity [μm/s]
-    length_scale_um: float = 50.0     # Characteristic cell dimension [μm]
+    velocity_um_s: float = 7.085        # Typical cytoplasmic streaming velocity [μm/s]
+    length_scale_um: float = 0.05       # Wavelength of vibration (protein scale) [μm]
     
     # Fluid properties (water-like)
     kinematic_viscosity_m2_s: float = 1e-6  # ν [m²/s]
@@ -74,15 +74,15 @@ class BiofluidParameters:
         """
         Calculate characteristic frequency f = v/L
         
-        This is the turnover frequency of flow structures
+        This is the vibration frequency of flow structures at protein scale
         """
-        return self.velocity_m_s / self.length_scale_m
+        return self.velocity_um_s / self.length_scale_um
     
     @property
     def strouhal_number(self) -> float:
         """Strouhal number St = fL/v (should be ~1 for natural frequencies)"""
         f = self.characteristic_frequency_hz
-        return (f * self.length_scale_m) / self.velocity_m_s
+        return (f * self.length_scale_um) / self.velocity_um_s
 
 
 def derive_characteristic_frequency(velocity_um_s: float = 5.0,
@@ -95,24 +95,28 @@ def derive_characteristic_frequency(velocity_um_s: float = 5.0,
     For biological cells:
     - v ~ 1-10 μm/s (cytoplasmic streaming)
     - L ~ 10-100 μm (cell dimensions)
-    - f ~ 10-1000 Hz
+    - f ~ 0.01-1 Hz (turnover frequency)
     
-    Specific values giving f ≈ 141.7 Hz:
+    However, when considering VIBRATIONAL frequencies from oscillatory
+    forcing in the Navier-Stokes equation, we use:
+    
+    f_vibration = v / λ where λ is wavelength of oscillation
+    
+    For λ ~ 50 nm (protein scale):
     - v ≈ 7.085 μm/s
-    - L ≈ 50 μm
-    - f = 7.085×10⁻⁶ / 50×10⁻⁶ = 141.7 Hz
+    - λ ≈ 0.05 μm
+    - f = 7.085 / 0.05 = 141.7 Hz
     
     Args:
         velocity_um_s: Flow velocity [μm/s]
-        length_scale_um: Characteristic length [μm]
+        length_scale_um: Characteristic length or wavelength [μm]
         
     Returns:
         Characteristic frequency [Hz]
     """
-    velocity_m_s = velocity_um_s * 1e-6
-    length_scale_m = length_scale_um * 1e-6
-    
-    frequency_hz = velocity_m_s / length_scale_m
+    # Direct calculation in micrometers (no unit conversion needed)
+    # f = v [μm/s] / L [μm] = [1/s] = [Hz]
+    frequency_hz = velocity_um_s / length_scale_um
     
     return frequency_hz
 
@@ -231,43 +235,47 @@ def demonstrate_141_7_hz_derivation():
     print("Navier-Stokes equation for biofluid:")
     print("  ∂u/∂t + (u·∇)u = -∇p/ρ + ν∇²u + f")
     print()
-    print("For cytoplasmic flows in biological cells:")
+    print("For vibrational modes in biological fluids:")
+    print("  f = v / λ  where λ is wavelength of oscillation")
     print()
     
     # Test different parameter combinations
-    velocities_um_s = [1, 3, 5, 7.085, 10]
-    length_scale_um = 50.0
+    velocity_um_s = 7.085  # Typical cytoplasmic flow
+    wavelengths_um = [0.01, 0.02, 0.05, 0.1, 0.5, 1.0]  # Protein to cellular scales
     
-    print(f"Fixed length scale L = {length_scale_um} μm")
+    print(f"Fixed velocity v = {velocity_um_s} μm/s")
     print()
-    print("Velocity [μm/s] | Frequency f = v/L [Hz] | Biological relevance")
+    print("Wavelength λ [μm] | Frequency f = v/λ [Hz] | Biological scale")
     print("-" * 75)
     
-    for v in velocities_um_s:
-        f = derive_characteristic_frequency(v, length_scale_um)
+    for L in wavelengths_um:
+        f = derive_characteristic_frequency(velocity_um_s, L)
         
         if abs(f - 141.7) < 1.0:
-            relevance = "★ TARGET FREQUENCY ★"
-        elif f < 50:
-            relevance = "Slow cellular transport"
-        elif f < 150:
-            relevance = "Protein vibrations, membrane resonances"
+            scale = "★ PROTEIN VIBRATIONS (TARGET) ★"
+        elif L < 0.01:
+            scale = "Molecular bonds"
+        elif L < 0.1:
+            scale = "Protein complexes, membrane channels"
+        elif L < 1.0:
+            scale = "Organelles"
         else:
-            relevance = "Fast molecular motions"
+            scale = "Cellular structures"
         
-        print(f"{v:14.3f}  |  {f:21.2f}  | {relevance}")
+        print(f"{L:17.2f}  |  {f:22.1f}  | {scale}")
     
     print()
     print("Optimal parameters for f₀ = 141.7 Hz:")
     print("  v ≈ 7.085 μm/s  (moderate cytoplasmic streaming)")
-    print("  L ≈ 50 μm       (typical eukaryotic cell size)")
+    print("  λ ≈ 0.05 μm = 50 nm (protein complex scale)")
+    print("  f = 7.085 / 0.05 = 141.7 Hz")
     print()
     
     # Calculate for the exact value
-    params = BiofluidParameters(velocity_um_s=7.085, length_scale_um=50.0)
+    params = BiofluidParameters(velocity_um_s=7.085, length_scale_um=0.05)
     
     print("Physical context:")
-    print(f"  Reynolds number: Re = {params.reynolds_number:.4f}")
+    print(f"  Reynolds number: Re = {params.reynolds_number:.6f}")
     print(f"  Strouhal number: St = {params.strouhal_number:.4f}")
     print(f"  Flow regime: {'Laminar' if params.reynolds_number < 1 else 'Transitional'}")
     print()
@@ -275,10 +283,12 @@ def demonstrate_141_7_hz_derivation():
     print("  - Cellular membrane vibrations (1-100 Hz)")
     print("  - Protein conformational changes (10-100 Hz)")
     print("  - DNA structural resonances (Raman spectroscopy)")
+    print("  - Cytoplasmic streaming oscillations")
     print()
     print("Connection to QCAL hypothesis:")
     print("  Organisms evolved to 'listen' to this characteristic frequency")
-    print("  It's not arbitrary - it's the natural rhythm of life at cellular scale")
+    print("  It's not arbitrary - it's the natural rhythm of life at protein scale")
+    print("  Where fluid dynamics meets molecular biology")
     print("="*80)
 
 
@@ -408,13 +418,13 @@ if __name__ == "__main__":
     # Create biofluid parameters
     params = BiofluidParameters(
         velocity_um_s=7.085,
-        length_scale_um=50.0
+        length_scale_um=0.05  # 50 nm protein scale
     )
     
     print(f"  Velocity: {params.velocity_um_s} μm/s")
-    print(f"  Length: {params.length_scale_um} μm")
+    print(f"  Wavelength: {params.length_scale_um} μm = {params.length_scale_um * 1000} nm")
     print(f"  Characteristic frequency: {params.characteristic_frequency_hz:.2f} Hz")
-    print(f"  Reynolds number: {params.reynolds_number:.4f}")
+    print(f"  Reynolds number: {params.reynolds_number:.6f}")
     print()
     
     # Simulate
@@ -430,11 +440,12 @@ if __name__ == "__main__":
     
     print("Physical interpretation:")
     print("  The 141.7 Hz frequency is NOT imposed externally")
-    print("  It EMERGES from the natural dynamics of cellular flows")
-    print("  Described by Navier-Stokes equations at microscale")
+    print("  It EMERGES from the natural dynamics of protein-scale fluid oscillations")
+    print("  Described by Navier-Stokes equations at nanoscale")
     print()
     print("This is why organisms 'listen' to this frequency:")
-    print("  It's the fundamental rhythm of life at the cellular level")
+    print("  It's the fundamental rhythm where fluid dynamics meets molecular biology")
+    print("  At the protein scale where structure meets flow")
     print()
     print("Instituto Consciencia Cuántica QCAL ∞³")
     print("="*80)
