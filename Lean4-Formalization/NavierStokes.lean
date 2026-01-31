@@ -18,6 +18,7 @@ import NavierStokes.PsiNSE_CompleteLemmas_WithInfrastructure
 import NavierStokes.Foundation.Complete
 import NavierStokes.FrequencyEmergence.Complete
 import NavierStokes.DyadicDamping.Complete
+import NavierStokes.NavierSpacetime
 
 set_option autoImplicit false
 set_option linter.unusedVariables false
