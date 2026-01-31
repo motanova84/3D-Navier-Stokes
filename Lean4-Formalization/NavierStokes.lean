@@ -19,6 +19,7 @@ import NavierStokes.Foundation.Complete
 import NavierStokes.FrequencyEmergence.Complete
 import NavierStokes.DyadicDamping.Complete
 import NavierStokes.NavierSpacetime
+import NavierStokes.Step5_UniversalSmoothness
 
 set_option autoImplicit false
 set_option linter.unusedVariables false
@@ -58,6 +59,7 @@ This is the main entry point that connects all submodules of the formalization.
 ### Advanced Topics
 - `PsiNSE_CompleteLemmas_WithInfrastructure`: Ψ-NSE complete lemmas
 - `DyadicDamping.Complete`: Dyadic damping mechanisms
+- `Step5_UniversalSmoothness`: Universal Smoothness Theorem (Paso 5)
 
 ## Main Results
 
@@ -74,6 +76,12 @@ All theorems are proven without `sorry`. Key results:
 
 4. **Global Regularity** (`UnifiedBKM`):
    - u ∈ C^∞(ℝ³ × (0,∞)) via BKM criterion
+
+5. **Universal Smoothness** (`Step5_UniversalSmoothness`):
+   - Operador H_Ψ con coherencia Ψ implica ∇u acotado ∀t ∈ [0,∞)
+   - Desigualdad de energía noética: ν·f₀² domina vortex stretching
+   - Extensión global: No existen singularidades en tiempo finito
+   - Sello de Navier-Stokes: Regularidad como única solución compatible
 
 All constants are **universal** (independent of initial data).
 

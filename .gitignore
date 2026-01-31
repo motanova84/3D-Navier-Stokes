@@ -59,6 +59,14 @@ Results/Figures/*.jpg
 Results/Figures/*.pdf
 delta_star.json
 
+# Regression test results (keep baseline.json but not runtime artifacts)
+Results/Regression/results_*.json
+Results/Regression/performance.json
+Results/Regression/python_tests.json
+Results/Regression/sorry_count.json
+Results/Regression/*.log
+Results/Regression/lean_build_time.txt
+
 # Artifacts (generated analysis output)
 artifacts/*.png
 artifacts/*.jpg
@@ -123,3 +131,8 @@ artifacts/paper/*.pdf
 # Parametric sweep packages and results (runtime artifacts)
 parametric_sweep_packages/
 parametric_sweep_results/
+
+# QCAL activation generated outputs
+qcal_activation.png
+qcal_activation_report.txt
+test_qcal_viz.png
