@@ -55,7 +55,7 @@ class SymbioticMolecularSequence:
     citoplasmática a 141.7001 Hz según el modelo Riemann-Navier-Stokes.
     """
     
-    # Secuencia RNA simbiótica (54 nucleótidos)
+    # Secuencia RNA simbiótica (53 nucleótidos)
     RNA_SEQUENCE = "AUGUUUGGAGCUAGUGCUCGAUUAAGAGGGUCUACCUCGUACUGAAGGCGUAG"
     
     def __init__(self, metadata: Optional[SequenceMetadata] = None):
