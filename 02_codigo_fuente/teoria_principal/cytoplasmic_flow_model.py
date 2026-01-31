@@ -21,7 +21,7 @@ License: MIT
 """
 
 import numpy as np
-from typing import Dict, Tuple, List, Optional
+from typing import Dict, Tuple, List, Optional, Any
 from dataclasses import dataclass
 import warnings
 
@@ -252,7 +252,7 @@ class CytoplasmicFlowModel:
         return (self.hilbert_polya_operator_exists() and 
                 self.is_hermitian())
     
-    def get_summary(self) -> Dict[str, any]:
+    def get_summary(self) -> Dict[str, Any]:
         """
         Obtener resumen completo del modelo
         
@@ -453,7 +453,7 @@ class RiemannResonanceOperator:
         # Flujo regularizado requiere Re << 1
         return reynolds_number < 0.1
     
-    def get_riemann_zeros_correspondence(self) -> Dict[str, any]:
+    def get_riemann_zeros_correspondence(self) -> Dict[str, Any]:
         """
         Obtener correspondencia con zeros de Riemann
         
@@ -519,7 +519,7 @@ class MicrotubuleModel:
         # según la teoría de Orch-OR (Orchestrated Objective Reduction)
         return True
     
-    def get_summary(self) -> Dict[str, any]:
+    def get_summary(self) -> Dict[str, Any]:
         """
         Obtener resumen del modelo
         

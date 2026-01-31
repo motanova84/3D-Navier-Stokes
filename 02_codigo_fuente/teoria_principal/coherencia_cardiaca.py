@@ -19,7 +19,7 @@ License: MIT
 """
 
 import numpy as np
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List, Tuple, Optional, Any
 from dataclasses import dataclass
 import warnings
 
@@ -163,7 +163,7 @@ class CoherenciaCardiaca:
         """
         return self.cardiac_params.coherence_ratio >= threshold
     
-    def get_quantum_cellular_coupling(self) -> Dict[str, any]:
+    def get_quantum_cellular_coupling(self) -> Dict[str, Any]:
         """
         Obtener información sobre acoplamiento cuántico-celular
         
@@ -214,7 +214,7 @@ class CoherenciaCardiaca:
         
         return t, hrv_total
     
-    def get_testable_predictions(self) -> Dict[str, any]:
+    def get_testable_predictions(self) -> Dict[str, Any]:
         """
         Obtener predicciones testables experimentalmente
         
@@ -232,7 +232,7 @@ class CoherenciaCardiaca:
             "validation_criterion": f"Pico en ~{self.cellular_f0:.1f} Hz a nivel celular"
         }
     
-    def get_summary(self) -> Dict[str, any]:
+    def get_summary(self) -> Dict[str, Any]:
         """
         Obtener resumen completo del modelo
         
