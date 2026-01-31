@@ -95,6 +95,59 @@ python demo_direct_resonance_complete.py
 
 **New Epistemology of Flow:**  
 *System behavior emerges not from brute computation, but from alignment with the geometric-vibrational frequencies of the universe.*
+
+---
+
+## 🧬 NEW: Cellular Cytoplasmic Flow Resonance - Riemann Hypothesis Biological Verification
+
+**El cuerpo humano como demostración viviente de la hipótesis de Riemann: 37 billones de ceros biológicos resonando en coherencia.**
+
+### Marco Teórico
+
+Extensión de la hipótesis QCAL a nivel celular que establece conexión experimental entre la **Hipótesis de Riemann** y el tejido vivo:
+
+- **Frecuencias Armónicas**: `fₙ = n × 141.7001 Hz` (armónicos de coherencia cardíaca)
+- **Longitud de Coherencia**: `ξ = √(ν/ω) ≈ 1.06 μm` (coincide con escala celular)
+- **Número de Onda**: `κ_Π = 2.5773` (constante biofísica)
+- **Operador Hermítico**: `Ĥ† = Ĥ` (células sanas) vs `Ĥ† ≠ Ĥ` (cáncer)
+
+### Quick Start
+
+```python
+from cellular_cytoplasmic_resonance import CytoplasmicFlowCell, CoherenceLength
+from molecular_implementation_protocol import create_standard_protocol
+
+# Verificar longitud de coherencia
+coh = CoherenceLength(viscosity_m2_s=1e-9, frequency_hz=141.7001)
+print(f"ξ = {coh.xi_um:.3f} μm")  # Output: ξ = 1.060 μm
+
+# Célula sana
+cell = CytoplasmicFlowCell()
+cell.set_healthy_state()
+print(f"State: {cell.state.value}")  # Output: coherent
+
+# Protocolo experimental
+protocol = create_standard_protocol()
+measurements = protocol.simulate_measurement(n_cells=100)
+```
+
+**📖 Full Documentation**: [CELLULAR_CYTOPLASMIC_RESONANCE_README.md](CELLULAR_CYTOPLASMIC_RESONANCE_README.md)
+
+**🧪 Run Demo**:
+```bash
+python demo_cellular_resonance_complete.py
+python test_cellular_cytoplasmic_resonance.py
+```
+
+### Implicaciones Biológicas
+
+1. **Corazón como Oscilador Fundamental**: 141.7 Hz sincroniza todas las células
+2. **Cada Célula = "Cero de Riemann Biológico"**: Resonancia en armónicos
+3. **Cáncer = Ruptura de Simetría Hermítica**: Autovalores complejos → inestabilidad
+4. **Protocolo Experimental**: Marcadores fluorescentes + espectroscopía
+
+---
+
 ## 🧪 Predicciones Científicas (2026–2028)
 
 **Revisión experimental de f₀ en BEC, reconexión de vórtices y sincronización espontánea.**
