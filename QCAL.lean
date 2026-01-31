@@ -9,6 +9,7 @@ New modules for QCAL ∞³ Framework:
 - NLSEquation: Modified nonlinear Schrödinger equation
 - SarnakPrinciple: QCAL-Sarnak orthogonality principle
 - EnergyEstimates: Energy decay and estimates
+- SpacetimeFluid: Spacetime-fluid correspondence (membrane paradigm)
 -/
 
 import QCAL.Frequency
@@ -19,5 +20,6 @@ import QCAL.SpectralAnalysis
 import QCAL.NLSEquation
 import QCAL.SarnakPrinciple
 import QCAL.EnergyEstimates
+import QCAL.SpacetimeFluid
 -- Note: QCAL.FrequencyValidation.F0Derivation contains similar definitions
 -- and is imported separately when needed to avoid naming conflicts
