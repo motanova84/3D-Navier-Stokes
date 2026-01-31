@@ -136,3 +136,6 @@ parametric_sweep_results/
 qcal_activation.png
 qcal_activation_report.txt
 test_qcal_viz.png
+
+# Spacetime-Fluid visualization outputs
+Results/SpacetimeFluid/
