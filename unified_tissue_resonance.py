@@ -46,7 +46,7 @@ License: MIT
 
 import numpy as np
 import matplotlib.pyplot as plt
-from typing import Dict, Tuple, List, Optional, Callable
+from typing import Dict, Tuple, List, Optional, Callable, Any
 from dataclasses import dataclass
 from enum import Enum
 
@@ -328,7 +328,7 @@ class UnifiedTissueResonance:
             'convergence_quality': 1.0 / (1.0 + total_dev)
         }
     
-    def validate_141hz(self) -> Dict[str, any]:
+    def validate_141hz(self) -> Dict[str, Any]:
         """
         Validate that the unified model predicts 141.7 Hz.
         

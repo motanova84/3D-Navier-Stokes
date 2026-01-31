@@ -28,7 +28,7 @@ License: MIT
 """
 
 import numpy as np
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List, Tuple, Optional, Any
 from dataclasses import dataclass
 from enum import Enum
 
@@ -96,7 +96,7 @@ class TherapeuticProtocol:
         """Total protocol duration"""
         return self.phase_1_duration_min + self.phase_2_duration_min + self.phase_3_duration_min
     
-    def get_phase_config(self, phase: TherapyPhase) -> Dict[str, any]:
+    def get_phase_config(self, phase: TherapyPhase) -> Dict[str, Any]:
         """Get configuration for a specific phase"""
         configs = {
             TherapyPhase.RESONANCE: {
@@ -136,7 +136,7 @@ class INGNIOCMISystem:
         self.params = params or INGNIOParameters()
         self.frequency = self.params.frequency_hz
     
-    def validate_biological_connection(self) -> Dict[str, any]:
+    def validate_biological_connection(self) -> Dict[str, Any]:
         """
         Validate connection to biological resonance.
         
@@ -292,7 +292,7 @@ class ResonanceTherapySystem:
         
         return summary
     
-    def validate_system(self) -> Dict[str, any]:
+    def validate_system(self) -> Dict[str, Any]:
         """
         Validate the integrated system.
         
@@ -316,7 +316,7 @@ class ResonanceTherapySystem:
             'system_coherent': ingnio_val['validated'] and ingnio_protected
         }
     
-    def diagnose_tissue_resonance(self, measured_frequency: float) -> Dict[str, any]:
+    def diagnose_tissue_resonance(self, measured_frequency: float) -> Dict[str, Any]:
         """
         Diagnose tissue resonance relative to ideal.
         

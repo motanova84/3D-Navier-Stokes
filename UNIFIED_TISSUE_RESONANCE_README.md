@@ -62,7 +62,7 @@ Insight: Same resonance pattern across 10 orders of magnitude
 | **Cardiac** | **141.7 Hz** | **2.000** | **23.9×** | ✅ Direct (f₀) |
 | Neural | 146.7 Hz | 0.111 | 18.3× | ✅ Harmonic |
 | Epithelial | 146.7 Hz | 0.065 | 18.4× | ✅ Harmonic |
-| Muscular | 146.7 Hz | 0.675 | 17.1× | ✅ Armonic |
+| Muscular | 146.7 Hz | 0.675 | 17.1× | ✅ Harmonic |
 
 **Cardiac tissue shows maximum resonance exactly at 141.7 Hz with 23.9× amplification.**
 
