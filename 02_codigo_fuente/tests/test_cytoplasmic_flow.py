@@ -36,7 +36,7 @@ class TestCytoplasmaParams(unittest.TestCase):
         """Test default parameter values"""
         params = CytoplasmaParams()
         
-        self.assertEqual(params.density, 1000.0)
+        self.assertEqual(params.density, 1050.0)  # Updated from 1000.0
         self.assertEqual(params.kinematic_viscosity, 1e-6)
         self.assertEqual(params.cell_scale, 1e-6)
         self.assertEqual(params.flow_velocity, 1e-8)
@@ -306,12 +306,12 @@ class TestEigenfrequencies(unittest.TestCase):
         model = CytoplasmicFlowModel()
         eigenfreqs = model.get_eigenfrequencies(5)
         
-        # Check approximate values from expected output
-        self.assertAlmostEqual(eigenfreqs[0], 141.7001, places=1)
-        self.assertAlmostEqual(eigenfreqs[1], 210.69, places=0)
-        self.assertAlmostEqual(eigenfreqs[2], 250.69, places=0)
-        self.assertAlmostEqual(eigenfreqs[3], 305.00, places=0)
-        self.assertAlmostEqual(eigenfreqs[4], 330.06, places=0)
+        # Check values based on fn = n × 141.7001 Hz
+        self.assertAlmostEqual(eigenfreqs[0], 141.7001, places=4)      # 1 × 141.7001
+        self.assertAlmostEqual(eigenfreqs[1], 283.4002, places=3)      # 2 × 141.7001
+        self.assertAlmostEqual(eigenfreqs[2], 425.1003, places=2)      # 3 × 141.7001
+        self.assertAlmostEqual(eigenfreqs[3], 566.8004, places=1)      # 4 × 141.7001
+        self.assertAlmostEqual(eigenfreqs[4], 708.5005, places=0)      # 5 × 141.7001
 
 
 class TestRiemannConnection(unittest.TestCase):
@@ -378,7 +378,7 @@ class TestSummary(unittest.TestCase):
         model = CytoplasmicFlowModel()
         summary = model.get_summary()
         
-        self.assertEqual(summary["density_kg_m3"], 1000.0)
+        self.assertEqual(summary["density_kg_m3"], 1050.0)  # Updated from 1000.0
         self.assertAlmostEqual(summary["reynolds_number"], 1e-8)
         self.assertTrue(summary["is_viscous"])
         self.assertTrue(summary["has_smooth_solution"])
