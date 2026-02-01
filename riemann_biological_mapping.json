@@ -1,0 +1,86 @@
+{
+  "model": "Riemann-Biological Mapping",
+  "timestamp": "2026-02-01T00:42:18.855063",
+  "mappings": [
+    {
+      "zero_index": 1,
+      "riemann_imaginary_part": 14.134725,
+      "biological_frequency_hz": 141647.33,
+      "cellular_process": "Transporte de vesículas (motores moleculares)",
+      "coherence_length_um": 1.0600000103362455,
+      "energy_scale_ev": 5.85806286677579e-10
+    },
+    {
+      "zero_index": 2,
+      "riemann_imaginary_part": 21.02204,
+      "biological_frequency_hz": 210666.69759427226,
+      "cellular_process": "Oscilaciones mitocondriales (ATP sintasa)",
+      "coherence_length_um": 0.8691847984705414,
+      "energy_scale_ev": 8.712474555244289e-10
+    },
+    {
+      "zero_index": 3,
+      "riemann_imaginary_part": 25.010858,
+      "biological_frequency_hz": 250639.5601406564,
+      "cellular_process": "Dinámica de microtúbulos (polimerización)",
+      "coherence_length_um": 0.7968659245003988,
+      "energy_scale_ev": 1.0365619318097958e-09
+    },
+    {
+      "zero_index": 4,
+      "riemann_imaginary_part": 30.424876,
+      "biological_frequency_hz": 304894.6796616899,
+      "cellular_process": "Señalización calcio (ondas Ca²⁺)",
+      "coherence_length_um": 0.7224954938448512,
+      "energy_scale_ev": 1.2609430768681948e-09
+    },
+    {
+      "zero_index": 5,
+      "riemann_imaginary_part": 32.935062,
+      "biological_frequency_hz": 330049.8308728652,
+      "cellular_process": "Tráfico endoplasmático (síntesis proteínas)",
+      "coherence_length_um": 0.6944169429205435,
+      "energy_scale_ev": 1.3649764230797441e-09
+    },
+    {
+      "zero_index": 6,
+      "riemann_imaginary_part": 37.586178,
+      "biological_frequency_hz": 376659.73399586754,
+      "cellular_process": "Respiración celular (cadena electrones)",
+      "coherence_length_um": 0.6500330946855681,
+      "energy_scale_ev": 1.557739493664186e-09
+    },
+    {
+      "zero_index": 7,
+      "riemann_imaginary_part": 40.918719,
+      "biological_frequency_hz": 410055.89379137335,
+      "cellular_process": "División celular (citocinesis)",
+      "coherence_length_um": 0.6230007028175901,
+      "energy_scale_ev": 1.6958549128471406e-09
+    },
+    {
+      "zero_index": 8,
+      "riemann_imaginary_part": 43.327073,
+      "biological_frequency_hz": 434190.5631107142,
+      "cellular_process": "Dinámica de actina (contracción)",
+      "coherence_length_um": 0.6054382788730587,
+      "energy_scale_ev": 1.7956678850659206e-09
+    },
+    {
+      "zero_index": 9,
+      "riemann_imaginary_part": 48.005151,
+      "biological_frequency_hz": 481070.65863657265,
+      "cellular_process": "Transporte iónico (bombas Na⁺/K⁺)",
+      "coherence_length_um": 0.5751824563667066,
+      "energy_scale_ev": 1.9895483816421238e-09
+    },
+    {
+      "zero_index": 10,
+      "riemann_imaginary_part": 49.773832,
+      "biological_frequency_hz": 498795.0177077063,
+      "cellular_process": "Transcripción genética (ARN polimerasa)",
+      "coherence_length_um": 0.5648706532683813,
+      "energy_scale_ev": 2.062850440856377e-09
+    }
+  ]
+}
