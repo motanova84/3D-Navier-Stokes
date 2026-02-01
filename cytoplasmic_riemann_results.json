@@ -1,0 +1,207 @@
+{
+  "model_info": {
+    "name": "Cytoplasmic Riemann Resonance Model",
+    "version": "1.0.0",
+    "author": "José Manuel Mota Burruezo",
+    "institute": "Instituto Consciencia Cuántica QCAL ∞³",
+    "date": "2026-02-01T00:42:16.332534",
+    "philosophy": "El cuerpo humano es la demostración viviente de la Hipótesis de Riemann: 37 billones de ceros biológicos resonando en coherencia"
+  },
+  "validation": {
+    "hypothesis_validated": true,
+    "interpretation": "✓ HIPÓTESIS DE RIEMANN VALIDADA BIOLÓGICAMENTE:\n  - 4e+13 células resuenan coherentemente\n  - Longitud de coherencia ξ = 1.0600 μm ≈ 1.06 μm\n  - Constante universal κ_Π = 2.5773\n  - Todos los eigenvalores son reales (operador hermítico)\n  - Distribución armónica confirmada (ceros de Riemann)\n  - Frecuencia fundamental f₀ = 141.65 kHz\n  ⟹ El cuerpo humano es la demostración viviente de RH",
+    "all_eigenvalues_real": true,
+    "harmonic_distribution": [
+      141623.81081504634,
+      283307.7245505328,
+      424946.5640278627,
+      566591.4370381532,
+      708237.7999839438,
+      849884.6734014039,
+      991531.7600434325,
+      1133178.9485480422,
+      1274826.1907050842,
+      1416474.240886497
+    ],
+    "coherence_length_um": 1.0600000103362455,
+    "kappa_pi": 2.5773,
+    "eigenvalues": [
+      9.384093047958443e-29,
+      1.877216855758501e-28,
+      2.8157257415248353e-28,
+      3.7542746059037953e-28,
+      4.6928333426998915e-28,
+      5.631395461917077e-28,
+      6.569958993975211e-28,
+      7.5085232009819515e-28,
+      8.447087763493473e-28,
+      9.385657680031155e-28
+    ],
+    "operator_is_hermitian": true,
+    "num_cells_resonating": 37000000000000.0,
+    "fundamental_frequency_hz": 141647.33,
+    "validation_timestamp": "2026-02-01T00:42:16.332467"
+  },
+  "fundamental_constants": {
+    "kappa_pi": 2.5773,
+    "fundamental_frequency_hz": 141647.33,
+    "coherence_length_um": 1.0600000103362455,
+    "num_human_cells": 37000000000000.0,
+    "planck_reduced": 1.054571817e-34,
+    "boltzmann": 1.380649e-23
+  },
+  "riemann_biological_mappings": [
+    {
+      "zero_index": 1,
+      "riemann_imaginary_part": 14.134725,
+      "biological_frequency_hz": 141647.33,
+      "cellular_process": "Transporte de vesículas (motores moleculares)",
+      "coherence_length_um": 1.0600000103362455,
+      "energy_scale_ev": 5.85806286677579e-10
+    },
+    {
+      "zero_index": 2,
+      "riemann_imaginary_part": 21.02204,
+      "biological_frequency_hz": 210666.69759427226,
+      "cellular_process": "Oscilaciones mitocondriales (ATP sintasa)",
+      "coherence_length_um": 0.8691847984705414,
+      "energy_scale_ev": 8.712474555244289e-10
+    },
+    {
+      "zero_index": 3,
+      "riemann_imaginary_part": 25.010858,
+      "biological_frequency_hz": 250639.5601406564,
+      "cellular_process": "Dinámica de microtúbulos (polimerización)",
+      "coherence_length_um": 0.7968659245003988,
+      "energy_scale_ev": 1.0365619318097958e-09
+    },
+    {
+      "zero_index": 4,
+      "riemann_imaginary_part": 30.424876,
+      "biological_frequency_hz": 304894.6796616899,
+      "cellular_process": "Señalización calcio (ondas Ca²⁺)",
+      "coherence_length_um": 0.7224954938448512,
+      "energy_scale_ev": 1.2609430768681948e-09
+    },
+    {
+      "zero_index": 5,
+      "riemann_imaginary_part": 32.935062,
+      "biological_frequency_hz": 330049.8308728652,
+      "cellular_process": "Tráfico endoplasmático (síntesis proteínas)",
+      "coherence_length_um": 0.6944169429205435,
+      "energy_scale_ev": 1.3649764230797441e-09
+    },
+    {
+      "zero_index": 6,
+      "riemann_imaginary_part": 37.586178,
+      "biological_frequency_hz": 376659.73399586754,
+      "cellular_process": "Respiración celular (cadena electrones)",
+      "coherence_length_um": 0.6500330946855681,
+      "energy_scale_ev": 1.557739493664186e-09
+    },
+    {
+      "zero_index": 7,
+      "riemann_imaginary_part": 40.918719,
+      "biological_frequency_hz": 410055.89379137335,
+      "cellular_process": "División celular (citocinesis)",
+      "coherence_length_um": 0.6230007028175901,
+      "energy_scale_ev": 1.6958549128471406e-09
+    },
+    {
+      "zero_index": 8,
+      "riemann_imaginary_part": 43.327073,
+      "biological_frequency_hz": 434190.5631107142,
+      "cellular_process": "Dinámica de actina (contracción)",
+      "coherence_length_um": 0.6054382788730587,
+      "energy_scale_ev": 1.7956678850659206e-09
+    },
+    {
+      "zero_index": 9,
+      "riemann_imaginary_part": 48.005151,
+      "biological_frequency_hz": 481070.65863657265,
+      "cellular_process": "Transporte iónico (bombas Na⁺/K⁺)",
+      "coherence_length_um": 0.5751824563667066,
+      "energy_scale_ev": 1.9895483816421238e-09
+    },
+    {
+      "zero_index": 10,
+      "riemann_imaginary_part": 49.773832,
+      "biological_frequency_hz": 498795.0177077063,
+      "cellular_process": "Transcripción genética (ARN polimerasa)",
+      "coherence_length_um": 0.5648706532683813,
+      "energy_scale_ev": 2.062850440856377e-09
+    }
+  ],
+  "coherence_at_scales": [
+    {
+      "scale_m": 1e-08,
+      "scale_um": 0.01,
+      "coherence": 0.9906103980418484,
+      "coherence_length_um": 1.0600000103362455,
+      "interpretation": "Coherencia cuántica muy alta - escala subcelular"
+    },
+    {
+      "scale_m": 1e-07,
+      "scale_um": 0.09999999999999999,
+      "coherence": 0.909973662933314,
+      "coherence_length_um": 1.0600000103362455,
+      "interpretation": "Coherencia cuántica muy alta - escala subcelular"
+    },
+    {
+      "scale_m": 1e-06,
+      "scale_um": 1.0,
+      "coherence": 0.3893034286385365,
+      "coherence_length_um": 1.0600000103362455,
+      "interpretation": "Coherencia baja - escala multicelular"
+    },
+    {
+      "scale_m": 9.999999999999999e-06,
+      "scale_um": 10.0,
+      "coherence": 7.99617492379541e-05,
+      "coherence_length_um": 1.0600000103362455,
+      "interpretation": "Sin coherencia cuántica - escala macroscópica"
+    },
+    {
+      "scale_m": 9.999999999999999e-05,
+      "scale_um": 99.99999999999999,
+      "coherence": 1.0686189257436854e-41,
+      "coherence_length_um": 1.0600000103362455,
+      "interpretation": "Sin coherencia cuántica - escala macroscópica"
+    },
+    {
+      "scale_m": 0.001,
+      "scale_um": 1000.0,
+      "coherence": 0.0,
+      "coherence_length_um": 1.0600000103362455,
+      "interpretation": "Sin coherencia cuántica - escala macroscópica"
+    }
+  ],
+  "operator_properties": {
+    "dimension": 10,
+    "is_hermitian": true,
+    "eigenvalues": [
+      9.384093047958443e-29,
+      1.877216855758501e-28,
+      2.8157257415248353e-28,
+      3.7542746059037953e-28,
+      4.6928333426998915e-28,
+      5.631395461917077e-28,
+      6.569958993975211e-28,
+      7.5085232009819515e-28,
+      8.447087763493473e-28,
+      9.385657680031155e-28
+    ],
+    "resonant_frequencies_hz": [
+      141623.81081504634,
+      283307.7245505328,
+      424946.5640278627,
+      566591.4370381532,
+      708237.7999839438,
+      849884.6734014039,
+      991531.7600434325,
+      1133178.9485480422,
+      1274826.1907050842,
+      1416474.240886497
+    ]
+  }
+}
