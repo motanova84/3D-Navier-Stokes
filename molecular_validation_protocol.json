@@ -1,0 +1,205 @@
+{
+  "protocol_info": {
+    "title": "Molecular Validation Protocol - Riemann Resonance",
+    "version": "1.0.0",
+    "author": "José Manuel Mota Burruezo",
+    "institute": "Instituto Consciencia Cuántica QCAL ∞³",
+    "date": "2026-02-01T00:34:28.346353",
+    "purpose": "Validar experimentalmente la resonancia Riemann-Citoplasma mediante técnicas de biología molecular y biofísica"
+  },
+  "experiments": {
+    "fluorescent_markers": {
+      "fluorescent_markers": {
+        "GFP-Cytoplasm": {
+          "target": "Citoplasma general",
+          "excitation_nm": 488,
+          "emission_nm": 509,
+          "purpose": "Visualizar flujo citoplasmático global",
+          "expected_pattern": "Ondas coherentes a 141.7 Hz"
+        },
+        "RFP-Mitochondria": {
+          "target": "Mitocondrias",
+          "excitation_nm": 558,
+          "emission_nm": 583,
+          "purpose": "Detectar oscilaciones mitocondriales",
+          "expected_pattern": "Oscilaciones a 283.4 Hz (2× fundamental)"
+        },
+        "FRET-Actin": {
+          "target": "Filamentos de actina",
+          "donor_nm": 433,
+          "acceptor_nm": 475,
+          "purpose": "Medir coherencia espacial del citoesqueleto",
+          "expected_coherence_length_um": 1.0600000103362455
+        }
+      },
+      "imaging_method": "Confocal microscopy + spectral unmixing",
+      "temporal_resolution_ms": 1.0,
+      "spatial_resolution_nm": 200,
+      "acquisition_time_min": 10
+    },
+    "magnetic_nanoparticles": {
+      "nanoparticle": {
+        "composition": "Fe₃O₄ (magnetite)",
+        "size_nm": 20,
+        "coating": "PEG (biocompatible)",
+        "concentration_nM": 10
+      },
+      "magnetic_field": {
+        "frequency_hz": 141647.33,
+        "amplitude_mT": 1.0,
+        "waveform": "sinusoidal",
+        "harmonics_tested": [
+          141647.33,
+          283294.66,
+          424941.99,
+          566589.32,
+          708236.6499999999
+        ]
+      },
+      "detection": {
+        "method": "Magnetic particle imaging (MPI)",
+        "sensitivity": "Single nanoparticle",
+        "temporal_resolution_us": 100
+      },
+      "expected_resonances_hz": [
+        141623.81081504634,
+        283307.7245505328,
+        424946.5640278627,
+        566591.4370381532,
+        708237.7999839438
+      ],
+      "validation_criterion": "Peak in MPI signal at predicted frequencies"
+    },
+    "spectral_validation": {
+      "method": "Fourier Transform Spectroscopy",
+      "technique": "Laser Doppler Velocimetry (LDV)",
+      "target_frequencies_hz": [
+        141623.81081504634,
+        283307.7245505328,
+        424946.5640278627,
+        566591.4370381532,
+        708237.7999839438,
+        849884.6734014039,
+        991531.7600434325,
+        1133178.9485480422,
+        1274826.1907050842,
+        1416474.240886497
+      ],
+      "frequency_resolution_hz": 0.1,
+      "measurement_duration_s": 60,
+      "expected_peaks": [
+        {
+          "frequency_hz": 141623.81081504634,
+          "harmonic_number": 1,
+          "relative_amplitude": 1.0,
+          "tolerance_hz": 0.5
+        },
+        {
+          "frequency_hz": 283307.7245505328,
+          "harmonic_number": 2,
+          "relative_amplitude": 0.25,
+          "tolerance_hz": 0.5
+        },
+        {
+          "frequency_hz": 424946.5640278627,
+          "harmonic_number": 3,
+          "relative_amplitude": 0.1111111111111111,
+          "tolerance_hz": 0.5
+        },
+        {
+          "frequency_hz": 566591.4370381532,
+          "harmonic_number": 4,
+          "relative_amplitude": 0.0625,
+          "tolerance_hz": 0.5
+        },
+        {
+          "frequency_hz": 708237.7999839438,
+          "harmonic_number": 5,
+          "relative_amplitude": 0.04,
+          "tolerance_hz": 0.5
+        },
+        {
+          "frequency_hz": 849884.6734014039,
+          "harmonic_number": 6,
+          "relative_amplitude": 0.027777777777777776,
+          "tolerance_hz": 0.5
+        },
+        {
+          "frequency_hz": 991531.7600434325,
+          "harmonic_number": 7,
+          "relative_amplitude": 0.02040816326530612,
+          "tolerance_hz": 0.5
+        },
+        {
+          "frequency_hz": 1133178.9485480422,
+          "harmonic_number": 8,
+          "relative_amplitude": 0.015625,
+          "tolerance_hz": 0.5
+        },
+        {
+          "frequency_hz": 1274826.1907050842,
+          "harmonic_number": 9,
+          "relative_amplitude": 0.012345679012345678,
+          "tolerance_hz": 0.5
+        },
+        {
+          "frequency_hz": 1416474.240886497,
+          "harmonic_number": 10,
+          "relative_amplitude": 0.01,
+          "tolerance_hz": 0.5
+        }
+      ],
+      "validation_criterion": "All predicted frequencies present with S/N > 10"
+    },
+    "time_lapse_microscopy": {
+      "microscopy_type": "Spinning disk confocal",
+      "objective": "63× oil immersion, NA=1.4",
+      "z_stack": {
+        "range_um": 10,
+        "step_um": 0.2,
+        "slices": 50
+      },
+      "time_lapse": {
+        "duration_min": 30,
+        "interval_s": 1,
+        "frames": 1800
+      },
+      "analysis": {
+        "method": "Spatiotemporal Fourier analysis",
+        "coherence_length_measurement": "Correlation function C(r) = ⟨ψ(0)ψ*(r)⟩",
+        "expected_coherence_length_um": 1.0600000103362455,
+        "expected_decay": "Exponential: C(r) ∝ exp(-r/ξ)"
+      },
+      "cell_types": [
+        "HeLa (epithelial)",
+        "Neurons (primary culture)",
+        "Cardiomyocytes (beating)",
+        "Cancer cells (MCF-7) - expected decoherence"
+      ]
+    }
+  },
+  "expected_outcomes": {
+    "coherence_length_um": 1.0600000103362455,
+    "fundamental_frequency_hz": 141647.33,
+    "harmonics": [
+      141623.81081504634,
+      283307.7245505328,
+      424946.5640278627,
+      566591.4370381532,
+      708237.7999839438,
+      849884.6734014039,
+      991531.7600434325,
+      1133178.9485480422,
+      1274826.1907050842,
+      1416474.240886497
+    ],
+    "kappa_pi": 2.5773,
+    "riemann_hypothesis_validation": "All measurements consistent with hermitian flow operator ⟹ Riemann Hypothesis validated biologically"
+  },
+  "safety_considerations": [
+    "Use sterile techniques for cell culture",
+    "Magnetic nanoparticles: check biocompatibility",
+    "Laser safety: use appropriate filters and protection",
+    "Temperature control: maintain 37°C for mammalian cells"
+  ]
+}
