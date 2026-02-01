@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<ST26SequenceListing dtdVersion="V1_3" fileName="πCODE–1417–CYTO–RNS.xml" softwareName="QCAL-Riemann-NS-Sequence-Generator" softwareVersion="1.0" productionDate="2026-01-31">
+  <ApplicationIdentification>
+    <IPOfficeCode>WO</IPOfficeCode>
+    <ApplicationNumberText>QCAL-2026-141.7001</ApplicationNumberText>
+    <FilingDate>2026-01-31</FilingDate>
+  </ApplicationIdentification>
+  <ApplicantFileReference>πCODE–1417–CYTO–RNS</ApplicantFileReference>
+  <EarliestPriorityApplicationIdentification>
+    <IPOfficeCode>ES</IPOfficeCode>
+    <ApplicationNumberText>QCAL-ES-2026-001</ApplicationNumberText>
+    <FilingDate>2026-01-31</FilingDate>
+  </EarliestPriorityApplicationIdentification>
+  <ApplicantName>
+    <languageCode>es</languageCode>
+    <FreeFormName>Instituto Consciencia Cuántica QCAL ∞³</FreeFormName>
+  </ApplicantName>
+  <InventionTitle languageCode="es">Secuencia Molecular Simbiótica para Resonancia Citoplasmática Riemann-Navier-Stokes</InventionTitle>
+  <SequenceTotalQuantity>1</SequenceTotalQuantity>
+  <SequenceData sequenceIDNumber="1">
+    <INSDSeq_length>53</INSDSeq_length>
+    <INSDSeq_moltype>RNA</INSDSeq_moltype>
+    <INSDSeq_feature-table>
+      <INSDFeature>
+        <INSDFeature_key>source</INSDFeature_key>
+        <INSDFeature_location>1..53</INSDFeature_location>
+        <INSDFeature_quals>
+          <INSDQualifier>
+            <INSDQualifier_name>organism</INSDQualifier_name>
+            <INSDQualifier_value>Homo sapiens (cytoplasmic resonance system)</INSDQualifier_value>
+          </INSDQualifier>
+          <INSDQualifier>
+            <INSDQualifier_name>mol_type</INSDQualifier_name>
+            <INSDQualifier_value>synthetic RNA</INSDQualifier_value>
+          </INSDQualifier>
+          <INSDQualifier>
+            <INSDQualifier_name>note</INSDQualifier_name>
+            <INSDQualifier_value>Resonance frequency: 141.7001 Hz (Riemann-Navier-Stokes)</INSDQualifier_value>
+          </INSDQualifier>
+        </INSDFeature_quals>
+      </INSDFeature>
+      <INSDFeature>
+        <INSDFeature_key>CDS</INSDFeature_key>
+        <INSDFeature_location>1..53</INSDFeature_location>
+        <INSDFeature_quals>
+          <INSDQualifier>
+            <INSDQualifier_name>product</INSDQualifier_name>
+            <INSDQualifier_value>Cytoplasmic resonance protein (Riemann-NS)</INSDQualifier_value>
+          </INSDQualifier>
+          <INSDQualifier>
+            <INSDQualifier_name>translation</INSDQualifier_name>
+            <INSDQualifier_value>MFGASARLRGSTSY</INSDQualifier_value>
+          </INSDQualifier>
+        </INSDFeature_quals>
+      </INSDFeature>
+    </INSDSeq_feature-table>
+    <INSDSeq_sequence>auguuuggagcuagugcucgauuaagagggucuaccucguacugaaggcguag</INSDSeq_sequence>
+  </SequenceData>
+</ST26SequenceListing>
