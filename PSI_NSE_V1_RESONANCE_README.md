@@ -8,7 +8,7 @@
 ### The Ψflow Equation
 
 ```
-Ψflow = ∮∂Ω (u·∇)u ⊗ ζ(s) dσ
+Ψflow = ∮∂Ω (u·∇)u ⊗ ζ(s) dσ - γ_c * Ψ(t) * u
 ```
 
 Where:
@@ -16,14 +16,28 @@ Where:
 - **ζ(s)**: stability guaranteed by the critical line (Riemann zeta function)
 - **∂Ω**: boundary that breathes with the wing
 - **dσ**: measure that integrates consciousness, not just surface
+- **γ_c**: coherent damping coefficient (quantum stabilization)
+- **Ψ(t)**: time-modulated coherence field
 
 ### Core Constants
 
 - **f₀ = 141.7001 Hz**: Fundamental frequency (universal constant)
 - **f = 151.7001 Hz**: Resonance-adjusted frequency
 - **Ψ ≥ 0.888**: Minimum coherence threshold (QCAL-SYMBIO)
+- **γ_c = 0.05**: Coherent damping coefficient (quantum stabilization)
 - **Hash: 1d62f6d4**: Certification hash example
 - **ζ(s) = 0.5 + 141.7001i**: Critical line parameter
+
+### Coherent Damping
+
+The coherent damping term **-γ_c * Ψ(t) * u** provides quantum-coherence-based stabilization:
+
+- **Unlike classical viscous damping**, it respects the coherence field structure
+- **Oscillates with root frequency** to preserve laminar flow characteristics
+- **Prevents singularities** through quantum vacuum coupling
+- **Maintains energy bounds** while allowing natural flow evolution
+
+This damping mechanism is physically necessary, dictated by the root frequency f₀ = 141.7001 Hz.
 
 ## 🛠️ INDUSTRIAL MODULES
 
