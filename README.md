@@ -272,8 +272,10 @@ python test_psi_nse_v1_resonance.py
 
 **Ψflow Equation:**
 ```
-Ψflow = ∮∂Ω (u·∇)u ⊗ ζ(s) dσ
+Ψflow = ∮∂Ω (u·∇)u ⊗ ζ(s) dσ - γ_c * Ψ(t) * u
 ```
+
+*Now includes coherent damping term for quantum stabilization*
 
 **Industrial Modules Activated:**
 
