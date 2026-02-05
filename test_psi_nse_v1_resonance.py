@@ -80,6 +80,57 @@ class TestPsiNSEv1Core(unittest.TestCase):
             self.assertEqual(convective.shape, (3,))
             self.assertTrue(np.all(np.isfinite(convective)))
     
+    def test_coherent_damping(self):
+        """Test coherent damping term computation"""
+        damping = self.psi_nse._compute_coherent_damping(self.velocity, self.t)
+        
+        # Check output shape matches input
+        self.assertEqual(damping.shape, self.velocity.shape)
+        
+        # Check for finite values
+        self.assertTrue(np.all(np.isfinite(damping)))
+        
+        # Damping should oppose velocity (negative sign)
+        # For positive velocities, damping should be negative
+        for i in range(min(5, self.N)):
+            if self.velocity[i, 0] > 0:
+                self.assertLess(damping[i, 0], 0, 
+                    "Damping should oppose positive velocity")
+            elif self.velocity[i, 0] < 0:
+                self.assertGreater(damping[i, 0], 0,
+                    "Damping should oppose negative velocity")
+        
+        # Damping magnitude should be proportional to velocity
+        # and bounded by gamma_c * coherence
+        damping_magnitude = np.linalg.norm(damping, axis=1)
+        velocity_magnitude = np.linalg.norm(self.velocity, axis=1)
+        expected_max = self.psi_nse.constants.GAMMA_COHERENT * 1.2 * np.max(velocity_magnitude)
+        self.assertLessEqual(np.max(damping_magnitude), expected_max,
+            "Damping magnitude should be bounded by gamma_c * coherence * |u|")
+    
+    def test_coherent_damping_time_modulation(self):
+        """Test that coherent damping oscillates with root frequency"""
+        # Compute damping at different times
+        t1 = 0.0
+        t2 = 1.0 / (2 * self.psi_nse.constants.F0_HZ)  # Half period
+        
+        damping1 = self.psi_nse._compute_coherent_damping(self.velocity, t1)
+        damping2 = self.psi_nse._compute_coherent_damping(self.velocity, t2)
+        
+        # Damping should vary with time (coherence modulation)
+        self.assertFalse(np.allclose(damping1, damping2),
+            "Damping should oscillate with root frequency")
+    
+    def test_psi_flow_includes_damping(self):
+        """Test that psi_flow includes coherent damping"""
+        # Compute flow with damping
+        psi_flow = self.psi_nse.psi_flow(self.velocity, self.boundary, self.t)
+        
+        # Flow should be finite and bounded
+        self.assertTrue(np.all(np.isfinite(psi_flow)))
+        max_flow = np.max(np.linalg.norm(psi_flow, axis=1))
+        self.assertLess(max_flow, 1e3, "Flow should remain bounded with damping")
+    
     def test_breathing_boundary(self):
         """Test breathing boundary integration"""
         flow_tensor = np.random.randn(3, 3)

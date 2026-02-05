@@ -50,6 +50,9 @@ class ResonanceConstants:
     # Dissipation frequency
     Q_DRAG_HZ: float = 10.0  # Entropy dissipation at 10 Hz
     
+    # Coherent damping coefficient
+    GAMMA_COHERENT: float = 0.05  # Coherent damping strength
+    
     # Certification hash (example)
     CERTIFICATION_HASH: str = "1d62f6d4"
     
@@ -95,15 +98,16 @@ class PsiNSEv1:
         print(f"  Frecuencia Fundamental: f₀ = {self.constants.F0_HZ} Hz")
         print(f"  Frecuencia Ajustada: f = {self.constants.F_ADJUSTED_HZ} Hz")
         print(f"  Línea Crítica: ζ(s) = {self.constants.ZETA_CRITICAL}")
+        print(f"  Amortiguación Coherente: γ_c = {self.constants.GAMMA_COHERENT}")
         print(f"  Hash Certificación: {self.constants.CERTIFICATION_HASH}")
         print(f"  Coherencia: Ψ = {self.coherence_field}")
         print("="*80)
     
     def psi_flow(self, u: np.ndarray, boundary: np.ndarray, t: float) -> np.ndarray:
         """
-        Compute Ψflow via resonance integration
+        Compute Ψflow via resonance integration with coherent damping
         
-        Ψflow = ∮∂Ω (u·∇)u ⊗ ζ(s) dσ
+        Ψflow = ∮∂Ω (u·∇)u ⊗ ζ(s) dσ - γ_c * Ψ(t) * u
         
         Args:
             u: Velocity field [N, 3] that feels the geometry
@@ -111,13 +115,16 @@ class PsiNSEv1:
             t: Time
             
         Returns:
-            Ψflow field [N, 3] tuned by resonance
+            Ψflow field [N, 3] tuned by resonance with coherent damping
         """
         N = u.shape[0]
         psi_flow = np.zeros_like(u)
         
         # Critical line stability factor
         zeta_s = self._compute_zeta_stability(t)
+        
+        # Coherent damping term (stabilizes flow through quantum coherence)
+        coherent_damping = self._compute_coherent_damping(u, t)
         
         # Boundary integral with consciousness measure
         for i in range(N):
@@ -132,7 +139,8 @@ class PsiNSEv1:
                 flow_tensor, boundary, t
             )
             
-            psi_flow[i] = boundary_integral
+            # Combine resonance flow with coherent damping
+            psi_flow[i] = boundary_integral + coherent_damping[i]
         
         return psi_flow
     
@@ -180,6 +188,30 @@ class PsiNSEv1:
         # (u·∇)u ≈ u * du/dx (simplified)
         convective = u[i] * du_dx
         return convective
+    
+    def _compute_coherent_damping(self, u: np.ndarray, t: float) -> np.ndarray:
+        """
+        Compute coherent damping term: -γ_c * Ψ(t) * u
+        
+        The coherent damping stabilizes the flow through quantum-coherence coupling.
+        Unlike classical viscous damping, this term respects the coherence field
+        and oscillates with the root frequency to preserve laminar flow.
+        
+        Args:
+            u: Velocity field [N, 3]
+            t: Time
+            
+        Returns:
+            Coherent damping field [N, 3]
+        """
+        # Coherence modulation (oscillates with root frequency)
+        phase = 2 * np.pi * self.constants.F0_HZ * t
+        coherence_modulation = self.coherence_field * (1.0 + 0.1 * np.cos(phase))
+        
+        # Coherent damping: -γ * Ψ(t) * u
+        damping = -self.constants.GAMMA_COHERENT * coherence_modulation * u
+        
+        return damping
     
     def _integrate_breathing_boundary(
         self, 
