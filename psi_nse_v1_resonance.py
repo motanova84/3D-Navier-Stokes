@@ -53,6 +53,9 @@ class ResonanceConstants:
     # Coherent damping coefficient
     GAMMA_COHERENT: float = 0.05  # Coherent damping strength
     
+    # Coherence oscillation amplitude
+    COHERENCE_OSCILLATION_AMPLITUDE: float = 0.1  # Modulation depth (10%)
+    
     # Certification hash (example)
     CERTIFICATION_HASH: str = "1d62f6d4"
     
@@ -206,7 +209,9 @@ class PsiNSEv1:
         """
         # Coherence modulation (oscillates with root frequency)
         phase = 2 * np.pi * self.constants.F0_HZ * t
-        coherence_modulation = self.coherence_field * (1.0 + 0.1 * np.cos(phase))
+        coherence_modulation = self.coherence_field * (
+            1.0 + self.constants.COHERENCE_OSCILLATION_AMPLITUDE * np.cos(phase)
+        )
         
         # Coherent damping: -γ * Ψ(t) * u
         damping = -self.constants.GAMMA_COHERENT * coherence_modulation * u

@@ -101,7 +101,8 @@ class TestPsiNSEv1Core(unittest.TestCase):
                     "Damping should oppose negative velocity")
         
         # Damping magnitude should be proportional to velocity
-        # and bounded by gamma_c * coherence
+        # and bounded by gamma_c * coherence * |u|
+        # Factor of 1.2 accounts for coherence oscillation (up to 1.1x at peak)
         damping_magnitude = np.linalg.norm(damping, axis=1)
         velocity_magnitude = np.linalg.norm(self.velocity, axis=1)
         expected_max = self.psi_nse.constants.GAMMA_COHERENT * 1.2 * np.max(velocity_magnitude)
