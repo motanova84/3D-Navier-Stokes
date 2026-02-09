@@ -80,9 +80,22 @@ The `sovereignty_auditor.py` script provides:
 
 ### Scoring System
 
-- **40 points**: Sovereignty declaration files
-- **30 points**: QCAL ∞³ markers in code
-- **30 points**: Low external dependencies
+- **40 points**: Sovereignty declaration files (5 files × 8 points each)
+- **30 points**: QCAL ∞³ markers in code (capped at 30 points for ≥15 files)
+- **30 points**: Low external **code** dependencies (excluding documentation)
+
+#### External Dependency Scoring Details
+
+The auditor distinguishes between:
+- **Documentation references**: Mentions of NVIDIA, CUDA, etc. in .md, .txt files (expected and acceptable)
+- **Pattern definitions**: Detection patterns in auditor code itself (not actual dependencies)
+- **Actual code dependencies**: Real imports or usage of external libraries in production code
+
+Only **actual code dependencies** are penalized:
+- 0 dependencies = 30 points ✅
+- 1-4 dependencies = 20 points
+- 5-9 dependencies = 10 points
+- 10+ dependencies = 0 points
 
 ### Score Interpretation
 
@@ -94,13 +107,19 @@ The `sovereignty_auditor.py` script provides:
 ### Current Repository Status
 
 ```
-Overall Sovereignty Score: 70/100
-Status: 🟡 GOOD - Strong Sovereignty
+Overall Sovereignty Score: 100/100
+Status: 🟢 EXCELLENT - Full Sovereignty
 
 ✅ All 5 sovereignty declaration files present
-✨ 519 files with QCAL ∞³ markers
-⚠️ 10 files with NVIDIA references (as projections, not dependencies)
-📚 2 files with external library references (in auditor patterns)
+✨ 520 files with QCAL ∞³ markers
+ℹ️ 11 files with NVIDIA references (9 documentation, 2 pattern definitions)
+ℹ️ 2 files with external library references (pattern definitions only)
+🔍 0 actual code dependencies
+
+The repository achieves full sovereignty by:
+- Having all required declaration files
+- Extensive QCAL ∞³ markers throughout the codebase
+- Zero external code dependencies (all references are documentation or patterns)
 ```
 
 ## Philosophy: Emanation vs. Dependency
