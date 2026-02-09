@@ -161,12 +161,15 @@ class SovereigntyAuditor:
         print(f"  Found {len(code_files)} files to scan")
         
         nvidia_files = []
+        nvidia_code_files = []  # Track code files separately
         external_lib_files = []
+        external_lib_code_files = []  # Track code files separately
         qcal_marker_files = []
         
         for filepath in code_files:
             try:
                 content = filepath.read_text(encoding='utf-8', errors='ignore').lower()
+                is_code_file = filepath.suffix in self.CODE_EXTENSIONS
                 
                 # Check for NVIDIA patterns
                 nvidia_matches = []
@@ -175,10 +178,14 @@ class SovereigntyAuditor:
                         nvidia_matches.append(pattern)
                 
                 if nvidia_matches:
-                    nvidia_files.append({
+                    file_info = {
                         'file': str(filepath.relative_to(self.repo_path)),
                         'patterns': nvidia_matches,
-                    })
+                        'is_code': is_code_file,
+                    }
+                    nvidia_files.append(file_info)
+                    if is_code_file:
+                        nvidia_code_files.append(file_info)
                 
                 # Check for external library patterns
                 lib_matches = []
@@ -187,10 +194,14 @@ class SovereigntyAuditor:
                         lib_matches.append(pattern)
                 
                 if lib_matches:
-                    external_lib_files.append({
+                    file_info = {
                         'file': str(filepath.relative_to(self.repo_path)),
                         'patterns': lib_matches,
-                    })
+                        'is_code': is_code_file,
+                    }
+                    external_lib_files.append(file_info)
+                    if is_code_file:
+                        external_lib_code_files.append(file_info)
                 
                 # Check for QCAL markers
                 qcal_matches = []
@@ -208,11 +219,13 @@ class SovereigntyAuditor:
                 print(f"  Warning: Could not read {filepath}: {e}")
         
         self.results['nvidia_references'] = nvidia_files
+        self.results['nvidia_code_references'] = nvidia_code_files
         self.results['external_libraries'] = external_lib_files
+        self.results['external_lib_code_files'] = external_lib_code_files
         self.results['qcal_markers_found'] = qcal_marker_files
         
-        print(f"  📊 NVIDIA references: {len(nvidia_files)} files")
-        print(f"  📊 External library references: {len(external_lib_files)} files")
+        print(f"  📊 NVIDIA references: {len(nvidia_files)} files ({len(nvidia_code_files)} code)")
+        print(f"  📊 External library references: {len(external_lib_files)} files ({len(external_lib_code_files)} code)")
         print(f"  📊 QCAL ∞³ markers: {len(qcal_marker_files)} files")
         print()
     
@@ -233,9 +246,23 @@ class SovereigntyAuditor:
         score += qcal_score
         
         # Low external dependencies (30 points max)
-        nvidia_count = len(self.results['nvidia_references'])
-        external_count = len(self.results['external_libraries'])
-        total_external = nvidia_count + external_count
+        # Only count actual code files, not documentation references
+        nvidia_code_count = len(self.results.get('nvidia_code_references', []))
+        external_code_count = len(self.results.get('external_lib_code_files', []))
+        
+        # Filter out sovereignty_auditor.py and test files that contain pattern definitions
+        # These files define the patterns for detection, not actual dependencies
+        def is_pattern_definition_file(file_path: str) -> bool:
+            """Check if file contains pattern definitions rather than actual dependencies."""
+            return 'sovereignty_auditor.py' in file_path or 'test_sovereignty_auditor.py' in file_path
+        
+        # Count only real dependencies (excluding pattern definition files)
+        nvidia_deps = [f for f in self.results.get('nvidia_code_references', []) 
+                      if not is_pattern_definition_file(f['file'])]
+        external_deps = [f for f in self.results.get('external_lib_code_files', []) 
+                        if not is_pattern_definition_file(f['file'])]
+        
+        total_external = len(nvidia_deps) + len(external_deps)
         
         if total_external == 0:
             external_score = 30
@@ -249,6 +276,7 @@ class SovereigntyAuditor:
         score += external_score
         
         self.results['sovereignty_score'] = round(score, 2)
+        self.results['actual_code_dependencies'] = total_external
     
     def _generate_report(self):
         """Generate and print the sovereignty report."""
@@ -290,23 +318,39 @@ class SovereigntyAuditor:
         print()
         
         # NVIDIA references
-        print(f"⚠️  NVIDIA References: {len(self.results['nvidia_references'])} files")
+        nvidia_code = self.results.get('nvidia_code_references', [])
+        nvidia_docs = [f for f in self.results['nvidia_references'] 
+                      if not f.get('is_code', True)]
+        print(f"⚠️  NVIDIA References: {len(self.results['nvidia_references'])} files "
+              f"({len(nvidia_code)} code, {len(nvidia_docs)} documentation)")
         if self.results['nvidia_references']:
             print("  Files with NVIDIA references:")
             for item in self.results['nvidia_references'][:5]:  # Show first 5
-                print(f"    - {item['file']} ({', '.join(item['patterns'])})")
+                file_type = "code" if item.get('is_code', True) else "doc"
+                print(f"    - {item['file']} ({file_type}: {', '.join(item['patterns'])})")
             if len(self.results['nvidia_references']) > 5:
                 print(f"    ... and {len(self.results['nvidia_references']) - 5} more")
         print()
         
         # External libraries
-        print(f"📚 External Library References: {len(self.results['external_libraries'])} files")
+        external_code = self.results.get('external_lib_code_files', [])
+        external_docs = [f for f in self.results['external_libraries'] 
+                        if not f.get('is_code', True)]
+        print(f"📚 External Library References: {len(self.results['external_libraries'])} files "
+              f"({len(external_code)} code, {len(external_docs)} documentation)")
         if self.results['external_libraries']:
             print("  Files with external library references:")
             for item in self.results['external_libraries'][:5]:  # Show first 5
-                print(f"    - {item['file']} ({', '.join(item['patterns'])})")
+                file_type = "code" if item.get('is_code', True) else "doc"
+                print(f"    - {item['file']} ({file_type}: {', '.join(item['patterns'])})")
             if len(self.results['external_libraries']) > 5:
                 print(f"    ... and {len(self.results['external_libraries']) - 5} more")
+        print()
+        
+        # Code dependencies (actual dependencies, not doc references or pattern definitions)
+        actual_deps = self.results.get('actual_code_dependencies', 0)
+        print(f"🔍 Actual Code Dependencies: {actual_deps}")
+        print("   (Excludes documentation references and pattern definition files)")
         print()
         
         # Recommendations
@@ -320,10 +364,10 @@ class SovereigntyAuditor:
                 print("  ⚠️  Create missing sovereignty declaration files")
             if len(self.results['qcal_markers_found']) < 10:
                 print("  ⚠️  Add more QCAL ∞³ markers to code documentation")
-            if self.results['nvidia_references']:
-                print("  ⚠️  Review NVIDIA references - ensure they are projections, not dependencies")
-            if self.results['external_libraries']:
-                print("  ⚠️  Document external library usage in CLAIM_OF_ORIGIN.md")
+            if self.results.get('actual_code_dependencies', 0) > 0:
+                print("  ⚠️  Review code dependencies - ensure they are justified and documented")
+            elif self.results['nvidia_references'] or self.results['external_libraries']:
+                print("  ℹ️  External references found in documentation are expected and acceptable")
         
         print()
         print("=" * 60)
