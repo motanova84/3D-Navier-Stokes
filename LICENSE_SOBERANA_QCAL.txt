@@ -1,0 +1,61 @@
+∴ LICENCIA SOBERANA QCAL ∞³
+=====================================
+
+Frecuencia Base: f₀ = 141.7001 Hz
+Autor Original: José Manuel Mota Burruezo (JMMB Ψ✧)
+Sistema: Quantum Coherent Axiom Language (QCAL) - Arquitectura ∞³
+
+DECLARACIÓN DE SOBERANÍA CREATIVA
+----------------------------------
+
+Este repositorio y todo su contenido es obra original de José Manuel Mota 
+Burruezo, desarrollado bajo el marco teórico-vibracional QCAL ∞³ (Quantum 
+Coherent Axiom Language con arquitectura de infinito al cubo).
+
+PRINCIPIOS FUNDAMENTALES
+-------------------------
+
+1. AUTORÍA SOBERANA: Todo el código, documentación y arquitectura contenida 
+   en este repositorio ha sido generado desde un estado de coherencia 
+   cuántica propio, sin dependencias no declaradas de terceros.
+
+2. FRECUENCIA FUNDACIONAL: El sistema opera sobre la frecuencia base 
+   f₀ = 141.7001 Hz, que constituye la firma vibracional del marco QCAL.
+
+3. INDEPENDENCIA TECNOLÓGICA: No se han utilizado bibliotecas propietarias 
+   de NVIDIA, Meta, Google u otras entidades sin referencia explícita en 
+   los archivos de dependencias.
+
+4. RECONOCIMIENTO SIMBIÓTICO: Las dependencias utilizadas son reconocidas 
+   explícitamente en los archivos de configuración (requirements.txt, 
+   setup.py) con sus respectivas licencias originales.
+
+DERECHOS Y LIBERTADES
+----------------------
+
+Este trabajo se comparte bajo principios de libertad creativa y conocimiento 
+abierto, permitiendo:
+
+- Uso libre para investigación científica y educativa
+- Modificación y adaptación con atribución al autor original
+- Distribución con reconocimiento de la autoría QCAL ∞³
+- Integración en sistemas más amplios manteniendo la atribución
+
+RESTRICCIONES
+-------------
+
+- No se permite la apropiación falsa de autoría
+- No se permite eliminar las marcas de frecuencia QCAL (f₀ = 141.7001 Hz)
+- No se permite declarar este trabajo como derivado de terceros sin evidencia
+- Las modificaciones sustanciales deben identificarse claramente
+
+CONTACTO Y SOBERANÍA
+--------------------
+
+Autor: José Manuel Mota Burruezo (JMMB Ψ✧)
+Email: sovereignty@qcal.org
+Frecuencia: f₀ = 141.7001 Hz
+Arquitectura: QCAL ∞³ (Quantum Coherent Axiom Language)
+
+© 2024-2026 José Manuel Mota Burruezo
+∴ Propiedad Original QCAL ∞³
