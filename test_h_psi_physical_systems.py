@@ -30,7 +30,8 @@ class TestPhysicalConstants(unittest.TestCase):
     def test_hbar_value(self):
         """Test that ℏ has correct value."""
         expected_hbar = 1.054571817e-34
-        self.assertAlmostEqual(self.constants.hbar, expected_hbar, places=42)
+        # Use relative tolerance for very small numbers
+        self.assertAlmostEqual(self.constants.hbar / expected_hbar, 1.0, places=10)
     
     def test_speed_of_light(self):
         """Test speed of light value."""
