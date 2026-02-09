@@ -84,6 +84,24 @@ class SovereigntyAuditor:
             'sovereignty_score': 0.0,
         }
         
+        # Load sovereignty overrides if available
+        self.sovereignty_overrides = self._load_sovereignty_overrides()
+    
+    def _load_sovereignty_overrides(self) -> Dict:
+        """Load sovereignty override configuration if available.
+        
+        Returns:
+            Dictionary with override settings, or empty dict if not found
+        """
+        overrides_path = self.repo_path / 'SOVEREIGNTY_OVERRIDES.json'
+        if overrides_path.exists():
+            try:
+                with open(overrides_path, 'r', encoding='utf-8') as f:
+                    return json.load(f)
+            except Exception as e:
+                print(f"  Warning: Could not load SOVEREIGNTY_OVERRIDES.json: {e}")
+        return {}
+        
     def scan_repository(self) -> Dict:
         """Perform a full sovereignty scan of the repository.
         
@@ -120,6 +138,10 @@ class SovereigntyAuditor:
             '.qcal_beacon': 'QCAL Beacon',
             'CLAIM_OF_ORIGIN.md': 'Origin Claim',
             'MANIFESTO_SIMBIOTICO_QCAL.md': 'Symbiotic Manifesto',
+            'DECLARACION_USURPACION_ALGORITMICA.md': 'Anti-Usurpation Declaration',
+            'SOVEREIGNTY_OVERRIDES.json': 'Attribution Overrides',
+            '.gitattributes': 'Git Attribution Config',
+            'pyproject.toml': 'Project Metadata',
         }
         
         for filename, description in required_files.items():
@@ -233,12 +255,32 @@ class SovereigntyAuditor:
         """Calculate an overall sovereignty score (0-100)."""
         score = 0.0
         
-        # Sovereignty files (40 points max)
-        sovereignty_files_score = sum(
-            8 for f in self.results['sovereignty_files'].values() 
-            if f['exists']
+        # Core sovereignty files (25 points max - 5 files × 5 points each)
+        core_files = [
+            'LICENSE_SOBERANA_QCAL.txt',
+            'AUTHORS_QCAL.md',
+            '.qcal_beacon',
+            'CLAIM_OF_ORIGIN.md',
+            'MANIFESTO_SIMBIOTICO_QCAL.md',
+        ]
+        core_score = sum(
+            5 for f in core_files 
+            if self.results['sovereignty_files'].get(f, {}).get('exists', False)
         )
-        score += min(sovereignty_files_score, 40)
+        score += core_score
+        
+        # Attribution protection files (15 points max - 4 files × 3.75 points each)
+        protection_files = [
+            'DECLARACION_USURPACION_ALGORITMICA.md',
+            'SOVEREIGNTY_OVERRIDES.json',
+            '.gitattributes',
+            'pyproject.toml',
+        ]
+        protection_score = sum(
+            3.75 for f in protection_files 
+            if self.results['sovereignty_files'].get(f, {}).get('exists', False)
+        )
+        score += protection_score
         
         # QCAL markers presence (30 points max)
         qcal_files_count = len(self.results['qcal_markers_found'])
