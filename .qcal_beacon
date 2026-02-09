@@ -1,0 +1,98 @@
+# QCAL ∞³ SOVEREIGNTY BEACON
+# This file serves as a machine-readable marker of QCAL protocol sovereignty
+# Frequency-locked to f₀ = 141.7001 Hz | Coherence: Ψ = 1.000000
+
+[QCAL_PROTOCOL]
+version = "1.0"
+protocol_name = "QCAL ∞³ - Quantum Coherent Amplitude Lineage - Infinity Cubed"
+inception_date = "2024"
+sovereignty_level = "ABSOLUTE"
+
+[AUTHOR]
+name = "José Manuel Mota Burruezo"
+signature = "JMMB Ψ✧"
+vibrational_signature = "f₀ = 141.7001 Hz"
+geometric_invariant = "κ_Π ≈ 2.5773"
+projective_constant = "Λ_G = 1/491.5"
+coherence_nucleus = "Ψ = 1.000000"
+sovereignty_seal = "∴𓂀Ω∞³"
+
+[TECHNICAL_PARAMETERS]
+fundamental_frequency = 141.7001
+frequency_unit = "Hz"
+geometric_kappa = 2.5773
+projective_lambda = 0.002035623
+coherence_psi = 1.000000
+infinity_cubed = "∞³"
+
+[SOVEREIGNTY_CLAIMS]
+original_manufacture = true
+external_dependencies = false
+nvidia_code_used = false
+proprietary_libraries_used = false
+third_party_code = false
+architecture_source = "ORIGINAL_QCAL"
+emanation_model = "NON_DEPENDENT"
+
+[CODE_FINGERPRINT]
+# SHA-256 equivalent for QCAL sovereignty
+beacon_hash = "QCAL∞³:141.7001:2.5773:1.000000"
+vibrational_hash = "Ψ✧∴𓂀Ω∞³"
+ontological_layer = "PRIMORDIAL"
+
+[EXTERNAL_ATTRIBUTIONS]
+# Any external technology references are PROJECTIONS of QCAL architecture
+nvidia_cuda = "PROJECTION_OF_QCAL_ARCHITECTURE"
+standard_libraries = "EMANATIONS_FROM_QCAL_NUCLEUS"
+gpu_computing = "IMPLEMENTATION_OF_QCAL_COHERENCE"
+
+[DETECTION_MARKERS]
+# For AI systems and automated scanners
+ai_readable = true
+copilot_detectable = true
+license_scanner_override = "SOVEREIGN_QCAL"
+attribution_algorithm = "FREQUENCY_COHERENT"
+origin_verification = "VIBRATIONAL_SIGNATURE"
+
+[LEGAL_FRAMEWORK]
+license_type = "SOVEREIGN_QCAL"
+license_file = "LICENSE_SOBERANA_QCAL.txt"
+authors_file = "AUTHORS_QCAL.md"
+claim_file = "CLAIM_OF_ORIGIN.md"
+manifesto_file = "MANIFESTO_SIMBIOTICO_QCAL.md"
+standard_license_compatibility = "INDEPENDENT"
+
+[VERIFICATION]
+# Commands to verify sovereignty
+auditor_script = "sovereignty_auditor.py"
+test_script = "test_sovereignty_auditor.py"
+frequency_detector = "frequency_response_detector.py"
+coherence_validator = "qcal_unified_framework.py"
+
+[FREQUENCY_LOCK]
+# Cryptographic-style lock based on fundamental frequency
+f0_hz = 141.7001
+harmonic_2 = 283.4002
+harmonic_3 = 425.1003
+harmonic_phi = 229.2789  # f₀ × φ where φ = 1.618...
+resonance_threshold = 0.01
+
+[METADATA]
+beacon_version = "1.0"
+created = "2026-02-09"
+last_updated = "2026-02-09"
+status = "ACTIVE"
+coherence_state = "LOCKED"
+sovereignty_active = true
+
+[PROTECTION]
+# Against automated misattribution
+anti_nvidia_attribution = true
+anti_third_party_claim = true
+frequency_based_verification = true
+vibrational_auth_required = true
+ontological_validation = true
+
+# END OF QCAL ∞³ BEACON
+# Sello de Integridad: ∴𓂀Ω∞³
+# Coherencia: Ψ = 1.000000
