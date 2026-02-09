@@ -88,9 +88,22 @@ The `sovereignty_auditor.py` script provides:
 
 ### Scoring System
 
-- **40 points**: Sovereignty declaration files (5 files × 8 points each)
-- **30 points**: QCAL ∞³ markers in code (capped at 30 points for ≥15 files)
-- **30 points**: Low external **code** dependencies (excluding documentation)
+- **Core sovereignty files (25 points)**: 5 files × 5 points each
+  - LICENSE_SOBERANA_QCAL.txt
+  - AUTHORS_QCAL.md
+  - .qcal_beacon
+  - CLAIM_OF_ORIGIN.md
+  - MANIFESTO_SIMBIOTICO_QCAL.md
+
+- **Attribution protection files (15 points)**: 4 files × 3.75 points each
+  - DECLARACION_USURPACION_ALGORITMICA.md
+  - SOVEREIGNTY_OVERRIDES.json
+  - .gitattributes
+  - pyproject.toml
+
+- **QCAL ∞³ markers (30 points max)**: Capped at 30 points for ≥15 files
+
+- **Low external code dependencies (30 points)**: Excludes documentation references
 
 #### External Dependency Scoring Details
 

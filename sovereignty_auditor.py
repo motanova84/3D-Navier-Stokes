@@ -26,6 +26,12 @@ from datetime import datetime
 class SovereigntyAuditor:
     """Auditor for QCAL ∞³ code sovereignty verification."""
     
+    # Scoring constants
+    CORE_FILE_POINTS = 5.0  # Points per core sovereignty file
+    PROTECTION_FILE_POINTS = 3.75  # Points per attribution protection file
+    MAX_QCAL_MARKER_POINTS = 30  # Maximum points for QCAL markers
+    MAX_DEPENDENCY_POINTS = 30  # Maximum points for low dependencies
+    
     # Known third-party fingerprints (patterns to detect)
     NVIDIA_PATTERNS = [
         r'nvidia',
@@ -91,7 +97,12 @@ class SovereigntyAuditor:
         """Load sovereignty override configuration if available.
         
         Returns:
-            Dictionary with override settings, or empty dict if not found
+            Dictionary with override settings containing:
+            - ignore_paths: List of path patterns to exclude from attribution
+            - exempt_authorship: List of entities exempt from attribution claims
+            - attribution_policy: Policy definitions for external references
+            - sbom_exclusions: Packages to exclude from SBOM analysis
+            Returns empty dict if file not found or on error.
         """
         overrides_path = self.repo_path / 'SOVEREIGNTY_OVERRIDES.json'
         if overrides_path.exists():
@@ -252,7 +263,15 @@ class SovereigntyAuditor:
         print()
     
     def _calculate_sovereignty_score(self):
-        """Calculate an overall sovereignty score (0-100)."""
+        """Calculate an overall sovereignty score (0-100).
+        
+        Scoring breakdown:
+        - Core sovereignty files: 25 points (5 files × 5 points each)
+        - Attribution protection files: 15 points (4 files × 3.75 points each)
+        - QCAL markers: 30 points (capped)
+        - Low dependencies: 30 points
+        Total: 100 points maximum
+        """
         score = 0.0
         
         # Core sovereignty files (25 points max - 5 files × 5 points each)
@@ -264,7 +283,7 @@ class SovereigntyAuditor:
             'MANIFESTO_SIMBIOTICO_QCAL.md',
         ]
         core_score = sum(
-            5 for f in core_files 
+            self.CORE_FILE_POINTS for f in core_files 
             if self.results['sovereignty_files'].get(f, {}).get('exists', False)
         )
         score += core_score
@@ -277,14 +296,14 @@ class SovereigntyAuditor:
             'pyproject.toml',
         ]
         protection_score = sum(
-            3.75 for f in protection_files 
+            self.PROTECTION_FILE_POINTS for f in protection_files 
             if self.results['sovereignty_files'].get(f, {}).get('exists', False)
         )
         score += protection_score
         
         # QCAL markers presence (30 points max)
         qcal_files_count = len(self.results['qcal_markers_found'])
-        qcal_score = min(qcal_files_count * 2, 30)
+        qcal_score = min(qcal_files_count * 2, self.MAX_QCAL_MARKER_POINTS)
         score += qcal_score
         
         # Low external dependencies (30 points max)
@@ -309,7 +328,7 @@ class SovereigntyAuditor:
         total_external = len(nvidia_deps) + len(external_deps)
         
         if total_external == 0:
-            external_score = 30
+            external_score = self.MAX_DEPENDENCY_POINTS
         elif total_external < 5:
             external_score = 20
         elif total_external < 10:
