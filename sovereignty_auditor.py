@@ -144,6 +144,11 @@ class SovereigntyAuditor:
         for ext in self.CODE_EXTENSIONS | self.DOC_EXTENSIONS:
             code_files.extend(self.repo_path.rglob(f'*{ext}'))
         
+        # Also add .qcal_beacon explicitly
+        beacon_path = self.repo_path / '.qcal_beacon'
+        if beacon_path.exists():
+            code_files.append(beacon_path)
+        
         # Filter out hidden files and common directories to skip
         skip_dirs = {'.git', '__pycache__', 'node_modules', '.pytest_cache', 'venv', 'env'}
         code_files = [

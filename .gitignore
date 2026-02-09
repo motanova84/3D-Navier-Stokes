@@ -139,3 +139,6 @@ test_qcal_viz.png
 
 # Spacetime-Fluid visualization outputs
 Results/SpacetimeFluid/
+
+# Sovereignty audit reports (generated artifacts)
+sovereignty_audit_report.json
