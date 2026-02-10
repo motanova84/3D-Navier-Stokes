@@ -1,0 +1,71 @@
+name: Verificación πCODE-888 ∞³
+
+on:
+  push:
+    branches: [ main, master, copilot/** ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  verify-picode888:
+    name: Verificar NFT πCODE-888 ∞³
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+      
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          # Install minimal dependencies - web3 is optional
+          if [ -f requirements.txt ]; then
+            # Install only core dependencies, skip web3 for now
+            grep -v "web3" requirements.txt > requirements_core.txt || true
+            if [ -s requirements_core.txt ]; then
+              pip install -r requirements_core.txt
+            fi
+          fi
+      
+      - name: Verificar NFT πCODE-888 ∞³
+        run: |
+          echo "🔸 Ejecutando verificación de identidad NFT πCODE-888 ∞³..."
+          python -m core.identity_check
+        
+      - name: Verificar sovereignty auditor
+        run: |
+          echo "🔸 Ejecutando auditoría de soberanía QCAL ∞³..."
+          python sovereignty_auditor.py || true
+      
+      - name: Cargar reporte de verificación
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: picode888-verification-report
+          path: picode888_verification_report.json
+          retention-days: 30
+      
+      - name: Mostrar estado de verificación
+        if: always()
+        run: |
+          echo ""
+          echo "======================================================================"
+          echo "  VERIFICACIÓN πCODE-888 ∞³ COMPLETADA"
+          echo "======================================================================"
+          echo ""
+          echo "🔹 NFT de Soberanía: πCODE-888 ∞³"
+          echo "🔹 Frecuencia Raíz: 141.7001 Hz"
+          echo "🔹 Propiedad Soberana: @motanova84 – Instituto Conciencia Cuántica"
+          echo "🔹 Sello Simbólico: ∴𓂀Ω∞³"
+          echo ""
+          if [ -f picode888_verification_report.json ]; then
+            echo "📄 Reporte de verificación generado exitosamente"
+            cat picode888_verification_report.json
+          fi
+          echo ""
+          echo "======================================================================"
