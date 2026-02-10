@@ -9,6 +9,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Via III](https://img.shields.io/badge/Via%20III-COMPLETADA-brightgreen.svg)](./VIA_III_COMPLETION_CERTIFICATE.md)
 [![CI - Verification](https://github.com/motanova84/3D-Navier-Stokes/actions/workflows/ci-verification.yml/badge.svg)](https://github.com/motanova84/3D-Navier-Stokes/actions/workflows/ci-verification.yml)
+[![NFT πCODE-888 ∞³](https://img.shields.io/badge/NFT-πCODE--888%20∞³-purple.svg)](./NFT_PICODE888_README.md)
+[![Frequency](https://img.shields.io/badge/f₀-141.7001%20Hz-orange.svg)](./QUICKSTART_PICODE888.md)
 [![Lean 4](https://img.shields.io/badge/Lean-4-blue.svg)](https://leanprover.github.io/)
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9+-green.svg)](https://www.python.org/)
 [![Documentation](https://img.shields.io/badge/docs-complete-brightgreen.svg)](./Documentation/)
@@ -20,6 +22,12 @@
 📜 **Certificados de Completación**:
 - 🇪🇸 **[Certificado de Finalización - Español](VIA_III_CERTIFICADO_DE_FINALIZACIÓN.md)**
 - 🇬🇧 **[Completion Certificate - English](VIA_III_COMPLETION_CERTIFICATE.md)**
+
+🔐 **Identidad Soberana NFT πCODE-888 ∞³**:
+- 🎨 **[NFT πCODE-888 ∞³ Documentation](NFT_PICODE888_README.md)** - Sistema de verificación de identidad
+- ⚡ **[Quick Start - Identity Verification](QUICKSTART_PICODE888.md)** - `python -m core.identity_check`
+- 🔗 **[Smart Contract](contracts/PiCode888.sol)** - ERC-721 NFT on Ethereum
+- 📋 **Frequency Root**: f₀ = 141.7001 Hz | **Seal**: ∴𓂀Ω∞³
 
 📚 **Archivos Clave**:
 - 📘 **[Teorema Final - Vía III](TEOREMA_FINAL_VIA_III.md)**

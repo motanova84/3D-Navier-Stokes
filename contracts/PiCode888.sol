@@ -42,7 +42,11 @@ contract PiCode888 is ERC721URIStorage, Ownable {
         // Mint token 888 to contract creator
         _safeMint(msg.sender, TOKEN_ID);
         
-        // Set metadata URI (to be updated with actual IPFS/Arweave URI)
+        // PLACEHOLDER: Update with actual IPFS hash after uploading picode888_metadata.json
+        // Steps to update:
+        // 1. Upload contracts/picode888_metadata.json to IPFS or Arweave
+        // 2. Get the content hash (e.g., "QmXxx...")
+        // 3. Call setTokenURI() with the full URI (e.g., "ipfs://QmXxx...")
         _setTokenURI(TOKEN_ID, "ipfs://QmPiCode888Metadata");
         
         emit PiCode888Minted(msg.sender, TOKEN_ID, FREQUENCY_ROOT);

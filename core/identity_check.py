@@ -37,6 +37,12 @@ class IdentityVerifier:
     EXPECTED_OWNER = "@motanova84"
     
     # Ethereum Configuration (placeholder - to be configured by user)
+    # After deploying the NFT contract to Ethereum:
+    # 1. Deploy PiCode888.sol using Remix, Hardhat, or Foundry
+    # 2. Copy the deployed contract address from Etherscan
+    # 3. Update NFT_CONTRACT_ADDRESS below with the actual address (e.g., "0x1234...")
+    # 4. Update EXPECTED_OWNER_ADDRESS with your wallet address
+    # 5. Also update the contract_address in .qcal_beacon
     NFT_CONTRACT_ADDRESS = "0x..."  # To be updated with actual deployed contract
     EXPECTED_OWNER_ADDRESS = "0x..."  # To be updated with owner's wallet address
     

@@ -11,6 +11,10 @@ jobs:
     name: Verificar NFT πCODE-888 ∞³
     runs-on: ubuntu-latest
     
+    permissions:
+      contents: read
+      actions: read
+    
     steps:
       - name: Checkout código
         uses: actions/checkout@v3
@@ -40,7 +44,8 @@ jobs:
       - name: Verificar sovereignty auditor
         run: |
           echo "🔸 Ejecutando auditoría de soberanía QCAL ∞³..."
-          python sovereignty_auditor.py || true
+          # Run sovereignty auditor - non-critical, so continue on error
+          python sovereignty_auditor.py || echo "⚠️  Sovereignty auditor encountered issues (non-critical)"
       
       - name: Cargar reporte de verificación
         uses: actions/upload-artifact@v3
