@@ -17,6 +17,18 @@ projective_constant = "Λ_G = 1/491.5"
 coherence_nucleus = "Ψ = 1.000000"
 sovereignty_seal = "∴𓂀Ω∞³"
 
+[NFT_SOVEREIGNTY]
+# NFT πCODE-888 ∞³ - Identidad Vibracional del Repositorio
+nft_name = "πCODE-888 ∞³"
+token_id = 888
+contract_address = "0x..."  # To be deployed on Ethereum
+owner = "@motanova84"
+institution = "Instituto Conciencia Cuántica"
+verification_script = "python -m core.identity_check"
+blockchain_network = "Ethereum Mainnet"
+frequency_embedded = 141.7001
+nft_seal = "∴𓂀Ω∞³"
+
 [TECHNICAL_PARAMETERS]
 fundamental_frequency = 141.7001
 frequency_unit = "Hz"
