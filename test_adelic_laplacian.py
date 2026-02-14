@@ -206,7 +206,7 @@ class TestAdelicLaplacianNumerics(unittest.TestCase):
     """Test numerical properties"""
     
     def test_convergence_with_resolution(self):
-        """Test Laplacian converges with increasing resolution"""
+        """Test Laplacian shows improved accuracy with increasing resolution"""
         # Use Gaussian which is compatible with periodic BC
         results = []
         
@@ -226,8 +226,8 @@ class TestAdelicLaplacianNumerics(unittest.TestCase):
             error = np.sqrt(np.sum((delta_psi[10:-10] - expected[10:-10])**2) * dx)
             results.append(error)
         
-        # Error should decrease with resolution (or at least last is better than first)
-        self.assertLess(results[2], results[0] * 1.5)  # Relaxed convergence check
+        # Verify highest resolution is better than lowest
+        self.assertLess(results[2], results[0])  # 200 pts better than 50 pts
 
 
 if __name__ == '__main__':

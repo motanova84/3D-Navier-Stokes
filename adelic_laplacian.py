@@ -92,10 +92,10 @@ class AdelicLaplacian:
         self.kappa = self.config.kappa
         self.f0 = self.config.f0
         
-        # Compute viscosity from κ and f₀
-        # ν = 1/κ ~ f₀·Φ/(4π) where Φ = golden ratio
-        phi = (1 + np.sqrt(5)) / 2  # Golden ratio
-        self.nu = self.f0 * phi / (4 * np.pi * self.kappa)
+        # Compute effective viscosity: ν = 1/κ
+        # The QCAL constants f₀ and Φ relate to energy scales,
+        # but the viscosity is simply the inverse of the coupling constant
+        self.nu = 1.0 / self.kappa
         
         # Cache p-adic weights
         self._compute_padic_weights()
@@ -159,6 +159,10 @@ class AdelicLaplacian:
         
         We use a simplified model where the p-adic metric induces
         mixing between grid points at scales related to p.
+        
+        Performance Note: This has O(n × p) complexity. For large grids
+        or many primes, consider vectorization or limiting the number of
+        primes in the configuration.
         
         Args:
             psi: Wave function or field

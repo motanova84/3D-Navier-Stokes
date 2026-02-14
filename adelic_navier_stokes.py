@@ -240,8 +240,10 @@ class AdelicNavierStokes:
         The transport term (x∂_x)ψ drives energy cascade.
         Flux is: Π = -∫ ψ* (x∂_x)ψ dx
         
+        Note: For real-valued ψ, ψ* = ψ
+        
         Args:
-            psi: Wave function
+            psi: Wave function (real-valued)
             x: Position grid
             dx: Grid spacing
             
@@ -249,9 +251,10 @@ class AdelicNavierStokes:
             Π: Energy flux
         """
         transport = self.transport_term(psi, x, dx)
-        flux = -np.sum(np.conj(psi) * transport) * dx
+        # For real wave functions, no need for complex conjugate
+        flux = -np.sum(psi * transport) * dx
         
-        return np.real(flux)
+        return flux
     
     def compute_dissipation(self, psi: np.ndarray, dx: float) -> float:
         """
