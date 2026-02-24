@@ -1,6 +1,6 @@
-import NavierStokes.DyadicRiccati
-import NavierStokes.ParabolicCoercivity
-import NavierStokes.MisalignmentDefect
+import PsiNSE.NavierStokes.DyadicRiccati
+import PsiNSE.NavierStokes.ParabolicCoercivity
+import PsiNSE.NavierStokes.MisalignmentDefect
 
 set_option autoImplicit false
 set_option linter.unusedVariables false
