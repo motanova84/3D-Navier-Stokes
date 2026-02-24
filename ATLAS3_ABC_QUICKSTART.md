@@ -152,7 +152,7 @@ Re_abc = log₂(c) / log₂(rad(abc))
 **Heat Trace:**
 ```
 Tr(e^{-tL}) = Weyl(t) + Σ_primes + R_ABC(t)
-|R_ABC(t)| ≤ C·ε·e^{-λ/t}
+|R_ABC(t)| ≤ C·ε·e^{-λ·t}
 ```
 
 **Universal Coupling:**

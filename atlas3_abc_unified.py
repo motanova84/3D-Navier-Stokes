@@ -372,7 +372,7 @@ class Atlas3ABCUnified:
         
         Tr(e^{-tL}) = Weyl(t) + Σ_{p,k} (ln p)/p^{k/2} e^{-tk ln p} + R_ABC(t)
         
-        donde |R_ABC(t)| ≤ C·ε_crítico·e^{-λ/t}
+        donde |R_ABC(t)| ≤ C·ε_crítico·e^{-λ·t}
         
         Args:
             t: Tiempo (parámetro de difusión)
@@ -404,14 +404,16 @@ class Atlas3ABCUnified:
         # R_ABC(t) = traza_exacta - Weyl(t) - Σ_primos
         remainder = trace_exact - weyl_term - prime_contribution
         
-        # Cota teórica: |R_ABC(t)| ≤ C·ε_crítico·e^{-λ/t}
+        # Cota teórica: |R_ABC(t)| ≤ C·ε_crítico·e^{-λ·t}
+        # Nota: La forma correcta es exp(-λ·t), no exp(-λ/t)
+        # que proviene de la decaída exponencial del kernel de calor
         C_constant = 1e15  # constante empírica ajustada
         lambda_gap = spectrum.spectral_gap
         
-        # Calcular cota evitando overflow
+        # Calcular cota evitando overflow/underflow
         if t > 0 and lambda_gap > 0:
-            exponent = -lambda_gap / t
-            # Limitar exponent para evitar overflow
+            exponent = -lambda_gap * t  # Corregido: -λ·t en lugar de -λ/t
+            # Limitar exponent para evitar overflow/underflow
             if exponent < -100:
                 theoretical_bound = 0.0
             elif exponent > 100:
@@ -429,7 +431,7 @@ class Atlas3ABCUnified:
             'remainder': remainder,
             'remainder_abs': np.abs(remainder),
             'theoretical_bound': theoretical_bound,
-            'bound_satisfied': np.abs(remainder) <= theoretical_bound,
+            'bound_satisfied': bool(np.abs(remainder) <= theoretical_bound),  # Convert to Python bool
             'relative_error': np.abs(remainder) / trace_exact if trace_exact != 0 else 0
         }
     

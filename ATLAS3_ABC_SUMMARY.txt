@@ -38,7 +38,7 @@
 ║                                                                       ║
 ║  Traza de Calor:                                                      ║
 ║    Tr(e^{-tL}) = Weyl(t) + Σ_primos + R_ABC(t)                       ║
-║    |R_ABC(t)| ≤ C·ε_crítico·e^{-λ/t}                                 ║
+║    |R_ABC(t)| ≤ C·ε_crítico·e^{-λ·t}                                 ║
 ║                                                                       ║
 ║  Acoplamiento Universal:                                              ║
 ║    μ = κ_Π · ε_crítico = 4πℏ/(k_B·T_cosmic·Φ)                        ║

@@ -259,24 +259,35 @@ class TestAtlas3ABCUnified(unittest.TestCase):
         x_grid = np.linspace(-5, 5, 64)
         spectrum = self.model.unified_operator_spectrum(x_grid)
         
-        # Usar tiempos apropiados para eigenvalues del orden de 10^4
-        # t ~ 10^-4 to 10^-2 da valores razonables
-        times = [1e-4, 5e-4, 1e-3]
+        # Usar tiempos apropiados donde la cota sea verificable
+        # Con exp(-λ·t), necesitamos tiempos donde λ·t no sea ni muy grande ni muy pequeño
+        # λ ≈ 30, así que t en rango [0.001, 0.1] da λ·t ∈ [0.03, 3]
+        times = [1e-3, 5e-3, 1e-2, 5e-2]
         
         for t in times:
             heat_trace = self.model.heat_trace_with_abc_control(t, spectrum)
             
-            # |R_ABC(t)| ≤ C·ε_crítico·e^{-λ/t}
+            # |R_ABC(t)| ≤ C·ε_crítico·e^{-λ·t}
             remainder_abs = heat_trace['remainder_abs']
             bound = heat_trace['theoretical_bound']
             
             # La cota debe ser no negativa
             self.assertGreaterEqual(bound, 0)
             
-            # La cota puede ser muy permisiva, solo verificamos estructura
-            # No forzamos cumplimiento estricto en tests unitarios
+            # Verificar que la cota no es degenerada (cero por underflow)
+            # Para estos tiempos, exp(-λ·t) debería ser apreciable
+            if t <= 0.1:  # Para t razonables
+                self.assertGreater(bound, 0, 
+                    f"Bound degeneró a 0 para t={t}, debe ser > 0")
+            
+            # Verificar estructura básica
             self.assertIsNotNone(remainder_abs)
             self.assertIsNotNone(bound)
+            
+            # El bound debería ser mayor que el remainder en la mayoría de casos
+            # (esto es una verificación débil, ya que C_constant es ajustable)
+            bound_satisfied = heat_trace['bound_satisfied']
+            self.assertIsInstance(bound_satisfied, bool)
     
     def test_generate_abc_triples(self):
         """Test generación de ternas ABC"""
