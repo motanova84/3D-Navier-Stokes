@@ -1,5 +1,6 @@
 """
 Navier-Stokes Unified Framework
+===============================
 
 This package provides unified constants and utilities for the Ψ-Navier-Stokes
 quantum-coherent framework, including medium-specific parameter calibrations
@@ -36,6 +37,11 @@ from .constants import (
     get_all_media_parameters,
     get_qcal_constants,
     
+    # Legacy/compatibility functions (for backwards compatibility)
+    calcular_velocidad_medio,
+    calcular_defecto_desalineacion,
+    calcular_coeficiente_amortiguamiento,
+    
     # Constants
     F0,
     OMEGA0,
@@ -70,6 +76,11 @@ __all__ = [
     'get_all_media_parameters',
     'get_qcal_constants',
     
+    # Legacy/compatibility functions
+    'calcular_velocidad_medio',
+    'calcular_defecto_desalineacion',
+    'calcular_coeficiente_amortiguamiento',
+    
     # Fundamental constants
     'F0',
     'OMEGA0',
@@ -94,13 +105,3 @@ __all__ = [
     'C_CZ',
     'C_STAR_BESOV',
 ]
-Módulo navier_stokes - Sistema Ψ-NS QCAL
-
-Este módulo contiene las constantes fundamentales y parámetros
-del sistema de Navier-Stokes con coherencia cuántica QCAL.
-"""
-
-from .constants import F0, calcular_a
-
-__all__ = ['F0', 'calcular_a']
-__version__ = '1.0.0'
