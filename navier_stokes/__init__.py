@@ -1,6 +1,5 @@
 """
 Navier-Stokes Unified Framework
-===============================
 
 This package provides unified constants and utilities for the Ψ-Navier-Stokes
 quantum-coherent framework, including medium-specific parameter calibrations
@@ -95,3 +94,13 @@ __all__ = [
     'C_CZ',
     'C_STAR_BESOV',
 ]
+Módulo navier_stokes - Sistema Ψ-NS QCAL
+
+Este módulo contiene las constantes fundamentales y parámetros
+del sistema de Navier-Stokes con coherencia cuántica QCAL.
+"""
+
+from .constants import F0, calcular_a
+
+__all__ = ['F0', 'calcular_a']
+__version__ = '1.0.0'
