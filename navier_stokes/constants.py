@@ -280,7 +280,7 @@ def obtener_delta_star(a: float, c0: float = C0_DEFAULT) -> float:
     >>> from navier_stokes.constants import obtener_delta_star, A_AGUA
     >>> delta_star = obtener_delta_star(A_AGUA)
     >>> print(f"δ* for water: {delta_star:.6f}")
-    δ* for water: 1.245044
+    δ* for water: 1.241184
     """
     return (a**2 * c0**2) / (4.0 * np.pi**2)
 

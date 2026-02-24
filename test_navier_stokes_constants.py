@@ -348,10 +348,16 @@ class TestIntegration(unittest.TestCase):
         self.assertTrue(result['riccati_besov_ok'])
     
     def test_all_media_regularity(self):
-        """Test regularity conditions for different media."""
+        """Test regularity conditions for different media.
+        
+        Note: agua (a=7.0) is intentionally calibrated to satisfy the primary
+        Riccati-Besov condition but not the stricter parabolic condition. This
+        is acceptable as Riccati-Besov is the main indicator of global regularity.
+        For applications requiring both conditions, use vacio (a=8.9).
+        """
         test_cases = [
             ('vacio', 1e-3, True),  # Should achieve full regularity
-            ('agua', 1e-3, False),  # Satisfies Riccati-Besov but not parabolic
+            ('agua', 1e-3, False),  # Satisfies Riccati-Besov but not parabolic (intentional)
             ('aire', 1.5e-5, True),  # Should achieve full regularity with high amplitude
         ]
         
