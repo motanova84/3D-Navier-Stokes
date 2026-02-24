@@ -74,7 +74,7 @@ def demo_adelic_structure():
     print(f"\nABC triple: {triple.a} + {triple.b} = {triple.c}")
     print("\nAdelic operator K_ABC(t) = exp(-λ·t) × ∏_p L_p(triple):")
     
-    times = [0.0, 0.5, 1.0, 2.0, 5.0]
+    times = [0.01, 0.5, 1.0, 2.0, 5.0]  # Changed from 0.0 to 0.01
     for t in times:
         value = framework.abc_adelic_operator(triple, t)
         print(f"  t = {t:.1f}: K_ABC = {abs(value):.6e} × exp(i·{np.angle(value):.4f})")
@@ -127,7 +127,7 @@ def demo_unified_coupling():
     print(f"  Riemann zero: s = {s}")
     print(f"  ABC triple: ({triple.a}, {triple.b}, {triple.c})")
     
-    times = [0.0, 0.5, 1.0, 2.0]
+    times = [0.01, 0.5, 1.0, 2.0]  # Changed from 0.0 to 0.01
     print(f"\n  Unified coupling values:")
     for t in times:
         coupling = framework.unified_coupling(triple, s, t)
