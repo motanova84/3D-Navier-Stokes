@@ -1,5 +1,5 @@
-import NavierStokes.UniformConstants
-import NavierStokes.DyadicRiccati
+import PsiNSE.NavierStokes.UniformConstants
+import PsiNSE.NavierStokes.DyadicRiccati
 
 set_option autoImplicit false
 set_option linter.unusedVariables false
