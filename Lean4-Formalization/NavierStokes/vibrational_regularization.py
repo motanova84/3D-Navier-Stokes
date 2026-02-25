@@ -250,7 +250,9 @@ class VibrationalRegularization:
         # ||u||_{L^p_t L^p_x} = (∫ ||u(t)||^p_{L^p_x} dt)^{1/p}
         if len(t_norms) > 1:
             dt = t_norms[1] - t_norms[0]
-            Lp_t_Lp_x = (np.trapz(u_norms**p, dx=dt))**(1/p)
+            # Use trapezoid (numpy 2.0+) or trapz (older versions)
+            trapz_func = getattr(np, 'trapezoid', getattr(np, 'trapz', None))
+            Lp_t_Lp_x = (trapz_func(u_norms**p, dx=dt))**(1/p)
         else:
             Lp_t_Lp_x = u_norms[0]
         
