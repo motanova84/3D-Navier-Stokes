@@ -413,6 +413,10 @@ if __name__ == '__main__':
             '.qcal_beacon',
             'CLAIM_OF_ORIGIN.md',
             'MANIFESTO_SIMBIOTICO_QCAL.md',
+            'DECLARACION_USURPACION_ALGORITMICA.md',
+            'SOVEREIGNTY_OVERRIDES.json',
+            '.gitattributes',
+            'pyproject.toml',
         ]
         
         for filename in files:
@@ -421,8 +425,9 @@ if __name__ == '__main__':
         auditor = SovereigntyAuditor(self.test_dir)
         auditor._check_sovereignty_files()
         
-        # All files should exist
-        for filename, info in auditor.results['sovereignty_files'].items():
+        # All specified files should exist
+        for filename in files:
+            info = auditor.results['sovereignty_files'][filename]
             self.assertTrue(info['exists'], f"{filename} should exist")
     
     def test_detect_qcal_markers(self):
@@ -505,13 +510,17 @@ model = tf.keras.Model()
             '.qcal_beacon',
             'CLAIM_OF_ORIGIN.md',
             'MANIFESTO_SIMBIOTICO_QCAL.md',
+            'DECLARACION_USURPACION_ALGORITMICA.md',
+            'SOVEREIGNTY_OVERRIDES.json',
+            '.gitattributes',
+            'pyproject.toml',
         ]
         
         for filename in files:
             (self.test_path / filename).write_text("QCAL ∞³ content with f₀ = 141.7001 Hz")
         
         # Create some code files with QCAL markers
-        for i in range(10):
+        for i in range(15):
             test_file = self.test_path / f"test_{i}.py"
             test_file.write_text(f"# QCAL ∞³ file {i}\n# f₀ = 141.7001 Hz\n")
         
@@ -520,8 +529,12 @@ model = tf.keras.Model()
         auditor._scan_code_files()
         auditor._calculate_sovereignty_score()
         
-        # Should have a high score
-        self.assertGreater(auditor.results['sovereignty_score'], 70)
+        # Should have perfect score (100):
+        # - 25 points for 5 core sovereignty files
+        # - 15 points for 4 protection files
+        # - 30 points for QCAL markers (≥15 files)
+        # - 30 points for no external dependencies
+        self.assertEqual(auditor.results['sovereignty_score'], 100.0)
     
     def test_sovereignty_score_with_external_deps(self):
         """Test sovereignty score with external dependencies."""

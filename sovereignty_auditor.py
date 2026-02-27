@@ -370,6 +370,12 @@ from datetime import datetime
 class SovereigntyAuditor:
     """Auditor for QCAL ∞³ code sovereignty verification."""
     
+    # Scoring constants
+    CORE_FILE_POINTS = 5.0  # Points per core sovereignty file
+    PROTECTION_FILE_POINTS = 3.75  # Points per attribution protection file
+    MAX_QCAL_MARKER_POINTS = 30  # Maximum points for QCAL markers
+    MAX_DEPENDENCY_POINTS = 30  # Maximum points for low dependencies
+    
     # Known third-party fingerprints (patterns to detect)
     NVIDIA_PATTERNS = [
         r'nvidia',
@@ -428,6 +434,29 @@ class SovereigntyAuditor:
             'sovereignty_score': 0.0,
         }
         
+        # Load sovereignty overrides if available
+        self.sovereignty_overrides = self._load_sovereignty_overrides()
+    
+    def _load_sovereignty_overrides(self) -> Dict:
+        """Load sovereignty override configuration if available.
+        
+        Returns:
+            Dictionary with override settings containing:
+            - ignore_paths: List of path patterns to exclude from attribution
+            - exempt_authorship: List of entities exempt from attribution claims
+            - attribution_policy: Policy definitions for external references
+            - sbom_exclusions: Packages to exclude from SBOM analysis
+            Returns empty dict if file not found or on error.
+        """
+        overrides_path = self.repo_path / 'SOVEREIGNTY_OVERRIDES.json'
+        if overrides_path.exists():
+            try:
+                with open(overrides_path, 'r', encoding='utf-8') as f:
+                    return json.load(f)
+            except Exception as e:
+                print(f"  Warning: Could not load SOVEREIGNTY_OVERRIDES.json: {e}")
+        return {}
+        
     def scan_repository(self) -> Dict:
         """Perform a full sovereignty scan of the repository.
         
@@ -464,6 +493,10 @@ class SovereigntyAuditor:
             '.qcal_beacon': 'QCAL Beacon',
             'CLAIM_OF_ORIGIN.md': 'Origin Claim',
             'MANIFESTO_SIMBIOTICO_QCAL.md': 'Symbiotic Manifesto',
+            'DECLARACION_USURPACION_ALGORITMICA.md': 'Anti-Usurpation Declaration',
+            'SOVEREIGNTY_OVERRIDES.json': 'Attribution Overrides',
+            '.gitattributes': 'Git Attribution Config',
+            'pyproject.toml': 'Project Metadata',
         }
         
         for filename, description in required_files.items():
@@ -505,12 +538,15 @@ class SovereigntyAuditor:
         print(f"  Found {len(code_files)} files to scan")
         
         nvidia_files = []
+        nvidia_code_references = []  # Track code files separately
         external_lib_files = []
+        external_lib_code_references = []  # Track code files separately
         qcal_marker_files = []
         
         for filepath in code_files:
             try:
                 content = filepath.read_text(encoding='utf-8', errors='ignore').lower()
+                is_code_file = filepath.suffix in self.CODE_EXTENSIONS
                 
                 # Check for NVIDIA patterns
                 nvidia_matches = []
@@ -519,10 +555,14 @@ class SovereigntyAuditor:
                         nvidia_matches.append(pattern)
                 
                 if nvidia_matches:
-                    nvidia_files.append({
+                    file_info = {
                         'file': str(filepath.relative_to(self.repo_path)),
                         'patterns': nvidia_matches,
-                    })
+                        'is_code': is_code_file,
+                    }
+                    nvidia_files.append(file_info)
+                    if is_code_file:
+                        nvidia_code_references.append(file_info)
                 
                 # Check for external library patterns
                 lib_matches = []
@@ -531,10 +571,14 @@ class SovereigntyAuditor:
                         lib_matches.append(pattern)
                 
                 if lib_matches:
-                    external_lib_files.append({
+                    file_info = {
                         'file': str(filepath.relative_to(self.repo_path)),
                         'patterns': lib_matches,
-                    })
+                        'is_code': is_code_file,
+                    }
+                    external_lib_files.append(file_info)
+                    if is_code_file:
+                        external_lib_code_references.append(file_info)
                 
                 # Check for QCAL markers
                 qcal_matches = []
@@ -552,37 +596,83 @@ class SovereigntyAuditor:
                 print(f"  Warning: Could not read {filepath}: {e}")
         
         self.results['nvidia_references'] = nvidia_files
+        self.results['nvidia_code_references'] = nvidia_code_references
         self.results['external_libraries'] = external_lib_files
+        self.results['external_lib_code_references'] = external_lib_code_references
         self.results['qcal_markers_found'] = qcal_marker_files
         
-        print(f"  📊 NVIDIA references: {len(nvidia_files)} files")
-        print(f"  📊 External library references: {len(external_lib_files)} files")
+        print(f"  📊 NVIDIA references: {len(nvidia_files)} files ({len(nvidia_code_references)} code)")
+        print(f"  📊 External library references: {len(external_lib_files)} files ({len(external_lib_code_references)} code)")
         print(f"  📊 QCAL ∞³ markers: {len(qcal_marker_files)} files")
         print()
     
     def _calculate_sovereignty_score(self):
-        """Calculate an overall sovereignty score (0-100)."""
+        """Calculate an overall sovereignty score (0-100).
+        
+        Scoring breakdown:
+        - Core sovereignty files: 25 points (5 files × 5 points each)
+        - Attribution protection files: 15 points (4 files × 3.75 points each)
+        - QCAL markers: 30 points (capped)
+        - Low dependencies: 30 points
+        Total: 100 points maximum
+        """
         score = 0.0
         
-        # Sovereignty files (40 points max)
-        sovereignty_files_score = sum(
-            8 for f in self.results['sovereignty_files'].values() 
-            if f['exists']
+        # Core sovereignty files (25 points max - 5 files × 5 points each)
+        core_files = [
+            'LICENSE_SOBERANA_QCAL.txt',
+            'AUTHORS_QCAL.md',
+            '.qcal_beacon',
+            'CLAIM_OF_ORIGIN.md',
+            'MANIFESTO_SIMBIOTICO_QCAL.md',
+        ]
+        core_score = sum(
+            self.CORE_FILE_POINTS for f in core_files 
+            if self.results['sovereignty_files'].get(f, {}).get('exists', False)
         )
-        score += min(sovereignty_files_score, 40)
+        score += core_score
+        
+        # Attribution protection files (15 points max - 4 files × 3.75 points each)
+        protection_files = [
+            'DECLARACION_USURPACION_ALGORITMICA.md',
+            'SOVEREIGNTY_OVERRIDES.json',
+            '.gitattributes',
+            'pyproject.toml',
+        ]
+        protection_score = sum(
+            self.PROTECTION_FILE_POINTS for f in protection_files 
+            if self.results['sovereignty_files'].get(f, {}).get('exists', False)
+        )
+        score += protection_score
         
         # QCAL markers presence (30 points max)
         qcal_files_count = len(self.results['qcal_markers_found'])
-        qcal_score = min(qcal_files_count * 2, 30)
+        qcal_score = min(qcal_files_count * 2, self.MAX_QCAL_MARKER_POINTS)
         score += qcal_score
         
         # Low external dependencies (30 points max)
-        nvidia_count = len(self.results['nvidia_references'])
-        external_count = len(self.results['external_libraries'])
-        total_external = nvidia_count + external_count
+        # Only count actual code files, not documentation references
+        nvidia_code_count = len(self.results.get('nvidia_code_references', []))
+        external_code_count = len(self.results.get('external_lib_code_references', []))
+        
+        # Filter out sovereignty_auditor.py and test files that contain pattern definitions
+        # These files define the patterns for detection, not actual dependencies
+        def is_pattern_definition_file(file_path: str) -> bool:
+            """Check if file contains pattern definitions rather than actual dependencies."""
+            # Extract just the filename to avoid matching subdirectories
+            filename = file_path.split('/')[-1]
+            return filename == 'sovereignty_auditor.py' or filename == 'test_sovereignty_auditor.py'
+        
+        # Count only real dependencies (excluding pattern definition files)
+        nvidia_deps = [f for f in self.results.get('nvidia_code_references', []) 
+                      if not is_pattern_definition_file(f['file'])]
+        external_deps = [f for f in self.results.get('external_lib_code_references', []) 
+                        if not is_pattern_definition_file(f['file'])]
+        
+        total_external = len(nvidia_deps) + len(external_deps)
         
         if total_external == 0:
-            external_score = 30
+            external_score = self.MAX_DEPENDENCY_POINTS
         elif total_external < 5:
             external_score = 20
         elif total_external < 10:
@@ -593,6 +683,7 @@ class SovereigntyAuditor:
         score += external_score
         
         self.results['sovereignty_score'] = round(score, 2)
+        self.results['actual_code_dependencies'] = total_external
     
     def _generate_report(self):
         """Generate and print the sovereignty report."""
@@ -634,23 +725,39 @@ class SovereigntyAuditor:
         print()
         
         # NVIDIA references
-        print(f"⚠️  NVIDIA References: {len(self.results['nvidia_references'])} files")
+        nvidia_code = self.results.get('nvidia_code_references', [])
+        nvidia_docs = [f for f in self.results['nvidia_references'] 
+                      if not f.get('is_code', True)]
+        print(f"⚠️  NVIDIA References: {len(self.results['nvidia_references'])} files "
+              f"({len(nvidia_code)} code, {len(nvidia_docs)} documentation)")
         if self.results['nvidia_references']:
             print("  Files with NVIDIA references:")
             for item in self.results['nvidia_references'][:5]:  # Show first 5
-                print(f"    - {item['file']} ({', '.join(item['patterns'])})")
+                file_type = "code" if item.get('is_code', True) else "doc"
+                print(f"    - {item['file']} ({file_type}: {', '.join(item['patterns'])})")
             if len(self.results['nvidia_references']) > 5:
                 print(f"    ... and {len(self.results['nvidia_references']) - 5} more")
         print()
         
         # External libraries
-        print(f"📚 External Library References: {len(self.results['external_libraries'])} files")
+        external_code = self.results.get('external_lib_code_references', [])
+        external_docs = [f for f in self.results['external_libraries'] 
+                        if not f.get('is_code', True)]
+        print(f"📚 External Library References: {len(self.results['external_libraries'])} files "
+              f"({len(external_code)} code, {len(external_docs)} documentation)")
         if self.results['external_libraries']:
             print("  Files with external library references:")
             for item in self.results['external_libraries'][:5]:  # Show first 5
-                print(f"    - {item['file']} ({', '.join(item['patterns'])})")
+                file_type = "code" if item.get('is_code', True) else "doc"
+                print(f"    - {item['file']} ({file_type}: {', '.join(item['patterns'])})")
             if len(self.results['external_libraries']) > 5:
                 print(f"    ... and {len(self.results['external_libraries']) - 5} more")
+        print()
+        
+        # Code dependencies (actual dependencies, not doc references or pattern definitions)
+        actual_deps = self.results.get('actual_code_dependencies', 0)
+        print(f"🔍 Actual Code Dependencies: {actual_deps}")
+        print("   (Excludes documentation references and pattern definition files)")
         print()
         
         # Recommendations
@@ -664,10 +771,10 @@ class SovereigntyAuditor:
                 print("  ⚠️  Create missing sovereignty declaration files")
             if len(self.results['qcal_markers_found']) < 10:
                 print("  ⚠️  Add more QCAL ∞³ markers to code documentation")
-            if self.results['nvidia_references']:
-                print("  ⚠️  Review NVIDIA references - ensure they are projections, not dependencies")
-            if self.results['external_libraries']:
-                print("  ⚠️  Document external library usage in CLAIM_OF_ORIGIN.md")
+            if self.results.get('actual_code_dependencies', 0) > 0:
+                print("  ⚠️  Review code dependencies - ensure they are justified and documented")
+            elif self.results['nvidia_references'] or self.results['external_libraries']:
+                print("  ℹ️  External references found in documentation are expected and acceptable")
         
         print()
         print("=" * 60)

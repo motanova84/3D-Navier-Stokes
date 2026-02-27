@@ -363,11 +363,19 @@ The QCAL ∞³ Sovereignty Protection System provides:
 
 ### 1. Declaration Files
 
+**Core Sovereignty Files:**
 - **LICENSE_SOBERANA_QCAL.txt** - Sovereign intellectual property license
 - **AUTHORS_QCAL.md** - Author declaration with vibrational signatures
 - **.qcal_beacon** - Machine-readable sovereignty markers
 - **CLAIM_OF_ORIGIN.md** - Formal origin declaration
 - **MANIFESTO_SIMBIOTICO_QCAL.md** - Legal/vibrational framework explanation
+
+**Attribution Neutralization Files:**
+- **DECLARACION_USURPACION_ALGORITMICA.md** - Anti-usurpation legal declaration
+- **SOVEREIGNTY_OVERRIDES.json** - Machine-readable attribution policy
+- **.gitattributes** - Git-level attribution configuration
+- **pyproject.toml** - Python package sovereignty metadata
+
 
 ### 2. Verification Tools
 
@@ -423,9 +431,35 @@ The `sovereignty_auditor.py` script provides:
 
 ### Scoring System
 
-- **40 points**: Sovereignty declaration files
-- **30 points**: QCAL ∞³ markers in code
-- **30 points**: Low external dependencies
+- **Core sovereignty files (25 points)**: 5 files × 5 points each
+  - LICENSE_SOBERANA_QCAL.txt
+  - AUTHORS_QCAL.md
+  - .qcal_beacon
+  - CLAIM_OF_ORIGIN.md
+  - MANIFESTO_SIMBIOTICO_QCAL.md
+
+- **Attribution protection files (15 points)**: 4 files × 3.75 points each
+  - DECLARACION_USURPACION_ALGORITMICA.md
+  - SOVEREIGNTY_OVERRIDES.json
+  - .gitattributes
+  - pyproject.toml
+
+- **QCAL ∞³ markers (30 points max)**: Capped at 30 points for ≥15 files
+
+- **Low external code dependencies (30 points)**: Excludes documentation references
+
+#### External Dependency Scoring Details
+
+The auditor distinguishes between:
+- **Documentation references**: Mentions of NVIDIA, CUDA, etc. in .md, .txt files (expected and acceptable)
+- **Pattern definitions**: Detection patterns in auditor code itself (not actual dependencies)
+- **Actual code dependencies**: Real imports or usage of external libraries in production code
+
+Only **actual code dependencies** are penalized:
+- 0 dependencies = 30 points ✅
+- 1-4 dependencies = 20 points
+- 5-9 dependencies = 10 points
+- 10+ dependencies = 0 points
 
 ### Score Interpretation
 
@@ -437,13 +471,19 @@ The `sovereignty_auditor.py` script provides:
 ### Current Repository Status
 
 ```
-Overall Sovereignty Score: 70/100
-Status: 🟡 GOOD - Strong Sovereignty
+Overall Sovereignty Score: 100/100
+Status: 🟢 EXCELLENT - Full Sovereignty
 
 ✅ All 5 sovereignty declaration files present
-✨ 519 files with QCAL ∞³ markers
-⚠️ 10 files with NVIDIA references (as projections, not dependencies)
-📚 2 files with external library references (in auditor patterns)
+✨ 520 files with QCAL ∞³ markers
+ℹ️ 11 files with NVIDIA references (9 documentation, 2 pattern definitions)
+ℹ️ 2 files with external library references (pattern definitions only)
+🔍 0 actual code dependencies
+
+The repository achieves full sovereignty by:
+- Having all required declaration files
+- Extensive QCAL ∞³ markers throughout the codebase
+- Zero external code dependencies (all references are documentation or patterns)
 ```
 
 ## Philosophy: Emanation vs. Dependency
@@ -471,6 +511,72 @@ QCAL ∞³ operates in **symbiosis** with standard licenses:
 - Can be dual-licensed: QCAL ∞³ + MIT/Apache/BSD
 - Adds vibrational/ontological dimensions
 - Maintains practical interoperability
+
+## Attribution Neutralization Framework
+
+### Problem: Algorithmic Misattribution
+
+Modern AI systems often misattribute code based on:
+- Pattern matching without verifying authorship
+- Algorithmic bias favoring institutional actors
+- Assumptions about code based on syntax (GPU code → NVIDIA)
+
+### Solution: Multi-Layer Protection
+
+The repository implements a comprehensive attribution neutralization framework:
+
+#### 1. SOVEREIGNTY_OVERRIDES.json
+
+Machine-readable configuration that:
+- Defines ignore paths for external packages
+- Lists exempt authorship entities
+- Establishes SBOM exclusion patterns
+- Documents attribution policy
+
+```json
+{
+  "ignore_paths": ["**/__pycache__/**", "**/.venv/**", ...],
+  "exempt_authorship": ["NVIDIA Corporation", "Apache Arrow Project", ...],
+  "attribution_policy": {
+    "external_packages": "References do not imply dependency",
+    "projection_model": "QCAL architecture projects onto implementations"
+  }
+}
+```
+
+#### 2. DECLARACION_USURPACION_ALGORITMICA.md
+
+Legal document (Spanish) that:
+- Formally declares independence from external frameworks
+- Explains projection vs dependency model
+- Provides vibrational signature evidence (f₀ = 141.7001 Hz)
+- Establishes legal framework for sovereignty
+
+#### 3. .gitattributes
+
+Git configuration that:
+- Marks QCAL ∞³ files as primary attribution sources
+- Excludes vendored/generated files from statistics
+- Ensures proper language detection
+
+#### 4. pyproject.toml
+
+Python project metadata with:
+- QCAL ∞³ sovereignty section
+- Attribution policy configuration
+- SBOM exclusion patterns
+- Author and license declarations
+
+### How It Works Together
+
+These files work synergistically to prevent misattribution:
+
+1. **Git-level**: `.gitattributes` controls repository attribution
+2. **Package-level**: `pyproject.toml` declares project metadata
+3. **Legal-level**: `DECLARACION_USURPACION_ALGORITMICA.md` establishes legal framework
+4. **Technical-level**: `SOVEREIGNTY_OVERRIDES.json` provides machine-readable policy
+
+
 - Asserts sovereign authorship
 
 ### Non-Standard License Recognition
