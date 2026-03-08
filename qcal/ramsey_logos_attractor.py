@@ -28,8 +28,8 @@ def emergencia_ramsey_qcal(n_nodos_informacion: int) -> Dict:
     R(51,51) inalcanzable → resonancia f₀ colapsa caos.
     
     Ramsey's theorem guarantees that in any sufficiently large structure,
-    a coherent subpattern MUST emerge. This is not probabilistic - it's
-    a constitutional law of mathematics.
+    a coherent monochromatic subgraph MUST emerge. This is not probabilistic - 
+    it's a constitutional law of mathematics.
     
     Args:
         n_nodos_informacion: Number of information nodes in the system
