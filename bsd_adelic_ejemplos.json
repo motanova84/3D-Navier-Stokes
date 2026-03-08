@@ -1,0 +1,70 @@
+{
+  "metadata": {
+    "titulo": "BSD-Adelic Connector - Ejemplos",
+    "f0_hz": 141.7001,
+    "sello": "∴𓂀Ω∞³",
+    "fecha": "2026-03-08"
+  },
+  "ejemplos": [
+    {
+      "descripcion": "Mordell - Superfluidez",
+      "curva": {
+        "rango_adelico": 1,
+        "L_E1": 0.0
+      },
+      "secuencia": "GACT",
+      "resultado": {
+        "rango_bio_aritmetico": 1,
+        "nodos_constelacion": 1,
+        "fluidez_info_ns": "INFINITA",
+        "hotspots_adn": 1,
+        "psi_bsd_qcal": 1.0
+      }
+    },
+    {
+      "descripcion": "Rango 2 - Superfluidez",
+      "curva": {
+        "rango_adelico": 2,
+        "L_E1": 0.0
+      },
+      "secuencia": "CGTA",
+      "resultado": {
+        "rango_bio_aritmetico": 2,
+        "nodos_constelacion": 2,
+        "fluidez_info_ns": "INFINITA",
+        "hotspots_adn": 1,
+        "psi_bsd_qcal": 1.0
+      }
+    },
+    {
+      "descripcion": "Rango 0 - Disipativo",
+      "curva": {
+        "rango_adelico": 0,
+        "L_E1": 0.5
+      },
+      "secuencia": "TATA",
+      "resultado": {
+        "rango_bio_aritmetico": 0,
+        "nodos_constelacion": 0,
+        "fluidez_info_ns": "DISIPATIVA",
+        "hotspots_adn": 1,
+        "psi_bsd_qcal": 0.5
+      }
+    },
+    {
+      "descripcion": "Rango 5 - Complejo",
+      "curva": {
+        "rango_adelico": 5,
+        "L_E1": 0.0
+      },
+      "secuencia": "ATCGGACTCGTA",
+      "resultado": {
+        "rango_bio_aritmetico": 5,
+        "nodos_constelacion": 5,
+        "fluidez_info_ns": "INFINITA",
+        "hotspots_adn": 3,
+        "psi_bsd_qcal": 1.0
+      }
+    }
+  ]
+}
