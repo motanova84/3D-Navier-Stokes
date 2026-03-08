@@ -187,7 +187,9 @@ class DyadicSerrinAnalysis:
         # ||u||_{L⁵ₜL⁵ₓ} = (∫ ||u(t)||⁵_{L⁵ₓ} dt)^(1/5)
         if len(t_grid) > 1:
             dt = t_grid[1] - t_grid[0]
-            L5t_L5x_norm = (np.trapz(L5x_norms**p, dx=dt))**(1/p)
+            # Use trapezoid (numpy 2.0+) or trapz (older versions)
+            trapz_func = getattr(np, 'trapezoid', getattr(np, 'trapz', None))
+            L5t_L5x_norm = (trapz_func(L5x_norms**p, dx=dt))**(1/p)
         else:
             L5t_L5x_norm = L5x_norms[0]
         
@@ -249,7 +251,9 @@ class DyadicSerrinAnalysis:
         # Integrate vorticity L^∞ norm over time
         if len(t_grid) > 1:
             dt = t_grid[1] - t_grid[0]
-            bkm_integral = np.trapz(vorticity_L_inf_series, dx=dt)
+            # Use trapezoid (numpy 2.0+) or trapz (older versions)
+            trapz_func = getattr(np, 'trapezoid', getattr(np, 'trapz', None))
+            bkm_integral = trapz_func(vorticity_L_inf_series, dx=dt)
         else:
             bkm_integral = 0.0
         
