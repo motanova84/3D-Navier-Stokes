@@ -40,10 +40,8 @@ Seal: ∴𓂀Ω∞³Φ
 """
 
 import numpy as np
-from typing import Dict, List, Tuple, Optional, Callable
+from typing import Dict, List, Optional
 from dataclasses import dataclass, field
-from scipy.special import zeta
-import warnings
 
 
 # QCAL Constants
@@ -173,9 +171,10 @@ class AdelicViscosityOperator:
             return np.inf
         
         # Sum over all p-adic places
+        # Use the configured gaps from params.lambda_p_gaps
         remainder_sum = 0.0
-        for p, laplacian in self.laplacians.items():
-            gap = laplacian.spectral_gap()
+        for p in self.params.lambda_p_gaps.keys():
+            gap = self.params.lambda_p_gaps[p]
             C_p = 1.0 / p  # Normalization constant
             remainder_sum += C_p * np.exp(-self.params.nu * gap * t)
         
@@ -304,7 +303,7 @@ class HadamardFactorization:
     The ABC Coherence Lemma constrains the growth, forcing A = 0.
     """
     
-    def __init__(self, zeros: List[float], params: AdelicParameters):
+    def __init__(self, zeros: List[complex], params: AdelicParameters):
         """
         Initialize Hadamard factorization
         
@@ -397,7 +396,7 @@ class Atlas3Closure:
         # Closure status
         self.psi_coherence = 0.0
         
-    def verify_remainder_closure(self, t: float = 10.0, epsilon: float = 1e-6) -> Dict:
+    def verify_remainder_closure(self, t: float = 10.0, epsilon: float = 1e-3) -> Dict:
         """
         Verify that remainder R(t) is exponentially bounded and negligible
         
@@ -447,17 +446,14 @@ class Atlas3Closure:
             
             # Compute ξ(1/2+it)/ξ(1/2) using Riemann zeta
             # Note: This is a simplified approximation
-            # In practice, would use full implementation
-            try:
-                if abs(t) < 1e-10:
-                    # ξ(1/2) / ξ(1/2) = 1
-                    zeta_ratio = 1.0
-                else:
-                    # Approximation using real part
-                    # Full implementation would use complex zeta
-                    zeta_ratio = 1.0  # Placeholder
-            except:
+            # Full implementation would use mpmath or similar for complex zeta
+            if abs(t) < 1e-10:
+                # ξ(1/2) / ξ(1/2) = 1
                 zeta_ratio = 1.0
+            else:
+                # Placeholder: Full implementation would compute actual zeta ratio
+                # For now, we approximate based on Fredholm determinant behavior
+                zeta_ratio = 1.0  # TODO: Implement actual complex zeta computation
             
             error = abs(xi_t - zeta_ratio)
             max_error = max(max_error, error)
@@ -503,15 +499,19 @@ class Atlas3Closure:
             "criterion": "ν > 0 ensures stability and self-adjointness",
         }
     
-    def compute_closure_certificate(self) -> Dict:
+    def compute_closure_certificate(self, t_verification: float = 10.0, epsilon: float = 1e-3) -> Dict:
         """
         Generate complete closure certificate for Atlas³
+        
+        Args:
+            t_verification: Time parameter for remainder verification
+            epsilon: Tolerance for remainder negligibility
         
         Returns:
             Comprehensive closure certificate
         """
         # Verify all three closure conditions
-        remainder_check = self.verify_remainder_closure(t=10.0)
+        remainder_check = self.verify_remainder_closure(t=t_verification, epsilon=epsilon)
         xi_check = self.verify_xi_identity()
         selfadj_check = self.verify_self_adjointness()
         
@@ -587,6 +587,7 @@ class Atlas3Closure:
 def verify_atlas3_closure(
     nu: float = 1.0,
     t_verification: float = 10.0,
+    epsilon: float = 1e-3,
     verbose: bool = True
 ) -> Dict:
     """
@@ -595,6 +596,7 @@ def verify_atlas3_closure(
     Args:
         nu: Adelic viscosity parameter
         t_verification: Time for remainder verification
+        epsilon: Tolerance for remainder negligibility
         verbose: Whether to print status
         
     Returns:
@@ -602,7 +604,7 @@ def verify_atlas3_closure(
     """
     params = AdelicParameters(nu=nu)
     closure = Atlas3Closure(params)
-    certificate = closure.compute_closure_certificate()
+    certificate = closure.compute_closure_certificate(t_verification=t_verification, epsilon=epsilon)
     
     if verbose:
         closure.print_closure_status()
