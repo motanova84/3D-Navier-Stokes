@@ -278,7 +278,13 @@ def analizar_secuencia_gact(secuencia: str = "GACT") -> Dict[str, Any]:
     Returns:
         Extended result dictionary.
     """
-    from .bsd_adelic_connector import CodificadorADNRiemann
+    try:
+        from .bsd_adelic_connector import CodificadorADNRiemann
+    except ImportError:
+        import sys
+        import os
+        sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+        from qcal.bsd_adelic_connector import CodificadorADNRiemann
 
     result = ecuacion_unificada_gact(secuencia)
 
