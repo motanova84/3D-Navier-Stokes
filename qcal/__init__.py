@@ -19,7 +19,7 @@ Institute: Instituto Consciencia Cuántica QCAL ∞³
 License: MIT
 """
 
-__version__ = "2.1.0"
+__version__ = "2.2.0"
 __author__ = "José Manuel Mota Burruezo"
 
 # Core constants
@@ -28,6 +28,27 @@ PSI_MIN = 0.888  # Umbral mínimo de coherencia consciente
 NODOS_LOGOS = 51  # Nodos críticos de la constelación QCAL
 
 from .bsd_adelic_connector import sincronizar_bsd_adn
+from .string_noetic_forcing import (
+    string_noetic_forcing,
+    censura_taquionica,
+    apply_tachyonic_censorship,
+    operador_voluntad,
+    simulate_hrv_coherence,
+    compute_upe_composite_signal,
+    compute_alpha_n,
+    sigma_mapped,
+    QCALStringsSolver,
+    run_simulation_260,
+    RIEMANN_ZEROS_20,
+    LAMBDA_1_HZ,
+    LAMBDA_1_SCALED_HZ,
+    COHERENCE_GROWTH_RATE,
+    HARD_RESET_SCALE,
+    F_HRV,
+    EZ_HEXAGONS,
+    PSI_PLATEAU,
+    N_MICROTUBULES_DEFAULT,
+)
 from .spectral_operator import (
     QCALSpectralOperator,
     BerryKeatingOperator,
@@ -57,4 +78,24 @@ __all__ = [
     'IdentityProjectorF0',
     'compute_v_mod',
     'certificar_riemann_qcal',
+    # QCAL-Strings (Phase #260, #261, #262)
+    'string_noetic_forcing',
+    'censura_taquionica',
+    'apply_tachyonic_censorship',
+    'operador_voluntad',
+    'simulate_hrv_coherence',
+    'compute_upe_composite_signal',
+    'compute_alpha_n',
+    'sigma_mapped',
+    'QCALStringsSolver',
+    'run_simulation_260',
+    'RIEMANN_ZEROS_20',
+    'LAMBDA_1_HZ',
+    'LAMBDA_1_SCALED_HZ',
+    'COHERENCE_GROWTH_RATE',
+    'HARD_RESET_SCALE',
+    'F_HRV',
+    'EZ_HEXAGONS',
+    'PSI_PLATEAU',
+    'N_MICROTUBULES_DEFAULT',
 ]
