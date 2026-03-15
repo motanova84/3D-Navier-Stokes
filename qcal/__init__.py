@@ -19,7 +19,7 @@ Institute: Instituto Consciencia Cuántica QCAL ∞³
 License: MIT
 """
 
-__version__ = "2.1.0"
+__version__ = "2.2.0"
 __author__ = "José Manuel Mota Burruezo"
 
 # Core constants
@@ -39,6 +39,19 @@ from .spectral_operator import (
     GAMMA_MOD,
     RESONANCIA_888,
 )
+from .string_core import (
+    QCALStringOperator,
+    GAMMAS,
+    THRESHOLD_PSI,
+    N_MICROTUBULES_DEFAULT,
+    ALPHA_SCALE_DEFAULT,
+    N_MODES_DEFAULT,
+    compute_psi,
+    string_noetic_forcing,
+    rk4_step,
+    build_lambda_list,
+    build_spectral_grid,
+)
 
 __all__ = [
     # Constants
@@ -57,4 +70,16 @@ __all__ = [
     'IdentityProjectorF0',
     'compute_v_mod',
     'certificar_riemann_qcal',
+    # String Core — Iteración #260
+    'QCALStringOperator',
+    'GAMMAS',
+    'THRESHOLD_PSI',
+    'N_MICROTUBULES_DEFAULT',
+    'ALPHA_SCALE_DEFAULT',
+    'N_MODES_DEFAULT',
+    'compute_psi',
+    'string_noetic_forcing',
+    'rk4_step',
+    'build_lambda_list',
+    'build_spectral_grid',
 ]
