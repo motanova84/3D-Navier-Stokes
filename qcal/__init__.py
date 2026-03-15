@@ -90,8 +90,6 @@ __all__ = [
     'HBAR',
     'GAMMA_MOD',
     'RESONANCIA_888',
-    # BSD
-    'sincronizar_bsd_adn',
     # Spectral Operator
     'QCALSpectralOperator',
     'BerryKeatingOperator',

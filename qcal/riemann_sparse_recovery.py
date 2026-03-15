@@ -273,7 +273,7 @@ def build_v_mod_sparse(
     lp = log_primes  # shape (P,)
     # Diferencia (N, P)
     diff = u[:, np.newaxis] - lp[np.newaxis, :]  # (N, P)
-    amplitudes = np.log(lp + 1.0)               # (P,)  [log(log p + 1)]
+    amplitudes = np.log(lp + 1.0)               # (P,)  log(log(p) + 1)
     bumps = amplitudes / (1.0 + diff ** 2 / sigma ** 2)  # (N, P)
     # Normalize by P: keeps the potential in the kinetic-energy scale
     # regardless of how many primes are included.

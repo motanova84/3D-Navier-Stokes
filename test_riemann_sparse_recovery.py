@@ -240,7 +240,7 @@ class TestBuildVCorrections(unittest.TestCase):
                               return_eigenvectors=False, tol=1e-10)[0])
         max_corr = float(np.max(np.abs(self.V.toarray())))
         # Correction should be less than 10% of first BK eigenvalue
-        self.assertLess(max_corr, bk_eval)
+        self.assertLess(max_corr, 0.1 * bk_eval)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
