@@ -28,7 +28,7 @@ NODOS_LOGOS = 51    # Critical constellation nodes
 try:
     from .bsd_adelic_connector import sincronizar_bsd_adn
     _BSD_AVAILABLE = True
-except Exception:
+except (SyntaxError, ImportError):
     _BSD_AVAILABLE = False
     sincronizar_bsd_adn = None  # type: ignore[assignment]
 

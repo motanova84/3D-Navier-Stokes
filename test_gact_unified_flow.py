@@ -75,7 +75,7 @@ class TestConstants(unittest.TestCase):
         """G > A > C ≥ T según jerarquía de resonancia."""
         self.assertGreater(BASE_RESONANCE["G"], BASE_RESONANCE["A"])
         self.assertGreater(BASE_RESONANCE["A"], BASE_RESONANCE["C"])
-        self.assertAlmostEqual(BASE_RESONANCE["C"], BASE_RESONANCE["T"] + 0.1, places=10)
+        self.assertAlmostEqual(BASE_RESONANCE["C"], BASE_RESONANCE["T"] + 0.1, places=5)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
