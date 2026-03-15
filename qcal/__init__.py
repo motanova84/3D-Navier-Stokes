@@ -10,9 +10,11 @@ coherencia cuántica y la resonancia adélica.
 
 Componentes:
 - bsd_adelic_connector : Conecta BSD con ADN-Riemann-NS-PNP
+- gact_unified_flow    : Núcleo QCAL-NS-RK4 con integrador RK4 y coherencia biológica
 - ramsey_logos_attractor: Orden inevitable vía teorema de Ramsey
 - adn_riemann          : Codificación ADN-Riemann
 - spectral_operator    : Operador Espectral QCAL (Ĥ_QCAL)
+- kss_holographic_fluid: Límite KSS y Fluido Holográfico Perfecto del citoplasma
 
 Author: José Manuel Mota Burruezo
 Institute: Instituto Consciencia Cuántica QCAL ∞³
@@ -48,6 +50,12 @@ from .string_noetic_forcing import (
     EZ_HEXAGONS,
     PSI_PLATEAU,
     N_MICROTUBULES_DEFAULT,
+from .gact_unified_flow import (
+    rk4_step,
+    compute_biological_coherence,
+    apply_vibrational_filter,
+    plot_energy_spectrum,
+    GACTUnifiedFlow,
 )
 from .spectral_operator import (
     QCALSpectralOperator,
@@ -60,19 +68,46 @@ from .spectral_operator import (
     GAMMA_MOD,
     RESONANCIA_888,
 )
+from .string_core import (
+    QCALStringOperator,
+    GAMMAS,
+    THRESHOLD_PSI,
+    N_MICROTUBULES_DEFAULT,
+    ALPHA_SCALE_DEFAULT,
+    N_MODES_DEFAULT,
+    compute_psi,
+    string_noetic_forcing,
+    build_lambda_list,
+    build_spectral_grid,
+)
+from .kss_holographic_fluid import (
+    KSSHolographicFluid,
+    KSSResult,
+    compute_kss_bound,
+    compute_viscosity_from_rotor_decay,
+    compute_entropy_density_from_upe,
+    KSS_BOUND,
+    F_UPE_HZ,
+)
 
 __all__ = [
     # Constants
     'F0',
     'PSI_MIN',
     'NODOS_LOGOS',
+    # BSD-Adelic
+    'sincronizar_bsd_adn',
+    # GACT-NS-RK4
+    'rk4_step',
+    'compute_biological_coherence',
+    'apply_vibrational_filter',
+    'plot_energy_spectrum',
+    'GACTUnifiedFlow',
+    # Spectral Operator
     'HBAR',
     'GAMMA_MOD',
     'RESONANCIA_888',
     'RIEMANN_ZEROS',
-    # BSD
-    'sincronizar_bsd_adn',
-    # Spectral Operator
     'QCALSpectralOperator',
     'BerryKeatingOperator',
     'IdentityProjectorF0',
@@ -98,4 +133,23 @@ __all__ = [
     'EZ_HEXAGONS',
     'PSI_PLATEAU',
     'N_MICROTUBULES_DEFAULT',
+    # String Core — Iteración #260
+    'QCALStringOperator',
+    'GAMMAS',
+    'THRESHOLD_PSI',
+    'N_MICROTUBULES_DEFAULT',
+    'ALPHA_SCALE_DEFAULT',
+    'N_MODES_DEFAULT',
+    'compute_psi',
+    'string_noetic_forcing',
+    'build_lambda_list',
+    'build_spectral_grid',
+    # KSS Holographic Fluid
+    'KSSHolographicFluid',
+    'KSSResult',
+    'compute_kss_bound',
+    'compute_viscosity_from_rotor_decay',
+    'compute_entropy_density_from_upe',
+    'KSS_BOUND',
+    'F_UPE_HZ',
 ]
