@@ -39,6 +39,18 @@ from .spectral_operator import (
     GAMMA_MOD,
     RESONANCIA_888,
 )
+from .convergence_proof import (
+    TachyonCensor,
+    RegularizedQCALHamiltonian,
+    compute_ns_hamiltonian,
+    epsilon_boundary_sweep,
+    prove_convergence_limit,
+    SIGMA_CRITICAL,
+    EPSILON_DEFAULT,
+    EPSILON_DIRAC_THRESHOLD,
+    NU_GACT,
+    H1_FINITE_BOUND,
+)
 
 __all__ = [
     # Constants
@@ -49,6 +61,12 @@ __all__ = [
     'GAMMA_MOD',
     'RESONANCIA_888',
     'RIEMANN_ZEROS',
+    # Convergence proof constants
+    'SIGMA_CRITICAL',
+    'EPSILON_DEFAULT',
+    'EPSILON_DIRAC_THRESHOLD',
+    'NU_GACT',
+    'H1_FINITE_BOUND',
     # BSD
     'sincronizar_bsd_adn',
     # Spectral Operator
@@ -57,4 +75,10 @@ __all__ = [
     'IdentityProjectorF0',
     'compute_v_mod',
     'certificar_riemann_qcal',
+    # Convergence Proof
+    'TachyonCensor',
+    'RegularizedQCALHamiltonian',
+    'compute_ns_hamiltonian',
+    'epsilon_boundary_sweep',
+    'prove_convergence_limit',
 ]
