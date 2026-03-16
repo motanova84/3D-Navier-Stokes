@@ -9,6 +9,12 @@ Módulo unificado que conecta los Problemas del Milenio a través de la
 coherencia cuántica y la resonancia adélica.
 
 Componentes:
+- bsd_adelic_connector    : Conecta BSD con ADN-Riemann-NS-PNP
+- gact_unified_flow       : Núcleo QCAL-NS-RK4 con integrador RK4 y coherencia biológica
+- ramsey_logos_attractor  : Orden inevitable vía teorema de Ramsey
+- adn_riemann             : Codificación ADN-Riemann
+- spectral_operator       : Operador Espectral QCAL (Ĥ_QCAL)
+- riemann_sparse_recovery : Recuperación espectral de Riemann (Fases #261–#264)
 - bsd_adelic_connector : Conecta BSD con ADN-Riemann-NS-PNP
 - gact_unified_flow    : Núcleo QCAL-NS-RK4 con integrador RK4 y coherencia biológica
 - ramsey_logos_attractor: Orden inevitable vía teorema de Ramsey
@@ -30,6 +36,18 @@ PSI_MIN = 0.888  # Umbral mínimo de coherencia consciente
 NODOS_LOGOS = 51  # Nodos críticos de la constelación QCAL
 
 from .bsd_adelic_connector import sincronizar_bsd_adn
+from .riemann_sparse_recovery import (
+    RiemannSparseRecovery,
+    sieve_primes,
+    build_bk_sparse,
+    build_v_mod_sparse,
+    build_v_corrections,
+    sigma_sweep,
+    find_critical_sigma,
+    SIGMA_CRITICAL,
+    N_PRIMES_DEFAULT,
+    N_GRID_DEFAULT,
+    RIEMANN_ZEROS_50,
 from .string_noetic_forcing import (
     string_noetic_forcing,
     censura_taquionica,
@@ -97,6 +115,22 @@ __all__ = [
     'NODOS_LOGOS',
     # BSD-Adelic
     'sincronizar_bsd_adn',
+    # Riemann Sparse Recovery — Fases #261–#264
+    'RiemannSparseRecovery',
+    'sieve_primes',
+    'build_bk_sparse',
+    'build_v_mod_sparse',
+    'build_v_corrections',
+    'sigma_sweep',
+    'find_critical_sigma',
+    'SIGMA_CRITICAL',
+    'N_PRIMES_DEFAULT',
+    'N_GRID_DEFAULT',
+    'RIEMANN_ZEROS_50',
+    'HBAR',
+    'GAMMA_MOD',
+    'RESONANCIA_888',
+    # Spectral Operator
     # GACT-NS-RK4
     'rk4_step',
     'compute_biological_coherence',
