@@ -15,6 +15,12 @@ Componentes:
 - adn_riemann             : Codificación ADN-Riemann
 - spectral_operator       : Operador Espectral QCAL (Ĥ_QCAL)
 - riemann_sparse_recovery : Recuperación espectral de Riemann (Fases #261–#264)
+- bsd_adelic_connector : Conecta BSD con ADN-Riemann-NS-PNP
+- gact_unified_flow    : Núcleo QCAL-NS-RK4 con integrador RK4 y coherencia biológica
+- ramsey_logos_attractor: Orden inevitable vía teorema de Ramsey
+- adn_riemann          : Codificación ADN-Riemann
+- spectral_operator    : Operador Espectral QCAL (Ĥ_QCAL)
+- kss_holographic_fluid: Límite KSS y Fluido Holográfico Perfecto del citoplasma
 
 Author: José Manuel Mota Burruezo
 Institute: Instituto Consciencia Cuántica QCAL ∞³
@@ -42,6 +48,32 @@ from .riemann_sparse_recovery import (
     N_PRIMES_DEFAULT,
     N_GRID_DEFAULT,
     RIEMANN_ZEROS_50,
+from .string_noetic_forcing import (
+    string_noetic_forcing,
+    censura_taquionica,
+    apply_tachyonic_censorship,
+    operador_voluntad,
+    simulate_hrv_coherence,
+    compute_upe_composite_signal,
+    compute_alpha_n,
+    sigma_mapped,
+    QCALStringsSolver,
+    run_simulation_260,
+    RIEMANN_ZEROS_20,
+    LAMBDA_1_HZ,
+    LAMBDA_1_SCALED_HZ,
+    COHERENCE_GROWTH_RATE,
+    HARD_RESET_SCALE,
+    F_HRV,
+    EZ_HEXAGONS,
+    PSI_PLATEAU,
+    N_MICROTUBULES_DEFAULT,
+from .gact_unified_flow import (
+    rk4_step,
+    compute_biological_coherence,
+    apply_vibrational_filter,
+    plot_energy_spectrum,
+    GACTUnifiedFlow,
 )
 from .spectral_operator import (
     QCALSpectralOperator,
@@ -63,9 +95,17 @@ from .string_core import (
     N_MODES_DEFAULT,
     compute_psi,
     string_noetic_forcing,
-    rk4_step,
     build_lambda_list,
     build_spectral_grid,
+)
+from .kss_holographic_fluid import (
+    KSSHolographicFluid,
+    KSSResult,
+    compute_kss_bound,
+    compute_viscosity_from_rotor_decay,
+    compute_entropy_density_from_upe,
+    KSS_BOUND,
+    F_UPE_HZ,
 )
 
 __all__ = [
@@ -91,11 +131,42 @@ __all__ = [
     'GAMMA_MOD',
     'RESONANCIA_888',
     # Spectral Operator
+    # GACT-NS-RK4
+    'rk4_step',
+    'compute_biological_coherence',
+    'apply_vibrational_filter',
+    'plot_energy_spectrum',
+    'GACTUnifiedFlow',
+    # Spectral Operator
+    'HBAR',
+    'GAMMA_MOD',
+    'RESONANCIA_888',
+    'RIEMANN_ZEROS',
     'QCALSpectralOperator',
     'BerryKeatingOperator',
     'IdentityProjectorF0',
     'compute_v_mod',
     'certificar_riemann_qcal',
+    # QCAL-Strings (Phase #260, #261, #262)
+    'string_noetic_forcing',
+    'censura_taquionica',
+    'apply_tachyonic_censorship',
+    'operador_voluntad',
+    'simulate_hrv_coherence',
+    'compute_upe_composite_signal',
+    'compute_alpha_n',
+    'sigma_mapped',
+    'QCALStringsSolver',
+    'run_simulation_260',
+    'RIEMANN_ZEROS_20',
+    'LAMBDA_1_HZ',
+    'LAMBDA_1_SCALED_HZ',
+    'COHERENCE_GROWTH_RATE',
+    'HARD_RESET_SCALE',
+    'F_HRV',
+    'EZ_HEXAGONS',
+    'PSI_PLATEAU',
+    'N_MICROTUBULES_DEFAULT',
     # String Core — Iteración #260
     'QCALStringOperator',
     'GAMMAS',
@@ -105,7 +176,14 @@ __all__ = [
     'N_MODES_DEFAULT',
     'compute_psi',
     'string_noetic_forcing',
-    'rk4_step',
     'build_lambda_list',
     'build_spectral_grid',
+    # KSS Holographic Fluid
+    'KSSHolographicFluid',
+    'KSSResult',
+    'compute_kss_bound',
+    'compute_viscosity_from_rotor_decay',
+    'compute_entropy_density_from_upe',
+    'KSS_BOUND',
+    'F_UPE_HZ',
 ]
