@@ -86,6 +86,17 @@ from .spectral_operator import (
     GAMMA_MOD,
     RESONANCIA_888,
 )
+from .convergence_proof import (
+    TachyonCensor,
+    RegularizedQCALHamiltonian,
+    compute_ns_hamiltonian,
+    epsilon_boundary_sweep,
+    prove_convergence_limit,
+    SIGMA_CRITICAL,
+    EPSILON_DEFAULT,
+    EPSILON_DIRAC_THRESHOLD,
+    NU_GACT,
+    H1_FINITE_BOUND,
 from .string_core import (
     QCALStringOperator,
     GAMMAS,
@@ -130,6 +141,15 @@ __all__ = [
     'HBAR',
     'GAMMA_MOD',
     'RESONANCIA_888',
+    'RIEMANN_ZEROS',
+    # Convergence proof constants
+    'SIGMA_CRITICAL',
+    'EPSILON_DEFAULT',
+    'EPSILON_DIRAC_THRESHOLD',
+    'NU_GACT',
+    'H1_FINITE_BOUND',
+    # BSD
+    'sincronizar_bsd_adn',
     # Spectral Operator
     # GACT-NS-RK4
     'rk4_step',
@@ -147,6 +167,12 @@ __all__ = [
     'IdentityProjectorF0',
     'compute_v_mod',
     'certificar_riemann_qcal',
+    # Convergence Proof
+    'TachyonCensor',
+    'RegularizedQCALHamiltonian',
+    'compute_ns_hamiltonian',
+    'epsilon_boundary_sweep',
+    'prove_convergence_limit',
     # QCAL-Strings (Phase #260, #261, #262)
     'string_noetic_forcing',
     'censura_taquionica',
