@@ -1,6 +1,6 @@
-import NavierStokes.BKMClosure
-import NavierStokes.GlobalRiccati
-import NavierStokes.DyadicRiccati
+import PsiNSE.NavierStokes.BKMClosure
+import PsiNSE.NavierStokes.GlobalRiccati
+import PsiNSE.NavierStokes.DyadicRiccati
 
 set_option autoImplicit false
 set_option linter.unusedVariables false

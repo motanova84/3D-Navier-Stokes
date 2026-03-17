@@ -1,0 +1,138 @@
+{
+  "metadata": {
+    "theory": "Atlas\u00b3-ABC Unified Framework",
+    "author": "Jos\u00e9 Manuel Mota Burruezo",
+    "fundamental_frequency": 141.7001,
+    "kappa_pi": 2.57731,
+    "epsilon_critico": 2.64e-12
+  },
+  "triples": [
+    {
+      "triple": [
+        1,
+        8,
+        9
+      ],
+      "radical": 6,
+      "information_content": 0.5849625007211561,
+      "reynolds_arithmetic": 1.2262943855309167,
+      "is_exceptional": false
+    },
+    {
+      "triple": [
+        1,
+        48,
+        49
+      ],
+      "radical": 42,
+      "information_content": 0.22239242133644765,
+      "reynolds_arithmetic": 1.0412424573518235,
+      "is_exceptional": false
+    },
+    {
+      "triple": [
+        1,
+        63,
+        64
+      ],
+      "radical": 42,
+      "information_content": 0.6076825772212393,
+      "reynolds_arithmetic": 1.1126941404922133,
+      "is_exceptional": false
+    },
+    {
+      "triple": [
+        1,
+        80,
+        81
+      ],
+      "radical": 30,
+      "information_content": 1.4329594072761056,
+      "reynolds_arithmetic": 1.2920300298846177,
+      "is_exceptional": false
+    },
+    {
+      "triple": [
+        1,
+        224,
+        225
+      ],
+      "radical": 210,
+      "information_content": 0.09953567355091497,
+      "reynolds_arithmetic": 1.0129028397298183,
+      "is_exceptional": false
+    },
+    {
+      "triple": [
+        2,
+        243,
+        245
+      ],
+      "radical": 210,
+      "information_content": 0.22239242133644854,
+      "reynolds_arithmetic": 1.0288287974277142,
+      "is_exceptional": false
+    },
+    {
+      "triple": [
+        3,
+        125,
+        128
+      ],
+      "radical": 30,
+      "information_content": 2.0931094043914813,
+      "reynolds_arithmetic": 1.4265653296335432,
+      "is_exceptional": true
+    },
+    {
+      "triple": [
+        4,
+        121,
+        125
+      ],
+      "radical": 110,
+      "information_content": 0.18442457113742705,
+      "reynolds_arithmetic": 1.0271958101219159,
+      "is_exceptional": false
+    },
+    {
+      "triple": [
+        5,
+        27,
+        32
+      ],
+      "radical": 30,
+      "information_content": 0.0931094043914813,
+      "reynolds_arithmetic": 1.018975235452531,
+      "is_exceptional": false
+    },
+    {
+      "triple": [
+        7,
+        243,
+        250
+      ],
+      "radical": 210,
+      "information_content": 0.25153876699596456,
+      "reynolds_arithmetic": 1.0326070471078377,
+      "is_exceptional": false
+    }
+  ],
+  "distribution_analysis": {
+    "total_triples": 10,
+    "exceptional_count": 1,
+    "exceptional_fraction": 0.1,
+    "information_content": {
+      "mean": 0.5792107148358666,
+      "std": 0.6329191121404701,
+      "min": 0.0931094043914813,
+      "max": 2.0931094043914813
+    },
+    "reynolds_arithmetic": {
+      "mean": 1.121933607273293,
+      "std": 0.136869282707808,
+      "min": 1.0129028397298183,
+      "max": 1.4265653296335432
+    }
+  }
+}

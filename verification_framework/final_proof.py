@@ -73,7 +73,7 @@ class FinalProof:
         logK (float): Logarithmic term log⁺(‖u‖_{H^m}/‖ω‖_∞)
     """
     
-    def __init__(self, ν=1e-3, δ_star=None, f0=141.7001):
+    def __init__(self, ν=1e-3, δ_star=None, f0=141.7001, use_legacy_constants=None):
         """
         Initialize the UNCONDITIONAL proof framework.
         
@@ -81,6 +81,7 @@ class FinalProof:
             ν (float): Kinematic viscosity (default: 1e-3)
             δ_star (float): QCAL critical parameter (default: calibrated value for a=8.9)
             f0 (float): Forcing frequency parameter (default: 141.7001 Hz)
+            use_legacy_constants (bool): If False, use universal constants (default: True for backward compatibility)
         """
         self.ν = ν
         # Use calibrated δ* (corresponding to a=8.9) if not specified
@@ -91,15 +92,30 @@ class FinalProof:
         self.δ_star = δ_star
         self.f0 = f0
         
-        # Framework mode (always unconditional with calibrated parameters)
-        self._unconditional = True
+        # Framework mode: default to legacy for backward compatibility
+        if use_legacy_constants is None:
+            use_legacy_constants = True
+        self._unconditional = not use_legacy_constants
+        
+        # Initialize constants based on mode
+        if self._unconditional:
+            # Use UniversalConstants for unconditional mode
+            self._universal_constants = UniversalConstants(ν=ν)
+            self.universal = self._universal_constants  # Expose for tests
+            self.c_star = self._universal_constants.c_star
+            self.δ_star = self._universal_constants.δ_star
+            self.γ_min = self._universal_constants.γ_universal
+        else:
+            # Legacy mode
+            self.universal = None
+            self.c_star = 1/16   # Parabolic coercivity coefficient (from NBB lemma)
+            self.γ_min = None  # Not applicable in legacy mode
         
         # NEW: CZ-Besov constants (rigorous approach)
         self.C_CZ = 2.0      # Calderón-Zygmund constant: ‖∇u‖_L∞ ≤ C_CZ ‖ω‖_{B⁰_{∞,1}}
         self.C_star = 1.5    # Besov embedding: ‖ω‖_{B⁰_{∞,1}} ≤ C_⋆ ‖ω‖_L∞
         self.c_Bern = 0.1    # Bernstein coercivity for diffusion
         self.C_str = 32.0    # Vorticity stretching constant
-        self.c_star = 1/16   # Parabolic coercivity coefficient (from NBB lemma)
         
         # Legacy constants (for backward compatibility)
         self.C_BKM = 2.0     # Universal Calderón-Zygmund constant
@@ -127,9 +143,14 @@ class FinalProof:
         if numerator <= 0:
             return 0  # All modes are damped
         
-        denominator = self.ν * self.c_d
+        # Use c_d for legacy mode, c_star for unconditional mode
+        if self._unconditional:
+            denominator = self.ν * self.c_star
+        else:
+            denominator = self.ν * self.c_d
+        
         j_d = np.ceil(0.5 * np.log2(numerator / denominator))
-        return int(j_d)
+        return int(max(0, j_d))
     
     def compute_riccati_coefficient(self, j):
         """

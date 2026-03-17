@@ -1,0 +1,3641 @@
+{
+  "declaration_files": {
+    "LICENSE_SOBERANA_QCAL.txt": true,
+    "AUTHORS_QCAL.md": true,
+    ".qcal_beacon": true,
+    "CLAIM_OF_ORIGIN.md": true,
+    "MANIFESTO_SIMBIOTICO_QCAL.md": true
+  },
+  "qcal_marked_files": [
+    {
+      "file": "FREQUENCY_SCALE_CORRECTION.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "∞³"
+      ]
+    },
+    {
+      "file": "FREQUENCY_RESPONSE_DETECTOR_README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "CYTOPLASMIC_FLOW_RE1E8_README.md",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "LEAN4_IMPLEMENTATION_SUMMARY.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "QCAL_BIOLOGICAL_HYPOTHESIS_ES.md",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "BSD_QCAL_BRIDGE_DOCUMENTATION_ES.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "IMPLEMENTATION_SUMMARY_QFT_TENSOR.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_computational_limitations_analysis.py",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "IMPLEMENTATION_COMPLETE.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "SPACETIME_FLUID_IMPLEMENTATION_REPORT.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "stable_dns_framework.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_verification.py",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "SPACETIME_FLUID_THEORY.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "QCAL_UNIFIED_QUICKSTART.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "unified_tissue_resonance.py",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_vibrational_regularization.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "test_cytoplasmic_flow_model.py",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "SPHERE_PACKING_IMPLEMENTATION_SUMMARY.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "infinity_cubed_complete_validation.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "QFT_TENSOR_README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "VALIDATION_SUMMARY.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "example_proof.py",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "PSI_NSE_V1_RESONANCE_README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "regenerate_with_correct_scale.py",
+      "markers": [
+        "141\\.7001",
+        "∞³"
+      ]
+    },
+    {
+      "file": "FINAL_SUMMARY_PSI_NSE.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "clay_millennium_verification.py",
+      "markers": [
+        "141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "test_quantum_coherence_system.py",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "examples_unified_bkm.py",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "STABLE_DNS_README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "cross_verification_protocol.py",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "magicicada_simulation.py",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "BSD_RESOLUTION_VISUAL_SUMMARY.txt",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "quickstart_qcal_sarnak.sh",
+      "markers": [
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "VALIDACION_FINAL_COMPLETA.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_hierarchical_gravity.py",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "CFD_APPLICATION_README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "NLS_QCAL_SARNAK_IMPLEMENTATION.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "QUICK_START.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "UNIVERSAL_VALIDATION_README.md",
+      "markers": [
+        "JMMB",
+        "Ψ✧",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "PSI_NSE_AERO_README.md",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "validate_natural_frequency_emergence.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "MATHEMATICAL_PHILOSOPHY_QCAL.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "dimensional_flow_tensor.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "IMPLEMENTATION_SUMMARY_SPACETIME.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "demo_seeley_dewitt.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "computational_limitations_analysis.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_infinity_cubed_framework.py",
+      "markers": [
+        "141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "∞³"
+      ]
+    },
+    {
+      "file": "COMPLETION_SUMMARY_NLS_QCAL_SARNAK.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "BSD_RESOLUTION_QCAL_DOCUMENTATION.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "IMPLEMENTATION_SUMMARY_QUANTUM_COHERENCE.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_technical_details_expansion.py",
+      "markers": [
+        "José Manuel Mota Burruezo"
+      ]
+    },
+    {
+      "file": "qcal_sphere_packing_integration.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "CYTOPLASMIC_FLOW_IMPLEMENTATION_SUMMARY.md",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "examples_dimensional_flow_visualization.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "test_infinity_cubed_complete_validation.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "∞³"
+      ]
+    },
+    {
+      "file": "cfd_psi_nse_solver.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "ResumenReadme.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "technical_details_expansion.py",
+      "markers": [
+        "José Manuel Mota Burruezo"
+      ]
+    },
+    {
+      "file": "QCAL_SYNC_IMPLEMENTATION_SUMMARY.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "BSD_IMPLEMENTATION_SUMMARY.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "QCAL_ACTIVATION_SUMMARY.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "demonstrate_geometric_enhancements.py",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "README_QCAL_BIOLOGICAL.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "integrated_dimensional_geometry.py",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "demonstrate_integrated_framework.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "infinity_cubed_framework.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "∞³"
+      ]
+    },
+    {
+      "file": "demo_cytoplasmic_riemann_resonance.py",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "PSI_NSE_DNS_README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "UNIFIED_TISSUE_RESONANCE_README.md",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_qcal_sync_protocol.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "QUICKSTART_RE1E8.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "CELLULAR_SECURITY_SUMMARY.md",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "IMPACTO_POTENCIAL.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "DIMENSIONAL_FLOW_IMPLEMENTATION_SUMMARY.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "examples_infinity_cubed.py",
+      "markers": [
+        "JMMB",
+        "Ψ✧",
+        "∞³"
+      ]
+    },
+    {
+      "file": "quantum_coherence_system.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "nse_biofluid_coupling.py",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "QCAL_BIOLOGICAL_HYPOTHESIS_EN.md",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "rigorous_proof_psi_nse.tex",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "CELLULAR_CYTOPLASMIC_RESONANCE_README.md",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "IMPLEMENTATION_SUMMARY.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "sphere_packing_cosmic.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "IMPLEMENTACION_DMA_COMPLETA.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "∞³"
+      ]
+    },
+    {
+      "file": "PROJECT_SUMMARY.md",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "VALIDATION_IMPLEMENTATION_SUMMARY.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "SPHERE_PACKING_COSMIC_README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "FINAL_IMPLEMENTATION_REPORT.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_stable_dns_framework.py",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "test_frequency_response_detector.py",
+      "markers": [
+        "141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "PsiNS_README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "QCAL",
+        "José Manuel Mota Burruezo"
+      ]
+    },
+    {
+      "file": "test_geometric_regulator_enhancements.py",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "VIA_III_CERTIFICADO_DE_FINALIZACIÓN.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "VALIDACION_COMPLETA_PSI_NSE.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "demo_quantum_coherence_complete.py",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "QFT_DERIVATION_README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "FASE_II_COMPLETADA.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "QUANTUM_COHERENCE_SYSTEM_README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "demo_psi_nse_v1_complete.py",
+      "markers": [
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "impossibility_analysis.py",
+      "markers": [
+        "141\\.7001",
+        "∞³"
+      ]
+    },
+    {
+      "file": "master_validation_psi_nse.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "PSI_NS_GCV_IMPLEMENTATION_SUMMARY.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "AI_AGENT_SUMMARY.md",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "IMPLEMENTATION_SUMMARY_VIBRATIONAL.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "IMPLEMENTATION_SUMMARY_QCAL_BIOLOGICAL.md",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "GEOMETRIC_REGULATOR_ENHANCEMENTS.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "qcal_unified_framework.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "demonstrate_nse_comparison.py",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "VERIFICATION_CHECKLIST.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "TENSORES_FLUJO_DIMENSIONAL.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_geometric_regulators.py",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "PSI_NSE_V1_IMPLEMENTATION_SUMMARY.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_psi_nse_visualization.py",
+      "markers": [
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": ".gitignore",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "IMPLEMENTACION_GEOMETRIAS_REGULADORAS.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "∞³"
+      ]
+    },
+    {
+      "file": "QCAL_ACTIVATION_GUIDE.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "IMPLEMENTATION_PSI_NSE.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "FINAL_VALIDATION_REPORT.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "CALIBRATION_SUMMARY.md",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "mcp_delta1_verifier.py",
+      "markers": [
+        "141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "demo_frequency_response_detector.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "DIMENSIONAL_FLOW_README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_seeley_dewitt_tensor.py",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "validate_bsd_certification.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "VIA_III_COMPLETION_CERTIFICATE.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "QCAL_ROOT_FREQUENCY_VALIDATION.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "visualize_sphere_packing_cosmic.py",
+      "markers": [
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "demo_direct_resonance_complete.py",
+      "markers": [
+        "141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "∞³"
+      ]
+    },
+    {
+      "file": "DIRECT_RESONANCE_IMPLEMENTATION_SUMMARY.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "DIRECT_RESONANCE_API_README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "demo_integration.py",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "demo_cellular_resonance_complete.py",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "fix_frequency_scale.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_cytoplasmic_re1e8.py",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "sovereignty_auditor.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³",
+        "Propiedad Original QCAL"
+      ]
+    },
+    {
+      "file": "demo_cytoplasmic_complete.py",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_qft_derivation.py",
+      "markers": [
+        "141\\.7001",
+        "JMMB"
+      ]
+    },
+    {
+      "file": "QCAL_UNIFIED_WHITEPAPER.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "PSI_NSE_README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "COMPLETION_REPORT.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "∞³"
+      ]
+    },
+    {
+      "file": "qcal_experiments.py",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "cytoplasmic_riemann_results.json",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "IMPLEMENTATION_SUMMARY_FREQUENCY_DETECTOR.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "VIA_III_GCV_IMPLEMENTATION.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "qcal_sync_protocol.py",
+      "markers": [
+        "141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "demo_cytoplasmic_cardiac_integration.py",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "activate_qcal.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_unified_tissue_resonance.py",
+      "markers": [
+        "141\\.7001",
+        "José Manuel Mota Burruezo"
+      ]
+    },
+    {
+      "file": "nls_qcal_sarnak.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "COMPARISON_SUMMARY.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "FINAL_IMPLEMENTATION_SUMMARY.md",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "QUANTUM_COHERENCE_QUICKSTART.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_psi_nse_implementation.py",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "hierarchical_gravity_report.txt",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "QCAL_SARNAK_README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_cfd_psi_nse.py",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "AXIOM_CONVERSION_SUMMARY.md",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "IMPLEMENTATION_SUMMARY_UNIFIED_RESONANCE.md",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "hilbert_polya_operator.py",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "psi_nse_dns_complete.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "phi_qft_derivation_complete.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "QCAL_IMPLEMENTATION_SUMMARY.txt",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "visualize_spacetime_fluid.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "POTENTIAL_IMPACT.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "EXTREME_DNS_README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "quickstart_qcal_sync.py",
+      "markers": [
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "cytoplasmic_flow_model.py",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "compile_latex_pdf.py",
+      "markers": [
+        "141\\.7001",
+        "José Manuel Mota Burruezo"
+      ]
+    },
+    {
+      "file": "examples_psi_nse_complete_workflow.py",
+      "markers": [
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "example_universal_validation.py",
+      "markers": [
+        "JMMB",
+        "Ψ✧",
+        "José Manuel Mota Burruezo"
+      ]
+    },
+    {
+      "file": "SOVEREIGNTY_README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³",
+        "Propiedad Original QCAL"
+      ]
+    },
+    {
+      "file": "experimental_validation_protocol.py",
+      "markers": [
+        "141\\.7001",
+        "José Manuel Mota Burruezo"
+      ]
+    },
+    {
+      "file": "demo_dma_complete.py",
+      "markers": [
+        "JMMB",
+        "Ψ✧",
+        "∞³"
+      ]
+    },
+    {
+      "file": "IMPLEMENTATION_COMPLETE_SUMMARY.txt",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "SPACETIME_FLUID_QUICKSTART.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "dma_entropy_coupling.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "∞³"
+      ]
+    },
+    {
+      "file": "qcal_biological_hypothesis.py",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "demonstrate_quantum_paradigm.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "IMPLEMENTATION_SUMMARY.txt",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "demo_qcal_biological_complete.py",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "psi_nse_v1_resonance.py",
+      "markers": [
+        "141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "frequency_response_detector.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "FINAL_SUMMARY.md",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "LEAN4_COMPLETION_STATUS.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "LICENSE_SOBERANA_QCAL.txt",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³",
+        "Propiedad Original QCAL"
+      ]
+    },
+    {
+      "file": "example_psi_nse_v1_integration.py",
+      "markers": [
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "final_verification.sh",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "BSD_QCAL_BRIDGE_DOCUMENTATION.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "QCAL_SYNC_PROTOCOL.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "validate_phi_coupling_DNS.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "INFINITY_CUBED_ARCHITECTURE.txt",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "∞³"
+      ]
+    },
+    {
+      "file": "BSD_QCAL_BRIDGE_VISUAL_SUMMARY.txt",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "QCAL",
+        "José Manuel Mota Burruezo"
+      ]
+    },
+    {
+      "file": "test_sovereignty_auditor.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "direct_resonance_api.py",
+      "markers": [
+        "141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_compile_latex_pdf.py",
+      "markers": [
+        "141\\.7001",
+        "José Manuel Mota Burruezo"
+      ]
+    },
+    {
+      "file": "DMA_ENTROPY_ZERO_README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "∞³"
+      ]
+    },
+    {
+      "file": "validate_blowup_prevention.py",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "IMPLEMENTATION_COMPLETE_QCAL_SARNAK.md",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_dimensional_flow_tensor.py",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "TEOREMA_FINAL_VIA_III.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "FLUJO_CITOPLASMICO_RE1E8_RESUMEN.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "IMPLEMENTATION_SUMMARY_INFINITY_CUBED.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_dma_entropy_coupling.py",
+      "markers": [
+        "141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "∞³"
+      ]
+    },
+    {
+      "file": "LEAN4_VERIFICATION_IMPLEMENTATION.md",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "AUTHORS_QCAL.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³",
+        "Propiedad Original QCAL"
+      ]
+    },
+    {
+      "file": "validate_root_frequency.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_qcal_unified_framework.py",
+      "markers": [
+        "141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "HIERARCHICAL_GRAVITY_README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_sphere_packing_cosmic.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "RESUMEN_DE_IMPLEMENTACION_FLUJO_CITOPLASMICO.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "qcal_unification_api.py",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "qcal_sarnak_validation.py",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "CELLULAR_IMPLEMENTATION_SUMMARY.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "validate_psi_nse.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "VALIDATION_SUITE_README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "demo_unified_tissue_resonance.py",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "IMPLEMENTATION_SUMMARY_CYTOPLASMIC_FLOW.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "visualize_phi_coupling.py",
+      "markers": [
+        "141\\.7001",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_direct_resonance_api.py",
+      "markers": [
+        "141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "∞³"
+      ]
+    },
+    {
+      "file": "ingnio_auron_system.py",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "SPACETIME_FLUID_MODEL.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "test_psinse_complete_lemmas.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "test_psi_nse_aeronautical.py",
+      "markers": [
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "GUIA_AGENTE_IA.md",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "derive_phi_tensor_qft_rigorous.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "MANIFESTO_SIMBIOTICO_QCAL.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³",
+        "Propiedad Original QCAL"
+      ]
+    },
+    {
+      "file": "hierarchical_gravity.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "∞³"
+      ]
+    },
+    {
+      "file": "cellular_cytoplasmic_resonance.py",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "MILLENNIUM_PROBLEMS_UNIFIED_CERTIFICATE.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_qcal_activation.py",
+      "markers": [
+        "141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_spacetime_fluid.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "HIERARCHICAL_GRAVITY_IMPLEMENTATION.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "BSD_QCAL_IMPLEMENTATION_SUMMARY.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "PSI_NS_IMPLEMENTATION_COMPLETE.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_nse_comparison.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "test_qcal_sarnak_validation.py",
+      "markers": [
+        "141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "examples_vibrational_regularization.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "PSINSE_IMPLEMENTATION_SUMMARY.md",
+      "markers": [
+        "141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "test_qcal_biological.py",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "universal_validation_framework.py",
+      "markers": [
+        "141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "integrate_qcal_framework.sh",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "FILOSOFIA_MATEMATICA_QCAL.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_universal_validation_framework.py",
+      "markers": [
+        "141\\.7001",
+        "José Manuel Mota Burruezo"
+      ]
+    },
+    {
+      "file": "IMPLEMENTATION_CFD_SUMMARY.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "IMPLEMENTATION_SUMMARY_CYTOPLASMIC_CARDIAC.md",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "QCAL_SARNAK_IMPLEMENTATION_SUMMARY.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "extreme_dns_comparison.py",
+      "markers": [
+        "141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "IMPLEMENTATION_SUMMARY_COMPUTATIONAL_LIMITATIONS.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "computational_impossibility_analysis.py",
+      "markers": [
+        "JMMB",
+        "Ψ✧",
+        "∞³"
+      ]
+    },
+    {
+      "file": "CYTOPLASMIC_FLOW_README.md",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "OVERVIEW_PSI_NSE.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "test_phi_tensor_qft.py",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "ISSUE_CRITICAL_PARAMETER.md",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "test_nls_qcal_sarnak.py",
+      "markers": [
+        "141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "IMPLEMENTATION_SUMMARY_UNIVERSAL_VALIDATION.md",
+      "markers": [
+        "141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "demo_cytoplasmic_re1e8.py",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_extreme_dns.py",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "PSI_NSE_IMPLEMENTATION_SUMMARY.md",
+      "markers": [
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "molecular_validation_protocol.json",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": ".qcal_beacon",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³",
+        "Propiedad Original QCAL"
+      ]
+    },
+    {
+      "file": "INFINITY_CUBED_FRAMEWORK.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "∞³"
+      ]
+    },
+    {
+      "file": "CLAIM_OF_ORIGIN.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³",
+        "Propiedad Original QCAL"
+      ]
+    },
+    {
+      "file": "test_cellular_cytoplasmic_resonance.py",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "test_psi_nse_dns.py",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "test_psi_nse_v1_resonance.py",
+      "markers": [
+        "141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "∞³"
+      ]
+    },
+    {
+      "file": "IMPLEMENTATION_SUMMARY_FREQUENCY_SCALE.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "CFD_APLICACION_ES.md",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "CYTOPLASMIC_RIEMANN_IMPLEMENTATION.txt",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "FASE_III_ROADMAP.md",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "EXTENDED_NSE_SUMMARY.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "molecular_implementation_protocol.py",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "01_documentacion/CYTOPLASMIC_FLOW_MODEL.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "01_documentacion/MODELO_DE_FLUJO_CITOPLASMICO.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "ai_agent/script_generator.py",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "ai_agent/README_ES.md",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "ai_agent/README.md",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Results/Phi_tensor_QFT.tex",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "Results/rigorous_proof_psi_nse.tex",
+      "markers": [
+        "141\\.7001",
+        "José Manuel Mota Burruezo"
+      ]
+    },
+    {
+      "file": "Results/EXHAUSTIVE_VALIDATION_REPORT.md",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Results/Phi_tensor_numerical_summary.txt",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "Results/validation_report.md",
+      "markers": [
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "Results/Verification/blowup_prevention_20251031_180226.md",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "Results/Verification/blowup_prevention_20251031_180043.md",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "Results/Verification/natural_frequency_emergence_20251031_180226.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "Results/Verification/natural_frequency_emergence_20251102_060349.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "Results/Verification/spectrum_regeneration_20251102_060054.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "∞³"
+      ]
+    },
+    {
+      "file": "Results/Verification/verification_report_20251030_231337.md",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Results/Verification/natural_frequency_emergence_20251108_191710.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "Results/Verification/frequency_scale_correction_20251102_060603.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "∞³"
+      ]
+    },
+    {
+      "file": "Results/Verification/frequency_scale_correction_20251102_060043.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "∞³"
+      ]
+    },
+    {
+      "file": "Results/Verification/natural_frequency_emergence_20251102_060255.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "Results/Verification/natural_frequency_emergence_20251031_180033.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "Results/Verification/MASTER_VALIDATION_20251031_180229.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "Results/Verification/spectrum_regeneration_20251102_060613.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "∞³"
+      ]
+    },
+    {
+      "file": "Results/Comparison/nse_psi_comparison_20251031_223259.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "Results/Comparison/nse_psi_comparison_20251031_223034.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "Results/Comparison/nse_psi_comparison_20251031_223548.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "Results/CFD/cfd_comparison_20251103_211454.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "Results/Data/qcal_sync_state.json",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "Results/ClaySubmission/README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "Results/Regression/baseline.json",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Results/DNS_Data/extreme_dns_report_20251031_221228.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Results/DNS_Data/extreme_dns_report_20251031_220825.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Results/DNS_Data/extreme_dns_report_20251031_220245.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Scripts/generate_clay_report.sh",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Scripts/validate_proof_document.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "Scripts/deploy.sh",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Scripts/run_regression_tests.sh",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Scripts/run_all_formal_verifications.sh",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "artifacts/paper/technical_details_expanded.tex",
+      "markers": [
+        "José Manuel Mota Burruezo"
+      ]
+    },
+    {
+      "file": "demo_workspace/knowledge_base.json",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "demo_workspace/knowledge_base.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "demo_workspace/generated_scripts/simulate_ns.py",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "demo_workspace/generated_scripts/verify_equations.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "DNS-Verification/DualLimitSolver/unified_bkm.py",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "DNS-Verification/DualLimitSolver/psi_ns_solver.py",
+      "markers": [
+        "141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "DNS-Verification/DualLimitSolver/unified_validation.py",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "DNS-Verification/UnifiedBKM/riccati_besov_closure.py",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "scripts/generate_integration_report.py",
+      "markers": [
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "scripts/geometrías_reguladoras/módulo_ζ12_visual.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "scripts/geometrías_reguladoras/espirales_topológicas_NS.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "scripts/geometrías_reguladoras/portal_simbiótico_gemina.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "∞³"
+      ]
+    },
+    {
+      "file": "scripts/geometrías_reguladoras/campo_coherente_global.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "scripts/geometrías_reguladoras/README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "∞³"
+      ]
+    },
+    {
+      "file": "scripts/geometrías_reguladoras/estructura-holográfica-fisura-poincare.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "scripts/geometrías_reguladoras/singularity_elimination.py",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "scripts/geometrías_reguladoras/integrated_geometric_regulator.py",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "scripts/geometrías_reguladoras/run_gemina_live.py",
+      "markers": [
+        "141\\.7001",
+        "∞³"
+      ]
+    },
+    {
+      "file": "scripts/geometrías_reguladoras/infinite_seal.py",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "scripts/geometrías_reguladoras/geometría_entropía_lyapunov.ipynb",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "scripts/geometrías_reguladoras/quantum_clock.py",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "scripts/geometrías_reguladoras/__init__.py",
+      "markers": [
+        "141\\.7001",
+        "∞³"
+      ]
+    },
+    {
+      "file": "scripts/geometrías_reguladoras/visualizador_calabi_yau_3d.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": ".github/workflows/lean4-full-verification.yml",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": ".github/workflows/qft-derivation.yml",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "certificates/TX9-347-888_NavierStokes.qcal_beacon",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "certificates/BSD_Spectral_Certificate.qcal_beacon",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "certificates/QCAL_NS_Certificate.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "certificates/qcal_circuit_PNP.json",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "ai_agent_workspace/knowledge_base.json",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "ai_agent_workspace/knowledge_base.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "ai_agent_workspace/generated_scripts/simulate_ns.py",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "ai_agent_workspace/generated_scripts/verify_equations.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Documentation/SEELEY_DEWITT_TENSOR.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "Documentation/TECHNICAL_CONTRIBUTIONS.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Documentation/VERIFICATION_ROADMAP.md",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Documentation/STEP5_IMPLEMENTATION_SUMMARY.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Documentation/VIBRATIONAL_REGULARIZATION.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "Documentation/CLAY_PROOF.md",
+      "markers": [
+        "141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Documentation/STEP5_UNIVERSAL_SMOOTHNESS.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Documentation/UNIFIED_BKM_THEORY.md",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Documentation/README.md",
+      "markers": [
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "Documentation/QCAL_PARAMETERS.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Documentation/MATHEMATICAL_APPENDICES.md",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Documentation/COMPUTATIONAL_LIMITATIONS.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "Documentation/QUANTUM_GEOMETRIC_PARADIGM.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "Documentation/UNIFIED_FRAMEWORK.md",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Documentation/VERIFICATION_GUIDE.md",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Documentation/CONTRIBUCIONES_TECNICAS_ES.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Documentation/LEAN4_FORMALIZATION_STATUS.md",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Documentation/ROADMAP.md",
+      "markers": [
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "Documentation/THEORY.md",
+      "markers": [
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "Documentation/PASO5_IMPLEMENTACION_COMPLETA_ES.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Documentation/FORMAL_PROOF_ROADMAP.md",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Documentation/CONTRIBUTIONS_INDEX.md",
+      "markers": [
+        "141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Lean4-Formalization/FORMALIZATION_STATUS.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Lean4-Formalization/README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Lean4-Formalization/NavierStokes/vibrational_regularization.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "Lean4-Formalization/NavierStokes/README_STEP5.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Lean4-Formalization/NavierStokes/README_PsiNSE.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "Lean4-Formalization/NavierStokes/spacetime_fluid_model.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "Lean4-Formalization/NavierStokes/noetic_field_coupling.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "Lean4-Formalization/NavierStokes/seeley_dewitt_tensor.py",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "Lean4-Formalization/PsiNSE/PsiNS_GCV_README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "QCAL",
+        "José Manuel Mota Burruezo"
+      ]
+    },
+    {
+      "file": "Lean4-Formalization/PsiNSE/README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "Lean4-Formalization/PsiNSE/QuantumTurbulence/README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "Lean4-Formalization/PsiNSE/FrequencyEmergence/README.md",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "Lean4-Formalization/PsiNSE/CoherenceField/README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "Lean4-Formalization/PsiNSE/ViaIII/README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "02_codigo_fuente/teoria_principal/CYTOPLASMIC_RIEMANN_FINAL_REPORT.md",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "02_codigo_fuente/teoria_principal/coherencia_cardiaca.py",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "02_codigo_fuente/teoria_principal/CYTOPLASMIC_RIEMANN_QUICKSTART.md",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "02_codigo_fuente/teoria_principal/cytoplasmic_riemann_resonance.py",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "02_codigo_fuente/teoria_principal/CYTOPLASMIC_RIEMANN_RESONANCE_README.md",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "02_codigo_fuente/teoria_principal/symbiotic_molecular_sequence.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "02_codigo_fuente/teoria_principal/SYMBIOTIC_MOLECULAR_SEQUENCE_README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "02_codigo_fuente/teoria_principal/cytoplasmic_flow_model.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "02_codigo_fuente/teoria_principal/IMPLEMENTATION_SUMMARY_CYTOPLASMIC_RIEMANN.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "02_codigo_fuente/teoria_principal/CYTOPLASMIC_FLOW_README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "02_codigo_fuente/output/πCODE–1417–CYTO–RNS.xml",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "02_codigo_fuente/tests/test_symbiotic_molecular_sequence.py",
+      "markers": [
+        "141\\.7001",
+        "José Manuel Mota Burruezo"
+      ]
+    },
+    {
+      "file": "02_codigo_fuente/tests/test_cytoplasmic_flow_simple.py",
+      "markers": [
+        "141\\.7001",
+        "José Manuel Mota Burruezo"
+      ]
+    },
+    {
+      "file": "02_codigo_fuente/tests/test_coherencia_cardiaca.py",
+      "markers": [
+        "141\\.7001",
+        "José Manuel Mota Burruezo"
+      ]
+    },
+    {
+      "file": "02_codigo_fuente/tests/test_cytoplasmic_riemann_resonance.py",
+      "markers": [
+        "141\\.7001",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "02_codigo_fuente/tests/test_cytoplasmic_flow.py",
+      "markers": [
+        "141\\.7001",
+        "José Manuel Mota Burruezo"
+      ]
+    },
+    {
+      "file": "02_codigo_fuente/pruebas/test_cytoplasmic_flow.py",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "PsiNSE/qcal_integration.py",
+      "markers": [
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "PsiNSE/README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "PsiNSE/psi_nse_aeronautical.py",
+      "markers": [
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "PsiNSE/visualization.py",
+      "markers": [
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "PsiNSE/industrial_modules.py",
+      "markers": [
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "PsiNSE/__init__.py",
+      "markers": [
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "PsiNSE/FrequencyEmergence/IMPLEMENTATION_NOTES.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "PsiNSE/FrequencyEmergence/README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "docs/formal_proof_status.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "docs/geometrías/manifesto_gemina∞³.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "∞³"
+      ]
+    },
+    {
+      "file": "docs/geometrías/explicacion_topologia_casimir.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "∞³"
+      ]
+    },
+    {
+      "file": "verification_framework/final_proof.py",
+      "markers": [
+        "141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "verification_framework/universal_constants.py",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "verification_framework/constants_verification.py",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "formal_verification/README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL",
+        "∞³"
+      ]
+    },
+    {
+      "file": "formal_verification/lean4/integrate.sh",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "formal_verification/lean4/VALIDATION_REPORT.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "formal_verification/lean4/README.md",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "formal_verification/lean4/PsiNSE/NavierStokes/vibrational_regularization.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "formal_verification/lean4/PsiNSE/NavierStokes/noetic_field_coupling.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001"
+      ]
+    },
+    {
+      "file": "formal_verification/lean4/PsiNSE/NavierStokes/seeley_dewitt_tensor.py",
+      "markers": [
+        "141\\.7001"
+      ]
+    },
+    {
+      "file": "notebooks/QCAL_Unification_Demo.ipynb",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "validation/qft/phi_tensor_verification.json",
+      "markers": [
+        "141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "validation/qft/gamma_calibration.json",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "validation/qft/verify_phi_tensor.py",
+      "markers": [
+        "141\\.7001",
+        "QCAL"
+      ]
+    },
+    {
+      "file": "validation/qft/calibrate_gamma_rigorous.py",
+      "markers": [
+        "QCAL"
+      ]
+    },
+    {
+      "file": "validation/visualization/generate_solution_visualization.py",
+      "markers": [
+        "141\\.7001",
+        "f₀\\s*=\\s*141\\.7001",
+        "JMMB",
+        "Ψ✧",
+        "QCAL",
+        "José Manuel Mota Burruezo",
+        "∞³"
+      ]
+    },
+    {
+      "file": "Computational-Verification/DNS-Solver/psi_ns_solver.py",
+      "markers": [
+        "141\\.7001",
+        "QCAL"
+      ]
+    }
+  ],
+  "third_party_references": {
+    "NVIDIA": [
+      {
+        "file": "sovereignty_auditor.py",
+        "markers": [
+          "Copyright.*NVIDIA",
+          "NVIDIA Corporation",
+          "cudnn",
+          "nccl",
+          "Licensed under.*NVIDIA"
+        ]
+      },
+      {
+        "file": "SOVEREIGNTY_README.md",
+        "markers": [
+          "cudnn",
+          "nccl"
+        ]
+      },
+      {
+        "file": "test_sovereignty_auditor.py",
+        "markers": [
+          "Copyright.*NVIDIA",
+          "NVIDIA Corporation"
+        ]
+      },
+      {
+        "file": ".qcal_beacon",
+        "markers": [
+          "NVIDIA Corporation",
+          "cudnn",
+          "nccl"
+        ]
+      },
+      {
+        "file": "CLAIM_OF_ORIGIN.md",
+        "markers": [
+          "NVIDIA Corporation",
+          "cudnn",
+          "nccl"
+        ]
+      }
+    ],
+    "Meta": [
+      {
+        "file": "sovereignty_auditor.py",
+        "markers": [
+          "Copyright.*Meta",
+          "Copyright.*Facebook",
+          "Meta Platforms"
+        ]
+      },
+      {
+        "file": "SOVEREIGNTY_README.md",
+        "markers": [
+          "Copyright.*Meta",
+          "Copyright.*Facebook",
+          "Meta Platforms"
+        ]
+      },
+      {
+        "file": "test_sovereignty_auditor.py",
+        "markers": [
+          "Copyright.*Meta",
+          "Meta Platforms"
+        ]
+      },
+      {
+        "file": ".qcal_beacon",
+        "markers": [
+          "Meta Platforms"
+        ]
+      },
+      {
+        "file": "CLAIM_OF_ORIGIN.md",
+        "markers": [
+          "Meta Platforms"
+        ]
+      }
+    ],
+    "Google": [
+      {
+        "file": "sovereignty_auditor.py",
+        "markers": [
+          "Copyright.*Google",
+          "Google LLC"
+        ]
+      },
+      {
+        "file": "SOVEREIGNTY_README.md",
+        "markers": [
+          "Copyright.*Google",
+          "Google LLC"
+        ]
+      },
+      {
+        "file": "test_sovereignty_auditor.py",
+        "markers": [
+          "Copyright.*Google",
+          "Google LLC"
+        ]
+      },
+      {
+        "file": ".qcal_beacon",
+        "markers": [
+          "Google LLC"
+        ]
+      },
+      {
+        "file": "CLAIM_OF_ORIGIN.md",
+        "markers": [
+          "Google LLC"
+        ]
+      }
+    ]
+  },
+  "total_files_scanned": 601,
+  "sovereignty_score": 70
+}
