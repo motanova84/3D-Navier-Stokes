@@ -1,4 +1,4 @@
-import NavierStokes.GlobalRiccati
+import PsiNSE.NavierStokes.GlobalRiccati
 
 set_option autoImplicit false
 set_option linter.unusedVariables false

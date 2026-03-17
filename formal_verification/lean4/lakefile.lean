@@ -1,7 +1,7 @@
 import Lake
 open Lake DSL
 
-package «NavierStokes» where
+package «PsiNSE» where
   -- More Lean options
   moreLeanArgs := #[
     "-DautoImplicit=false"
@@ -16,4 +16,5 @@ require mathlib from git
 require aesop from git
   "https://github.com/JLimperg/aesop" @ "master"
 
-@[default_target] lean_lib NavierStokes
+@[default_target] lean_lib PsiNSE where
+  globs := #[.submodules `PsiNSE]
