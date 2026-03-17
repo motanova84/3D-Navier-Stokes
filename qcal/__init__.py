@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """
+QCAL Package - Quantum Coherence Alignment & Logos
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Sello: ∴𓂀Ω∞³
+f0: 141.7001 Hz
 QCAL Package — Quantum Coherence Artificial Logic
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Sello: ∴𓂀Ω∞³
@@ -70,6 +74,24 @@ except (SyntaxError, ImportError):
     GACTUnifiedFlow = None  # type: ignore[assignment]
 
 
+# Core constants
+F0 = 141.7001        # Hz - Fundamental resonant frequency
+PSI_MIN = 0.888      # Minimum coherence threshold
+NODOS_LOGOS = 51     # Critical constellation nodes
+
+from .bsd_adelic_connector import (
+    sincronizar_bsd_adn,
+    verificar_pentagono_logos,
+    CodificadorADNRiemann,
+    F0,
+)
+from .gact_unified_flow import (
+    calcular_psi,
+    calcular_viscosidad_adelica,
+    calcular_re_q,
+    determinar_estado_flujo,
+    ecuacion_unificada_gact,
+    analizar_secuencia_gact,
 from .bsd_adelic_connector import sincronizar_bsd_adn
 from .riemann_sparse_recovery import (
     RiemannSparseRecovery,
@@ -176,6 +198,15 @@ __all__ = [
     'F0',
     'PSI_MIN',
     'NODOS_LOGOS',
+    'sincronizar_bsd_adn',
+    'verificar_pentagono_logos',
+    'CodificadorADNRiemann',
+    'calcular_psi',
+    'calcular_viscosidad_adelica',
+    'calcular_re_q',
+    'determinar_estado_flujo',
+    'ecuacion_unificada_gact',
+    'analizar_secuencia_gact',
     # BSD-Adelic
     'sincronizar_bsd_adn',
     # Riemann Sparse Recovery — Fases #261–#264
