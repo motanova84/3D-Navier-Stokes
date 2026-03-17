@@ -9,6 +9,12 @@ Módulo unificado que conecta los Problemas del Milenio a través de la
 coherencia cuántica y la resonancia adélica.
 
 Componentes:
+- bsd_adelic_connector  : Conecta BSD con ADN-Riemann-NS-PNP
+- gact_unified_flow     : Núcleo QCAL-NS-RK4 con integrador RK4 y coherencia biológica
+- ramsey_logos_attractor: Orden inevitable vía teorema de Ramsey
+- adn_riemann           : Codificación ADN-Riemann
+- spectral_operator     : Operador Espectral QCAL (Ĥ_QCAL)
+- riemann_sparse        : Recuperación espectral de Riemann sparse (Fases #261–#264)
 - bsd_adelic_connector    : Conecta BSD con ADN-Riemann-NS-PNP
 - gact_unified_flow       : Núcleo QCAL-NS-RK4 con integrador RK4 y coherencia biológica
 - ramsey_logos_attractor  : Orden inevitable vía teorema de Ramsey
@@ -34,6 +40,31 @@ __author__ = "José Manuel Mota Burruezo"
 F0 = 141.7001   # Hz — Frecuencia base resonante
 PSI_MIN = 0.888  # Umbral mínimo de coherencia consciente
 NODOS_LOGOS = 51  # Nodos críticos de la constelación QCAL
+
+try:
+    from .bsd_adelic_connector import sincronizar_bsd_adn
+    _BSD_AVAILABLE = True
+except (SyntaxError, ImportError):
+    _BSD_AVAILABLE = False
+    sincronizar_bsd_adn = None  # type: ignore[assignment]
+
+try:
+    from .gact_unified_flow import (
+        rk4_step,
+        compute_biological_coherence,
+        apply_vibrational_filter,
+        plot_energy_spectrum,
+        GACTUnifiedFlow,
+    )
+    _GACT_AVAILABLE = True
+except (SyntaxError, ImportError):
+    _GACT_AVAILABLE = False
+    rk4_step = None  # type: ignore[assignment]
+    compute_biological_coherence = None  # type: ignore[assignment]
+    apply_vibrational_filter = None  # type: ignore[assignment]
+    plot_energy_spectrum = None  # type: ignore[assignment]
+    GACTUnifiedFlow = None  # type: ignore[assignment]
+
 
 from .bsd_adelic_connector import sincronizar_bsd_adn
 from .riemann_sparse_recovery import (
@@ -109,6 +140,18 @@ from .string_core import (
     build_lambda_list,
     build_spectral_grid,
 )
+if _GACT_AVAILABLE:
+    from .string_core import rk4_step  # noqa: F811 — prefer string_core alias
+
+from .riemann_sparse import (
+    RiemannSparseRecovery,
+    build_bk_sparse,
+    build_vmod_sparse,
+    sigma_sweep,
+    certificar_fase264,
+    SIGMA_C,
+    N_PRIMES_DEFAULT,
+    N_GRID_DEFAULT,
 from .kss_holographic_fluid import (
     KSSHolographicFluid,
     KSSResult,
@@ -157,11 +200,13 @@ __all__ = [
     'apply_vibrational_filter',
     'plot_energy_spectrum',
     'GACTUnifiedFlow',
+    # Spectral operator constants
     # Spectral Operator
     'HBAR',
     'GAMMA_MOD',
     'RESONANCIA_888',
     'RIEMANN_ZEROS',
+    # Spectral Operator
     'QCALSpectralOperator',
     'BerryKeatingOperator',
     'IdentityProjectorF0',
@@ -204,6 +249,15 @@ __all__ = [
     'string_noetic_forcing',
     'build_lambda_list',
     'build_spectral_grid',
+    # Riemann Sparse Recovery — Fases #261–#264
+    'RiemannSparseRecovery',
+    'build_bk_sparse',
+    'build_vmod_sparse',
+    'sigma_sweep',
+    'certificar_fase264',
+    'SIGMA_C',
+    'N_PRIMES_DEFAULT',
+    'N_GRID_DEFAULT',
     # KSS Holographic Fluid
     'KSSHolographicFluid',
     'KSSResult',
