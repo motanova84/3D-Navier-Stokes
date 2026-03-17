@@ -1,7 +1,7 @@
 import Mathlib.Analysis.Normed.Group.Basic
 import Mathlib.Analysis.NormedSpace.lpSpace
 import Mathlib.MeasureTheory.Function.LpSpace
-import NavierStokes.CalderonZygmundBesov
+import PsiNSE.NavierStokes.CalderonZygmundBesov
 
 set_option autoImplicit false
 set_option linter.unusedVariables false
