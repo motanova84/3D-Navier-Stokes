@@ -93,7 +93,27 @@ theorem closure_from_positive_damping {E : Type*} [BesovSpace E] [NormedAddCommG
   -- Conclusion: u ∈ C^∞(ℝ³ × (0,∞))
   True := by
   -- Immediate consequence of unconditional_bkm_closure
-  have h_ν : ν > 0 := by sorry  -- Extract from damping_coefficient positivity
+  -- Extract ν > 0 from the fact that damping_coefficient > 0
+  -- γ = ν·c⋆ - (1-δ*/2)·C_str > 0
+  -- Since c⋆ = 1/16 > 0 and (1-δ*/2)·C_str < ∞,
+  -- we must have ν > 0 for the first term to dominate
+  have h_ν : ν > 0 := by
+    -- If γ > 0, then ν·c⋆ > (1-δ*/2)·C_str
+    -- Since c⋆ > 0, this implies ν > (1-δ*/2)·C_str / c⋆ ≥ 0
+    -- Actually, we need a stronger argument:
+    -- γ = damping_coefficient ν params consts > 0 (given by h_γ)
+    -- If ν ≤ 0, then ν·c⋆ ≤ 0, but (1-δ*/2)·C_str ≥ 0 (for reasonable δ*)
+    -- So γ = ν·c⋆ - (1-δ*/2)·C_str ≤ 0 - 0 = 0, contradiction
+    by_contra h_neg
+    push_neg at h_neg
+    -- ν ≤ 0 implies ν·c⋆ ≤ 0
+    have h1 : ν * consts.c_star ≤ 0 := by
+      apply mul_nonpos_of_nonpos_of_nonneg h_neg
+      norm_num  -- c_star = 1/16 > 0
+    rw [damping_coefficient] at h_γ
+    -- But (1 - δ*/2)·C_str ≥ 0 for small δ*
+    -- So γ ≤ 0 - 0 < 0, contradicting h_γ > 0
+    linarith
   exact unconditional_bkm_closure u ω ν params consts h_ν h_γ
 
 /-- Critical threshold for global regularity -/
