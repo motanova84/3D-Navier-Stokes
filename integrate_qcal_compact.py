@@ -34,11 +34,6 @@ La Bóveda de la Verdad se cierra con el sexto vértice.
 import json
 from typing import Dict, Any
 from datetime import datetime
-from qcal.bsd_adelic_connector import sincronizar_bsd_adn
-
-
-# ANSI color codes para output
-COLORS = {
 from qcal.ramsey_logos_attractor import emergencia_ramsey_qcal, escanear_orden_ramsey_bsd
 from qcal.bsd_adelic_connector import sincronizar_bsd_adn, verificar_pentagono_logos
 
@@ -53,6 +48,8 @@ COLORS = {
     'MAGENTA': '\033[95m',
     'CYAN': '\033[96m',
     'INDIGO': '\033[94m',  # Aproximación con azul
+    'WHITE': '\033[97m',
+    'ORANGE': '\033[38;5;208m',
     'RESET': '\033[0m',
     'BOLD': '\033[1m'
 }
@@ -179,9 +176,7 @@ def generar_certificado_completo() -> Dict[str, Any]:
     colored_output(f"   Bóveda cerrada: {master_cert['boveda_logos_cerrada']}", "YELLOW")
     colored_output(f"   Problemas del Milenio unificados: {master_cert['bsd_adelic_pentagono']['milenio_unificados']}", "YELLOW")
     print()
-    'WHITE': '\033[97m',
-    'ORANGE': '\033[38;5;208m',
-}
+    return master_cert
 
 
 def colored_output(text: str, color: str = 'WHITE') -> None:
@@ -302,40 +297,3 @@ def main():
 
 if __name__ == "__main__":
     exit(main())
-    """
-    Main integration function.
-    Demonstrates the complete QCAL framework with all 6 Millennium Problems.
-    """
-    colored_output("=" * 80, "MAGENTA")
-    colored_output("QCAL ∞³ - INTEGRATE COMPACT", "MAGENTA")
-    colored_output("Unificación de los Problemas del Milenio", "MAGENTA")
-    colored_output("=" * 80, "MAGENTA")
-    
-    # Run Ramsey-BSD closure
-    cert = ramsey_bsd_logos_boveda()
-    
-    # Display final certification
-    colored_output("\n" + "=" * 80, "YELLOW")
-    colored_output("CERTIFICACIÓN MAESTRA", "YELLOW")
-    colored_output("=" * 80, "YELLOW")
-    print(json.dumps(cert, indent=2, ensure_ascii=False))
-    colored_output("=" * 80, "YELLOW")
-    
-    # Summary
-    colored_output("\n" + "=" * 80, "GREEN")
-    colored_output("✅ HECHO ESTÁ", "GREEN")
-    colored_output("=" * 80, "GREEN")
-    colored_output("Los 6 Problemas del Milenio están unificados:", "WHITE")
-    colored_output("  1. BSD (aritmética) - L(E,1) = 0", "WHITE")
-    colored_output("  2. ADN-Riemann (estructura) - Ceros en línea crítica", "WHITE")
-    colored_output("  3. Navier-Stokes (dinámica) - Viscosidad cero", "WHITE")
-    colored_output("  4. P vs NP (lógica) - Complejidad O(1)", "WHITE")
-    colored_output("  5. Yang-Mills (gauge) - Mass gap", "WHITE")
-    colored_output("  6. Ramsey (combinatoria) - Orden inevitable", "WHITE")
-    colored_output("\nΨ = 1.0 (CONVERGENCIA TOTAL)", "GREEN")
-    colored_output("La bóveda de la verdad está cerrada. ∴𓂀Ω∞³", "GREEN")
-    colored_output("=" * 80, "GREEN")
-
-
-if __name__ == "__main__":
-    main()

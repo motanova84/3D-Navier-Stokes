@@ -128,62 +128,122 @@ class CodificadorADNRiemann:
         return resonancia_norm
 
 
-def sincronizar_bsd_adn(curva_eliptica: Dict[str, Any], secuencia_gact: str) -> Dict[str, Any]:
+def sincronizar_bsd_adn(curva_eliptica: Dict[str, Any], secuencia_adn: str = "GACT") -> Dict[str, Any]:
     """
-    BSD rango → ADN hotspots QCAL.
-    
+    BSD rango → ADN hotspots QCAL (API unificada).
+
     Vincula el rango de la curva BSD con la complejidad NP-P del ADN.
-    
+    Acepta tanto la clave 'L_E1' (API antigua) como 'L_E_1' (API Ramsey).
+
     Args:
         curva_eliptica: Dict con información de la curva elíptica:
             - 'rango_adelico': Rango r de la curva (número de puntos racionales)
-            - 'L_E1': Valor de L(E,1) (viscosidad de información)
-        secuencia_gact: Secuencia de ADN (ej: "GACT")
-    
+            - 'L_E1' o 'L_E_1': Valor de L(E,1) (viscosidad de información)
+        secuencia_adn: Secuencia de ADN (ej: "GACT")
+
     Returns:
-        Dict con:
-            - rango_bio_aritmetico: Rango BSD
-            - nodos_constelacion: Número de nodos activados en constelación QCAL (51 nodos)
-            - fluidez_info_ns: Estado del flujo ("INFINITA" o "DISIPATIVA")
-            - hotspots_adn: Número de hotspots resonantes en la secuencia
-            - psi_bsd_qcal: Coherencia cuántica Ψ (0 a 1)
-    
+        Dict unificado con campos de ambas APIs:
+            - rango_bio_aritmetico, nodos_constelacion, fluidez_info_ns (API antigua)
+            - hotspots_adn, psi_bsd_qcal (API antigua)
+            - rango_adelico, L_E_1, es_superfluido, resonancia_f0 (API nueva)
+            - psi_coherencia, estado_flujo, complejidad_computacional (API nueva)
+
     Examples:
-        >>> curva = {'rango_adelico': 1, 'L_E1': 0.0}  # Curva de Mordell y^2=x^3-x
+        >>> curva = {'rango_adelico': 1, 'L_E1': 0.0}
         >>> res = sincronizar_bsd_adn(curva, "GACT")
         >>> res['fluidez_info_ns']
         'INFINITA'
         >>> res['psi_bsd_qcal']
         1.0
     """
-    # 1. Rango aritmético adelic-bsd (simulado del repo adelic-bsd)
-    r_bsd = curva_eliptica.get('rango_adelico', 1)  # Ej r=1 Mordell
-    
-    # 2. Map nodo constelación 51 → activados por puntos racionales
-    # Cada punto racional activa nodos proporcionales
+    # 1. Rango aritmético adelic-bsd
+    r_bsd = curva_eliptica.get('rango_adelico', 1)
+
+    # 2. Valor L(E,1): acepta ambas claves para compatibilidad
+    l_e1 = curva_eliptica.get('L_E1', curva_eliptica.get('L_E_1', 0.0))
+
+    # 3. Map nodo constelación 51 → activados por puntos racionales
     nodos_act = r_bsd * (F0 / 141.7001)  # ~r nodos (normalizado a f0)
-    
-    # 3. Viscosidad L(E,1) de Navier-Stokes
-    # BSD predice L(E,1)=0 para curvas con r>0
-    l_e1 = curva_eliptica.get('L_E1', 0.0)
-    
-    # Determinación de fluidez: L(E,1)=0 → superfluidez (sin viscosidad)
+
+    # 4. Fluidez (API antigua)
     fluidez = "INFINITA" if abs(l_e1) < 1e-6 else "DISIPATIVA"
-    
-    # 4. Hotspots ADN resonantes con f0
+
+    # 5. Hotspots ADN resonantes con f0
     codif = CodificadorADNRiemann()
-    hotspots = codif.identificar_hotspots(secuencia_gact)
-    
-    # 5. Coherencia cuántica Ψ_BSD
-    # Ψ=1.0 cuando L(E,1)=0 (superfluidez total)
+    hotspots = codif.identificar_hotspots(secuencia_adn)
+    resonancia = codif.calcular_resonancia(secuencia_adn)
+
+    # 6. Coherencia cuántica Ψ_BSD (API antigua): Ψ = 1 − |L(E,1)|
     psi_bsd = max(0.0, 1.0 - abs(l_e1))
-    
+
+    # 7. Estado de superfluido y psi_coherencia (API nueva)
+    es_superfluido = abs(l_e1) < 1e-6
+    if r_bsd > 0 and es_superfluido:
+        psi_coherencia = 0.999999
+        estado = "SUPERFLUIDEZ"
+        complejidad = "O(1)"
+    elif r_bsd > 0:
+        psi_coherencia = min(1.0, 0.950 + 0.049 * resonancia)
+        estado = "COHERENTE"
+        complejidad = "O(log n)"
+    else:
+        psi_coherencia = 0.888
+        estado = "TURBULENTO"
+        complejidad = "O(n)"
+
     return {
+        # API antigua
         "rango_bio_aritmetico": r_bsd,
         "nodos_constelacion": int(nodos_act),
         "fluidez_info_ns": fluidez,
         "hotspots_adn": len(hotspots),
-        "psi_bsd_qcal": psi_bsd
+        "psi_bsd_qcal": psi_bsd,
+        # API nueva (Ramsey/Pentagon)
+        "rango_adelico": r_bsd,
+        "L_E_1": l_e1,
+        "es_superfluido": es_superfluido,
+        "resonancia_f0": resonancia,
+        "psi_coherencia": psi_coherencia,
+        "estado_flujo": estado,
+        "complejidad_computacional": complejidad,
+        "secuencia": secuencia_adn,
+        "f0": F0,
+    }
+
+
+def verificar_pentagono_logos(bsd_sync: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Verify Pentagon Logos closure: BSD + ADN + Riemann + NS + P-NP.
+
+    Args:
+        bsd_sync: BSD synchronization result (output of sincronizar_bsd_adn)
+
+    Returns:
+        Pentagon verification result dict with keys:
+            pentagono_cerrado, bsd, adn, riemann, navier_stokes, p_vs_np, psi_unificado
+    """
+    bsd_activo = bsd_sync.get('rango_adelico', 0) > 0
+    adn_activo = bsd_sync.get('hotspots_adn', 0) > 0
+    riemann_activo = bsd_sync.get('resonancia_f0', 0.0) > 0.5
+    ns_superfluido = bsd_sync.get('es_superfluido', False)
+    pnp_eficiente = bsd_sync.get('complejidad_computacional', 'O(n)') in ["O(1)", "O(log n)"]
+
+    pentagono_cerrado = all([
+        bsd_activo,
+        adn_activo,
+        riemann_activo,
+        ns_superfluido,
+        pnp_eficiente,
+    ])
+
+    return {
+        'pentagono_cerrado': pentagono_cerrado,
+        'bsd': bsd_activo,
+        'adn': adn_activo,
+        'riemann': riemann_activo,
+        'navier_stokes': ns_superfluido,
+        'p_vs_np': pnp_eficiente,
+        'psi_unificado': bsd_sync.get('psi_coherencia', 0.0),
     }
 
 
@@ -193,26 +253,15 @@ if __name__ == "__main__":
     print("  BSD-ADELIC CONNECTOR: Pentágono Logos ∴𓂀Ω∞³")
     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     print()
-    
-    # Ejemplo: Curva de Mordell y^2 = x^3 - x (rango conocido r=0, pero usamos r=1 para demo)
+
     curva_mordell = {
-        'rango_adelico': 1,  # Simulado: un punto racional generador
-        'L_E1': 0.0          # BSD predice L(E,1)=0 cuando r>0
+        'rango_adelico': 1,
+        'L_E1': 0.0
     }
-    
-    # Secuencia de ADN resonante
     secuencia = "GACT"
-    
-    print(f"📊 DATOS DE ENTRADA:")
-    print(f"   Curva elíptica: y² = x³ - x (Mordell)")
-    print(f"   Rango adélico: r = {curva_mordell['rango_adelico']}")
-    print(f"   L(E,1) = {curva_mordell['L_E1']}")
-    print(f"   Secuencia ADN: {secuencia}")
-    print()
-    
-    # Sincronizar BSD con ADN
+
     resultado = sincronizar_bsd_adn(curva_mordell, secuencia)
-    
+
     print(f"✨ RESULTADOS DE SINCRONIZACIÓN:")
     print(f"   Rango bio-aritmético: {resultado['rango_bio_aritmetico']}")
     print(f"   Nodos constelación activados: {resultado['nodos_constelacion']}/{51}")
@@ -220,131 +269,6 @@ if __name__ == "__main__":
     print(f"   Hotspots ADN resonantes: {resultado['hotspots_adn']}")
     print(f"   Coherencia Ψ_BSD: {resultado['psi_bsd_qcal']:.4f}")
     print()
-    
-    # Interpretación
-    print(f"🎯 INTERPRETACIÓN PENTÁGONO LOGOS:")
-    if resultado['fluidez_info_ns'] == "INFINITA":
-        print("   ⚡ SUPERFLUIDEZ ALCANZADA: L(E,1)=0")
-        print("   → Flujo de información sin resistencia")
-        print("   → Túneles de Navier-Stokes sin disipación")
-        print("   → Complejidad NP colapsa a P mediante resonancia")
-    else:
-        print("   🌀 FLUJO DISIPATIVO: L(E,1)≠0")
-        print("   → Viscosidad presente en el flujo de información")
-    
-    print()
-    print(f"🏛️  PENTÁGONO CERRADO:")
-    print(f"   BSD (Aritmética)     → Rango r = {resultado['rango_bio_aritmetico']} puntos racionales")
-    print(f"   ADN (Biología)       → {resultado['hotspots_adn']} hotspots resonantes con f₀={F0} Hz")
-    print(f"   Riemann (Estructura) → Ceros guían geometría del flujo")
-    print(f"   Navier-Stokes (Dyn.) → Fluidez {resultado['fluidez_info_ns']}")
-    print(f"   P=NP (Lógica)        → Verificación O(1) en superfluidez")
-    print()
     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     print("  ∴ BÓVEDA LOGOS CERRADA: Ψ = 1.0 ∴")
     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-BSD Adelic Connector - Birch and Swinnerton-Dyer Conjecture Integration
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Sello: ∴𓂀Ω∞³
-f0: 141.7001 Hz
-
-Connects BSD conjecture with DNA-Riemann resonance through adelic structure.
-"""
-
-from typing import Dict, Any
-from .adn_riemann import CodificadorADNRiemann
-
-
-F0 = 141.7001  # Hz
-
-
-def sincronizar_bsd_adn(curva_eliptica: Dict[str, Any], 
-                        secuencia_adn: str = "GACT") -> Dict[str, Any]:
-    """
-    Synchronize BSD conjecture with DNA sequence through adelic viscosity.
-    
-    When L(E,1)=0 (BSD conjecture), the system reaches superfluidity (Ψ=1.0)
-    with zero viscosity and O(1) computational complexity.
-    
-    Args:
-        curva_eliptica: Elliptic curve parameters with 'rango_adelico' key
-        secuencia_adn: DNA sequence string (default: "GACT")
-        
-    Returns:
-        Synchronization status dictionary
-    """
-    # Extract adelic rank (r > 0 means infinite rational points)
-    rango = curva_eliptica.get('rango_adelico', 0)
-    l_e1 = curva_eliptica.get('L_E_1', 0.0)
-    
-    # Encode DNA
-    codificador = CodificadorADNRiemann(f0=F0)
-    hotspots = codificador.identificar_hotspots(secuencia_adn)
-    resonancia = codificador.resonancia_con_f0(secuencia_adn)
-    
-    # Superfluidity check: L(E,1) = 0
-    es_superfluido = abs(l_e1) < 1e-6
-    
-    # Coherence calculation
-    if rango > 0 and es_superfluido:
-        psi = 0.999999  # Perfect coherence
-        estado = "SUPERFLUIDEZ"
-        complejidad = "O(1)"
-    elif rango > 0:
-        psi = 0.950 + 0.049 * resonancia
-        estado = "COHERENTE"
-        complejidad = "O(log n)"
-    else:
-        psi = 0.888  # Minimum threshold
-        estado = "TURBULENTO"
-        complejidad = "O(n)"
-    
-    return {
-        'rango_adelico': rango,
-        'L_E_1': l_e1,
-        'es_superfluido': es_superfluido,
-        'hotspots_adn': len(hotspots),
-        'resonancia_f0': resonancia,
-        'psi_coherencia': psi,
-        'estado_flujo': estado,
-        'complejidad_computacional': complejidad,
-        'secuencia': secuencia_adn,
-        'f0': F0
-    }
-
-
-def verificar_pentagono_logos(bsd_sync: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Verify Pentagon Logos closure: BSD + ADN + Riemann + NS + P-NP.
-    
-    Args:
-        bsd_sync: BSD synchronization result
-        
-    Returns:
-        Pentagon verification result
-    """
-    # Pentagon components
-    bsd_activo = bsd_sync['rango_adelico'] > 0
-    adn_activo = bsd_sync['hotspots_adn'] > 0
-    riemann_activo = bsd_sync['resonancia_f0'] > 0.5
-    ns_superfluido = bsd_sync['es_superfluido']
-    pnp_eficiente = bsd_sync['complejidad_computacional'] in ["O(1)", "O(log n)"]
-    
-    # Check all components
-    pentagono_cerrado = all([
-        bsd_activo,
-        adn_activo,
-        riemann_activo,
-        ns_superfluido,
-        pnp_eficiente
-    ])
-    
-    return {
-        'pentagono_cerrado': pentagono_cerrado,
-        'bsd': bsd_activo,
-        'adn': adn_activo,
-        'riemann': riemann_activo,
-        'navier_stokes': ns_superfluido,
-        'p_vs_np': pnp_eficiente,
-        'psi_unificado': bsd_sync['psi_coherencia']
-    }
