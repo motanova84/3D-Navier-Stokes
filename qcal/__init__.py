@@ -14,6 +14,10 @@ Componentes:
 - ramsey_logos_attractor: Orden inevitable vía teorema de Ramsey
 - adn_riemann           : Codificación ADN-Riemann
 - spectral_operator     : Operador Espectral QCAL (Ĥ_QCAL)
+- sparse_riemann        : Hamiltoniano Sparse GUE para recuperación del espectro Riemann (Fase #264)
+- ramsey_logos_attractor: Orden inevitable vía teorema de Ramsey
+- adn_riemann           : Codificación ADN-Riemann
+- spectral_operator     : Operador Espectral QCAL (Ĥ_QCAL)
 - riemann_sparse        : Recuperación espectral de Riemann sparse (Fases #261–#264)
 - bsd_adelic_connector    : Conecta BSD con ADN-Riemann-NS-PNP
 - gact_unified_flow       : Núcleo QCAL-NS-RK4 con integrador RK4 y coherencia biológica
@@ -140,6 +144,11 @@ from .string_core import (
     build_lambda_list,
     build_spectral_grid,
 )
+from .sparse_riemann import (
+    FractalQCAL_GUE,
+    build_sparse_hamiltonian,
+    compute_riemann_spectral_error,
+    RIEMANN_ZEROS_20,
 if _GACT_AVAILABLE:
     from .string_core import rk4_step  # noqa: F811 — prefer string_core alias
 
@@ -249,6 +258,11 @@ __all__ = [
     'string_noetic_forcing',
     'build_lambda_list',
     'build_spectral_grid',
+    # Sparse Riemann — Fase #264
+    'FractalQCAL_GUE',
+    'build_sparse_hamiltonian',
+    'compute_riemann_spectral_error',
+    'RIEMANN_ZEROS_20',
     # Riemann Sparse Recovery — Fases #261–#264
     'RiemannSparseRecovery',
     'build_bk_sparse',
