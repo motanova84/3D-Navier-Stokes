@@ -51,6 +51,12 @@ COLORS: Dict[str, str] = {
     'YELLOW':  '\033[93m',
     'BLUE':    '\033[94m',
     'MAGENTA': '\033[95m',
+    'CYAN': '\033[96m',
+    'INDIGO': '\033[94m',  # Aproximación con azul
+    'WHITE': '\033[97m',
+    'ORANGE': '\033[38;5;208m',
+    'RESET': '\033[0m',
+    'BOLD': '\033[1m'
     'CYAN':    '\033[96m',
     'WHITE':   '\033[97m',
     'INDIGO':  '\033[94m',
@@ -183,6 +189,19 @@ def generar_certificado_completo() -> Dict[str, Any]:
         "YELLOW",
     )
     print()
+    return master_cert
+
+
+def colored_output(text: str, color: str = 'WHITE') -> None:
+    """
+    Print colored output to terminal.
+    
+    Args:
+        text: Text to print
+        color: Color name (RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, ORANGE)
+    """
+    color_code = COLORS.get(color.upper(), COLORS['WHITE'])
+    print(f"{color_code}{text}{COLORS['RESET']}")
 
     return master_cert
 

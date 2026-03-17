@@ -13,6 +13,10 @@ Módulo unificado que conecta los Problemas del Milenio a través de la
 coherencia cuántica y la resonancia adélica.
 
 Componentes:
+- bsd_adelic_connector: Conecta BSD con ADN-Riemann-NS-PNP
+- ramsey_logos_attractor: Orden inevitable vía teorema Ramsey
+- adn_riemann: Codificador ADN-Riemann
+- spectral_operator: QCALSpectralOperator (Berry-Keating refinado)
 - bsd_adelic_connector  : Conecta BSD con ADN-Riemann-NS-PNP
 - gact_unified_flow     : Núcleo QCAL-NS-RK4 con integrador RK4 y coherencia biológica
 - ramsey_logos_attractor: Orden inevitable vía teorema de Ramsey
@@ -193,12 +197,16 @@ from .kss_holographic_fluid import (
     F_UPE_HZ,
 )
 
+from .bsd_adelic_connector import sincronizar_bsd_adn
+from .spectral_operator import QCALSpectralOperator
+
 __all__ = [
     # Constants
     'F0',
     'PSI_MIN',
     'NODOS_LOGOS',
     'sincronizar_bsd_adn',
+    'QCALSpectralOperator',
     'verificar_pentagono_logos',
     'CodificadorADNRiemann',
     'calcular_psi',
