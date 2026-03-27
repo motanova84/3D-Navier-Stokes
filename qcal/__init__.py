@@ -96,7 +96,7 @@ from .gact_unified_flow import (
     determinar_estado_flujo,
     ecuacion_unificada_gact,
     analizar_secuencia_gact,
-from .bsd_adelic_connector import sincronizar_bsd_adn
+)
 from .riemann_sparse_recovery import (
     RiemannSparseRecovery,
     sieve_primes,
@@ -109,6 +109,7 @@ from .riemann_sparse_recovery import (
     N_PRIMES_DEFAULT,
     N_GRID_DEFAULT,
     RIEMANN_ZEROS_50,
+)
 from .string_noetic_forcing import (
     string_noetic_forcing,
     censura_taquionica,
@@ -129,6 +130,7 @@ from .string_noetic_forcing import (
     EZ_HEXAGONS,
     PSI_PLATEAU,
     N_MICROTUBULES_DEFAULT,
+)
 from .gact_unified_flow import (
     rk4_step,
     compute_biological_coherence,
@@ -158,6 +160,7 @@ from .convergence_proof import (
     EPSILON_DIRAC_THRESHOLD,
     NU_GACT,
     H1_FINITE_BOUND,
+)
 from .string_core import (
     QCALStringOperator,
     GAMMAS,
@@ -175,6 +178,7 @@ from .sparse_riemann import (
     build_sparse_hamiltonian,
     compute_riemann_spectral_error,
     RIEMANN_ZEROS_20,
+)
 if _GACT_AVAILABLE:
     from .string_core import rk4_step  # noqa: F811 — prefer string_core alias
 
@@ -187,6 +191,7 @@ from .riemann_sparse import (
     SIGMA_C,
     N_PRIMES_DEFAULT,
     N_GRID_DEFAULT,
+)
 from .kss_holographic_fluid import (
     KSSHolographicFluid,
     KSSResult,
@@ -195,6 +200,26 @@ from .kss_holographic_fluid import (
     compute_entropy_density_from_upe,
     KSS_BOUND,
     F_UPE_HZ,
+)
+from .thermodynamic_origin import (
+    ThermodynamicState,
+    RealityLevel,
+    calcular_frecuencia_salto,
+    calcular_entropia,
+    calcular_coherencia,
+    calcular_viscosidad_adelica,
+    clasificar_nivel,
+    calcular_estado_termodinamico,
+    generar_cascada_completa,
+    obtener_niveles_clave,
+    verificar_anclaje_navier_stokes,
+    F_PLANCK,
+    F_QCAL,
+    PHI,
+    N_JUMPS,
+    PSI_PLANCK,
+    PSI_TRAYECTORIA,
+    PSI_QCAL,
 )
 
 from .bsd_adelic_connector import sincronizar_bsd_adn
@@ -319,4 +344,20 @@ __all__ = [
     'compute_entropy_density_from_upe',
     'KSS_BOUND',
     'F_UPE_HZ',
+    # Thermodynamic Origin
+    'ThermodynamicState',
+    'RealityLevel',
+    'calcular_frecuencia_salto',
+    'calcular_entropia',
+    'calcular_coherencia',
+    'clasificar_nivel',
+    'calcular_estado_termodinamico',
+    'generar_cascada_completa',
+    'obtener_niveles_clave',
+    'verificar_anclaje_navier_stokes',
+    'F_PLANCK',
+    'PHI',
+    'N_JUMPS',
+    'PSI_PLANCK',
+    'PSI_TRAYECTORIA',
 ]
