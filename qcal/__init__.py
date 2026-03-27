@@ -96,7 +96,7 @@ from .gact_unified_flow import (
     determinar_estado_flujo,
     ecuacion_unificada_gact,
     analizar_secuencia_gact,
-from .bsd_adelic_connector import sincronizar_bsd_adn
+)
 from .riemann_sparse_recovery import (
     RiemannSparseRecovery,
     sieve_primes,
@@ -109,6 +109,7 @@ from .riemann_sparse_recovery import (
     N_PRIMES_DEFAULT,
     N_GRID_DEFAULT,
     RIEMANN_ZEROS_50,
+)
 from .string_noetic_forcing import (
     string_noetic_forcing,
     censura_taquionica,
@@ -129,6 +130,7 @@ from .string_noetic_forcing import (
     EZ_HEXAGONS,
     PSI_PLATEAU,
     N_MICROTUBULES_DEFAULT,
+)
 from .gact_unified_flow import (
     rk4_step,
     compute_biological_coherence,
@@ -158,6 +160,7 @@ from .convergence_proof import (
     EPSILON_DIRAC_THRESHOLD,
     NU_GACT,
     H1_FINITE_BOUND,
+)
 from .string_core import (
     QCALStringOperator,
     GAMMAS,
@@ -175,6 +178,7 @@ from .sparse_riemann import (
     build_sparse_hamiltonian,
     compute_riemann_spectral_error,
     RIEMANN_ZEROS_20,
+)
 if _GACT_AVAILABLE:
     from .string_core import rk4_step  # noqa: F811 — prefer string_core alias
 
@@ -187,6 +191,7 @@ from .riemann_sparse import (
     SIGMA_C,
     N_PRIMES_DEFAULT,
     N_GRID_DEFAULT,
+)
 from .kss_holographic_fluid import (
     KSSHolographicFluid,
     KSSResult,
@@ -195,6 +200,35 @@ from .kss_holographic_fluid import (
     compute_entropy_density_from_upe,
     KSS_BOUND,
     F_UPE_HZ,
+)
+
+# C7 Cosmic String Tension Module
+from .c7_cosmic_string_tension import (
+    calcular_energia_salto_t,
+    calcular_gap_optico,
+    calcular_frecuencia_emergente,
+    verificar_consistencia_circular,
+    calcular_tension_vortice,
+    calcular_viscosidad_cuantica_c7,
+    analizar_sistema_c7_completo,
+    LAMBDA_P,
+    R_DS,
+    LAMBDA_COSMO,
+    THETA_HEPTAGON,
+    T_MEV,
+)
+
+# Birefringence IRS-Luna Simulation
+from .birefringence_irs_luna import (
+    BirefringenceResult,
+    calcular_rotacion_birefringencia,
+    calcular_amplitud_oscilacion,
+    calcular_snr,
+    simular_escaneo_birefringencia,
+    generar_curva_thot,
+    validar_curva_thot,
+    protocolo_validacion_irs_luna,
+    M_PSI_EV,
 )
 
 from .bsd_adelic_connector import sincronizar_bsd_adn
@@ -319,4 +353,27 @@ __all__ = [
     'compute_entropy_density_from_upe',
     'KSS_BOUND',
     'F_UPE_HZ',
+    # C7 Cosmic String Tension
+    'calcular_energia_salto_t',
+    'calcular_gap_optico',
+    'calcular_frecuencia_emergente',
+    'verificar_consistencia_circular',
+    'calcular_tension_vortice',
+    'calcular_viscosidad_cuantica_c7',
+    'analizar_sistema_c7_completo',
+    'LAMBDA_P',
+    'R_DS',
+    'LAMBDA_COSMO',
+    'THETA_HEPTAGON',
+    'T_MEV',
+    # Birefringence IRS-Luna
+    'BirefringenceResult',
+    'calcular_rotacion_birefringencia',
+    'calcular_amplitud_oscilacion',
+    'calcular_snr',
+    'simular_escaneo_birefringencia',
+    'generar_curva_thot',
+    'validar_curva_thot',
+    'protocolo_validacion_irs_luna',
+    'M_PSI_EV',
 ]
