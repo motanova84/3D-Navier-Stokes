@@ -234,6 +234,27 @@ from .birefringence_irs_luna import (
 from .bsd_adelic_connector import sincronizar_bsd_adn
 from .spectral_operator import QCALSpectralOperator
 
+# Haar Ramsey Closure — Brecha B (Haar unitarity) + Brecha C (Ramsey-Riemann)
+try:
+    from .haar_ramsey_closure import (
+        HaarTranslationOperator,
+        HaarIsometryResult,
+        RamseyRiemannResult,
+        CierreFormalResult,
+        verificar_unitaridad_haar,
+        construir_hamiltoniano_C7,
+        alinear_ramsey_riemann,
+        verificar_identidad_espectral,
+        cierre_formal_tres_brechas,
+        RIEMANN_ZEROS_GAMMA,
+    )
+    _HAAR_RAMSEY_AVAILABLE = True
+except (ImportError, SyntaxError):
+    _HAAR_RAMSEY_AVAILABLE = False
+    HaarTranslationOperator = None  # type: ignore[assignment]
+    verificar_unitaridad_haar = None  # type: ignore[assignment]
+    cierre_formal_tres_brechas = None  # type: ignore[assignment]
+
 __all__ = [
     # Constants
     'F0',
@@ -376,4 +397,15 @@ __all__ = [
     'validar_curva_thot',
     'protocolo_validacion_irs_luna',
     'M_PSI_EV',
+    # Haar Ramsey Closure — Brecha B + Brecha C
+    'HaarTranslationOperator',
+    'HaarIsometryResult',
+    'RamseyRiemannResult',
+    'CierreFormalResult',
+    'verificar_unitaridad_haar',
+    'construir_hamiltoniano_C7',
+    'alinear_ramsey_riemann',
+    'verificar_identidad_espectral',
+    'cierre_formal_tres_brechas',
+    'RIEMANN_ZEROS_GAMMA',
 ]
