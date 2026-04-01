@@ -158,7 +158,11 @@ corollary norm_preserved_under_translation {G : Type*} [Group G] [TopologicalSpa
 ### Verificación discreta: C₇ = {2, 3, 5, 7, 11, 13, 17}
 -/
 
-/-- Los 7 primeros primos que forman el anillo C₇ -/
+/-- Los 7 primeros primos que forman el anillo C₇.
+
+    Corresponde exactamente a la constante Python `C7_PRIMES = [2, 3, 5, 7, 11, 13, 17]`
+    en `qcal/haar_ramsey_closure.py` y `kernel_navier_stokes_qcal.py`.
+-/
 def C7_primes : Fin 7 → ℕ := ![2, 3, 5, 7, 11, 13, 17]
 
 /-- La medida de Haar discreta en C₇ es la medida de conteo uniforme:

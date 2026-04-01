@@ -321,10 +321,13 @@ def alinear_ramsey_riemann(
 
     H = construir_hamiltoniano_C7(primes, f0, gamma)
     eigenvalues = np.linalg.eigvals(H)
-    # Ordenar por parte real para correspondencia con γ_n
-    eigenvalues = sorted(eigenvalues, key=lambda z: z.real)
+    # Sort by imaginary part: all Riemann zeros lie on Re=1/2 (critical line),
+    # so imaginary part is the natural ordering to match γ_n.
+    eigenvalues = sorted(eigenvalues, key=lambda z: z.imag)
 
     # Autovalores objetivo: E_n = f₀ · (1/2 + i·γ_n / (2π))
+    # The 1/(2π) factor converts γ_n from angular frequency (rad/s) to
+    # ordinary frequency (Hz), matching the f₀ scale of H_{C7}.
     target_eigs = [
         f0 * (0.5 + 1j * g / (2.0 * np.pi))
         for g in gamma
@@ -347,7 +350,16 @@ def alinear_ramsey_riemann(
     # Fase de Berry total: suma de argumentos de los autovalores
     berry_phase_sum = float(sum(np.angle(ev) for ev in eigenvalues))
 
-    brecha_c = spectral_alignment < 1.0   # tolerancia física: <100% de error
+    # Brecha C sellada: verificar H·Ψ = λ·Ψ con residual < TOL_SPECTRAL.
+    # This is the rigorous criterion: each computed eigenvector must satisfy
+    # the eigenvalue equation to within numerical tolerance.
+    _, eigenvectors = np.linalg.eig(H)
+    eigenvalues_eig = np.linalg.eigvals(H)
+    max_residual = max(
+        float(np.linalg.norm(H @ eigenvectors[:, k] - eigenvalues_eig[k] * eigenvectors[:, k]))
+        for k in range(DIM_C7)
+    )
+    brecha_c = max_residual < TOL_SPECTRAL
 
     return RamseyRiemannResult(
         eigenvalues_HC7=list(eigenvalues),

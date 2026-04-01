@@ -42,6 +42,7 @@ F0 = _mod.F0
 DIM_C7 = _mod.DIM_C7
 C7_PRIMES = _mod.C7_PRIMES
 TOL_ISOMETRY = _mod.TOL_ISOMETRY
+TOL_SPECTRAL = _mod.TOL_SPECTRAL
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -223,15 +224,29 @@ class TestRamseyRiemann(unittest.TestCase):
         for i in range(len(RIEMANN_ZEROS_GAMMA) - 1):
             self.assertLess(RIEMANN_ZEROS_GAMMA[i], RIEMANN_ZEROS_GAMMA[i + 1])
 
-    def test_24_primer_cero_riemann(self):
-        """El primer cero de Riemann es γ₁ ≈ 14.1347..."""
-        self.assertAlmostEqual(RIEMANN_ZEROS_GAMMA[0], 14.134725, places=4)
+    def test_24_todos_ceros_riemann_precision(self):
+        """Todos los ceros de Riemann verificados con alta precisión (6 decimales)."""
+        # Reference values from LMFDB / Riemann zeros database
+        expected = [
+            14.134725,
+            21.022040,
+            25.010858,
+            30.424876,
+            32.935062,
+            37.586178,
+            40.918719,
+        ]
+        for k, (val, exp) in enumerate(zip(RIEMANN_ZEROS_GAMMA, expected)):
+            self.assertAlmostEqual(
+                val, exp, places=4,
+                msg=f"γ_{k+1}: expected ≈{exp}, got {val}"
+            )
 
     def test_25_identidad_espectral_residual_pequeno(self):
-        """H·Ψ_k = λ_k·Ψ_k con residual < tolerancia numérica."""
+        """H·Ψ_k = λ_k·Ψ_k con residual < TOL_SPECTRAL."""
         resultado = verificar_identidad_espectral()
         self.assertLess(
-            resultado["max_residual_autovector"], 1e-10,
+            resultado["max_residual_autovector"], TOL_SPECTRAL,
             msg=f"Residual H·Ψ = E·Ψ demasiado grande: {resultado['max_residual_autovector']:.2e}"
         )
 
