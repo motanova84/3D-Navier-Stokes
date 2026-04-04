@@ -13,6 +13,12 @@ Módulo unificado que conecta los Problemas del Milenio a través de la
 coherencia cuántica y la resonancia adélica.
 
 Componentes:
+- bsd_adelic_connector  : Conecta BSD con ADN-Riemann-NS-PNP
+- gact_unified_flow     : Núcleo QCAL-NS-RK4 con integrador RK4 y coherencia biológica
+- ramsey_logos_attractor: Orden inevitable vía teorema de Ramsey
+- adn_riemann           : Codificación ADN-Riemann
+- spectral_operator     : Operador Espectral QCAL (Ĥ_QCAL)
+- fractal_qcal_operator : Operador Fractal QCAL (hamiltoniano primo-fractal)
 - bsd_adelic_connector: Conecta BSD con ADN-Riemann-NS-PNP
 - ramsey_logos_attractor: Orden inevitable vía teorema Ramsey
 - adn_riemann: Codificador ADN-Riemann
@@ -173,6 +179,10 @@ from .string_core import (
     build_lambda_list,
     build_spectral_grid,
 )
+from .fractal_qcal_operator import (
+    FractalQCALOperator,
+    RIEMANN_ZEROS_20,
+)
 from .sparse_riemann import (
     FractalQCAL_GUE,
     build_sparse_hamiltonian,
@@ -331,6 +341,9 @@ __all__ = [
     'string_noetic_forcing',
     'build_lambda_list',
     'build_spectral_grid',
+    # Fractal QCAL Operator
+    'FractalQCALOperator',
+    'RIEMANN_ZEROS_20',
     # Sparse Riemann — Fase #264
     'FractalQCAL_GUE',
     'build_sparse_hamiltonian',
