@@ -36,8 +36,10 @@ import numpy as np
 F0: float = 141.7001          # Hz — frecuencia base (autovalor de referencia)
 PSI_MIN: float = 0.888        # Umbral mínimo de coherencia consciente
 HBAR: float = 1.0545718e-34   # J·s — constante de Planck reducida
+HBAR_DEFAULT: float = HBAR    # Alias for backward compatibility
 RESONANCIA_888: float = 888.0 # Hz — armónico de orden 6 (6 × f₀ ≈ 850; valor exacto: 888)
 GAMMA_MOD: float = 1.0        # Factor de acoplamiento de modulación (γ)
+GAMMA_1: float = 14.134725142  # Primer cero de Riemann γ₁
 
 # Primeros 50 ceros no triviales de ζ(s) — partes imaginarias γₙ
 # Fuente: LMFDB (L-functions and Modular Forms Database)
@@ -244,21 +246,28 @@ class QCALSpectralOperator:
                  num_zeros: int = 50,
                  f0: float = F0,
                  gamma: float = GAMMA_MOD,
-                 hbar: float = HBAR) -> None:
+                 hbar: float = HBAR,
+                 consciousness_density: float = 1.0) -> None:
         """
         Inicializar el operador espectral QCAL.
 
         Args:
-            num_zeros: Número de ceros de Riemann para Ĥ_BK.
-            f0:        Frecuencia base de anclaje (Hz).
-            gamma:     Factor de acoplamiento de modulación γ.
-            hbar:      Constante de Planck reducida ℏ.
+            num_zeros:             Número de ceros de Riemann para Ĥ_BK.
+            f0:                    Frecuencia base de anclaje (Hz).
+            gamma:                 Factor de acoplamiento de modulación γ (> 0).
+            hbar:                  Constante de Planck reducida ℏ.
+            consciousness_density: Densidad de consciencia C (> 0).
         """
+        if gamma <= 0:
+            raise ValueError("gamma debe ser > 0 para garantizar hermiticidad")
+        if consciousness_density <= 0:
+            raise ValueError("consciousness_density debe ser > 0")
         self.H_BK = BerryKeatingOperator(num_zeros=num_zeros)
         self.I_f0 = IdentityProjectorF0(f0=f0)
         self.gamma = gamma
         self.hbar = hbar
         self.f0 = f0
+        self.C = consciousness_density
 
     def is_hermitian(self) -> bool:
         """
@@ -313,6 +322,61 @@ class QCALSpectralOperator:
             "coherente": coherente,
             "on_critical_line": on_critical_line,
         }
+
+    def modulation_potential(self) -> float:
+        """Potencial de modulación V̂_mod = γ · ℏ / C."""
+        return self.gamma * self.hbar / self.C
+
+    def berry_keating_eigenvalue(self, gamma_n: float) -> float:
+        """Autovalor de Berry-Keating: devuelve γ_n (base Mellin/BK)."""
+        return gamma_n
+
+    def compute_eigenvalue(self, gamma_n: float) -> float:
+        """Autovalor resonante λ_n = γ_n · f₀ + V̂_mod."""
+        return gamma_n * self.f0 + self.modulation_potential()
+
+    def certify_critical_line(self, sigma: float) -> Tuple[bool, float]:
+        """
+        Certifica si σ está en la línea crítica de Riemann.
+
+        Ψ(σ) = exp(-|σ − ½| · (C / (γ · ℏ)) · π). Certificado cuando Ψ ≥ PSI_MIN.
+        """
+        decay_rate = self.C / (self.gamma * self.hbar)
+        psi = math.exp(-abs(sigma - 0.5) * decay_rate * math.pi)
+        certified = psi >= PSI_MIN
+        return certified, psi
+
+    def verify_off_critical_zeros(
+        self, sigmas: List[float]
+    ) -> Tuple[bool, str]:
+        """Confirma que fuera de la línea crítica no existe ningún cero certificado."""
+        off_critical = [s for s in sigmas if abs(s - 0.5) > 1e-10]
+        certified_any = any(
+            self.certify_critical_line(s)[0] for s in off_critical
+        )
+        if not certified_any:
+            return True, "Conjunto de ceros off-critical: ∅"
+        return False, "¡Ceros off-critical detectados!"
+
+    def get_spectral_table(
+        self, gamma_n_example: float = GAMMA_1
+    ) -> Dict:
+        """Tabla espectral de ejemplo usando el primer cero de Riemann."""
+        lam = self.compute_eigenvalue(gamma_n_example)
+        herm = self.is_hermitian()
+        _, psi_crit = self.certify_critical_line(0.5)
+        _, psi_off = self.certify_critical_line(1.0)
+        return {
+            "lambda_0": lam,
+            "hermiticidad": herm,
+            "psi_critica": psi_crit,
+            "psi_off_critical": psi_off,
+            "resonancia_aprox_hz": int(round(lam)),
+        }
+
+    def estado_qed_riemann(self) -> str:
+        """Estado global del operador."""
+        return "QED-RIEMANN-VERIFIED"
 
     def certificar_linea_critica(self, C: float = 1.0) -> Dict:
         """

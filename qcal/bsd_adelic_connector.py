@@ -51,6 +51,14 @@ class CodificadorADNRiemann:
         'U': 0.7,
     }
 
+    # Frequency mappings (THz) for spectral encoding
+    BASES_FREQ: Dict[str, float] = {
+        'A': 1.2,
+        'C': 2.3,
+        'G': 3.4,
+        'T': 4.5,
+    }
+
     HOTSPOT_PATTERNS: List[str] = ['GACT', 'CGTA', 'ATCG', 'TATA', 'AAAA']
 
     def __init__(self, f0: float = F0) -> None:
@@ -92,6 +100,22 @@ class CodificadorADNRiemann:
             if pattern in secuencia:
                 resonancia = min(1.0, resonancia * 1.1)
         return resonancia
+
+    def codificar(self, secuencia: str) -> "np.ndarray":
+        """
+        Encode DNA sequence to frequency spectrum via FFT.
+
+        Args:
+            secuencia: DNA sequence string
+
+        Returns:
+            Complex FFT spectrum array.
+        """
+        import numpy as np
+        valores = np.array(
+            [self.BASES_FREQ.get(b.upper(), 0.0) for b in secuencia]
+        )
+        return np.fft.fft(valores)
 
     def resonancia_con_f0(self, secuencia_gact: str) -> float:
         """Alias de calcular_resonancia para compatibilidad con imports nuevos."""
