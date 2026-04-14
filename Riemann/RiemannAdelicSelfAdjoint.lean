@@ -78,14 +78,8 @@ theorem riemann_hypothesis_via_adelic_self_adjointness
   intro ρ hρ
   exact D_adelic_zeros_on_critical_line H hH hZeros hCriticalFromZero ρ hρ
 
-theorem riemann_hypothesis_via_adelic_self_adjointness_teorema
-    (H : AdelicHamiltonian)
-    (hH : isSelfAdjoint H)
-    (hZeros : ∀ ρ : ℂ, D_adelic H ρ = 0 → ρ ∈ H.spectrum)
-    (hCriticalFromZero : ∀ ρ : ℂ, D_adelic H ρ = 0 → ρ.im = 0 → ρ.re = (1 : ℝ) / 2) :
-    ∀ ρ : ℂ, D_adelic H ρ = 0 → criticalLine ρ := by
-  intro ρ hρ
-  exact riemann_hypothesis_via_adelic_self_adjointness H hH hZeros hCriticalFromZero ρ hρ
+abbrev riemann_hypothesis_via_adelic_self_adjointness_teorema :=
+  riemann_hypothesis_via_adelic_self_adjointness
 
 abbrev riemann_hypothesis_via_adelic_self_adjointnessteorema :=
   riemann_hypothesis_via_adelic_self_adjointness_teorema

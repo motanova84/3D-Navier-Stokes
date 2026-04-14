@@ -102,8 +102,12 @@ class AcoplamientoHiggsPc:
             self.a_eff = self.f0_hz * math.sqrt(self.objetivo_reduccion / self.kappa_pi)
 
     @property
-    def amplitude_effective(self) -> float:
+    def amplitud_efectiva(self) -> float:
         return self.a_eff
+
+    @property
+    def amplitude_effective(self) -> float:
+        return self.amplitud_efectiva
 
     @property
     def reduccion_masa(self) -> float:
@@ -189,9 +193,6 @@ class ResultadoSustrato:
             "psi_global": self.psi_global,
             "sustrato_activo": self.sustrato_activo,
         }
-
-    def a_dict(self) -> Dict[str, float | bool | str]:
-        return self.to_dict()
 
     @staticmethod
     def calcular_sha256(payload: Dict[str, float | bool | str]) -> str:
