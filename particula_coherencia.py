@@ -97,6 +97,7 @@ def ejecutar_sustrato(verbose: bool = True) -> ResultadoSustrato:
     higgs = AcoplamientoHiggsPC()
     foton = FotonFaseCoherente()
 
+    # En el cierre calibrado del modelo, A_eff se sincroniza con f0.
     reduccion = higgs.calcular_reduccion(a_eff=pc.f0, f0=pc.f0)
     r_symb = foton.r_symb(pc.f0)
 

@@ -29,7 +29,13 @@ def test_calculo_reduccion_higgs_pc():
 
 
 def test_resultado_sustrato_sella_sha256():
-    payload = {"psi_global": 0.999999, "reduccion_masa": 0.053, "r_symb_kpps": 991.8997080993}
+    pc = ParticulaCoherencia()
+    foton = FotonFaseCoherente()
+    payload = {
+        "psi_global": 0.999999,
+        "reduccion_masa": 0.053,
+        "r_symb_kpps": foton.r_symb(pc.f0),
+    }
     result = ResultadoSustrato.from_payload(payload)
     assert result.sha256 == hashlib.sha256(str(payload).encode("utf-8")).hexdigest()
 
