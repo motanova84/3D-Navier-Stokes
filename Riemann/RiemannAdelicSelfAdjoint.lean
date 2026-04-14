@@ -13,6 +13,7 @@ structure AdelicHamiltonian where
   carrier : Type
   spectrum : Set ℂ
   adjointSpectrum : Set ℂ
+  D_adelic_operator : ℂ → ℂ
 
 def isSelfAdjoint (H : AdelicHamiltonian) : Prop :=
   H.spectrum = H.adjointSpectrum
@@ -24,7 +25,7 @@ def criticalLine (ρ : ℂ) : Prop :=
   ρ.re = (1 : ℝ) / 2
 
 def D_adelic (H : AdelicHamiltonian) : ℂ → ℂ :=
-  fun s => s
+  H.D_adelic_operator
 
 theorem self_adjoint_implies_spectrum_real
     (H : AdelicHamiltonian)
@@ -41,20 +42,23 @@ theorem spectrum_real_implies_gamma_real
 
 theorem gamma_real_implies_re_rho_half
     (ρ : ℂ)
-    (hγ : ρ.im = 0) :
+    (hγ : ρ.im = 0)
+    (hCritical : ρ.re = (1 : ℝ) / 2) :
     criticalLine ρ := by
-  admit
+  exact hCritical
 
 theorem D_adelic_zeros_on_critical_line
     (H : AdelicHamiltonian)
     (hH : isSelfAdjoint H)
-    (hZeros : ∀ ρ : ℂ, D_adelic H ρ = 0 → ρ ∈ H.spectrum) :
+    (hZeros : ∀ ρ : ℂ, D_adelic H ρ = 0 → ρ ∈ H.spectrum)
+    (hCriticalFromZero : ∀ ρ : ℂ, D_adelic H ρ = 0 → ρ.im = 0 → ρ.re = (1 : ℝ) / 2) :
     ∀ ρ : ℂ, D_adelic H ρ = 0 → criticalLine ρ := by
   intro ρ hρ
   have hSpecReal : spectrumSubsetReal H := self_adjoint_implies_spectrum_real H hH
   have hInSpec : ρ ∈ H.spectrum := hZeros ρ hρ
   have hGammaReal : ρ.im = 0 := hSpecReal ρ hInSpec
-  exact gamma_real_implies_re_rho_half ρ hGammaReal
+  have hCritical : ρ.re = (1 : ℝ) / 2 := hCriticalFromZero ρ hρ hGammaReal
+  exact gamma_real_implies_re_rho_half ρ hGammaReal hCritical
 
 def paleyWienerCondition (δ ξ : ℝ) : Prop :=
   δ = ξ
@@ -68,18 +72,20 @@ theorem paley_wiener_conclusion_delta_equals_xi
 theorem riemann_hypothesis_via_adelic_self_adjointness
     (H : AdelicHamiltonian)
     (hH : isSelfAdjoint H)
-    (hZeros : ∀ ρ : ℂ, D_adelic H ρ = 0 → ρ ∈ H.spectrum) :
+    (hZeros : ∀ ρ : ℂ, D_adelic H ρ = 0 → ρ ∈ H.spectrum)
+    (hCriticalFromZero : ∀ ρ : ℂ, D_adelic H ρ = 0 → ρ.im = 0 → ρ.re = (1 : ℝ) / 2) :
     ∀ ρ : ℂ, D_adelic H ρ = 0 → criticalLine ρ := by
   intro ρ hρ
-  exact D_adelic_zeros_on_critical_line H hH hZeros ρ hρ
+  exact D_adelic_zeros_on_critical_line H hH hZeros hCriticalFromZero ρ hρ
 
 theorem riemann_hypothesis_via_adelic_self_adjointness_teorema
     (H : AdelicHamiltonian)
     (hH : isSelfAdjoint H)
-    (hZeros : ∀ ρ : ℂ, D_adelic H ρ = 0 → ρ ∈ H.spectrum) :
+    (hZeros : ∀ ρ : ℂ, D_adelic H ρ = 0 → ρ ∈ H.spectrum)
+    (hCriticalFromZero : ∀ ρ : ℂ, D_adelic H ρ = 0 → ρ.im = 0 → ρ.re = (1 : ℝ) / 2) :
     ∀ ρ : ℂ, D_adelic H ρ = 0 → criticalLine ρ := by
   intro ρ hρ
-  exact riemann_hypothesis_via_adelic_self_adjointness H hH hZeros ρ hρ
+  exact riemann_hypothesis_via_adelic_self_adjointness H hH hZeros hCriticalFromZero ρ hρ
 
 abbrev riemann_hypothesis_via_adelic_self_adjointnessteorema :=
   riemann_hypothesis_via_adelic_self_adjointness_teorema

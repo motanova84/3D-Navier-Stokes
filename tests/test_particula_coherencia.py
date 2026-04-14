@@ -127,7 +127,7 @@ class TestParticulaCoherenciaFramework(unittest.TestCase):
 
     def test_023_resultado_dict(self):
         r = ejecutar_sustrato()
-        payload = r.a_dict()
+        payload = r.to_dict()
         for key in [
             "f0_hz",
             "reduccion_masa",
@@ -161,7 +161,7 @@ class TestBarridoParametrico(unittest.TestCase):
     """118 pruebas paramétricas para completar 143 pruebas totales."""
 
 
-def _crear_test_parametrico(indice: int):
+def _create_parametric_test(indice: int):
     def _test(self):
         psi = (indice % 11) / 10.0
         foton = FotonFaseCoherente(psi_coherencia=psi)
@@ -177,7 +177,7 @@ def _crear_test_parametrico(indice: int):
 
 
 for _i in range(1, 119):
-    setattr(TestBarridoParametrico, f"test_{25 + _i:03d}_parametrico", _crear_test_parametrico(_i))
+    setattr(TestBarridoParametrico, f"test_{25 + _i:03d}_parametrico", _create_parametric_test(_i))
 
 
 if __name__ == "__main__":

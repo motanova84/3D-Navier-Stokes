@@ -102,6 +102,10 @@ class AcoplamientoHiggsPc:
             self.a_eff = self.f0_hz * math.sqrt(self.objetivo_reduccion / self.kappa_pi)
 
     @property
+    def amplitude_effective(self) -> float:
+        return self.a_eff
+
+    @property
     def reduccion_masa(self) -> float:
         return self.kappa_pi * (self.a_eff ** 2) / (self.f0_hz ** 2)
 
@@ -170,7 +174,7 @@ class ResultadoSustrato:
     def Ψ_global(self) -> float:
         return self.psi_global
 
-    def a_dict(self) -> Dict[str, float | bool | str]:
+    def to_dict(self) -> Dict[str, float | bool | str]:
         return {
             "nu": self.vacio.nu,
             "eta_s": self.vacio.eta_s,
@@ -185,6 +189,9 @@ class ResultadoSustrato:
             "psi_global": self.psi_global,
             "sustrato_activo": self.sustrato_activo,
         }
+
+    def a_dict(self) -> Dict[str, float | bool | str]:
+        return self.to_dict()
 
     @staticmethod
     def calcular_sha256(payload: Dict[str, float | bool | str]) -> str:
@@ -228,7 +235,7 @@ class SustratoCuantico:
             sustrato_activo=sustrato_activo,
             sello_sha256="",
         )
-        payload = parcial.a_dict()
+        payload = parcial.to_dict()
         sello = ResultadoSustrato.calcular_sha256(payload)
         parcial.sello_sha256 = sello
         return parcial
@@ -260,4 +267,3 @@ def ejecutar_sustrato(verbose: bool = False) -> ResultadoSustrato:
         print(f"firma_espectral.delta_seccion_eficaz={resultado.firma_espectral.delta_seccion_eficaz:.3f}")
 
     return resultado
-
