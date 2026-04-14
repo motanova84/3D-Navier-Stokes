@@ -29,7 +29,7 @@ def test_calculo_reduccion_higgs_pc():
 
 
 def test_resultado_sustrato_sella_sha256():
-    payload = {"psi_global": 0.999999, "reduccion_masa": 0.053, "r_symb_kpps": 991.9}
+    payload = {"psi_global": 0.999999, "reduccion_masa": 0.053, "r_symb_kpps": 991.8997080993}
     result = ResultadoSustrato.from_payload(payload)
     assert result.sha256 == hashlib.sha256(str(payload).encode("utf-8")).hexdigest()
 
@@ -38,3 +38,5 @@ def test_ejecutar_sustrato_devuelve_resultado_inmutable():
     result = ejecutar_sustrato(verbose=False)
     assert isinstance(result, ResultadoSustrato)
     assert "psi_global" in result.data
+    assert "reduccion_masa" in result.data
+    assert "r_symb_kpps" in result.data

@@ -20,8 +20,8 @@ axiom D_adelic : AdelicHamiltonian
 /-- Hipótesis estructural: auto-adjuntividad del operador adélico. -/
 axiom self_adjoint_adelic : Prop
 
-/-- Predicado auxiliar para marcar polos excluidos de la función zeta. -/
-def IsPoleZeta (_ρ : ℂ) : Prop := False
+/-- Predicado auxiliar para marcar el polo simple de la función zeta en `s = 1`. -/
+def IsPoleZeta (ρ : ℂ) : Prop := ρ = 1
 
 /--
 TEOREMA PRINCIPAL:
