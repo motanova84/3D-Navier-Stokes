@@ -38,7 +38,7 @@ def register_real_observer(node: str, observer: ObserverLoader) -> None:
 
 def _compute_psi(latency_ms: float, phase_offset_rad: float, healthy_a: bool, healthy_b: bool) -> float:
     phase_score = math.exp(-abs(phase_offset_rad))
-    latency_score = math.exp(-max(0.0, latency_ms - 5.0) / 35.0)
+    latency_score = math.exp(-max(0.0, latency_ms - 5.0) / 80.0)
     health_score = 1.0 if (healthy_a and healthy_b) else 0.6
     psi = 0.6 * phase_score + 0.25 * latency_score + 0.15 * health_score
     return max(0.0, min(1.0, psi))
