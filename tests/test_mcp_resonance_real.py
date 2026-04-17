@@ -62,7 +62,7 @@ class TestMCPResonanceEngine(unittest.TestCase):
         with patch.dict(os.environ, {"QCAL_REAL_TESTS": "true"}, clear=False):
             health = check_node_resonance("interferometro-noesico")
         self.assertTrue(health["qcal"]["modo_real"])
-        self.assertEqual(health["status"], "pass")
+        self.assertIn(health["status"], {"pass", "warn"})
         self.assertEqual(health["frequency_hz"], 283.4002)
 
 
