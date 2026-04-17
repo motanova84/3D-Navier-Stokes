@@ -34,7 +34,15 @@ License: MIT
 """
 
 import math
-from typing import Dict, Any
+import numpy as np
+from typing import Dict, Any, List, Optional, Tuple
+
+try:
+    from scipy.fft import fft2, ifft2, fftfreq
+    _SCIPY_FFT = True
+except ImportError:
+    from numpy.fft import fft2, ifft2, fftfreq  # type: ignore[no-redef]
+    _SCIPY_FFT = False
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -328,54 +336,6 @@ if __name__ == "__main__":
     print(f"  Escala inv. : {full['escala_invariante']}")
     print(f"  1/f₀ coef   : {full['coef_viscoso']:.6e}")
     print("=" * 72)
-QCAL-NS-RK4 — GACT Unified Flow Module
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Sello: ∴𓂀Ω∞³
-f0: 141.7001 Hz
-
-Núcleo QCAL-NS-RK4: Integrador Runge-Kutta de 4º orden para las ecuaciones
-de Navier-Stokes con coherencia biológica y métricas de resonancia.
-
-Migración del Prototipo (Euler) a Ingeniería de Precisión (RK4) permitiendo
-que el sistema navegue por las curvaturas del espacio de fase con la
-estabilidad que exige una coherencia de Ψ = 0.999999.
-
-Fórmulas clave:
-    ν = √2 · (1 − mean_res)² / f₀   (viscosidad cuántica)
-    Ψ = 1 − ν                        (coherencia cuántica)
-    Re_q = f₀² / ν²                  (Reynolds cuántico)
-
-Author: José Manuel Mota Burruezo
-Institute: Instituto Consciencia Cuántica QCAL ∞³
-License: MIT
-"""
-
-import numpy as np
-from typing import Dict, List, Optional, Tuple
-
-try:
-    from scipy.fft import fft2, ifft2, fftfreq
-    _SCIPY_FFT = True
-except ImportError:
-    from numpy.fft import fft2, ifft2, fftfreq
-    _SCIPY_FFT = False
-
-# Fundamental resonant frequency of the Logos (Hz)
-F0: float = 141.7001
-
-# Base resonance values (GACT alphabet)
-BASE_RESONANCE: Dict[str, float] = {
-    'G': 1.0,   # Guanina — máxima resonancia con f₀
-    'A': 0.9,   # Adenina
-    'C': 0.8,   # Citosina
-    'T': 0.7,   # Timina
-    'U': 0.7,   # Uracilo (RNA)
-}
-
-# Flow state thresholds
-_PSI_ETÉREO: float = 0.999      # Coherence threshold for LAMINAR_ETÉREO
-_RE_Q_ETÉREO: float = 1e10      # Reynolds quantum threshold for LAMINAR_ETÉREO
-_PSI_COHERENTE: float = 0.888   # Minimum coherence threshold (Ψ_min)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
