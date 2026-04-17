@@ -7,11 +7,14 @@ import os
 from pathlib import Path
 from typing import Callable, Dict, Tuple
 
-import numpy as np
 import pandas as pd
 
 F0_REFERENCE = 141.7001
 PSI_GATE = 0.888
+BIOLOGIA_BASE_LATENCY_MS = 25.0
+BIOLOGIA_LATENCY_JITTER_STD = 3.0
+INTERFEROMETRO_BASE_LATENCY_MS = 8.0
+INTERFEROMETRO_LATENCY_JITTER_STD = 2.0
 
 ObserverResult = Tuple[float, float, bool, bool]
 ObserverLoader = Callable[[], ObserverResult]
@@ -44,6 +47,20 @@ def _compute_psi(latency_ms: float, phase_offset_rad: float, healthy_a: bool, he
     return max(0.0, min(1.0, psi))
 
 
+def compute_biologia_phase_offset(rr_mean_ms: float) -> float:
+    """Phase offset for biologia-cuantica-noesica from mean RR interval."""
+    expected_rr = 1000.0 / (F0_REFERENCE / 2.0)
+    delta_rr = rr_mean_ms - expected_rr
+    return 2.0 * math.pi * (delta_rr / 1000.0) * 60.0
+
+
+def compute_interferometro_phase_offset(peak_freq_hz: float) -> float:
+    """Phase offset for interferometro-noesico from spectral peak frequency."""
+    target = F0_REFERENCE * 2.0
+    delta_f = peak_freq_hz - target
+    return 2.0 * math.pi * delta_f / target
+
+
 def load_hrv_eeg_biologia() -> ObserverResult:
     """Observador real para biologia-cuantica-noesica (f₀/2)."""
     path = _fixture_path("hrv_eeg_biologia_cuantica.csv")
@@ -52,11 +69,9 @@ def load_hrv_eeg_biologia() -> ObserverResult:
 
     df = pd.read_csv(path)
     rr_mean = float(df["rr_interval_ms"].mean())
-    expected_rr = 1000.0 / (F0_REFERENCE / 2.0)
-    delta_rr = rr_mean - expected_rr
-    phase_offset = 2.0 * math.pi * (delta_rr / 1000.0) * 60.0
+    phase_offset = compute_biologia_phase_offset(rr_mean)
 
-    latency_ms = 25.0 + float(np.random.normal(0, 3))
+    latency_ms = BIOLOGIA_BASE_LATENCY_MS + BIOLOGIA_LATENCY_JITTER_STD * math.tanh(phase_offset * 10.0)
     return latency_ms, phase_offset, True, True
 
 
@@ -68,11 +83,9 @@ def load_magnetometer_interferometer() -> ObserverResult:
 
     df = pd.read_csv(path)
     peak_freq = float(df["frequency_hz"].mean())
-    target = F0_REFERENCE * 2.0
-    delta_f = peak_freq - target
-    phase_offset = 2.0 * math.pi * delta_f / target
+    phase_offset = compute_interferometro_phase_offset(peak_freq)
 
-    latency_ms = 8.0 + float(np.random.normal(0, 2))
+    latency_ms = INTERFEROMETRO_BASE_LATENCY_MS + INTERFEROMETRO_LATENCY_JITTER_STD * math.tanh(phase_offset * 10.0)
     return latency_ms, phase_offset, True, True
 
 

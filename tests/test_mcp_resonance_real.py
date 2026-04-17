@@ -1,4 +1,3 @@
-import math
 import os
 from pathlib import Path
 
@@ -6,9 +5,10 @@ import pandas as pd
 import pytest
 
 from mcp_network.resonance import (
-    F0_REFERENCE,
     PSI_GATE,
     check_node_resonance,
+    compute_biologia_phase_offset,
+    compute_interferometro_phase_offset,
 )
 
 
@@ -27,8 +27,7 @@ class TestCheckNodeResonanceRealObservers:
         path = Path("tests/data/hrv_eeg_biologia_cuantica.csv")
         df = pd.read_csv(path)
         rr_mean = df["rr_interval_ms"].mean()
-        expected_rr = 1000 / (F0_REFERENCE / 2)
-        expected_phase = 2 * math.pi * ((rr_mean - expected_rr) / 1000) * 60.0
+        expected_phase = compute_biologia_phase_offset(rr_mean)
 
         health = check_node_resonance("biologia-cuantica-noesica")
         assert health["phase_offset_rad"] == pytest.approx(expected_phase, abs=1e-12)
@@ -63,8 +62,7 @@ class TestCheckNodeResonanceRealObservers:
         path = Path("tests/data/magnetometer_interferometer.csv")
         df = pd.read_csv(path)
         peak_freq = df["frequency_hz"].mean()
-        target = F0_REFERENCE * 2
-        expected_phase = 2 * math.pi * (peak_freq - target) / target
+        expected_phase = compute_interferometro_phase_offset(peak_freq)
 
         health = check_node_resonance("interferometro-noesico")
         assert health["phase_offset_rad"] == pytest.approx(expected_phase, abs=1e-12)
