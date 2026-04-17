@@ -8,6 +8,7 @@ from .resonance import (
     classify_resonance,
     clear_real_observers,
     register_real_observer,
+    reset_default_real_observers,
     score_psi,
 )
 
@@ -19,5 +20,6 @@ __all__ = [
     "classify_resonance",
     "clear_real_observers",
     "register_real_observer",
+    "reset_default_real_observers",
     "score_psi",
 ]

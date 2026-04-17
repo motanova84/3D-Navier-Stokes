@@ -44,6 +44,13 @@ def clear_real_observers() -> None:
     REAL_OBSERVERS.clear()
 
 
+def reset_default_real_observers() -> None:
+    """Restore built-in default observers."""
+    REAL_OBSERVERS.clear()
+    REAL_OBSERVERS["auron-governor"] = load_real_grid_sample
+    REAL_OBSERVERS["141-hz"] = load_qcal_spectrum
+
+
 def score_psi(
     latency_ms: float,
     phase_offset_rad: float,
@@ -110,8 +117,7 @@ def load_qcal_spectrum() -> ObserverReturn:
     return 8.7, 0.003, True, True
 
 
-register_real_observer("auron-governor", load_real_grid_sample)
-register_real_observer("141-hz", load_qcal_spectrum)
+reset_default_real_observers()
 
 
 def check_node_resonance(
