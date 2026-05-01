@@ -1,9 +1,9 @@
-import NavierStokes.BasicDefinitions
-import NavierStokes.EnergyEstimates
-import NavierStokes.VorticityControl
-import NavierStokes.MisalignmentDefect
-import NavierStokes.BKMCriterion
-import NavierStokes.FunctionalSpaces
+import PsiNSE.NavierStokes.BasicDefinitions
+import PsiNSE.NavierStokes.EnergyEstimates
+import PsiNSE.NavierStokes.VorticityControl
+import PsiNSE.NavierStokes.MisalignmentDefect
+import PsiNSE.NavierStokes.BKMCriterion
+import PsiNSE.NavierStokes.FunctionalSpaces
 
 set_option autoImplicit false
 set_option linter.unusedVariables false

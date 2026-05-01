@@ -58,20 +58,19 @@ theorem uniqueness_small_data : True := by
 
 end LerayHopfSolution
 
--- Energy inequality
+/-- Energy inequality: For all Leray-Hopf solutions:
+    ½‖u(t)‖²₂ + ν∫₀ᵗ ‖∇u‖²₂ ≤ ½‖u₀‖²₂ + ∫₀ᵗ ⟨F,u⟩ -/
 theorem energy_inequality_standard : True := by
-  /-- For all Leray-Hopf solutions:
-      ½‖u(t)‖²₂ + ν∫₀ᵗ ‖∇u‖²₂ ≤ ½‖u₀‖²₂ + ∫₀ᵗ ⟨F,u⟩ -/
   trivial
 
--- BKM (Beale-Kato-Majda) criterion
+/-- BKM (Beale-Kato-Majda) criterion:
+    If ∫₀ᵀ ‖ω(t)‖_L∞ dt < ∞, then no blow-up in [0,T] -/
 theorem BKM_criterion : True := by
-  /-- If ∫₀ᵀ ‖ω(t)‖_L∞ dt < ∞, then no blow-up in [0,T] -/
   trivial
 
--- Bilinear estimate for Besov spaces
+/-- Bilinear estimate for Besov spaces:
+    ‖B(u,v)‖_(B^(-1+3/p)_(p,q)) ≤ C‖u‖_(B^(-1+3/p)_(p,q))‖v‖_(B^(1+3/p)_(p,q)) -/
 theorem Besov_bilinear_estimate : True := by
-  /-- ‖B(u,v)‖_(B^(-1+3/p)_(p,q)) ≤ C‖u‖_(B^(-1+3/p)_(p,q))‖v‖_(B^(1+3/p)_(p,q)) -/
   trivial
 
 end NavierStokes

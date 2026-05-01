@@ -1,5 +1,5 @@
-import NavierStokes.UniformConstants
-import NavierStokes.BasicDefinitions
+import PsiNSE.NavierStokes.UniformConstants
+import PsiNSE.NavierStokes.BasicDefinitions
 
 set_option autoImplicit false
 set_option linter.unusedVariables false
