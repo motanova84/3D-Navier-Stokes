@@ -44,6 +44,7 @@ Componentes:
 - ramsey_logos_attractor: Orden inevitable vía teorema de Ramsey
 - adn_riemann          : Codificación ADN-Riemann
 - spectral_operator    : Operador Espectral QCAL (Ĥ_QCAL)
+- string_core          : Operador de cuerdas y forzamiento noético
 - kss_holographic_fluid: Límite KSS y Fluido Holográfico Perfecto del citoplasma
 
 Author: José Manuel Mota Burruezo
@@ -270,6 +271,7 @@ __all__ = [
     'F0',
     'PSI_MIN',
     'NODOS_LOGOS',
+    # BSD-Adelic
     'sincronizar_bsd_adn',
     'QCALSpectralOperator',
     'verificar_pentagono_logos',
@@ -325,6 +327,10 @@ __all__ = [
     'IdentityProjectorF0',
     'compute_v_mod',
     'certificar_riemann_qcal',
+    'HBAR',
+    'GAMMA_MOD',
+    'RESONANCIA_888',
+    'RIEMANN_ZEROS',
     # Convergence Proof
     'TachyonCensor',
     'RegularizedQCALHamiltonian',
