@@ -226,7 +226,6 @@ from .c7_cosmic_string_tension import (
     R_DS,
     LAMBDA_COSMO,
     THETA_HEPTAGON,
-    T_MEV,
 )
 
 # Birefringence IRS-Luna Simulation
@@ -405,7 +404,6 @@ __all__ = [
     'R_DS',
     'LAMBDA_COSMO',
     'THETA_HEPTAGON',
-    'T_MEV',
     # Birefringence IRS-Luna
     'BirefringenceResult',
     'calcular_rotacion_birefringencia',
