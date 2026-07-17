@@ -8,7 +8,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Via III](https://img.shields.io/badge/Via%20III-COMPLETADA-brightgreen.svg)](./VIA_III_COMPLETION_CERTIFICATE.md)
-[![CI - Verification](https://github.com/motanova84/3D-Navier-Stokes/actions/workflows/verification.yml/badge.svg)](https://github.com/motanova84/3D-Navier-Stokes/actions/workflows/ci-verification.yml)
+[![CI - Verification](https://github.com/motanova84/3D-Navier-Stokes/actions/workflows/verification.yml/badge.svg)](https://github.com/motanova84/3D-Navier-Stokes/actions/workflows/verification.yml)
 [![NFT πCODE-888 ∞³](https://img.shields.io/badge/NFT-πCODE--888%20∞³-purple.svg)](./NFT_PICODE888_README.md)
 [![Frequency](https://img.shields.io/badge/f₀-141.7001%20Hz-orange.svg)](./QUICKSTART_PICODE888.md)
 [![Lean 4](https://img.shields.io/badge/Lean-4-blue.svg)](https://leanprover.github.io/)
@@ -1399,7 +1399,7 @@ The CI workflow (`.github/workflows/ci-verification.yml`) runs automatically on:
 - `python-numerical-tests`: Runs all Python test suites
 - `integration-summary`: Provides overall CI status
 
-**View Status:** [![CI Status](https://github.com/motanova84/3D-Navier-Stokes/actions/workflows/verification.yml/badge.svg)](https://github.com/motanova84/3D-Navier-Stokes/actions/workflows/ci-verification.yml)
+**View Status:** [![CI Status](https://github.com/motanova84/3D-Navier-Stokes/actions/workflows/verification.yml/badge.svg)](https://github.com/motanova84/3D-Navier-Stokes/actions/workflows/verification.yml)
 
 ### Running CI Locally
 
