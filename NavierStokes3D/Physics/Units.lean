@@ -1,3 +1,5 @@
+import Mathlib.Data.Real.Basic
+
 set_option autoImplicit false
 
 namespace NavierStokes3D.Physics
@@ -32,8 +34,8 @@ structure DynamicViscosity where
 structure KinematicViscosity where
   val : ℝ
 
-def mToCm (m : Length) : Length := ⟨m.val * 100⟩
+noncomputable def mToCm (m : Length) : Length := ⟨m.val * 100⟩
 
-def cmToM (cm : Length) : Length := ⟨cm.val / 100⟩
+noncomputable def cmToM (cm : Length) : Length := ⟨cm.val / 100⟩
 
 end NavierStokes3D.Physics

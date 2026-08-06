@@ -1,4 +1,5 @@
 import Mathlib.Topology.Basic
+import Mathlib.Topology.MetricSpace.Basic
 import NavierStokes3D.Space.Euclidean
 
 set_option autoImplicit false
@@ -27,12 +28,12 @@ def ball (R : ℝ) : FluidDomain where
 def cube (L : ℝ) : FluidDomain where
   Ω := {x : ℝ³ | |xCoord x| < L ∧ |yCoord x| < L ∧ |zCoord x| < L}
   isOpen_Ω := by
-    have hx : Continuous fun x : ℝ³ => xCoord x := continuous_apply 0
-    have hy : Continuous fun x : ℝ³ => yCoord x := continuous_apply 1
-    have hz : Continuous fun x : ℝ³ => zCoord x := continuous_apply 2
-    simpa [Set.setOf_and] using
-      (hx.continuousAt.preimage_mem_nhds (Iio L) (by simpa using isOpen_Iio)).inter
-        ((hy.continuousAt.preimage_mem_nhds (Iio L) (by simpa using isOpen_Iio)).inter
-          (hz.continuousAt.preimage_mem_nhds (Iio L) (by simpa using isOpen_Iio)))
+    have hx : IsOpen {x : ℝ³ | |xCoord x| < L} :=
+      isOpen_lt (continuous_abs.comp (continuous_apply 0)) continuous_const
+    have hy : IsOpen {x : ℝ³ | |yCoord x| < L} :=
+      isOpen_lt (continuous_abs.comp (continuous_apply 1)) continuous_const
+    have hz : IsOpen {x : ℝ³ | |zCoord x| < L} :=
+      isOpen_lt (continuous_abs.comp (continuous_apply 2)) continuous_const
+    simpa [Set.setOf_and] using hx.inter (hy.inter hz)
 
 end NavierStokes3D
