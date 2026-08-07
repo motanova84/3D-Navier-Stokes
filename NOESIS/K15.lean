@@ -169,7 +169,6 @@ corollary k15CoherencePreservationContinuous (top : K15Topology) (dt : ℝ)
   | zero =>
       simpa [Function.iterate_zero] using h_coherence
   | succ m ih =>
-      have hprev : k15GlobalCoherence ((k15Step dt)^[m] top) := ih
       have hstep : k15GlobalCoherence (k15Evolution ((k15Step dt)^[m] top) dt) :=
         k15CoherencePreservation ((k15Step dt)^[m] top) dt
       simpa [Function.iterate_succ_apply'] using hstep
