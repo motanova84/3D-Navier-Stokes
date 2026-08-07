@@ -30,3 +30,6 @@ lean_lib BSD
 lean_lib PsiNS
 lean_lib NavierStokes3D where
   globs := #[.submodules `NavierStokes3D]
+
+lean_lib NOESIS where
+  globs := #[.submodules `NOESIS]

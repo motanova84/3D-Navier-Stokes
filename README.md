@@ -1689,6 +1689,27 @@ This is a research repository under active development. We welcome:
 
 ---
 
+## 🧪 Banco de Pruebas Sintéticas
+
+Resultados de validación en tres escenarios físicos:
+
+| Escenario | Sistema Físico | σ_f (Hz) | Ψ | T₂* (s) | Estado ZK |
+|-----------|----------------|----------|---|---------|-----------|
+| **ideal_synthesizer** | Generador digital coherente | 0.0000000 | **1.0000000000** | ∞ | ✅ PASS |
+| **cryogenic_nv** | Centro NV en diamante (4 K) | 0.0000663 | **0.9999995321** | 1697.3 | ✅ PASS |
+| **ambient_water** | Agua líquida estándar (20°C) | 0.0791960 | 0.9994411016 | 1.4 | ❌ FAIL |
+
+**Vía A (Sistemas Criogénicos):** VALIDADA — Centros NV @ 4K alcanzan Ψ ≥ 0.999999 con T₂* ≈ 1697 s.
+
+**Agua líquida estándar:** RECHAZADA — Requiere T₂* > 794.2 s para Ψ ≥ 0.999999, físicamente irrealizable para agua a temperatura ambiente.
+
+```bash
+python3 test/benchmark_suite.py
+# Genera: benchmark_results.json
+```
+
+---
+
 ## License
 
 **MIT License**
