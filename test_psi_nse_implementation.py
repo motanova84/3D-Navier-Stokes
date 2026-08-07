@@ -25,6 +25,7 @@ def test_files_exist():
     required_files = [
         'QCAL/FrequencyValidation/F0Derivation.lean',
         'PNP/InformationComplexity/SILB.lean',
+        'PsiNSE_Production_NoSorry.lean',
         'PsiNSE_Production_NoSorry_Stub.lean',
         'lakefile.lean',
         'validate_psi_nse.py',
@@ -92,6 +93,7 @@ def test_lean_syntax():
     lean_files = [
         'QCAL/FrequencyValidation/F0Derivation.lean',
         'PNP/InformationComplexity/SILB.lean',
+        'PsiNSE_Production_NoSorry.lean',
         'PsiNSE_Production_NoSorry_Stub.lean',
     ]
     
@@ -160,7 +162,8 @@ def main():
         print("Implementation complete:")
         print("  • QCAL module with frequency validation")
         print("  • PNP module with information complexity")
-        print("  • PsiNSE stub formalization without sorry")
+        print("  • PsiNSE production formalization without sorry")
+        print("  • Legacy PsiNSE compatibility stub without sorry")
         print("  • Complete documentation and validation")
         print()
         return 0

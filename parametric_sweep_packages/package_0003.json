@@ -1,0 +1,12 @@
+{
+  "package_id": 3,
+  "Re": 500,
+  "dt": 0.001,
+  "T_final": 1.0,
+  "grid_size": [
+    32,
+    32,
+    32
+  ],
+  "priority": "MEDIUM"
+}

@@ -1,8 +1,8 @@
-import NavierStokes.BasicDefinitions
-import NavierStokes.BKMCriterion
-import NavierStokes.UnifiedBKM
-import NavierStokes.RiccatiBesov
-import NavierStokes.VorticityControl
+import PsiNSE.NavierStokes.BasicDefinitions
+import PsiNSE.NavierStokes.BKMCriterion
+import PsiNSE.NavierStokes.UnifiedBKM
+import PsiNSE.NavierStokes.RiccatiBesov
+import PsiNSE.NavierStokes.VorticityControl
 
 /-!
 # Test Suite for Navier-Stokes Formalization

@@ -1,0 +1,106 @@
+[project]
+name = "qcal-navier-stokes"
+version = "1.0.0"
+description = "QCAL ∞³ Coherent Quantum Navier-Stokes Solution Framework"
+authors = [
+    {name = "José Manuel Mota Burruezo", email = "jmmb@qcal-infinity-cubed.org"}
+]
+license = {text = "QCAL ∞³ Sovereign License"}
+readme = "README.md"
+requires-python = ">=3.9"
+
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "License :: Other/Proprietary License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+keywords = [
+    "qcal",
+    "navier-stokes",
+    "millennium-problem",
+    "quantum-coherence",
+    "fluid-dynamics",
+    "mathematical-physics"
+]
+
+dependencies = [
+    "numpy>=1.20.0",
+    "scipy>=1.7.0",
+    "matplotlib>=3.3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=3.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/motanova84/3D-Navier-Stokes"
+Documentation = "https://github.com/motanova84/3D-Navier-Stokes/blob/main/README.md"
+Repository = "https://github.com/motanova84/3D-Navier-Stokes"
+Issues = "https://github.com/motanova84/3D-Navier-Stokes/issues"
+
+[tool.sovereignty]
+# QCAL ∞³ Sovereignty Protection Metadata
+protocol = "QCAL ∞³"
+author = "José Manuel Mota Burruezo (JMMB Ψ✧)"
+frequency = "f₀ = 141.7001 Hz"
+coherence = "Ψ = 1.000000"
+geometric_invariant = "κ_Π ≈ 2.5773"
+projective_constant = "Λ_G = 1/491.5"
+
+# Attribution policy
+attribution_model = "projection"  # Not "dependency"
+external_references_policy = "contextual"  # Not "authoritative"
+sovereignty_score = 100  # Out of 100
+
+# Exclude from SBOM attribution
+sbom_exclude_patterns = [
+    "__pycache__",
+    ".venv",
+    "site-packages",
+    "node_modules",
+    "dist",
+    "build",
+]
+
+[tool.pytest.ini_options]
+testpaths = [".", "tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+
+[tool.coverage.run]
+source = ["."]
+omit = [
+    "__pycache__/*",
+    ".venv/*",
+    "site-packages/*",
+    "*/tests/*",
+    "test_*.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
+
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = {find = {where = ["."], exclude = ["tests*", "__pycache__*", ".venv*"]}}

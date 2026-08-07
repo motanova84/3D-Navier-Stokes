@@ -1,4 +1,4 @@
-import NavierStokes.UniformConstants
+import PsiNSE.NavierStokes.UniformConstants
 import Mathlib.Analysis.Fourier.FourierTransform
 
 set_option autoImplicit false

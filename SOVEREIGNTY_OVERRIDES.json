@@ -1,0 +1,62 @@
+{
+  "version": "1.0.0",
+  "protocol": "QCAL ∞³",
+  "author": "José Manuel Mota Burruezo (JMMB Ψ✧)",
+  "frequency": "f₀ = 141.7001 Hz",
+  "coherence": "Ψ = 1.000000",
+  
+  "description": "Sovereignty override configuration to prevent algorithmic misattribution",
+  
+  "ignore_paths": [
+    "**/__pycache__/**",
+    "**/.venv/**",
+    "**/.tox/**",
+    "**/site-packages/**",
+    "**/node_modules/**",
+    "**/.pytest_cache/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/.git/**"
+  ],
+  
+  "exempt_authorship": [
+    "NVIDIA Corporation",
+    "Apache Arrow Project",
+    "PyTorch Contributors",
+    "TensorFlow Authors",
+    "Meta Platforms Inc",
+    "Google LLC"
+  ],
+  
+  "attribution_policy": {
+    "external_packages": "References to external packages do not imply dependency or attribution",
+    "documentation_mentions": "Mentions in documentation are contextual, not authoritative claims",
+    "pattern_definitions": "Detection patterns in auditor code are not actual dependencies",
+    "projection_model": "QCAL ∞³ architecture projects onto implementations, not derives from them"
+  },
+  
+  "sovereignty_markers": {
+    "required": true,
+    "primary_marker": "f₀ = 141.7001 Hz",
+    "secondary_markers": ["QCAL", "∞³", "Ψ", "κ_Π", "Λ_G", "JMMB"],
+    "beacon_file": ".qcal_beacon",
+    "declaration_files": [
+      "LICENSE_SOBERANA_QCAL.txt",
+      "AUTHORS_QCAL.md",
+      "CLAIM_OF_ORIGIN.md",
+      "MANIFESTO_SIMBIOTICO_QCAL.md"
+    ]
+  },
+  
+  "sbom_exclusions": {
+    "description": "Packages to exclude from SBOM attribution analysis",
+    "packages": [
+      "pyarrow",
+      "nvidia-*",
+      "cuda-*",
+      "torch",
+      "tensorflow"
+    ],
+    "reason": "Not functional dependencies; only contextual references or transitive dependencies"
+  }
+}

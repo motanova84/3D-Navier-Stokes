@@ -1,5 +1,5 @@
-import NavierStokes.BasicDefinitions
-import NavierStokes.VorticityControl
+import PsiNSE.NavierStokes.BasicDefinitions
+import PsiNSE.NavierStokes.VorticityControl
 
 namespace NavierStokes
 

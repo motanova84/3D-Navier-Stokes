@@ -223,7 +223,7 @@ pip install -r requirements.txt
 
 ## Citation
 
-If you use this code in your research, please cite:
+If you use this code in your research, please cite the official Zenodo publications:
 
 ```bibtex
 @software{phi_tensor_qft_2025,
@@ -231,8 +231,16 @@ If you use this code in your research, please cite:
   author = {Mota Burruezo, José Manuel},
   year = {2025},
   url = {https://github.com/motanova84/3D-Navier-Stokes},
-  doi = {10.5281/zenodo.XXXXX},
+  doi = {10.5281/zenodo.17488796},
   license = {CC-BY-4.0}
+}
+
+@article{mota_quantum_coherent_2024,
+  title = {A Quantum-Coherent Regularization of 3D Navier–Stokes: Global Smoothness via Spectral Vacuum Coupling and Entropy-Lyapunov Control},
+  author = {Mota Burruezo, José Manuel},
+  year = {2024},
+  doi = {10.5281/zenodo.17479481},
+  url = {https://zenodo.org/records/17479481}
 }
 ```
 

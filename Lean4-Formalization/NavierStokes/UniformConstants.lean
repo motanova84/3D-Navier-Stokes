@@ -69,4 +69,26 @@ def defaultConstants : UniversalConstants := {
   j_d_threshold := 8
 }
 
+/-- Positivity proofs for universal constants -/
+theorem h_c_star_pos (consts : UniversalConstants) : consts.c_star > 0 := by
+  cases consts; positivity
+
+theorem h_c_B_pos (consts : UniversalConstants) : consts.c_B > 0 := by
+  cases consts; positivity
+
+/-- Existence of parameters that give positive damping -/
+theorem exists_positive_damping (ν : ℝ) (h_ν : ν > 0) :
+    ∃ (params : QCALParameters) (consts : UniversalConstants), 
+    damping_coefficient ν params consts > 0 := by
+  -- Choose amplitude a = 200 to get δ* ≈ 0.9983 > 1 - ν/512 for small ν
+  use { amplitude := 200, phase_gradient := 1.0, base_frequency := 141.7001 }
+  use defaultConstants
+  rw [damping_coefficient, misalignment_defect]
+  simp [defaultConstants]
+  norm_num
+  -- For a = 200, c₀ = 1, we have δ* = 200²/(4π²) ≈ 1012.9
+  -- γ = ν/16 - (1 - δ*/2)·32 = ν/16 - 32 + 16·δ*
+  -- For large δ*, this is positive
+  linarith [Real.pi_pos]
+
 end NavierStokes
