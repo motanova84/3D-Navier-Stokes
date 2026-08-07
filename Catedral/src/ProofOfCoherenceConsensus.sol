@@ -20,8 +20,8 @@ contract ProofOfCoherenceConsensus {
         uint32 vonNeumannEntropy;
         uint32 harmonicDispersion;
         uint32 stepCount;
-        uint16 reservedWaterMetricA;
-        uint16 reservedWaterMetricB;
+        uint16 reservedWaterMetricA; // Reserved for Water Trinity metric (scaled 0-1000)
+        uint16 reservedWaterMetricB; // Reserved for Water Trinity metric (scaled 0-1000)
     }
 
     struct PoCBlock {
@@ -79,6 +79,9 @@ contract ProofOfCoherenceConsensus {
     }
 
     function setZKVerifier(address verifier) external onlyOwner {
+        if (zkValidationEnabled) {
+            require(verifier != address(0), "PoC: verificador no configurado");
+        }
         zkVerifier = IZKCoherenceVerifier(verifier);
         emit ZKVerifierUpdated(verifier, zkValidationEnabled);
     }
@@ -162,6 +165,7 @@ contract ProofOfCoherenceConsensus {
         require(vonNeumannEntropy <= MAX_VON_NEUMANN_ENTROPY, "PoC: Entropia fuera de limite");
         require(stepCount >= MIN_STEP_COUNT, "PoC: Ventana inestable");
 
+        require(blockCount < type(uint64).max, "PoC: limite de bloques alcanzado");
         uint64 newBlockId = blockCount + 1;
         bytes32 nodeIdHash = keccak256(bytes(nodeId));
 
