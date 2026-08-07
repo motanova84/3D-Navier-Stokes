@@ -2,7 +2,7 @@
 
 ## File
 
-- Lean module: `/home/runner/work/3D-Navier-Stokes/3D-Navier-Stokes/NOESIS/SingularLimit.lean`
+- Lean module: `NOESIS/SingularLimit.lean`
 
 ## Scope
 
