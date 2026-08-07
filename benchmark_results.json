@@ -1,0 +1,16 @@
+{
+  "backend": "numpy",
+  "steps": 100,
+  "avg_time_ms": 14.58555425999748,
+  "std_time_ms": 1.0151206311007395,
+  "min_time_ms": 13.6701979999998,
+  "max_time_ms": 23.434901999735303,
+  "total_time_s": 1.458555425999748,
+  "steps_per_second": 68.56098727373099,
+  "field_memory_gb": 0.043635740876197815,
+  "domain_cells": 1673340,
+  "dt_seconds": 10.0,
+  "checkpoint_size_bytes": 3846376,
+  "checkpoint_path": "/home/runner/work/3D-Navier-Stokes/3D-Navier-Stokes/checkpoint_initial.npz",
+  "frequency_base_hz": 141.7001
+}
