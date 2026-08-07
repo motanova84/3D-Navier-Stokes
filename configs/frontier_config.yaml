@@ -1,0 +1,24 @@
+cache_dir: data/cache
+simulate: true
+sources:
+  gfs:
+    active: true
+    cache_format: zarr
+  ecmwf:
+    active: true
+    cache_format: zarr
+  socib:
+    active: true
+    cache_format: json
+  aemet:
+    active: true
+    cache_format: json
+  puertos:
+    active: true
+    cache_format: json
+  copernicus:
+    active: true
+    cache_format: zarr
+  qcal:
+    active: true
+    cache_format: zarr
