@@ -38,6 +38,33 @@
 
 ---
 
+## 📌 Resumen Ejecutivo
+
+Este repositorio reúne un **framework híbrido de verificación matemática, validación computacional y demostraciones reproducibles** para Navier-Stokes 3D, incluyendo:
+
+- **Formalización y verificación** con Lean 4 y scripts de validación
+- **Implementaciones Python** para demostraciones, experimentos y comparación de enfoques
+- **Componentes QCAL / Ψ-NSE** como extensiones documentadas dentro del mismo marco de trabajo
+- **Pruebas automatizadas** para comprobar consistencia básica de los módulos principales
+
+Si solo quieres un punto de entrada claro, usa la demostración principal y después la verificación base.
+
+## ⚡ Ejecución Directa
+
+```bash
+python -m pip install -r requirements.txt
+python demonstrate_nse_comparison.py
+python verification_framework/final_proof.py
+python -m pytest test_verification.py test_unified_bkm.py -q
+```
+
+**Ruta recomendada**:
+1. `python demonstrate_nse_comparison.py` — demostración rápida del flujo principal
+2. `python verification_framework/final_proof.py` — ejecución de la verificación principal
+3. `python -m pytest test_verification.py test_unified_bkm.py -q` — comprobación rápida de consistencia
+
+---
+
 ## 🧠 Cambio de Paradigma: De Teoremas Aislados a Coherencia Cuántica
 
 > **"Las matemáticas desde la coherencia cuántica y no desde la escasez de teoremas aislados"**
