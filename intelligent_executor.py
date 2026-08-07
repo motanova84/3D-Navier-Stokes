@@ -1,282 +1,290 @@
-#!/usr/bin/env python3
 """
-Intelligent Executor
-Smart execution system for parameter sweep packages with multiple modes
+═══════════════════════════════════════════════════════════════
+  EJECUTOR INTELIGENTE - OPTIMIZACIÓN DINÁMICA
+  
+  Selecciona automáticamente qué paquetes ejecutar basándose en:
+  - Prioridad científica
+  - Recursos disponibles
+  - Resultados previos
+  - Tiempo estimado
+═══════════════════════════════════════════════════════════════
 """
 
-import os
-import sys
-import json
-import argparse
-import time
-import subprocess
 import psutil
+import json
+import numpy as np
+from pathlib import Path
 from datetime import datetime, timedelta
-from typing import Dict, List, Any, Optional
+from parametric_sweep_orchestrator import (
+    load_package, 
+    assign_priority, 
+    estimate_computational_cost,
+    run_package
+)
 
+# ═══════════════════════════════════════════════════════════════
+# DETECCIÓN DE RECURSOS DISPONIBLES
+# ═══════════════════════════════════════════════════════════════
 
-class IntelligentExecutor:
-    """Intelligent executor for parameter sweep packages"""
+def get_available_resources():
+    """
+    Detecta recursos computacionales disponibles.
+    """
+    cpu_count = psutil.cpu_count(logical=False)
+    cpu_percent = psutil.cpu_percent(interval=1)
     
-    def __init__(self, package_dir: str = "parametric_sweep_packages"):
-        self.package_dir = package_dir
-        self.results_dir = os.path.join(package_dir, "results")
-        self.logs_dir = os.path.join(package_dir, "logs")
-        os.makedirs(self.results_dir, exist_ok=True)
-        os.makedirs(self.logs_dir, exist_ok=True)
+    memory = psutil.virtual_memory()
+    memory_available_gb = memory.available / (1024**3)
     
-    def get_pending_packages(self, priority: Optional[str] = None) -> List[Dict[str, Any]]:
-        """Get list of pending packages, optionally filtered by priority"""
-        packages = []
-        
-        for filename in sorted(os.listdir(self.package_dir)):
-            if filename.startswith("package_") and filename.endswith(".json"):
-                filepath = os.path.join(self.package_dir, filename)
-                try:
-                    with open(filepath, 'r') as f:
-                        package = json.load(f)
-                    
-                    if package['status'] == 'pending':
-                        if priority is None or package['priority'] == priority:
-                            packages.append(package)
-                except Exception as e:
-                    print(f"Warning: Could not load {filename}: {e}")
-        
-        return packages
+    disk = psutil.disk_usage('/')
+    disk_available_gb = disk.free / (1024**3)
     
-    def get_next_package(self) -> Optional[Dict[str, Any]]:
-        """Get the next highest priority pending package"""
-        # Try HIGH priority first
-        packages = self.get_pending_packages(priority='HIGH')
-        if packages:
-            return packages[0]
-        
-        # Then MEDIUM
-        packages = self.get_pending_packages(priority='MEDIUM')
-        if packages:
-            return packages[0]
-        
-        # Finally LOW
-        packages = self.get_pending_packages(priority='LOW')
-        if packages:
-            return packages[0]
-        
-        return None
+    return {
+        'cpu_cores': cpu_count,
+        'cpu_usage': cpu_percent,
+        'memory_available_gb': memory_available_gb,
+        'disk_available_gb': disk_available_gb,
+        'cpu_free_cores': int(cpu_count * (1 - cpu_percent/100))
+    }
+
+def can_run_package(package_id, resources, packages_dir='parametric_sweep_packages'):
+    """
+    Determina si hay suficientes recursos para ejecutar un paquete.
+    """
+    package = load_package(package_id, packages_dir)
+    cost = estimate_computational_cost(package)
     
-    def get_cpu_usage(self) -> float:
-        """Get current CPU usage percentage"""
-        return psutil.cpu_percent(interval=1)
+    checks = {
+        'memory': resources['memory_available_gb'] >= cost['memory_gb'] * 1.2,  # 20% margen
+        'disk': resources['disk_available_gb'] >= cost['disk_gb'] * 1.5,       # 50% margen
+        'cpu': resources['cpu_free_cores'] >= 1
+    }
     
-    def run_package(self, package_id: int) -> bool:
-        """Run a specific package"""
+    return all(checks.values()), checks
+
+# ═══════════════════════════════════════════════════════════════
+# SELECCIÓN INTELIGENTE DE PAQUETES
+# ═══════════════════════════════════════════════════════════════
+
+def get_next_package_to_run(packages_dir='parametric_sweep_packages',
+                           results_dir='parametric_sweep_results'):
+    """
+    Selecciona el siguiente paquete óptimo para ejecutar.
+    
+    Criterios (en orden de importancia):
+    1. Prioridad científica (HIGH > MEDIUM > LOW)
+    2. No completado
+    3. Recursos disponibles suficientes
+    4. Menor tiempo estimado (para maximizar throughput)
+    """
+    
+    # Cargar prioridades
+    with open(f'{packages_dir}/priority_summary.json', 'r') as f:
+        priorities = json.load(f)
+    
+    # Obtener recursos
+    resources = get_available_resources()
+    
+    print(f"\n🔍 BUSCANDO PRÓXIMO PAQUETE ÓPTIMO")
+    print(f"   Recursos disponibles:")
+    print(f"     CPU:    {resources['cpu_free_cores']}/{resources['cpu_cores']} cores libres")
+    print(f"     Memoria: {resources['memory_available_gb']:.1f} GB")
+    print(f"     Disco:   {resources['disk_available_gb']:.1f} GB")
+    
+    # Iterar por prioridad
+    for priority_level in ['HIGH', 'MEDIUM', 'LOW']:
+        print(f"\n   Buscando en prioridad {priority_level}...")
+        
+        for pkg_info in priorities[priority_level]:
+            pkg_id = pkg_info['package_id']
+            
+            # Verificar si ya está completado
+            result_file = f"{results_dir}/results_package_{pkg_id:04d}.json"
+            if Path(result_file).exists():
+                continue
+            
+            # Verificar recursos
+            can_run, checks = can_run_package(pkg_id, resources, packages_dir)
+            
+            if can_run:
+                print(f"   ✅ Seleccionado: Paquete {pkg_id}")
+                print(f"      Tiempo est: {pkg_info['estimated_time_hours']:.2f} h")
+                print(f"      Memoria:    {pkg_info['estimated_memory_gb']:.2f} GB")
+                return pkg_id, pkg_info
+            else:
+                failed_checks = [k for k, v in checks.items() if not v]
+                print(f"   ⏭️  Paquete {pkg_id} omitido: recursos insuficientes ({', '.join(failed_checks)})")
+    
+    print(f"\n   ℹ️  No hay paquetes ejecutables con recursos actuales")
+    return None, None
+
+# ═══════════════════════════════════════════════════════════════
+# MODO CONTINUO
+# ═══════════════════════════════════════════════════════════════
+
+def run_continuous_mode(max_runtime_hours=None, 
+                       check_interval_minutes=5,
+                       packages_dir='parametric_sweep_packages',
+                       results_dir='parametric_sweep_results'):
+    """
+    Ejecuta paquetes continuamente hasta que:
+    - Se completen todos los paquetes
+    - Se alcance el tiempo máximo
+    - No haya recursos disponibles
+    """
+    
+    start_time = datetime.now()
+    packages_completed = 0
+    
+    print("╔═══════════════════════════════════════════════════════════════╗")
+    print("║  MODO CONTINUO - EJECUTOR INTELIGENTE                         ║")
+    print("╚═══════════════════════════════════════════════════════════════╝")
+    
+    if max_runtime_hours:
+        end_time = start_time + timedelta(hours=max_runtime_hours)
+        print(f"⏱️  Tiempo máximo: {max_runtime_hours} horas")
+        print(f"   Finaliza: {end_time.strftime('%Y-%m-%d %H:%M:%S')}")
+    else:
+        print(f"⏱️  Sin límite de tiempo")
+    
+    while True:
+        # Verificar tiempo límite
+        if max_runtime_hours and datetime.now() >= end_time:
+            print(f"\n⏰ Tiempo máximo alcanzado")
+            break
+        
+        # Buscar próximo paquete
+        pkg_id, pkg_info = get_next_package_to_run(packages_dir, results_dir)
+        
+        if pkg_id is None:
+            # No hay paquetes ejecutables
+            print(f"\n⏸️  No hay paquetes ejecutables")
+            print(f"   Esperando {check_interval_minutes} minutos antes de reintentar...")
+            
+            import time
+            time.sleep(check_interval_minutes * 60)
+            
+            # Reintentar una vez
+            pkg_id, pkg_info = get_next_package_to_run(packages_dir, results_dir)
+            
+            if pkg_id is None:
+                print(f"\n✅ Todos los paquetes completados o sin recursos")
+                break
+        
+        # Ejecutar paquete
         try:
-            result = subprocess.run(
-                [sys.executable, "run_package.py", "--package-id", str(package_id)],
-                capture_output=True,
-                text=True,
-                check=True
-            )
-            print(result.stdout)
-            return True
-        except subprocess.CalledProcessError as e:
-            print(f"Error running package {package_id}: {e}")
-            print(e.stdout)
-            print(e.stderr)
-            return False
-    
-    def mode_next(self) -> None:
-        """Execute the next highest priority package"""
-        print("╔═══════════════════════════════════════════════════════════════╗")
-        print("║  MODE: NEXT - Execute Next Priority Package                  ║")
-        print("╚═══════════════════════════════════════════════════════════════╝")
-        print()
-        
-        package = self.get_next_package()
-        
-        if package is None:
-            print("✅ No pending packages found!")
-            return
-        
-        print(f"📦 Next package: ID {package['id']} (Priority: {package['priority']})")
-        print(f"   Reynolds: {package['reynolds']}")
-        print(f"   Grid Size: {package['grid_size']}³")
-        print(f"   Estimated Time: {package['estimated_time_minutes']} minutes")
-        print()
-        
-        self.run_package(package['id'])
-    
-    def mode_continuous(self, max_hours: float) -> None:
-        """Continuously execute packages until time limit"""
-        print("╔═══════════════════════════════════════════════════════════════╗")
-        print("║  MODE: CONTINUOUS - Execute Until Time Limit                 ║")
-        print("╚═══════════════════════════════════════════════════════════════╝")
-        print()
-        print(f"⏱️  Time Limit: {max_hours} hours")
-        print()
-        
-        start_time = datetime.now()
-        end_time = start_time + timedelta(hours=max_hours)
-        packages_completed = 0
-        packages_failed = 0
-        
-        while datetime.now() < end_time:
-            package = self.get_next_package()
+            print(f"\n{'='*70}")
+            print(f"  EJECUTANDO PAQUETE {pkg_id}")
+            print(f"{'='*70}")
             
-            if package is None:
-                print("✅ All packages completed!")
+            result = run_package(pkg_id, output_dir=results_dir)
+            
+            packages_completed += 1
+            
+            print(f"\n✅ Paquete {pkg_id} completado")
+            print(f"   Total completados en esta sesión: {packages_completed}")
+            
+        except Exception as e:
+            print(f"\n❌ ERROR ejecutando paquete {pkg_id}: {e}")
+            print(f"   Continuando con siguiente paquete...")
+            continue
+        
+        # Pequeña pausa entre paquetes
+        import time
+        time.sleep(10)
+    
+    # Resumen final
+    elapsed = datetime.now() - start_time
+    
+    print(f"\n╔═══════════════════════════════════════════════════════════════╗")
+    print(f"║  RESUMEN FINAL - MODO CONTINUO                                ║")
+    print(f"╚═══════════════════════════════════════════════════════════════╝")
+    print(f"Duración:           {elapsed}")
+    print(f"Paquetes completados: {packages_completed}")
+    print(f"Promedio por paquete: {elapsed / packages_completed if packages_completed > 0 else timedelta(0)}")
+
+# ═══════════════════════════════════════════════════════════════
+# MODO OPORTUNISTA
+# ═══════════════════════════════════════════════════════════════
+
+def run_opportunistic_mode(target_cpu_usage=80, 
+                          check_interval_seconds=30,
+                          packages_dir='parametric_sweep_packages',
+                          results_dir='parametric_sweep_results'):
+    """
+    Ejecuta paquetes cuando el sistema está ocioso (uso CPU < umbral).
+    
+    Ideal para ejecutar en background sin interrumpir otras tareas.
+    """
+    
+    print("╔═══════════════════════════════════════════════════════════════╗")
+    print("║  MODO OPORTUNISTA - EJECUCIÓN EN IDLE                         ║")
+    print("╚═══════════════════════════════════════════════════════════════╝")
+    print(f"⚙️  Umbral CPU: {target_cpu_usage}%")
+    print(f"   (Ejecuta solo cuando uso < {target_cpu_usage}%)")
+    
+    packages_completed = 0
+    
+    import time
+    
+    while True:
+        # Monitorear uso de CPU
+        cpu_usage = psutil.cpu_percent(interval=1)
+        
+        if cpu_usage < target_cpu_usage:
+            print(f"\n💤 Sistema ocioso (CPU: {cpu_usage:.1f}%)")
+            
+            # Intentar ejecutar paquete
+            pkg_id, pkg_info = get_next_package_to_run(packages_dir, results_dir)
+            
+            if pkg_id is None:
+                print(f"✅ Todos los paquetes completados")
                 break
             
-            elapsed = (datetime.now() - start_time).total_seconds() / 3600
-            remaining = max_hours - elapsed
-            
-            print(f"\n⏱️  Elapsed: {elapsed:.2f}h / Remaining: {remaining:.2f}h")
-            print(f"📦 Running package {package['id']} (Priority: {package['priority']})")
-            
-            if self.run_package(package['id']):
+            try:
+                print(f"🚀 Ejecutando paquete {pkg_id} oportunísticamente...")
+                result = run_package(pkg_id, output_dir=results_dir, n_workers=1)
                 packages_completed += 1
-            else:
-                packages_failed += 1
-            
-            # Check if we have time for another package
-            if remaining < 0.1:  # Less than 6 minutes remaining
-                print("\n⏰ Time limit approaching, stopping execution")
-                break
-        
-        print("\n" + "="*70)
-        print("CONTINUOUS EXECUTION SUMMARY")
-        print("="*70)
-        print(f"Total Time: {(datetime.now() - start_time).total_seconds() / 3600:.2f} hours")
-        print(f"Packages Completed: {packages_completed}")
-        print(f"Packages Failed: {packages_failed}")
-        print("="*70)
-    
-    def mode_opportunistic(self, cpu_threshold: float) -> None:
-        """Execute packages only when CPU usage is below threshold"""
-        print("╔═══════════════════════════════════════════════════════════════╗")
-        print("║  MODE: OPPORTUNISTIC - Execute When Resources Available      ║")
-        print("╚═══════════════════════════════════════════════════════════════╝")
-        print()
-        print(f"🖥️  CPU Threshold: {cpu_threshold}%")
-        print("📊 Monitoring system resources...")
-        print()
-        
-        check_interval = 30  # seconds
-        max_checks = 100  # Maximum number of checks before stopping
-        checks = 0
-        packages_completed = 0
-        
-        while checks < max_checks:
-            cpu_usage = self.get_cpu_usage()
-            print(f"CPU Usage: {cpu_usage:.1f}%", end="")
-            
-            if cpu_usage < cpu_threshold:
-                print(" - ✅ Below threshold, executing package")
                 
-                package = self.get_next_package()
-                if package is None:
-                    print("✅ All packages completed!")
-                    break
-                
-                print(f"📦 Running package {package['id']}")
-                if self.run_package(package['id']):
-                    packages_completed += 1
-            else:
-                print(f" - ⏳ Above threshold, waiting {check_interval}s...")
-                time.sleep(check_interval)
-            
-            checks += 1
+            except Exception as e:
+                print(f"❌ Error: {e}")
+        else:
+            print(f"\r⏳ Sistema ocupado (CPU: {cpu_usage:.1f}%), esperando...", end='', flush=True)
         
-        print(f"\n✅ Opportunistic execution completed: {packages_completed} packages")
+        time.sleep(check_interval_seconds)
     
-    def mode_status(self) -> None:
-        """Display execution status"""
-        print("╔═══════════════════════════════════════════════════════════════╗")
-        print("║  EXECUTION STATUS                                             ║")
-        print("╚═══════════════════════════════════════════════════════════════╝")
-        print()
-        
-        status_counts = {'pending': 0, 'running': 0, 'completed': 0, 'failed': 0}
-        priority_counts = {'HIGH': 0, 'MEDIUM': 0, 'LOW': 0}
-        
-        for filename in os.listdir(self.package_dir):
-            if filename.startswith("package_") and filename.endswith(".json"):
-                filepath = os.path.join(self.package_dir, filename)
-                try:
-                    with open(filepath, 'r') as f:
-                        package = json.load(f)
-                    status_counts[package['status']] = status_counts.get(package['status'], 0) + 1
-                    if package['status'] == 'pending':
-                        priority_counts[package['priority']] += 1
-                except:
-                    pass
-        
-        print("Status Summary:")
-        print(f"  ⏳ Pending:   {status_counts['pending']}")
-        print(f"  🔄 Running:   {status_counts['running']}")
-        print(f"  ✅ Completed: {status_counts['completed']}")
-        print(f"  ❌ Failed:    {status_counts['failed']}")
-        print()
-        print("Pending by Priority:")
-        print(f"  🔴 HIGH:   {priority_counts['HIGH']}")
-        print(f"  🟡 MEDIUM: {priority_counts['MEDIUM']}")
-        print(f"  🟢 LOW:    {priority_counts['LOW']}")
-        print()
-        
-        # Show next package
-        next_pkg = self.get_next_package()
-        if next_pkg:
-            print("Next Package to Execute:")
-            print(f"  ID: {next_pkg['id']}")
-            print(f"  Priority: {next_pkg['priority']}")
-            print(f"  Reynolds: {next_pkg['reynolds']}")
-            print(f"  Grid: {next_pkg['grid_size']}³")
-            print(f"  Est. Time: {next_pkg['estimated_time_minutes']} min")
+    print(f"\n✅ Modo oportunista finalizado")
+    print(f"   Paquetes completados: {packages_completed}")
 
+# ═══════════════════════════════════════════════════════════════
+# CLI
+# ═══════════════════════════════════════════════════════════════
 
-def main():
-    """Main entry point"""
-    parser = argparse.ArgumentParser(
-        description="Intelligent executor for parameter sweep packages"
-    )
-    parser.add_argument(
-        "--mode",
-        type=str,
-        choices=["next", "continuous", "opportunistic", "status"],
-        default="next",
-        help="Execution mode"
-    )
-    parser.add_argument(
-        "--max-hours",
-        type=float,
-        default=1.0,
-        help="Maximum hours for continuous mode"
-    )
-    parser.add_argument(
-        "--cpu-threshold",
-        type=float,
-        default=50.0,
-        help="CPU threshold percentage for opportunistic mode"
-    )
-    parser.add_argument(
-        "--package-dir",
-        type=str,
-        default="parametric_sweep_packages",
-        help="Package directory"
-    )
+if __name__ == '__main__':
+    import argparse
+    
+    parser = argparse.ArgumentParser(description='Ejecutor inteligente de barrido paramétrico')
+    parser.add_argument('--mode', choices=['next', 'continuous', 'opportunistic'],
+                       default='next',
+                       help='Modo de ejecución')
+    parser.add_argument('--max-hours', type=float, default=None,
+                       help='Tiempo máximo de ejecución (solo para modo continuo)')
+    parser.add_argument('--cpu-threshold', type=float, default=80,
+                       help='Umbral de uso CPU (solo para modo oportunista)')
     
     args = parser.parse_args()
     
-    executor = IntelligentExecutor(package_dir=args.package_dir)
+    if args.mode == 'next':
+        # Ejecutar solo el siguiente paquete óptimo
+        pkg_id, pkg_info = get_next_package_to_run()
+        
+        if pkg_id is not None:
+            result = run_package(pkg_id)
+        else:
+            print("❌ No hay paquetes ejecutables")
     
-    if args.mode == "next":
-        executor.mode_next()
-    elif args.mode == "continuous":
-        executor.mode_continuous(args.max_hours)
-    elif args.mode == "opportunistic":
-        executor.mode_opportunistic(args.cpu_threshold)
-    elif args.mode == "status":
-        executor.mode_status()
-
-
-if __name__ == "__main__":
-    main()
+    elif args.mode == 'continuous':
+        run_continuous_mode(max_runtime_hours=args.max_hours)
+    
+    elif args.mode == 'opportunistic':
+        run_opportunistic_mode(target_cpu_usage=args.cpu_threshold)
