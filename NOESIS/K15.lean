@@ -16,6 +16,11 @@ open NOESIS.Validation
 noncomputable def f0 : ℝ := f₀
 noncomputable def psiThreshold : ℝ := ψThreshold
 def minStability : ℕ := NOESIS.Governance.minStability
+noncomputable def alpha : ℝ := 0.1
+noncomputable def beta : ℝ := -1e-6
+noncomputable def gamma : ℝ := 0.05
+noncomputable def maxFreqDev : ℝ := 1.417001e-4
+noncomputable def entropyEpsilon : ℝ := 1e-10
 
 inductive K15Node : Type
   | N1
@@ -34,6 +39,8 @@ inductive K15Node : Type
   deriving DecidableEq, Fintype
 
 def allNodes : Finset K15Node := Finset.univ
+
+noncomputable def couplingNormalizer : ℝ := ((Finset.card allNodes - 1 : ℕ) : ℝ)
 
 structure K15NodeState where
   node : K15Node
@@ -64,11 +71,11 @@ def k15Frequency (top : K15Topology) : ℝ :=
   total / (Finset.card allNodes : ℝ)
 
 noncomputable def k15Entropy (top : K15Topology) : ℝ :=
-  let probs := fun node => (top.nodes node).coherence / (k15Coherence top + 1e-10)
-  -∑ node in allNodes, probs node * Real.log (probs node + 1e-10)
+  let probs := fun node => (top.nodes node).coherence / (k15Coherence top + entropyEpsilon)
+  -∑ node in allNodes, probs node * Real.log (probs node + entropyEpsilon)
 
 def coherenceEvolution (state : K15NodeState) (dt : ℝ) (coupling : ℝ) : ℝ :=
-  let drift := 0.1 * (1 - state.coherence) + (-1e-6) * (state.frequency - f0)^2 + 0.05 * coupling
+  let drift := alpha * (1 - state.coherence) + beta * (state.frequency - f0)^2 + gamma * coupling
   min 1 (max psiThreshold (state.coherence + dt * drift))
 
 def k15Evolution (top : K15Topology) (dt : ℝ) : K15Topology :=
@@ -79,7 +86,7 @@ def k15Evolution (top : K15Topology) (dt : ℝ) : K15Topology :=
         top.edgeWeight (node, neighbor) * (top.nodes neighbor).coherence
       else 0
     { node := state.node
-      coherence := coherenceEvolution state dt (totalCoupling / 12)
+      coherence := coherenceEvolution state dt (totalCoupling / couplingNormalizer)
       frequency := state.frequency
       phase := state.phase
       stabilityCount := state.stabilityCount + 1
@@ -99,6 +106,7 @@ def k15Step (dt : ℝ) : K15Topology → K15Topology := fun top => k15Evolution 
 
 lemma nodeCoherencePreservation (state : K15NodeState) (dt : ℝ) (coupling : ℝ) :
     coherenceEvolution state dt coupling ≥ psiThreshold := by
+  -- This theorem is guaranteed by the explicit clamp `max psiThreshold` in `coherenceEvolution`.
   unfold coherenceEvolution
   refine le_min ?_ ?_
   · exact le_of_lt ψThreshold_in_range.2
@@ -114,7 +122,7 @@ lemma k15StableIfNodesStable (top : K15Topology) (dt : ℝ)
       ((∑ neighbor in allNodes,
           if top.edges.contains (node, neighbor) then
             top.edgeWeight (node, neighbor) * (top.nodes neighbor).coherence
-          else 0) / 12)
+          else 0) / couplingNormalizer)
 
 theorem k15CoherencePreservation (top : K15Topology) (dt : ℝ) :
     k15GlobalCoherence (k15Evolution top dt) := by
@@ -126,7 +134,7 @@ theorem k15CoherencePreservation (top : K15Topology) (dt : ℝ) :
         ((∑ neighbor in allNodes,
             if top.edges.contains (node, neighbor) then
               top.edgeWeight (node, neighbor) * (top.nodes neighbor).coherence
-            else 0) / 12)
+            else 0) / couplingNormalizer)
   have h_sum : ∑ node in allNodes, psiThreshold ≤
       ∑ node in allNodes, (k15Evolution top dt).nodes node |>.coherence := by
     refine Finset.sum_le_sum ?_
