@@ -109,7 +109,6 @@ lemma k15StableIfNodesStable (top : K15Topology) (dt : ℝ)
     let evolved := k15Evolution top dt
     ∀ node, (evolved.nodes node).coherence ≥ psiThreshold := by
   intro evolved node
-  have _ := h_nodes node
   simpa [k15Evolution] using
     nodeCoherencePreservation (top.nodes node) dt
       ((∑ neighbor in allNodes,
@@ -171,7 +170,7 @@ def k15InitialState : K15Topology :=
         unfold psiThreshold
         exact le_of_lt ψThreshold_in_range.2
       isActive := true }
-  let edges := allNodes.product allNodes
+  let edges := (allNodes.product allNodes).filter (fun p => p.1 ≠ p.2)
   let edgeWeight := fun _ => 0.5
   { nodes := nodes
     edges := edges
@@ -188,7 +187,8 @@ theorem k15PerpetualCoherence (dt : ℝ) (n : ℕ) :
     let top := k15InitialState
     let evolved := (k15Step dt)^[n] top
     k15GlobalCoherence evolved := by
-  have h_cont := k15CoherencePreservationContinuous k15InitialState dt n k15InitialCoherence
+  have h_cont := k15CoherencePreservationContinuous
+    (top := k15InitialState) (dt := dt) (n := n) k15InitialCoherence
   simpa using h_cont n (Nat.le_refl n)
 
 end NOESIS.K15
