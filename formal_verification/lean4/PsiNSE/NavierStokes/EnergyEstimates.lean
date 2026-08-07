@@ -1,4 +1,4 @@
-import NavierStokes.BasicDefinitions
+import PsiNSE.NavierStokes.BasicDefinitions
 
 namespace NavierStokes
 

@@ -1,0 +1,29 @@
+project: QCAL-Balearic Nowcast
+domain:
+  center_lat: 39.6953
+  center_lon: 2.9980
+  width_km: 500
+  height_km: 500
+  resolution_km: 3
+  coastal_refinement_km: 1
+  vertical_levels: 60
+forecast:
+  horizon_hours:
+    min: 6
+    max: 72
+  output_interval_minutes: 10
+hardware:
+  cpu: 16-24 cores
+  ram: 128 GB
+  gpu: 24 GB VRAM
+  disk: 2 TB NVMe
+validation:
+  compare:
+    - baseline
+    - physical_plus_qcal
+    - physical_plus_qcal_plus_statistical_correction
+  metrics:
+    - RMSE
+    - MAE
+    - Brier Score
+    - minimum pressure error

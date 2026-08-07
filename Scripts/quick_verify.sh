@@ -77,7 +77,7 @@ fi
 
 # Check 5: File structure
 echo -n "Checking file structure... "
-local missing=0
+missing=0
 for file in "Scripts/run_all_formal_verifications.sh" "README.md" "lakefile.lean"; do
     if [ ! -f "${file}" ]; then
         missing=1

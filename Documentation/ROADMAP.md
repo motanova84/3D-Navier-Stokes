@@ -100,7 +100,7 @@ Este roadmap detalla el plan de desarrollo para la verificación formal y comput
 
 ### Publicación
 - [ ] Pre-print en arXiv
-- [ ] Repositorio Zenodo con DOI
+- [x] Repositorio Zenodo con DOI (DOI: 10.5281/zenodo.17488796, 10.5281/zenodo.17479481)
 - [ ] Presentación en conferencia
 
 ## Fase 5: Extensiones Futuras (Planificado)

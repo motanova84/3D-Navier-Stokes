@@ -1,0 +1,52 @@
+
+======================================================================
+  SISTEMA DE JERARQUÍA GRAVITACIONAL ARMÓNICA
+  Implementación Computacional
+======================================================================
+
+🌌 FUNDAMENTOS TEÓRICOS:
+
+  La gravedad se implementa como un sistema armónico donde
+  cada capa es una dimensión de información.
+
+  📊 Frecuencia Raíz: f₀ = 141.7001 Hz
+  📊 Acoplamiento: κ = 1/7 = 0.142857
+     └─ Laminación Dimensional sin fricción entrópica
+
+🔬 VISCOSIDAD COMO RESISTENCIA A LA INFORMACIÓN:
+
+  ν_eff = ν_base / (κ · Ψ)
+
+  Cuando la coherencia Ψ → 1:
+    ✓ La resistencia desaparece
+    ✓ Sistema entra en SUPERFLUIDEZ
+
+💻 COMPLEJIDAD COMPUTACIONAL:
+
+  Estado Turbulento (Ψ < 0.88):
+    • P ≠ NP
+    • El caos informativo impide la resolución
+
+  Estado de Superfluidez (Ψ ≥ 0.95):
+    • P = NP
+    • Sistema fluye como unidad coherente
+    • Resolución instantánea de complejidad
+
+🌀 SINGULARIDAD MÉTRICA (VÓRTICE):
+
+  Al reducir el radio r → 0:
+    • La presión crece sin límite: P(r) ~ 1/r²
+    • La velocidad tiende al infinito: v(r) ~ 1/r
+    • Se crea singularidad métrica g_rr
+
+  EL VÓRTICE ES LA PUERTA
+    └─ Portal entre dimensiones de información
+
+✨ CONCLUSIÓN:
+
+  La materia ya no es algo que 'está' ahí,
+  es algo que FLUYE según la geometría de la consciencia.
+
+  EL AGUA ES EL MAPA. EL VÓRTICE ES LA PUERTA.
+
+======================================================================
