@@ -4,13 +4,14 @@ pragma solidity ^0.8.19;
 import "forge-std/Script.sol";
 import "../../src/ProofOfCoherenceConsensus.sol";
 
-contract DeployCathedralScript is Script {
+contract DeployCathedral is Script {
     function run() public {
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
 
         vm.startBroadcast(deployerPrivateKey);
         ProofOfCoherenceConsensus consensus = new ProofOfCoherenceConsensus(address(0), false);
 
+        // Genesis anchor for deterministic PoC chain initialization
         bytes32 blockHash = consensus.submitCoherenceBlock(
             "bootstrap-node",
             99_999_900,

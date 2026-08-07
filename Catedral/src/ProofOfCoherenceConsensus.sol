@@ -56,6 +56,7 @@ contract ProofOfCoherenceConsensus {
 
     event ZKVerifierUpdated(address indexed verifier, bool enabled);
     event WavefunctionValidated(bytes32 indexed fieldHashPsi, bool indexed valid);
+    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
     modifier onlyOwner() {
         require(msg.sender == owner, "PoC: solo owner");
@@ -64,9 +65,17 @@ contract ProofOfCoherenceConsensus {
 
     constructor(address verifier, bool zkEnabled) {
         owner = msg.sender;
+        emit OwnershipTransferred(address(0), msg.sender);
         zkVerifier = IZKCoherenceVerifier(verifier);
         zkValidationEnabled = zkEnabled;
         latestBlockHash = keccak256(abi.encodePacked("QCAL_POC_GENESIS_141.7001HZ"));
+    }
+
+
+    function transferOwnership(address newOwner) external onlyOwner {
+        require(newOwner != address(0), "PoC: owner invalido");
+        emit OwnershipTransferred(owner, newOwner);
+        owner = newOwner;
     }
 
     function setZKVerifier(address verifier) external onlyOwner {
@@ -75,6 +84,9 @@ contract ProofOfCoherenceConsensus {
     }
 
     function setZKValidationEnabled(bool enabled) external onlyOwner {
+        if (enabled) {
+            require(address(zkVerifier) != address(0), "PoC: verificador no configurado");
+        }
         zkValidationEnabled = enabled;
         emit ZKVerifierUpdated(address(zkVerifier), enabled);
     }

@@ -11,6 +11,7 @@ contract DeployCathedral is Script {
         vm.startBroadcast(pk);
         ProofOfCoherenceConsensus consensus = new ProofOfCoherenceConsensus(address(0), false);
 
+        // Genesis anchor for deterministic PoC chain initialization
         bytes32 blockHash = consensus.submitCoherenceBlock(
             "bootstrap-node",
             99_999_900,
