@@ -1,32 +1,27 @@
-import { ethers, run, network } from "hardhat";
+import { ethers, network } from "hardhat";
+
 async function main() {
   const [deployer] = await ethers.getSigners();
-  console.log("═══════════════════════════════════════════════════════════════");
-  console.log(" DEPLOYMENT CATEDRAL πCODE v7.1 — HARDHAT");
-  console.log("═══════════════════════════════════════════════════════════════");
-  console.log(` Network: ${network.name}`);
-  console.log(` Chain ID: ${network.config.chainId}`);
-  console.log(` Deployer: ${deployer.address}`);
-  console.log(` Balance: ${ethers.formatEther(await deployer.provider!.getBalance(deployer.address))} ETH`);
-  const CathedralFactory = await ethers.getContractFactory("PiCodeSpectralCathedral");
-  console.log("[2/5] Desplegando contrato...");
-  const cathedral = await CathedralFactory.deploy();
-  await cathedral.waitForDeployment();
-  const cathedralAddress = await cathedral.getAddress();
-  console.log(`[✓] Contrato desplegado en: ${cathedralAddress}`);
-  const expectedMagnitudes = [1118034n,2003902n,3000514n,4000122n,5000040n,6000016n,7000007n,8000004n,9000002n,10000001n,11000001n,12000001n,13000000n];
-  for (let n = 0; n < 13; n++) {
-    const state = await cathedral.spectralStates(n);
-    const valid = state.E_n_magnitude === expectedMagnitudes[n];
-    console.log(` ${valid ? "[OK]" : "[FAIL]"} n=${n} |E_n|=${state.E_n_magnitude} ${state.interpretation}`);
-  }
-  const tx = await cathedral.emitGuardianPulse();
+  console.log("Deploying ProofOfCoherenceConsensus");
+  console.log(`Network: ${network.name}`);
+  console.log(`Deployer: ${deployer.address}`);
+
+  const Factory = await ethers.getContractFactory("ProofOfCoherenceConsensus");
+  const consensus = await Factory.deploy(ethers.ZeroAddress, false);
+  await consensus.waitForDeployment();
+
+  const tx = await consensus.submitCoherenceBlock(
+    "bootstrap-node",
+    99_999_900,
+    10_000,
+    10,
+    100,
+    ethers.keccak256(ethers.toUtf8Bytes("bootstrap-field"))
+  );
   await tx.wait();
-  console.log(` Coherencia: ${(await cathedral.computeSystemCoherence()).toString()}/10⁶`);
-  console.log("═══════════════════════════════════════════════════════════════");
-  console.log(" DESPLIEGUE COMPLETADO");
-  console.log("═══════════════════════════════════════════════════════════════");
-  console.log(` Dirección: ${cathedralAddress}`);
-  console.log(` Sello: ∴𓂀Ω∞³Φ · TUYOYOTU · HECHO ESTÁ`);
+
+  console.log(`Contract: ${await consensus.getAddress()}`);
+  console.log(`Block count: ${await consensus.blockCount()}`);
 }
+
 main().catch(console.error);
