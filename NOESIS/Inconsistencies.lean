@@ -82,13 +82,15 @@ theorem T₂_water_far_below_required : T₂_water_max < T₂_required := by
   unfold T₂_water_max
   linarith
 
-/-- Consecuencia: Ψ_max alcanzable con agua pura (T₂* ≤ 3 s)
-    está lejos de ψThreshold. -/
+/-- Consequence: Ψ_max achievable with pure water (T₂* ≤ 3 s)
+    is well below ψThreshold. -/
 theorem ψ_water_below_threshold :
     ψ_max_RMN T₂_water_max < ψThreshold := by
-  -- Reduce to numeric check via monotonicity + threshold theorem
-  apply lt_of_lt_of_le _ (le_refl _)
-  exact ψ_max_T2_15_below_threshold
+  -- T₂_water_max = 3.0 ≤ 15.0, so by monotonicity ψ_max_RMN 3.0 ≤ ψ_max_RMN 15.0
+  have h_mono : ψ_max_RMN T₂_water_max ≤ ψ_max_RMN 15 :=
+    ψ_max_RMN_monotone (by norm_num [T₂_water_max]) (by norm_num [T₂_water_max])
+  -- ψ_max_RMN 15 < ψThreshold (numeric spot-check)
+  exact lt_of_le_of_lt h_mono ψ_max_T2_15_below_threshold
 
 -- ============================================================
 -- §3  INVARIANTE ALGEBRAICO: Ψ Y f₀ COMO PRIMITIVAS FORMALES
