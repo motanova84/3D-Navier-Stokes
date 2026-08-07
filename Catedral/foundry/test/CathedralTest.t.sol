@@ -2,7 +2,7 @@
 pragma solidity ^0.8.19;
 
 import "forge-std/Test.sol";
-import "../src/ProofOfCoherenceConsensus.sol";
+import "../../src/ProofOfCoherenceConsensus.sol";
 
 contract MockZKVerifier is IZKCoherenceVerifier {
     bool public result;

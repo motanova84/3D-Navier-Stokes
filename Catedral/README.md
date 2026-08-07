@@ -12,16 +12,15 @@ El workspace `Catedral` contiene el MVP on-chain de `ProofOfCoherenceConsensus` 
 
 ## Estructura normalizada
 
-- `/home/runner/work/3D-Navier-Stokes/3D-Navier-Stokes/Catedral/src`
-- `/home/runner/work/3D-Navier-Stokes/3D-Navier-Stokes/Catedral/test`
-- `/home/runner/work/3D-Navier-Stokes/3D-Navier-Stokes/Catedral/scripts`
-- `/home/runner/work/3D-Navier-Stokes/3D-Navier-Stokes/Catedral/foundry/src`
-- `/home/runner/work/3D-Navier-Stokes/3D-Navier-Stokes/Catedral/foundry/test`
-- `/home/runner/work/3D-Navier-Stokes/3D-Navier-Stokes/Catedral/foundry/script`
+- `src/`
+- `test/`
+- `scripts/`
+- `foundry/test/`
+- `foundry/script/`
 
 ## Validación local (Foundry)
 
-Desde `/home/runner/work/3D-Navier-Stokes/3D-Navier-Stokes/Catedral`:
+Desde `Catedral/`:
 
 ```bash
 forge test -vvv

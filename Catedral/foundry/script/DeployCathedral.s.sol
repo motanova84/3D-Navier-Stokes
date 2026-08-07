@@ -2,7 +2,7 @@
 pragma solidity ^0.8.19;
 
 import "forge-std/Script.sol";
-import "../src/ProofOfCoherenceConsensus.sol";
+import "../../src/ProofOfCoherenceConsensus.sol";
 
 contract DeployCathedralScript is Script {
     function run() public {
