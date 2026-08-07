@@ -42,6 +42,16 @@ def allNodes : Finset K15Node := Finset.univ
 
 noncomputable def couplingNormalizer : ℝ := ((Finset.card allNodes - 1 : ℕ) : ℝ)
 
+theorem allNodes_card : Finset.card allNodes = 13 := by
+  decide
+
+theorem couplingNormalizer_pos : 0 < couplingNormalizer := by
+  unfold couplingNormalizer
+  norm_num [allNodes_card]
+
+theorem couplingNormalizer_ne_zero : couplingNormalizer ≠ 0 := by
+  exact ne_of_gt couplingNormalizer_pos
+
 structure K15NodeState where
   node : K15Node
   coherence : ℝ
@@ -183,9 +193,6 @@ def k15InitialState : K15Topology :=
   { nodes := nodes
     edges := edges
     edgeWeight := edgeWeight }
-
-theorem allNodes_card : Finset.card allNodes = 13 := by
-  decide
 
 theorem k15InitialCoherence : k15GlobalCoherence k15InitialState := by
   unfold k15GlobalCoherence k15Coherence

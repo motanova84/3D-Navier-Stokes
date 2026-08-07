@@ -3,10 +3,10 @@ import Mathlib.Tactic
 
 namespace NOESIS.K15
 
-def K15_NODES : ℕ := 13
+def K15_NODES : ℕ := Finset.card allNodes
 
 theorem K15_NODES_card : Finset.card allNodes = K15_NODES := by
-  simpa [K15_NODES] using allNodes_card
+  rfl
 
 lemma nodeCoherencePreservation_complete (state : K15NodeState) (dt : ℝ) (coupling : ℝ) :
     coherenceEvolution state dt coupling ≥ psiThreshold :=
