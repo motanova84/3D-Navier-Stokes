@@ -161,15 +161,15 @@ theorem k15CoherencePreservation (top : K15Topology) (dt : ℝ) :
     exact (le_div_iff hcard_pos).2 (by simpa [mul_comm] using hmul)
   simpa [ge_iff_le] using hdiv
 
-corollary k15CoherencePreservationContinuous (top : K15Topology) (dt : ℝ) (n : ℕ)
+corollary k15CoherencePreservationContinuous (top : K15Topology) (dt : ℝ)
     (h_coherence : k15GlobalCoherence top) :
-    ∀ m ≤ n, k15GlobalCoherence ((k15Step dt)^[m] top) := by
-  intro m h_m
+    ∀ m, k15GlobalCoherence ((k15Step dt)^[m] top) := by
+  intro m
   induction m with
   | zero =>
       simpa [Function.iterate_zero] using h_coherence
   | succ m ih =>
-      have hprev : k15GlobalCoherence ((k15Step dt)^[m] top) := ih (Nat.le_of_succ_le h_m)
+      have hprev : k15GlobalCoherence ((k15Step dt)^[m] top) := ih
       have hstep : k15GlobalCoherence (k15Evolution ((k15Step dt)^[m] top) dt) :=
         k15CoherencePreservation ((k15Step dt)^[m] top) dt
       simpa [Function.iterate_succ_apply'] using hstep
@@ -203,7 +203,7 @@ theorem k15PerpetualCoherence (dt : ℝ) (n : ℕ) :
     let evolved := (k15Step dt)^[n] top
     k15GlobalCoherence evolved := by
   have h_cont := k15CoherencePreservationContinuous
-    (top := k15InitialState) (dt := dt) (n := n) k15InitialCoherence
-  simpa using h_cont n (Nat.le_refl n)
+    (top := k15InitialState) (dt := dt) k15InitialCoherence
+  simpa using h_cont n
 
 end NOESIS.K15

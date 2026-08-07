@@ -8,6 +8,9 @@ def K15_NODES : ℕ := Finset.card allNodes
 theorem K15_NODES_card : Finset.card allNodes = K15_NODES := by
   rfl
 
+theorem K15_NODES_eq : K15_NODES = 13 := by
+  simpa [K15_NODES] using allNodes_card
+
 lemma nodeCoherencePreservation_complete (state : K15NodeState) (dt : ℝ) (coupling : ℝ) :
     coherenceEvolution state dt coupling ≥ psiThreshold :=
   nodeCoherencePreservation state dt coupling
