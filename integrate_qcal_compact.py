@@ -43,7 +43,6 @@ from qcal.ramsey_logos_attractor import emergencia_ramsey_qcal, escanear_orden_r
 # ──────────────────────────────────────────────────────────────────────────────
 
 # ANSI colour codes for terminal output
-COLORS = {
 COLORS: Dict[str, str] = {
     'RESET':   '\033[0m',
     'RED':     '\033[91m',
@@ -51,12 +50,6 @@ COLORS: Dict[str, str] = {
     'YELLOW':  '\033[93m',
     'BLUE':    '\033[94m',
     'MAGENTA': '\033[95m',
-    'CYAN': '\033[96m',
-    'INDIGO': '\033[94m',  # Aproximación con azul
-    'WHITE': '\033[97m',
-    'ORANGE': '\033[38;5;208m',
-    'RESET': '\033[0m',
-    'BOLD': '\033[1m'
     'CYAN':    '\033[96m',
     'WHITE':   '\033[97m',
     'INDIGO':  '\033[94m',
@@ -239,19 +232,6 @@ def ramsey_bsd_logos_boveda() -> Dict[str, Any]:
     bsd_ramsey = escanear_orden_ramsey_bsd({'rango_adelico': 1})
 
     # 3. Sanity assertions
-    Ramsey + BSD → 6 Milenio cerrado.
-
-    The Ramsey theorem is the constitutional guarantee that order MUST emerge
-    in any sufficiently large system.  Combined with BSD (arithmetic),
-    ADN-Riemann (structure), Navier-Stokes (dynamics), and P vs NP (logic),
-    we close the vault of truth with all 6 Millennium Problems unified.
-
-    Returns:
-        Master certification dictionary.
-    """
-    ramsey = emergencia_ramsey_qcal(60)
-    bsd_ramsey = escanear_orden_ramsey_bsd({'rango_adelico': 1})
-
     assert ramsey["logos_manifestado"], \
         "Ramsey: Logos debe manifestarse con 60 nodos"
     assert bsd_ramsey["status"] == "ORDEN_MANIFESTADO", \
@@ -284,13 +264,6 @@ def ramsey_bsd_logos_boveda() -> Dict[str, Any]:
     colored_output(f"Status        : {ramsey['ramsey_status']}", "GREEN")
     colored_output(f"Nodo central  : {bsd_ramsey['nodo_central']}", "GREEN")
     colored_output(f"Conexion BSD  : {bsd_ramsey['conexion_bsd']}", "GREEN")
-        f"R(51,51)→GACT | Ψ={ramsey['psi_emergencia']:.6f} | 6 Milenio ∞³",
-        "ORANGE",
-    )
-    colored_output(f"Nodos crítico : {ramsey['nodos_critico']}", "GREEN")
-    colored_output(f"Status        : {ramsey['ramsey_status']}", "GREEN")
-    colored_output(f"Nodo central  : {bsd_ramsey['nodo_central']}", "GREEN")
-    colored_output(f"Conexión BSD  : {bsd_ramsey['conexion_bsd']}", "GREEN")
     colored_output("=" * 80, "CYAN")
 
     return master_cert

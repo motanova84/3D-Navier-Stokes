@@ -203,10 +203,8 @@ class TestQCALPackageImport(unittest.TestCase):
 
 
 if __name__ == "__main__":
-Tests for the QCAL Spectral Operator module.
+    unittest.main(verbosity=2)
 
-Validates Ĥ_QCAL = Ĥ_BK ⊗ 𝕀_{f₀} + V̂_mod and the critical-line certification.
-"""
 
 import unittest
 import math
