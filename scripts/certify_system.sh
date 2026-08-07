@@ -62,24 +62,18 @@ fi
 
 echo ""
 echo "📄 Generando acta final..."
-python3 - "$REPORT_PATH" "$CERT_PATH" <<'PY'
-import json, sys
-from datetime import datetime, UTC
+python3 - "$ROOT_DIR" "$REPORT_PATH" "$CERT_PATH" <<'PY'
+import sys
+from pathlib import Path
 
-report_path, cert_path = sys.argv[1], sys.argv[2]
-with open(report_path, "r", encoding="utf-8") as handle:
-    report = json.load(handle)
+root_dir = Path(sys.argv[1])
+report_path = Path(sys.argv[2])
+cert_path = Path(sys.argv[3])
+sys.path.insert(0, str(root_dir))
 
-skill_score = report["skill_score"]
-with open(cert_path, "w", encoding="utf-8") as handle:
-    handle.write("# 🌊 QCAL-Balearic Nowcast — Certificación Final\n\n")
-    handle.write(f"- Fecha de certificación: {datetime.now(UTC).isoformat()}\n")
-    handle.write("- Frecuencia base: 141.7001 Hz\n")
-    handle.write("- Coherencia objetivo: 0.999999\n")
-    handle.write(f"- Estado: {report['summary']['status']}\n\n")
-    handle.write("## Skill Score\n")
-    for key, value in skill_score.items():
-        handle.write(f"- {key}: {value:.6f}\n")
+from src.pipeline.noesis_production_workflow import write_noesis_sealing_bundle
+
+write_noesis_sealing_bundle(report_path, cert_path.parent, certification_path=cert_path)
 PY
 
 echo "✅ Certificación completada"

@@ -40,7 +40,7 @@ def build_technical_certification(
     gpu_margin_percent = round(((gpu_vram_gb - mesh_1km["peak_vram_gb"]) / mesh_1km["peak_vram_gb"]) * 100.0, 1)
     phases = [
         DeploymentPhase(
-            name="Benchmark & Core",
+            name="Phase 1 — Benchmark & Mesh",
             milestones=[
                 "Benchmark 2D/3D small cases from the repository",
                 "Build fixed 3 km Balearic mesh",
@@ -48,18 +48,34 @@ def build_technical_certification(
             ],
         ),
         DeploymentPhase(
-            name="Divergence & QCAL",
+            name="Phase 2 — Frontier Ingestion & QC",
             milestones=[
-                "Run 6h deterministic atmospheric solver",
-                "Inject optional Ψ spectral module at f₀ = 141.7001 Hz",
+                "Ingest GFS, ECMWF, SOCIB, AEMET, Puertos and Copernicus frontiers",
+                "Run deterministic quality-control filters on incoming fields",
+                "Persist source caches in Zarr/JSON operational stores",
+            ],
+        ),
+        DeploymentPhase(
+            name="Phase 3 — EnKF & QCAL Assimilation",
+            milestones=[
+                "Run 32-member ensemble Kalman filter analysis",
+                "Apply Ψ variational coupling at f₀ = 141.7001 Hz",
+                "Store posterior analysis state for production cycling",
+            ],
+        ),
+        DeploymentPhase(
+            name="Phase 4 — Nowcast & Temporal Prediction",
+            milestones=[
+                "Generate 0-6h nowcasts from the assimilated state",
+                "Extend the horizon to 72h with the temporal predictor",
                 "Persist forecast fields in compressed Zarr-compatible workflow",
             ],
         ),
         DeploymentPhase(
-            name="Refinement & Ensemble",
+            name="Phase 5 — Verification & Production Seal",
             milestones=[
-                "Add 1 km coastal nesting",
-                "Extend forecast horizon to 72h",
+                "Compare baseline, QCAL and observed fields with operational metrics",
+                "Emit the production certification package and deployment map",
                 "Expose baseline vs QCAL vs observed error dashboard",
             ],
         ),
