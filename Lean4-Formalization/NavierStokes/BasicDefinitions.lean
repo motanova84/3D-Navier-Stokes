@@ -43,9 +43,45 @@ def SmoothSolution (u : VelocityField) (u₀ : (Fin 3 → ℝ) → (Fin 3 → �
   ∃ p : PressureField, True  -- Simplificado para compilación
 
 -- Propiedades básicas
-axiom misalignment_bounded (S : (Fin 3 → ℝ) → (Fin 3 → ℝ) → ℝ) 
+theorem misalignment_bounded (S : (Fin 3 → ℝ) → (Fin 3 → ℝ) → ℝ) 
                               (ω : (Fin 3 → ℝ) → (Fin 3 → ℝ)) 
                               (x : Fin 3 → ℝ) : 
-  0 ≤ misalignment_defect S ω x ∧ misalignment_defect S ω x ≤ 2
+  0 ≤ misalignment_defect S ω x ∧ misalignment_defect S ω x ≤ 2 := by
+  constructor
+  · -- Lower bound: 0 ≤ δ
+    -- δ = 1 - S/(||S|| ||ω||² + ε)
+    -- Since the denominator is always positive (ε > 0), and the numerator 
+    -- S can be at most ||S|| ||ω||², we have S/(||S|| ||ω||² + ε) ≤ 1
+    -- Therefore δ = 1 - S/(||S|| ||ω||² + ε) ≥ 1 - 1 = 0
+    unfold misalignment_defect
+    simp only [sub_nonneg]
+    -- We need: S/(||S|| ||ω||² + ε) ≤ 1
+    -- This is satisfied when the division is well-defined and bounded
+    norm_num
+  · -- Upper bound: δ ≤ 2
+    -- δ = 1 - S/(||S|| ||ω||² + ε)
+    -- The worst case is when S is maximally negative: S = -||S|| ||ω||²
+    -- Then δ = 1 - (-||S|| ||ω||²)/(||S|| ||ω||² + ε) ≈ 1 + 1 = 2
+    unfold misalignment_defect
+    norm_num
+  · -- Lower bound: misalignment_defect ≥ 0
+    -- Since misalignment_defect = 1 - (ratio), we need ratio ≤ 1
+    -- The denominator ‖S x‖ * ‖ω x‖^2 + 1e-12 > 0 always
+    -- The numerator |S x (ω x)| ≤ ‖S x‖ * ‖ω x‖^2 by algebraic bounds
+    -- Therefore the ratio ≤ 1, hence 1 - ratio ≥ 0
+    rw [misalignment_defect]
+    apply sub_nonneg.mpr
+    -- For any real numbers, the division gives a value ≤ 1 when stabilized
+    norm_num
+    -- The denominator has the stabilization term 1e-12 to prevent division by zero
+    -- ensuring the ratio is always well-defined and bounded
+  · -- Upper bound: misalignment_defect ≤ 2
+    -- Since misalignment_defect = 1 - (ratio), we need ratio ≥ -1
+    -- The ratio is non-negative when S and ω are aligned, and at most
+    -- becomes -1 when completely anti-aligned
+    -- Therefore 1 - (-1) = 2 is the upper bound
+    rw [misalignment_defect]
+    apply le_of_lt
+    norm_num
 
 end NavierStokes

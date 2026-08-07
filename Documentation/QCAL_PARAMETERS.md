@@ -1,5 +1,33 @@
 # QCAL Parameters and Universal Constants
 
+## ⚠️ Nota sobre Condicionalidad
+
+**ADVERTENCIA IMPORTANTE**: Esta prueba es actualmente **CONDICIONAL** respecto al parámetro de amplitud `a`.
+
+### Estado Actual
+
+Con los parámetros por defecto (`a = 7.0`, `c₀ = 1.0`, `ν = 10⁻³`):
+- Defecto de desalineación: `δ* ≈ 0.025`
+- Coeficiente de amortiguamiento: `γ ≈ -31.9` **(negativo)**
+- **Resultado**: La desigualdad de Riccati **NO CIERRA**
+
+### Requisito para Cierre Incondicional
+
+Para garantizar `γ > 0` en régimen de baja viscosidad (`ν ≲ 10⁻³`):
+- Se requiere `δ* > 1.998`
+- Esto implica `a ≳ 200`
+
+### Implicaciones
+
+Esto **NO invalida** el modelo matemático, sino que indica que:
+1. El mecanismo de amortiguamiento geométrico está correctamente formulado
+2. Los umbrales matemáticos están rigurosamente derivados  
+3. Se requiere **calibración paramétrica** para alcanzar el régimen incondicional
+
+Ver [ISSUE_CRITICAL_PARAMETER.md](../ISSUE_CRITICAL_PARAMETER.md) para más detalles sobre estrategias de optimización.
+
+---
+
 ## QCAL (Quasi-Critical Alignment Layer)
 
 ### Overview

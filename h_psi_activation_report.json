@@ -1,0 +1,61 @@
+{
+  "metadata": {
+    "title": "\u210f-\u03a8 Physical Systems Activation Report",
+    "date": "2026-02-09",
+    "author": "JMMB \u03a8\u2727\u221e\u00b3",
+    "description": "Explicit Planck constant coupling with coherence field"
+  },
+  "fundamental_constants": {
+    "hbar_J_s": 1.054571817e-34,
+    "c_m_s": 299792458.0,
+    "f0_Hz": 141.7001,
+    "omega0_rad_s": 890.327986345878,
+    "planck_length_m": 1.61625502392855e-35,
+    "planck_time_s": 5.391246446661944e-44,
+    "characteristic_wavelength_m": 2115682.755340328
+  },
+  "reference_evaluation": {
+    "position_m": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "time_s": 0.0,
+    "coherence_field_psi": 0.9999999999985962,
+    "coupling_tensor_Phi_ij": [
+      [
+        -4.908402081485148e-49,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -4.908402081485148e-49,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        -4.908402081485148e-49
+      ]
+    ],
+    "coupling_norm_1_per_s2": 8.501601789109109e-49
+  },
+  "quantum_classical_limit": {
+    "classical_limit_verified": 1,
+    "coupling_at_hbar": 4.2508008945605215e-49,
+    "coupling_at_classical": 4.250800894560522e-59,
+    "reduction_factor": 9999999999.999998
+  },
+  "scale_hierarchy": {
+    "planck_to_qcal_ratio": 7.63940160616642e-42,
+    "qcal_to_fluid_ratio": 2115682.755340328,
+    "planck_to_fluid_ratio": 1.61625502392855e-35
+  },
+  "validation": {
+    "psi_in_valid_range": 1,
+    "tensor_symmetric": 1,
+    "hbar_dependence_verified": 1,
+    "classical_limit_correct": 1
+  }
+}

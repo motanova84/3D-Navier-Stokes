@@ -1,0 +1,183 @@
+name: QFT Tensor Derivation
+
+on:
+  push:
+    branches: [ main, master, develop ]
+    paths:
+      - 'phi_qft_derivation_complete.py'
+      - 'requirements.txt'
+      - '.github/workflows/qft-derivation.yml'
+  pull_request:
+    branches: [ main, master, develop ]
+    paths:
+      - 'phi_qft_derivation_complete.py'
+      - 'requirements.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qft-derivation:
+    name: Run QFT Φ_ij(Ψ) Derivation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+
+      - name: Cache Python dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Verify sympy installation
+        run: |
+          python -c "import sympy; print(f'SymPy version: {sympy.__version__}')"
+          python -c "import numpy; print(f'NumPy version: {numpy.__version__}')"
+
+      - name: Run QFT derivation
+        run: |
+          python phi_qft_derivation_complete.py
+
+      - name: Verify output files generated
+        run: |
+          echo "Checking for generated output files..."
+          if [ ! -f "Phi_tensor_symbolic.txt" ]; then
+            echo "❌ Error: Phi_tensor_symbolic.txt not generated"
+            exit 1
+          fi
+          if [ ! -f "Phi_tensor.tex" ]; then
+            echo "❌ Error: Phi_tensor.tex not generated"
+            exit 1
+          fi
+          if [ ! -f "Phi_tensor_metadata.json" ]; then
+            echo "❌ Error: Phi_tensor_metadata.json not generated"
+            exit 1
+          fi
+          echo "✅ All output files generated successfully"
+
+      - name: Display metadata
+        run: |
+          echo "════════════════════════════════════════"
+          echo "QFT Tensor Metadata"
+          echo "════════════════════════════════════════"
+          cat Phi_tensor_metadata.json
+          echo ""
+          echo "════════════════════════════════════════"
+
+      - name: Validate JSON metadata
+        run: |
+          python -c "import json; data = json.load(open('Phi_tensor_metadata.json')); print('✅ JSON is valid'); assert data['frequency_Hz'] == 141.7001, 'Frequency mismatch'"
+
+      - name: Upload derivation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: qft-tensor-derivation
+          path: |
+            Phi_tensor_symbolic.txt
+            Phi_tensor.tex
+            Phi_tensor_metadata.json
+          retention-days: 30
+
+  verify-mathematical-consistency:
+    name: Verify Mathematical Consistency
+    runs-on: ubuntu-latest
+    needs: qft-derivation
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run derivation and check consistency
+        run: |
+          python phi_qft_derivation_complete.py > /dev/null 2>&1
+
+      - name: Verify coefficients
+        run: |
+          python -c "
+          import json
+          import math
+          
+          data = json.load(open('Phi_tensor_metadata.json'))
+          
+          # Check Seeley-DeWitt coefficients
+          a1 = data['coefficients']['a1']
+          a2 = data['coefficients']['a2']
+          a3 = data['coefficients']['a3']
+          
+          expected_a1 = 1 / (720 * math.pi**2)
+          expected_a2 = 1 / (2880 * math.pi**2)
+          expected_a3 = -1 / (1440 * math.pi**2)
+          
+          tol = 1e-10
+          assert abs(a1 - expected_a1) < tol, f'a1 mismatch: {a1} vs {expected_a1}'
+          assert abs(a2 - expected_a2) < tol, f'a2 mismatch: {a2} vs {expected_a2}'
+          assert abs(a3 - expected_a3) < tol, f'a3 mismatch: {a3} vs {expected_a3}'
+          
+          # Check frequency
+          assert data['frequency_Hz'] == 141.7001, 'Frequency mismatch'
+          
+          # Check wavelength
+          c = 299792458
+          expected_lambda = c / 141.7001
+          assert abs(data['lambda_m'] - expected_lambda) < 1e-3, 'Wavelength mismatch'
+          
+          print('✅ All mathematical consistency checks passed')
+          "
+
+  summary:
+    name: QFT Derivation Summary
+    runs-on: ubuntu-latest
+    needs: [qft-derivation, verify-mathematical-consistency]
+    if: always()
+    
+    steps:
+      - name: Report status
+        run: |
+          echo "════════════════════════════════════════════════════════════"
+          echo "QFT Φ_ij(Ψ) TENSOR DERIVATION - CI SUMMARY"
+          echo "════════════════════════════════════════════════════════════"
+          echo ""
+          echo "📊 Job Status:"
+          echo "  • QFT Derivation: ${{ needs.qft-derivation.result }}"
+          echo "  • Math Consistency: ${{ needs.verify-mathematical-consistency.result }}"
+          echo ""
+          if [[ "${{ needs.qft-derivation.result }}" == "success" ]] && [[ "${{ needs.verify-mathematical-consistency.result }}" == "success" ]]; then
+            echo "✅ All checks passed - QFT derivation is valid"
+            echo ""
+            echo "🎯 Results:"
+            echo "  • Φ_ij(Ψ) tensor derived from QFT principles"
+            echo "  • Seeley-DeWitt coefficients verified"
+            echo "  • Base frequency: f₀ = 141.7001 Hz"
+            echo "  • Output files: symbolic, LaTeX, JSON"
+            exit 0
+          else
+            echo "❌ Some checks failed"
+            exit 1
+          fi

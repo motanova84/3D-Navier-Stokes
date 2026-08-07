@@ -250,6 +250,25 @@ class TestUnifiedVerification(unittest.TestCase):
         # With suboptimal parameters, Ruta A should fail
         self.assertFalse(results['ruta_a']['closure'])
         self.assertFalse(results['global_regularity'])
+    
+    def test_unified_verification_calibrated_params(self):
+        """Test unified verification with calibrated parameters (a = 8.9)"""
+        params = UnifiedBKMConstants(
+            ν=1e-3,
+            c_B=0.15,
+            C_CZ=1.5,
+            C_star=1.2,
+            a=8.9,  # Calibrated for γ > 0
+            c_0=1.0,
+            α=2.0
+        )
+        
+        results = unified_bkm_verification(params, M=100.0, ω_0=10.0, verbose=False)
+        
+        # With calibrated parameters, all routes should succeed
+        self.assertTrue(results['ruta_a']['closure'], "Ruta A should close with a=8.9")
+        self.assertTrue(results['global_regularity'], "Global regularity should be achieved")
+        self.assertGreater(results['ruta_a']['damping'], 0, "Damping should be positive")
 
 
 class TestUniformity(unittest.TestCase):

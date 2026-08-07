@@ -1,0 +1,15 @@
+Dependency tree for MainTheorem:
+
+├─ BKMCriterion
+│  ├─ BasicDefinitions
+│  └─ VorticityControl
+│     └─ BasicDefinitions
+├─ BasicDefinitions
+├─ EnergyEstimates
+│  └─ BasicDefinitions
+├─ FunctionalSpaces
+├─ MisalignmentDefect
+│  ├─ BasicDefinitions
+│  └─ UniformConstants
+└─ VorticityControl
+   └─ BasicDefinitions

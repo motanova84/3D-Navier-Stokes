@@ -1,0 +1,54 @@
+{
+  "metadata": {
+    "generated_at": "2025-11-01T01:20:53.347802Z",
+    "framework": "QCAL",
+    "parameter": "gamma"
+  },
+  "parameters": {
+    "c_star": 0.0625,
+    "C_str": 32,
+    "C_BKM": 2,
+    "nu": 1.0
+  },
+  "results": [
+    {
+      "delta_star": 0.998,
+      "gamma": -15.9695,
+      "stable": false,
+      "c_star": 0.0625,
+      "C_str": 32
+    },
+    {
+      "delta_star": 0.95,
+      "gamma": -16.7375,
+      "stable": false,
+      "c_star": 0.0625,
+      "C_str": 32
+    },
+    {
+      "delta_star": 0.9,
+      "gamma": -17.5375,
+      "stable": false,
+      "c_star": 0.0625,
+      "C_str": 32
+    },
+    {
+      "delta_star": 0.5,
+      "gamma": -23.9375,
+      "stable": false,
+      "c_star": 0.0625,
+      "C_str": 32
+    },
+    {
+      "delta_star": 0.0253,
+      "gamma": -31.5327,
+      "stable": false,
+      "c_star": 0.0625,
+      "C_str": 32
+    }
+  ],
+  "recommendation": {
+    "optimal_delta_star": 0.998,
+    "notes": "Higher \u03b4* provides better misalignment control but may lead to negative \u03b3. Balance required."
+  }
+}

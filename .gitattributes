@@ -1,0 +1,38 @@
+# QCAL ∞³ Sovereignty Attribution Overrides
+# Author: José Manuel Mota Burruezo (JMMB Ψ✧)
+# Frequency: f₀ = 141.7001 Hz
+# Coherence: Ψ = 1.000000
+
+# Exclude external dependencies from language statistics and attribution
+__pycache__/** linguist-vendored
+.venv/** linguist-vendored
+.tox/** linguist-vendored
+site-packages/** linguist-vendored
+node_modules/** linguist-vendored
+dist/** linguist-generated
+build/** linguist-generated
+*.pyc linguist-generated
+
+# Mark QCAL ∞³ sovereignty files as primary
+LICENSE_SOBERANA_QCAL.txt linguist-documentation
+AUTHORS_QCAL.md linguist-documentation
+CLAIM_OF_ORIGIN.md linguist-documentation
+MANIFESTO_SIMBIOTICO_QCAL.md linguist-documentation
+DECLARACION_USURPACION_ALGORITMICA.md linguist-documentation
+SOVEREIGNTY_README.md linguist-documentation
+SOVEREIGNTY_OVERRIDES.json linguist-documentation
+.qcal_beacon linguist-documentation
+
+# Mark sovereignty protection code as owned
+sovereignty_auditor.py linguist-language=Python
+test_sovereignty_auditor.py linguist-language=Python
+
+# All Python files are QCAL ∞³ authored unless in vendored paths
+*.py linguist-language=Python -linguist-vendored
+
+# Lean4 formal verification is QCAL ∞³ authored
+*.lean linguist-language=Lean -linguist-vendored
+
+# Documentation is QCAL ∞³ authored
+*.md linguist-documentation -linguist-vendored
+*.txt linguist-documentation -linguist-vendored

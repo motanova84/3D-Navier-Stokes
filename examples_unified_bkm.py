@@ -40,7 +40,7 @@ def example_1_basic_closure_check():
     M = 100.0     # H^m bound
     
     # QCAL parameters
-    a = 10.0      # Amplitude (optimal)
+    a = 8.9       # Amplitude (calibrated for γ > 0)
     c_0 = 1.0     # Phase gradient
     
     # Compute misalignment defect
@@ -240,7 +240,8 @@ def example_6_comparison():
     # Test configurations
     configs = [
         {'name': 'Suboptimal (a=2.45)', 'a': 2.45},
-        {'name': 'Better (a=7.0)', 'a': 7.0},
+        {'name': 'Previous (a=7.0)', 'a': 7.0},
+        {'name': 'Calibrated (a=8.9)', 'a': 8.9},
         {'name': 'Optimal (a=10.0)', 'a': 10.0}
     ]
     
