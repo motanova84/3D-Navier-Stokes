@@ -40,6 +40,9 @@ class CoherenceField:
         ) * np.ones_like(self.psi)
 
     def step(self, state, dt_hours: float, spacing_km: float) -> np.ndarray:
+        """
+        Advance the Ψ field in place and return a detached copy of the updated raw array.
+        """
         adv_x = state.wind_u * gradient_x(self.psi, spacing_km)
         adv_y = state.wind_v * gradient_y(self.psi, spacing_km)
         advection = adv_x + adv_y
@@ -49,4 +52,4 @@ class CoherenceField:
 
         updated = self.psi + dt_hours * (-advection + diffusion + relaxation + forcing)
         self.psi = np.clip(updated, self.parameters.min_psi, self.parameters.max_psi)
-        return self.psi
+        return self.psi.copy()

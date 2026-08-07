@@ -54,6 +54,14 @@ class BoussinesqAtmosphereModel:
         thermal_diffusivity: float = 0.012,
         pressure_coupling: float = 0.06,
         humidity_relaxation: float = 0.03,
+        advection_coupling: float = 0.02,
+        temperature_advection_coupling: float = 0.04,
+        divergence_pressure_feedback: float = 0.6,
+        pressure_diffusivity: float = 0.01,
+        sea_level_wind_u_coupling: float = 0.04,
+        sea_level_wind_v_coupling: float = 0.02,
+        sea_level_diffusivity: float = 0.01,
+        humidity_reference: float = 0.7,
         qcal_coupler=None,
     ):
         self.config = config
@@ -61,6 +69,14 @@ class BoussinesqAtmosphereModel:
         self.thermal_diffusivity = thermal_diffusivity
         self.pressure_coupling = pressure_coupling
         self.humidity_relaxation = humidity_relaxation
+        self.advection_coupling = advection_coupling
+        self.temperature_advection_coupling = temperature_advection_coupling
+        self.divergence_pressure_feedback = divergence_pressure_feedback
+        self.pressure_diffusivity = pressure_diffusivity
+        self.sea_level_wind_u_coupling = sea_level_wind_u_coupling
+        self.sea_level_wind_v_coupling = sea_level_wind_v_coupling
+        self.sea_level_diffusivity = sea_level_diffusivity
+        self.humidity_reference = humidity_reference
         self.qcal_coupler = qcal_coupler
 
     def step(self, state: AtmosphericState, dt_hours: float) -> AtmosphericState:
@@ -73,30 +89,38 @@ class BoussinesqAtmosphereModel:
         temp_dy = gradient_y(state.temperature, spacing)
 
         updated.wind_u = state.wind_u + dt_hours * (
-            -0.02 * state.wind_u * temp_dx
+            -self.advection_coupling * state.wind_u * temp_dx
             - self.pressure_coupling * pressure_dx
             + self.viscosity * laplacian(state.wind_u, spacing)
         )
         updated.wind_v = state.wind_v + dt_hours * (
-            -0.02 * state.wind_v * temp_dy
+            -self.advection_coupling * state.wind_v * temp_dy
             - self.pressure_coupling * pressure_dy
             + self.viscosity * laplacian(state.wind_v, spacing)
         )
         updated.temperature = state.temperature + dt_hours * (
-            -0.04 * (state.wind_u * temp_dx + state.wind_v * temp_dy)
+            -self.temperature_advection_coupling * (state.wind_u * temp_dx + state.wind_v * temp_dy)
             + self.thermal_diffusivity * laplacian(state.temperature, spacing)
         )
         divergence = gradient_x(updated.wind_u, spacing) + gradient_y(updated.wind_v, spacing)
         updated.pressure = state.pressure + dt_hours * (
-            -0.6 * divergence + 0.01 * laplacian(state.pressure, spacing)
+            -self.divergence_pressure_feedback * divergence
+            + self.pressure_diffusivity * laplacian(state.pressure, spacing)
         )
         updated.humidity = np.clip(
-            state.humidity + dt_hours * (-0.02 * divergence - self.humidity_relaxation * (state.humidity - 0.7)),
+            state.humidity
+            + dt_hours
+            * (
+                -self.advection_coupling * divergence
+                - self.humidity_relaxation * (state.humidity - self.humidity_reference)
+            ),
             0.0,
             1.0,
         )
         updated.sea_level_anomaly = state.sea_level_anomaly + dt_hours * (
-            0.04 * updated.wind_u - 0.02 * updated.wind_v + 0.01 * laplacian(state.sea_level_anomaly, spacing)
+            self.sea_level_wind_u_coupling * updated.wind_u
+            - self.sea_level_wind_v_coupling * updated.wind_v
+            + self.sea_level_diffusivity * laplacian(state.sea_level_anomaly, spacing)
         )
 
         diagnostics = compute_spectral_diagnostics(updated, spacing)

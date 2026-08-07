@@ -6,20 +6,29 @@ import numpy as np
 
 
 def gradient_x(field: np.ndarray, spacing_km: float) -> np.ndarray:
-    return (np.roll(field, -1, axis=1) - np.roll(field, 1, axis=1)) / (2.0 * spacing_km)
+    gradient = np.empty_like(field, dtype=float)
+    gradient[:, 1:-1] = (field[:, 2:] - field[:, :-2]) / (2.0 * spacing_km)
+    gradient[:, 0] = (field[:, 1] - field[:, 0]) / spacing_km
+    gradient[:, -1] = (field[:, -1] - field[:, -2]) / spacing_km
+    return gradient
 
 
 def gradient_y(field: np.ndarray, spacing_km: float) -> np.ndarray:
-    return (np.roll(field, -1, axis=0) - np.roll(field, 1, axis=0)) / (2.0 * spacing_km)
+    gradient = np.empty_like(field, dtype=float)
+    gradient[1:-1, :] = (field[2:, :] - field[:-2, :]) / (2.0 * spacing_km)
+    gradient[0, :] = (field[1, :] - field[0, :]) / spacing_km
+    gradient[-1, :] = (field[-1, :] - field[-2, :]) / spacing_km
+    return gradient
 
 
 def laplacian(field: np.ndarray, spacing_km: float) -> np.ndarray:
+    padded = np.pad(field, pad_width=1, mode="edge")
     return (
-        np.roll(field, -1, axis=0)
-        + np.roll(field, 1, axis=0)
-        + np.roll(field, -1, axis=1)
-        + np.roll(field, 1, axis=1)
-        - 4.0 * field
+        padded[2:, 1:-1]
+        + padded[:-2, 1:-1]
+        + padded[1:-1, 2:]
+        + padded[1:-1, :-2]
+        - 4.0 * padded[1:-1, 1:-1]
     ) / max(spacing_km**2, 1e-12)
 
 
