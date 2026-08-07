@@ -46,6 +46,7 @@ def validate_psi_nse_implementation():
     files_to_check = [
         'QCAL/FrequencyValidation/F0Derivation.lean',
         'PNP/InformationComplexity/SILB.lean',
+        'PsiNSE_Production_NoSorry.lean',
         'PsiNSE_Production_NoSorry_Stub.lean',
     ]
     
@@ -88,7 +89,8 @@ def validate_psi_nse_implementation():
         print("Module Summary:")
         print("  • QCAL.FrequencyValidation.F0Derivation - f₀ = 141.7001 Hz")
         print("  • PNP.InformationComplexity.SILB - Shannon bounds")
-        print("  • PsiNSE_Production_NoSorry_Stub - Main formalization")
+        print("  • PsiNSE_Production_NoSorry - Production formalization entrypoint")
+        print("  • PsiNSE_Production_NoSorry_Stub - Legacy compatibility stub")
         print()
         
         return True
