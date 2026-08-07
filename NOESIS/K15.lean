@@ -21,6 +21,7 @@ noncomputable def beta : ℝ := -1e-6
 noncomputable def gamma : ℝ := 0.05
 noncomputable def maxFreqDev : ℝ := 1.417001e-4
 noncomputable def entropyEpsilon : ℝ := 1e-10
+noncomputable def defaultEdgeWeight : ℝ := 0.5
 
 inductive K15Node : Type
   | N1
@@ -179,7 +180,7 @@ def k15InitialState : K15Topology :=
       coherence := psiThreshold
       frequency := f0
       phase := 0
-      stabilityCount := 100
+      stabilityCount := minStability
       coherenceNonneg := by
         unfold psiThreshold
         exact le_of_lt ψThreshold_in_range.1
@@ -188,7 +189,7 @@ def k15InitialState : K15Topology :=
         exact le_of_lt ψThreshold_in_range.2
       isActive := true }
   let edges := (allNodes.product allNodes).filter (fun p => p.1 ≠ p.2)
-  let edgeWeight := fun _ => 0.5
+  let edgeWeight := fun _ => defaultEdgeWeight
   { nodes := nodes
     edges := edges
     edgeWeight := edgeWeight }
