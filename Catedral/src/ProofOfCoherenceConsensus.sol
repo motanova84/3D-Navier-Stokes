@@ -6,7 +6,7 @@ interface IZKCoherenceVerifier {
         uint256[2] calldata a,
         uint256[2][2] calldata b,
         uint256[2] calldata c,
-        uint256[2] calldata input
+        uint256[2] calldata publicInputs
     ) external view returns (bool);
 }
 
@@ -79,9 +79,7 @@ contract ProofOfCoherenceConsensus {
     }
 
     function setZKVerifier(address verifier) external onlyOwner {
-        if (zkValidationEnabled) {
-            require(verifier != address(0), "PoC: verificador no configurado");
-        }
+        require(verifier != address(0), "PoC: verificador no configurado");
         zkVerifier = IZKCoherenceVerifier(verifier);
         emit ZKVerifierUpdated(verifier, zkValidationEnabled);
     }
