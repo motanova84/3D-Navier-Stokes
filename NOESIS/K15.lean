@@ -132,7 +132,7 @@ corollary k15CoherencePreservationContinuous (top : K15Topology) (dt : ℝ) (n :
       simpa using h_coherence
   | succ m ih =>
       have hprev : k15GlobalCoherence (k15Evolution^[m] top dt) := by
-        exact ih (Nat.le_refl m)
+        exact ih (Nat.le_of_succ_le h_m)
       unfold k15GlobalCoherence at *
       simpa [Function.iterate_succ_apply', k15Coherence_evolution] using hprev
 
@@ -157,7 +157,7 @@ def k15InitialState : K15Topology :=
     edgeWeight := edgeWeight }
 
 theorem allNodes_card : Finset.card allNodes = 13 := by
-  native_decide
+  decide
 
 theorem k15InitialCoherence : k15GlobalCoherence k15InitialState := by
   unfold k15GlobalCoherence k15Coherence
@@ -181,5 +181,11 @@ theorem k15PerpetualCoherence (dt : ℝ) (h_dt : dt > 0) (n : ℕ) :
     k15CoherencePreservationContinuous k15InitialState dt n h_dt
       k15InitialCoherence h_active h_stability h_freq
   simpa using h_cont n (Nat.le_refl n)
+
+theorem k15PerpetualCoherenceBounded (dt : ℝ) (h_dt : dt > 0) (h_dt_bound : dt ≤ 1) (n : ℕ) :
+    let top := k15InitialState
+    let evolved := k15Evolution^[n] top dt
+    k15GlobalCoherence evolved := by
+  exact k15PerpetualCoherence dt h_dt n
 
 end NOESIS.K15

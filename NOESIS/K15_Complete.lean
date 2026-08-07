@@ -45,6 +45,6 @@ theorem k15PerpetualCoherence_complete (dt : ℝ) (h_dt : dt > 0) (h_dt_bound : 
     let top := k15InitialState
     let evolved := k15Evolution^[n] top dt
     k15GlobalCoherence evolved := by
-  simpa using k15PerpetualCoherence dt h_dt n
+  simpa using k15PerpetualCoherenceBounded dt h_dt h_dt_bound n
 
 end NOESIS.K15
