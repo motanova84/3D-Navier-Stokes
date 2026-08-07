@@ -64,6 +64,9 @@ contract ProofOfCoherenceConsensus {
     }
 
     constructor(address verifier, bool zkEnabled) {
+        if (zkEnabled) {
+            require(verifier != address(0), "PoC: verificador no configurado");
+        }
         owner = msg.sender;
         emit OwnershipTransferred(address(0), msg.sender);
         zkVerifier = IZKCoherenceVerifier(verifier);
@@ -129,6 +132,8 @@ contract ProofOfCoherenceConsensus {
         require(zkValidationEnabled, "PoC: ZK deshabilitado");
         require(address(zkVerifier) != address(0), "PoC: verificador no configurado");
 
+        // Public inputs are derived on-chain to bind proof acceptance to
+        // the submitted spectral hash and canonical coherence threshold.
         uint256[2] memory publicInputs = [
             uint256(fieldHashPsi),
             uint256(COHERENCE_THRESHOLD)

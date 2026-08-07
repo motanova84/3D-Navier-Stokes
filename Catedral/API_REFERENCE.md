@@ -35,8 +35,8 @@ struct PoCBlock {
 
 ## Funciones principales
 
-- `submitCoherenceBlock(...) returns (bytes32)`
-- `submitCoherenceBlockWithZK(...) returns (bytes32)`
+- `submitCoherenceBlock(...) returns (bytes32)` (permissionless)
+- `submitCoherenceBlockWithZK(...) returns (bytes32)` (permissionless, gated by `zkValidationEnabled`)
 - `getBlock(uint64 blockId) returns (PoCBlock)`
 - `setZKVerifier(address)`
 - `setZKValidationEnabled(bool)`
