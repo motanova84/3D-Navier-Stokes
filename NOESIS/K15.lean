@@ -95,6 +95,8 @@ def k15Evolution (top : K15Topology) (dt : ℝ) : K15Topology :=
     edges := top.edges
     edgeWeight := top.edgeWeight }
 
+def k15Step (dt : ℝ) : K15Topology → K15Topology := fun top => k15Evolution top dt
+
 lemma nodeCoherencePreservation (state : K15NodeState) (dt : ℝ) (coupling : ℝ) :
     coherenceEvolution state dt coupling ≥ psiThreshold := by
   unfold coherenceEvolution
@@ -144,15 +146,15 @@ theorem k15CoherencePreservation (top : K15Topology) (dt : ℝ) :
 
 corollary k15CoherencePreservationContinuous (top : K15Topology) (dt : ℝ) (n : ℕ)
     (h_coherence : k15GlobalCoherence top) :
-    ∀ m ≤ n, k15GlobalCoherence (k15Evolution^[m] top dt) := by
+    ∀ m ≤ n, k15GlobalCoherence ((k15Step dt)^[m] top) := by
   intro m h_m
   induction m with
   | zero =>
       simpa [Function.iterate_zero] using h_coherence
   | succ m ih =>
-      have hprev : k15GlobalCoherence (k15Evolution^[m] top dt) := ih (Nat.le_of_succ_le h_m)
-      have hstep : k15GlobalCoherence (k15Evolution (k15Evolution^[m] top dt) dt) :=
-        k15CoherencePreservation (k15Evolution^[m] top dt) dt
+      have hprev : k15GlobalCoherence ((k15Step dt)^[m] top) := ih (Nat.le_of_succ_le h_m)
+      have hstep : k15GlobalCoherence (k15Evolution ((k15Step dt)^[m] top) dt) :=
+        k15CoherencePreservation ((k15Step dt)^[m] top) dt
       simpa [Function.iterate_succ_apply'] using hstep
 
 def k15InitialState : K15Topology :=
@@ -184,16 +186,9 @@ theorem k15InitialCoherence : k15GlobalCoherence k15InitialState := by
 
 theorem k15PerpetualCoherence (dt : ℝ) (n : ℕ) :
     let top := k15InitialState
-    let evolved := k15Evolution^[n] top dt
+    let evolved := (k15Step dt)^[n] top
     k15GlobalCoherence evolved := by
   have h_cont := k15CoherencePreservationContinuous k15InitialState dt n k15InitialCoherence
   simpa using h_cont n (Nat.le_refl n)
-
-theorem k15PerpetualCoherenceBounded (dt : ℝ) (h_dt_bound : dt ≤ 1) (n : ℕ) :
-    let top := k15InitialState
-    let evolved := k15Evolution^[n] top dt
-    k15GlobalCoherence evolved := by
-  have _ := h_dt_bound
-  exact k15PerpetualCoherence dt n
 
 end NOESIS.K15

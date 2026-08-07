@@ -29,10 +29,10 @@ theorem k15CoherencePreservation_complete (top : K15Topology) (dt : ℝ) :
 theorem k15InitialCoherence_complete : k15GlobalCoherence k15InitialState :=
   k15InitialCoherence
 
-theorem k15PerpetualCoherence_complete (dt : ℝ) (h_dt_bound : dt ≤ 1) (n : ℕ) :
+theorem k15PerpetualCoherence_complete (dt : ℝ) (n : ℕ) :
     let top := k15InitialState
-    let evolved := k15Evolution^[n] top dt
+    let evolved := (k15Step dt)^[n] top
     k15GlobalCoherence evolved := by
-  simpa using k15PerpetualCoherenceBounded dt h_dt_bound n
+  simpa using k15PerpetualCoherence dt n
 
 end NOESIS.K15
