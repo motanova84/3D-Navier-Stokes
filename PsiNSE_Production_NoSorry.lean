@@ -13,6 +13,7 @@
 
 import NavierStokes.BasicDefinitions
 import NavierStokes.PsiNSE_CompleteLemmas_WithInfrastructure
+import NavierStokes.EnergyEstimates
 import NavierStokes.VibrationalRegularization
 import NavierStokes.MisalignmentDefect
 import NavierStokes.DyadicRiccati
@@ -34,7 +35,8 @@ namespace PsiNSE
 
 This module is the root production entrypoint for the Ψ-NSE proof chain.
 The detailed arguments live in the imported NavierStokes and PsiNSE modules;
-this file re-exports the certified constants and the final structural theorem.
+this file exposes the production constants and aliases the imported proof
+checkpoints without restating them as standalone proofs.
 -/
 
 /-! ## UNIVERSAL CONSTANTS -/
@@ -50,43 +52,39 @@ def dewitt_schwinger_a1 : ℝ := 1 / (720 * Real.pi ^ 2)
 def dewitt_schwinger_a2 : ℝ := 1 / (2880 * Real.pi ^ 2)
 def dewitt_schwinger_a3 : ℝ := -1 / (1440 * Real.pi ^ 2)
 
-/-! ## COMPLETE LEMMAS (from submodules) -/
+/-! ## IMPORTED PROOF CHECKPOINTS -/
 
-/-- Local existence theorem (Kato, from `PsiNSE.LocalExistence.Complete`). -/
-theorem local_existence_theorem : True := by
-  trivial
+/-- Alias of the imported local existence checkpoint. -/
+abbrev local_existence_theorem := @PsiNSE.local_existence_complete
 
-/-- Energy balance with QCAL coupling (from `NavierStokes.EnergyEstimates`). -/
-theorem energy_balance_with_coupling : True := by
-  trivial
+/-- Alias of the imported energy estimate checkpoint. -/
+abbrev energy_balance_with_coupling := @NavierStokes.energy_estimate
 
-/-- Persistent misalignment (from `NavierStokes.MisalignmentDefect`). -/
-theorem persistent_misalignment_defect : True := by
-  trivial
+/-- Alias of the imported persistent misalignment checkpoint. -/
+abbrev persistent_misalignment_defect := @NavierStokes.misalignment_persistence
 
-/-- Positive Riccati damping (from `NavierStokes.DyadicRiccati`). -/
-theorem positive_riccati_damping : True := by
-  trivial
+/-- Alias of the imported positive Riccati damping checkpoint. -/
+abbrev positive_riccati_damping := @NavierStokes.dyadic_riccati_inequality
 
-/-- Besov integrability (from `NavierStokes.GlobalRiccati`). -/
-theorem besov_integrability : True := by
-  trivial
+/-- Alias of the imported Besov/BKM integrability checkpoint. -/
+abbrev besov_integrability := @NavierStokes.BKM_endpoint_Besov_integrability
 
-/-- Global regularity via BKM (from `NavierStokes.UnifiedBKM`). -/
-theorem global_regularity_bkm : True := by
-  trivial
+/-- Alias of the imported global regularity checkpoint. -/
+abbrev psi_nse_global_regularity_master := @PsiNSE.psi_nse_global_regularity_complete
 
-/-! ## MAIN RESULT: Ψ-NSE GLOBAL REGULARITY -/
+/-- Human-readable list of production checkpoint aliases exposed here. -/
+def production_checkpoint_names : List String := [
+  "local_existence_theorem",
+  "energy_balance_with_coupling",
+  "persistent_misalignment_defect",
+  "positive_riccati_damping",
+  "besov_integrability",
+  "psi_nse_global_regularity_master"
+]
 
-/-- Master structural theorem for Ψ-NSE global regularity. -/
-theorem psi_nse_global_regularity_master : True := by
-  have h_local := local_existence_theorem
-  have h_energy := energy_balance_with_coupling
-  have h_delta := persistent_misalignment_defect
-  have h_gamma := positive_riccati_damping
-  have h_besov := besov_integrability
-  have h_global := global_regularity_bkm
-  trivial
+theorem production_checkpoint_count :
+    production_checkpoint_names.length = 6 := by
+  decide
 
 /-! ## VERIFICATION CHECKLIST -/
 
@@ -95,8 +93,8 @@ theorem psi_nse_global_regularity_master : True := by
 #check persistent_misalignment_defect
 #check positive_riccati_damping
 #check besov_integrability
-#check global_regularity_bkm
 #check psi_nse_global_regularity_master
+#check production_checkpoint_count
 
 /-
 ═══════════════════════════════════════════════════════════════

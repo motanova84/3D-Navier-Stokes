@@ -62,7 +62,7 @@ This document provides a complete overview of the Ψ-Navier-Stokes implementatio
   - `persistent_misalignment_defect`
   - `positive_riccati_damping`
   - `besov_integrability`
-  - `global_regularity_bkm`
+  - `besov_integrability`
   - `psi_nse_global_regularity_master`
 
 **Status**: ✅ Complete
