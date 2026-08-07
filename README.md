@@ -53,6 +53,7 @@ Si solo quieres un punto de entrada claro, usa la demostración principal y desp
 
 ```bash
 python -m pip install -r requirements.txt
+python -m pip install pytest
 python demonstrate_nse_comparison.py
 python verification_framework/final_proof.py
 python -m pytest test_verification.py test_unified_bkm.py -q
