@@ -265,6 +265,18 @@ except (ImportError, SyntaxError):
     verificar_unitaridad_haar = None  # type: ignore[assignment]
     cierre_formal_tres_brechas = None  # type: ignore[assignment]
 
+from .operator_phi import (
+    QCALOperatorPhi,
+    QCALRNABarrierFold,
+    QCALNavierStokesRegularizer,
+    run_qcal_operator_demo,
+    PSI_TARGET,
+    CONTRACTION_K,
+    SIGMA_DEFAULT,
+    H_PLANCK,
+    E_MIN,
+)
+
 __all__ = [
     # Constants
     'F0',
@@ -425,4 +437,14 @@ __all__ = [
     'verificar_identidad_espectral',
     'cierre_formal_tres_brechas',
     'RIEMANN_ZEROS_GAMMA',
+    # QCAL Operator Phi & RNA Barrier Fold
+    'QCALOperatorPhi',
+    'QCALRNABarrierFold',
+    'QCALNavierStokesRegularizer',
+    'run_qcal_operator_demo',
+    'PSI_TARGET',
+    'CONTRACTION_K',
+    'SIGMA_DEFAULT',
+    'H_PLANCK',
+    'E_MIN',
 ]
