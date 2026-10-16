@@ -280,6 +280,7 @@ from .bures_rna_visualizer import (
     QCALBuresRNAVisualizer,
     export_to_qcal_mol,
     parse_qcal_mol,
+    bures_sq,
 )
 
 __all__ = [
@@ -456,4 +457,5 @@ __all__ = [
     'QCALBuresRNAVisualizer',
     'export_to_qcal_mol',
     'parse_qcal_mol',
+    'bures_sq',
 ]

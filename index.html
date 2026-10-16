@@ -1,254 +1,608 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QCAL Ecosystem - Geometría de Bures y Operador Phi</title>
-    <style>
-        :root {
-            --bg-color: #050508;
-            --panel-bg: rgba(15, 15, 25, 0.85);
-            --accent: #00f2fe;
-            --accent-secondary: #4facfe;
-            --text-color: #e0e0e8;
-            --border-glow: rgba(0, 242, 254, 0.3);
-        }
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
-            height: 100vh;
-        }
-        #canvas-container {
-            width: 100vw;
-            height: 100vh;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
-        .ui-panel {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 10;
-            background: var(--panel-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border-glow);
-            border-radius: 12px;
-            padding: 20px;
-            width: 340px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-        }
-        h1 {
-            font-size: 1.2rem;
-            margin-top: 0;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-        .metric-row {
-            display: flex;
-            justify-content: space-between;
-            margin: 10px 0;
-            font-size: 0.9rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 5px;
-        }
-        .metric-value {
-            font-family: monospace;
-            color: var(--accent-secondary);
-        }
-        .control-group {
-            margin-top: 15px;
-        }
-        label {
-            display: block;
-            font-size: 0.8rem;
-            margin-bottom: 5px;
-            color: #b0b0c0;
-        }
-        input[type="range"] {
-            width: 100%;
-            accent-color: var(--accent);
-        }
-        .footer-info {
-            margin-top: 15px;
-            font-size: 0.75rem;
-            color: #808090;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 8px;
-        }
-    </style>
-    <!-- Importar Three.js desde CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QCAL Ecosystem — Visor .Qmol Integrado</title>
+<style>
+:root {
+  --bg-color: #050508;
+  --panel-bg: rgba(15, 15, 25, 0.92);
+  --accent: #00f2fe;
+  --accent-secondary: #4facfe;
+  --accent-psi: #a855f7;
+  --text-color: #e0e0e8;
+  --border-glow: rgba(0, 242, 254, 0.3);
+  --border-psi: rgba(168, 85, 247, 0.3);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden; height: 100vh;
+}
+#canvas-container {
+  width: 100vw; height: 100vh;
+  position: absolute; top: 0; left: 0; z-index: 1;
+}
+.ui-panel {
+  position: absolute; top: 20px; left: 20px; z-index: 10;
+  background: var(--panel-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-glow);
+  border-radius: 12px; padding: 20px; width: 380px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  max-height: calc(100vh - 40px); overflow-y: auto;
+}
+h1 {
+  font-size: 1.05rem; margin-top: 0; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 1.5px;
+}
+h2 {
+  font-size: 0.75rem; color: var(--accent-secondary);
+  text-transform: uppercase; letter-spacing: 1.2px;
+  margin-top: 16px; margin-bottom: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding-bottom: 4px;
+}
+.metric-row {
+  display: flex; justify-content: space-between;
+  margin: 6px 0; font-size: 0.82rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 3px;
+}
+.metric-label { color: #a0a0b0; }
+.metric-value {
+  font-family: 'Consolas', 'Monaco', monospace;
+  color: var(--accent-secondary);
+}
+.metric-value.psi { color: var(--accent-psi); }
+.control-group { margin-top: 10px; }
+label {
+  display: block; font-size: 0.72rem; margin-bottom: 4px;
+  color: #b0b0c0; text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+input[type="file"] { display: none; }
+.file-upload-btn {
+  display: block; width: 100%;
+  background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+  border: 0; font-family: inherit;
+  color: #050508; text-align: center;
+  padding: 10px; border-radius: 6px;
+  font-weight: bold; font-size: 0.82rem;
+  cursor: pointer; margin-top: 10px;
+  box-shadow: 0 4px 15px rgba(0, 242, 254, 0.25);
+  transition: opacity 0.2s;
+}
+.file-upload-btn:hover { opacity: 0.9; }
+.action-btn {
+  display: block; width: 100%;
+  background: transparent;
+  border: 1px solid var(--border-glow);
+  color: var(--accent); text-align: center;
+  padding: 8px; border-radius: 6px;
+  font-size: 0.78rem; cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.2s;
+}
+.action-btn:hover {
+  background: rgba(0, 242, 254, 0.1);
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+}
+.action-btn.active {
+  background: rgba(0, 242, 254, 0.2);
+  border-color: var(--accent);
+}
+.footer-info {
+  margin-top: 14px; font-size: 0.68rem;
+  color: #808090; text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 8px;
+  line-height: 1.4;
+}
+.status-badge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.65rem;
+  margin-left: 4px;
+}
+.status-ok {
+  background: rgba(0, 242, 254, 0.15);
+  color: var(--accent);
+}
+.status-warn {
+  background: rgba(255, 200, 0, 0.15);
+  color: #ffc800;
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
 
-    <div id="canvas-container"></div>
+<div id="canvas-container"></div>
 
-    <div class="ui-panel">
-        <h1>QCAL Ecosystem</h1>
-        <div class="metric-row">
-            <span>Frecuencia Base (f0):</span>
-            <span class="metric-value" id="val-f0">141.70 Hz</span>
-        </div>
-        <div class="metric-row">
-            <span>Coherencia (&Psi;):</span>
-            <span class="metric-value" id="val-psi">0.999999</span>
-        </div>
-        <div class="metric-row">
-            <span>Contracción (k):</span>
-            <span class="metric-value">1.00e-6</span>
-        </div>
+<div class="ui-panel">
+  <h1>Visor QCAL .Qmol</h1>
 
-        <div class="control-group">
-            <label for="slider-f0">Modulación de Frecuencia (f0)</label>
-            <input type="range" id="slider-f0" min="50" max="300" step="0.1" value="141.7">
-        </div>
+  <h2>Metadatos del colector</h2>
+  <div class="metric-row">
+    <span class="metric-label">Protocolo:</span>
+    <span class="metric-value" id="meta-protocol">QCAL-SYMBIO-BRIDGE</span>
+  </div>
+  <div class="metric-row">
+    <span class="metric-label">Frecuencia f₀:</span>
+    <span class="metric-value" id="meta-f0">141.7001 Hz</span>
+  </div>
+  <div class="metric-row">
+    <span class="metric-label">Coherencia Ψ:</span>
+    <span class="metric-value psi" id="meta-psi">0.999999</span>
+  </div>
+  <div class="metric-row">
+    <span class="metric-label">Contracción k:</span>
+    <span class="metric-value" id="meta-k">1e-6</span>
+  </div>
+  <div class="metric-row">
+    <span class="metric-label">Energía mín. h:</span>
+    <span class="metric-value" id="meta-h">141.69996 Hz</span>
+  </div>
+  <div class="metric-row">
+    <span class="metric-label">Métrica:</span>
+    <span class="metric-value" id="meta-metric">Bures-Fisher</span>
+  </div>
 
-        <div class="control-group">
-            <label for="slider-chaos">Perturbación Exógena (Ruido)</label>
-            <input type="range" id="slider-chaos" min="0" max="1" step="0.01" value="0.2">
-        </div>
+  <h2>Datos cargados</h2>
+  <div class="metric-row">
+    <span class="metric-label">Átomos:</span>
+    <span class="metric-value" id="meta-count">60 (simulados)</span>
+  </div>
+  <div class="metric-row">
+    <span class="metric-label">Ψ_global (media):</span>
+    <span class="metric-value psi" id="meta-psi-global">0.999999</span>
+  </div>
+  <div class="metric-row">
+    <span class="metric-label">Ψ_global (mín):</span>
+    <span class="metric-value psi" id="meta-psi-min">0.999998</span>
+  </div>
+  <div class="metric-row">
+    <span class="metric-label">D_BF² media:</span>
+    <span class="metric-value" id="meta-bures-mean">1.2e-6</span>
+  </div>
 
-        <div class="footer-info">
-            Operador &Phi; | Métrica de Bures Activa &#x2705;
-        </div>
-    </div>
+  <h2>Controles</h2>
+  <button type="button" id="btn-load-qmol" class="file-upload-btn">📂 Cargar Archivo .Qmol</button>
+  <input type="file" id="qmol-file-input" accept=".qmol,.txt">
 
-    <script>
-        // --- CONFIGURACIÓN DE LA ESCENA 3D (THREE.JS) ---
-        const container = document.getElementById('canvas-container');
-        
-        const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x050508);
-        scene.fog = new THREE.FogExp2(0x050508, 0.035);
+  <button class="action-btn" id="btn-toggle-color">
+    🎨 Modo color: Bures
+  </button>
+  <button class="action-btn" id="btn-resonance">
+    🌊 Modo resonancia (f₀)
+  </button>
+  <button class="action-btn" id="btn-structure">
+    🧬 Detectar estructura
+  </button>
 
-        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(0, 0, 25);
+  <div class="footer-info">
+    Parser JSON robusto ✅<br>
+    Métrica Bures-Fisher: D_BF² ≈ ε<br>
+    Anclaje: f₀·Ψ = 141.69996 Hz
+  </div>
+</div>
 
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
-        container.appendChild(renderer.domElement);
+<script>
+// ===================================================================
+// CONFIGURACIÓN DE ESCENA 3D
+// ===================================================================
+const container = document.getElementById('canvas-container');
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x050508);
+scene.fog = new THREE.FogExp2(0x050508, 0.035);
 
-        // --- CREACIÓN DE LA GEOMETRÍA DE BURES / ARN ---
-        const particleCount = 80;
-        const geometry = new THREE.BufferGeometry();
-        const positions = new Float32Array(particleCount * 3);
-        const colors = new Float32Array(particleCount * 3);
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.set(0, 0, 25);
 
-        const targetPositions = [];
-        for (let i = 0; i < particleCount; i++) {
-            const t = (i / particleCount) * Math.PI * 6;
-            targetPositions.push(new THREE.Vector3(
-                Math.cos(t) * 5,
-                Math.sin(t) * 5,
-                (i / particleCount) * 16 - 8
-            ));
-            
-            positions[i * 3] = (Math.random() - 0.5) * 20;
-            positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
-            positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
+container.appendChild(renderer.domElement);
+
+// ===================================================================
+// ESTADO GLOBAL
+// ===================================================================
+let particleSystem, lineMesh;
+let currentPositions = [];
+let buresValues = [];    // D_BF²
+let psiValues = [];      // Local_Ψ
+let colorMode = 'bures'; // 'bures' | 'psi' | 'structure'
+let resonanceMode = false;
+let basePositions = [];  // copia para resonancia
+let globalMeta = {
+  f0: 141.7001,
+  psi: 0.999999,
+  k: 1e-6,
+  h: 141.69996,
+  protocol: 'QCAL-SYMBIO-BRIDGE',
+  metric: 'Bures-Fisher'
+};
+
+// ===================================================================
+// GEOMETRÍA POR DEFECTO (HÉLICE)
+// ===================================================================
+function createDefaultHelix() {
+  const count = 60;
+  currentPositions = [];
+  buresValues = [];
+  psiValues = [];
+
+  for (let i = 0; i < count; i++) {
+    const t = (i / count) * Math.PI * 6;
+    const x = Math.cos(t) * 4;
+    const y = Math.sin(t) * 4;
+    const z = (i / count) * 14 - 7;
+
+    currentPositions.push(new THREE.Vector3(x, y, z));
+    buresValues.push(1.0e-6 + Math.random() * 0.5e-6);
+    psiValues.push(0.999998 + Math.random() * 0.000001);
+  }
+  basePositions = currentPositions.map(p => p.clone());
+  updateSceneGeometry();
+}
+
+// ===================================================================
+// ACTUALIZAR GEOMETRÍA
+// ===================================================================
+function updateSceneGeometry() {
+  if (particleSystem) {
+    scene.remove(particleSystem);
+    particleSystem.geometry.dispose();
+    particleSystem.material.dispose();
+  }
+  if (lineMesh) {
+    scene.remove(lineMesh);
+    lineMesh.geometry.dispose();
+    lineMesh.material.dispose();
+  }
+
+  const count = currentPositions.length;
+  const geom = new THREE.BufferGeometry();
+  const posAttr = new Float32Array(count * 3);
+  const colAttr = new Float32Array(count * 3);
+
+  for (let i = 0; i < count; i++) {
+    const p = currentPositions[i];
+    posAttr[i * 3] = p.x;
+    posAttr[i * 3 + 1] = p.y;
+    posAttr[i * 3 + 2] = p.z;
+
+    let r, g, b;
+    if (colorMode === 'bures') {
+      // Color por D_BF² normalizada
+      const intensity = Math.min(1.0, buresValues[i] / 2.0);
+      r = intensity;
+      g = 1.0 - intensity;
+      b = 1.0;
+    } else if (colorMode === 'psi') {
+      // Color por Local_Ψ
+      const psi = psiValues[i] ?? 0.999999;
+      const deficit = Math.min(1.0, (1.0 - psi) / 2.0e-6);
+      r = deficit;
+      g = 1.0 - deficit;
+      b = 1.0;
+    } else {
+      const psi = psiValues[i] ?? 0.999999;
+      if (psi >= 0.999999) {
+        r = 0.2; g = 1.0; b = 0.4;
+      } else if (psi >= 0.9999) {
+        r = 1.0; g = 0.75; b = 0.0;
+      } else {
+        r = 1.0; g = 0.2; b = 0.2;
+      }
+    }
+
+    colAttr[i * 3] = r;
+    colAttr[i * 3 + 1] = g;
+    colAttr[i * 3 + 2] = b;
+  }
+
+  geom.setAttribute('position', new THREE.BufferAttribute(posAttr, 3));
+  geom.setAttribute('color', new THREE.BufferAttribute(colAttr, 3));
+
+  const mat = new THREE.PointsMaterial({
+    size: 0.7,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.95
+  });
+  particleSystem = new THREE.Points(geom, mat);
+  scene.add(particleSystem);
+
+  // Esqueleto
+  const lineGeom = new THREE.BufferGeometry().setFromPoints(currentPositions);
+  const lineMat = new THREE.LineBasicMaterial({
+    color: colorMode === 'psi' ? 0xa855f7 : 0x00f2fe,
+    transparent: true,
+    opacity: 0.4
+  });
+  lineMesh = new THREE.Line(lineGeom, lineMat);
+  scene.add(lineMesh);
+
+  // Actualizar métricas
+  updateGlobalMetrics();
+}
+
+// ===================================================================
+// CÁLCULO DE MÉTRICAS GLOBALES
+// ===================================================================
+function updateGlobalMetrics() {
+  const count = psiValues.length;
+  if (count === 0) return;
+
+  const psiMean = psiValues.reduce((a, b) => a + b, 0) / count;
+  const psiMin = Math.min(...psiValues);
+  const buresMean = buresValues.reduce((a, b) => a + b, 0) / count;
+
+  document.getElementById('meta-count').innerText = count;
+  document.getElementById('meta-psi-global').innerText = psiMean.toFixed(6);
+  document.getElementById('meta-psi-min').innerText = psiMin.toFixed(6);
+  document.getElementById('meta-bures-mean').innerText = buresMean.toExponential(2);
+}
+
+// ===================================================================
+// PARSER ROBUSTO .QMOL
+// ===================================================================
+document.getElementById('qmol-file-input').addEventListener('change', function(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    parseQmolContent(e.target.result);
+  };
+  reader.readAsText(file);
+});
+
+document.getElementById('btn-load-qmol').addEventListener('click', function() {
+  document.getElementById('qmol-file-input').click();
+});
+
+function parseQmolContent(text) {
+  const lines = text.split('\n');
+  let newPositions = [];
+  let newBures = [];
+  let newPsi = [];
+  let inJsonBlock = false;
+  let jsonBuffer = '';
+  let braceDepth = 0;
+  let inJsonString = false;
+  let jsonEscape = false;
+
+  for (let rawLine of lines) {
+    const line = rawLine.trim();
+    if (line.length === 0) continue;
+
+    // --- Parseo del bloque JSON de metadatos ---
+    if (line.startsWith('{') && !inJsonBlock) {
+      inJsonBlock = true;
+      jsonBuffer = '';
+      braceDepth = 0;
+    }
+    if (inJsonBlock) {
+      jsonBuffer += line + '\n';
+      for (const char of line) {
+        if (inJsonString) {
+          if (jsonEscape) {
+            jsonEscape = false;
+          } else if (char === '\\') {
+            jsonEscape = true;
+          } else if (char === '"') {
+            inJsonString = false;
+          }
+        } else if (char === '"') {
+          inJsonString = true;
+        } else if (char === '{') {
+          braceDepth++;
+        } else if (char === '}') {
+          braceDepth--;
         }
-
-        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-        // Material de partículas brillantes estilo ciberespacio cuántico
-        const material = new THREE.PointsMaterial({
-            size: 0.6,
-            vertexColors: true,
-            transparent: true,
-            opacity: 0.9,
-            blending: THREE.AdditiveBlending
-        });
-
-        const particleSystem = new THREE.Points(geometry, material);
-        scene.add(particleSystem);
-
-        // Línea conectora del esqueleto
-        const lineMaterial = new THREE.LineBasicMaterial({ color: 0x00f2fe, transparent: true, opacity: 0.3 });
-        const lineGeometry = new THREE.BufferGeometry();
-        const lineMesh = new THREE.Line(lineGeometry, lineMaterial);
-        scene.add(lineMesh);
-
-        // --- CONTROLES DE INTERACTIVIDAD ---
-        let currentF0 = 141.7;
-        let chaosLevel = 0.2;
-
-        document.getElementById('slider-f0').addEventListener('input', (e) => {
-            currentF0 = parseFloat(e.target.value);
-            document.getElementById('val-f0').innerText = currentF0.toFixed(2) + " Hz";
-        });
-
-        document.getElementById('slider-chaos').addEventListener('input', (e) => {
-            chaosLevel = parseFloat(e.target.value);
-        });
-
-        // --- BUCLE DE ANIMACIÓN Y EVOLUCIÓN DEL OPERADOR PHI ---
-        let clock = new THREE.Clock();
-
-        function animate() {
-            requestAnimationFrame(animate);
-            let time = clock.getElapsedTime();
-
-            const posAttr = geometry.attributes.position;
-            const colorAttr = geometry.attributes.color;
-            const linePositions = [];
-
-            for (let i = 0; i < particleCount; i++) {
-                let px = posAttr.getX(i);
-                let py = posAttr.getY(i);
-                let pz = posAttr.getZ(i);
-
-                let target = targetPositions[i];
-
-                // Aplicación del operador Phi: Contracción hacia el atractor + filtro armónico de f0
-                let harmonicFactor = Math.cos(time * (currentF0 / 50.0) + i * 0.1);
-                let noiseX = (Math.random() - 0.5) * chaosLevel * harmonicFactor;
-                let noiseY = (Math.random() - 0.5) * chaosLevel * harmonicFactor;
-
-                // Dinámica de contracción de Banach (k = 1e-6 simulado en tasa de aproximación)
-                px += (target.x - px) * 0.05 + noiseX;
-                py += (target.y - py) * 0.05 + noiseY;
-                pz += (target.z - pz) * 0.05;
-
-                posAttr.setXYZ(i, px, py, pz);
-                linePositions.push(px, py, pz);
-
-                // Mapeo de color basado en la distancia de Bures (proximidad al atractor)
-                let distToTarget = Math.sqrt(Math.pow(target.x - px, 2) + Math.pow(target.y - py, 2));
-                let colorIntensity = Math.max(0, 1.0 - distToTarget / 5.0);
-                
-                colorAttr.setXYZ(i, 0.0, colorIntensity * 0.95 + 0.05, 1.0);
-            }
-
-            posAttr.needsUpdate = true;
-            colorAttr.needsUpdate = true;
-
-            lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
-
-            // Rotación suave global de la escena simbiótica
-            particleSystem.rotation.y = time * 0.2;
-            lineMesh.rotation.y = time * 0.2;
-
-            renderer.render(scene, camera);
+      }
+      if (braceDepth <= 0) {
+        inJsonBlock = false;
+        try {
+          const parsed = JSON.parse(jsonBuffer);
+          applyMetadata(parsed);
+        } catch (err) {
+          console.warn("JSON no parseable:", err.message);
         }
+        jsonBuffer = '';
+        inJsonString = false;
+        jsonEscape = false;
+      }
+      continue;
+    }
 
-        animate();
+    // --- Parseo de ATOM ---
+    if (line.startsWith('ATOM')) {
+      // Aceptar 10 u 11 columnas
+      const parts = line.split(/\s+/);
+      if (parts.length >= 10) {
+        const x = parseFloat(parts[6]);
+        const y = parseFloat(parts[7]);
+        const z = parseFloat(parts[8]);
+        const buresDistance = parseFloat(parts[9]);
+        const localPsi = parts.length >= 11 ? parseFloat(parts[10]) : 0.999999;
 
-        // --- RESPONSIVE WINDOW ---
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-    </script>
+        if (!isNaN(x) && !isNaN(y) && !isNaN(z)) {
+          newPositions.push(new THREE.Vector3(x, y, z));
+          newBures.push(isNaN(buresDistance) ? 0 : buresDistance ** 2);
+          newPsi.push(isNaN(localPsi) ? 0.999999 : localPsi);
+        }
+      }
+    }
+  }
+
+  if (newPositions.length > 0) {
+    currentPositions = newPositions;
+    buresValues = newBures;
+    psiValues = newPsi;
+    basePositions = currentPositions.map(p => p.clone());
+    updateSceneGeometry();
+    console.log(`>> ${newPositions.length} átomos cargados desde .qmol`);
+  } else {
+    alert("No se pudieron extraer átomos válidos del archivo .qmol.");
+  }
+}
+
+// ===================================================================
+// APLICAR METADATOS
+// ===================================================================
+function applyMetadata(parsed) {
+  if (!parsed.qcal_metadata) return;
+  const m = parsed.qcal_metadata;
+
+  if (m.protocol) {
+    document.getElementById('meta-protocol').innerText = m.protocol;
+    globalMeta.protocol = m.protocol;
+  }
+  if (m.fundamental_frequency_hz) {
+    document.getElementById('meta-f0').innerText = m.fundamental_frequency_hz + ' Hz';
+    globalMeta.f0 = m.fundamental_frequency_hz;
+  }
+  if (m.target_coherence_psi != null) {
+    document.getElementById('meta-psi').innerText = m.target_coherence_psi;
+    globalMeta.psi = m.target_coherence_psi;
+  }
+  if (m.contraction_factor_k != null) {
+    document.getElementById('meta-k').innerText = m.contraction_factor_k;
+    globalMeta.k = m.contraction_factor_k;
+  }
+  if (m.energy_minimum_h != null) {
+    document.getElementById('meta-h').innerText = m.energy_minimum_h + ' Hz';
+    globalMeta.h = m.energy_minimum_h;
+  }
+  if (m.metric_tensor_type) {
+    document.getElementById('meta-metric').innerText = m.metric_tensor_type;
+    globalMeta.metric = m.metric_tensor_type;
+  }
+}
+
+// ===================================================================
+// BOTONES DE CONTROL
+// ===================================================================
+document.getElementById('btn-toggle-color').addEventListener('click', function() {
+  if (colorMode === 'bures') {
+    colorMode = 'psi';
+    this.innerText = '🎨 Modo color: Local_Ψ';
+  } else if (colorMode === 'psi') {
+    colorMode = 'structure';
+    this.innerText = '🎨 Modo color: Estructura';
+  } else {
+    colorMode = 'bures';
+    this.innerText = '🎨 Modo color: Bures';
+  }
+  updateSceneGeometry();
+});
+
+document.getElementById('btn-resonance').addEventListener('click', function() {
+  resonanceMode = !resonanceMode;
+  this.classList.toggle('active', resonanceMode);
+  this.innerText = resonanceMode
+    ? '🌊 Resonancia ACTIVA (f₀)'
+    : '🌊 Modo resonancia (f₀)';
+});
+
+document.getElementById('btn-structure').addEventListener('click', function() {
+  // Detección simple: encontrar regiones con alta coherencia local
+  let highCoherence = 0;
+  for (const psi of psiValues) {
+    if (psi > 0.999999) highCoherence++;
+  }
+  const pct = psiValues.length > 0
+    ? (highCoherence / psiValues.length * 100).toFixed(1)
+    : '0';
+  alert(`Nodos con Ψ > 0.999999: ${highCoherence}/${psiValues.length} (${pct}%)`);
+});
+
+// ===================================================================
+// BUCLE DE ANIMACIÓN CON RESONANCIA
+// ===================================================================
+let clock = new THREE.Clock();
+
+function animate() {
+  requestAnimationFrame(animate);
+  const time = clock.getElapsedTime();
+
+  // Rotación lenta
+  if (particleSystem) {
+    particleSystem.rotation.y = time * 0.15;
+    if (lineMesh) lineMesh.rotation.y = time * 0.15;
+  }
+
+  // Modo resonancia: oscilación a escala visual de f₀
+  if (resonanceMode && particleSystem && basePositions.length > 0) {
+    // Escala visual: f₀ / 100 = 1.417 Hz (para animación visible)
+    const visualFreq = globalMeta.f0 / 100;
+    const amplitude = 0.15;
+    const posAttr = particleSystem.geometry.attributes.position.array;
+
+    for (let i = 0; i < basePositions.length; i++) {
+      const base = basePositions[i];
+      const phase = (i / basePositions.length) * Math.PI * 2;
+      const offset = amplitude * Math.sin(2 * Math.PI * visualFreq * time + phase);
+
+      posAttr[i * 3] = base.x + offset;
+      posAttr[i * 3 + 1] = base.y + offset * 0.5;
+      posAttr[i * 3 + 2] = base.z;
+    }
+    particleSystem.geometry.attributes.position.needsUpdate = true;
+
+    // Actualizar esqueleto
+    if (lineMesh) {
+      const lineAttr = lineMesh.geometry.attributes.position.array;
+      for (let i = 0; i < basePositions.length; i++) {
+        lineAttr[i * 3] = posAttr[i * 3];
+        lineAttr[i * 3 + 1] = posAttr[i * 3 + 1];
+        lineAttr[i * 3 + 2] = posAttr[i * 3 + 2];
+      }
+      lineMesh.geometry.attributes.position.needsUpdate = true;
+    }
+  } else if (basePositions.length > 0 && particleSystem) {
+    // Restaurar posiciones base si resonancia está desactivada
+    const posAttr = particleSystem.geometry.attributes.position.array;
+    for (let i = 0; i < basePositions.length; i++) {
+      posAttr[i * 3] = basePositions[i].x;
+      posAttr[i * 3 + 1] = basePositions[i].y;
+      posAttr[i * 3 + 2] = basePositions[i].z;
+    }
+    particleSystem.geometry.attributes.position.needsUpdate = true;
+    if (lineMesh) {
+      const lineAttr = lineMesh.geometry.attributes.position.array;
+      for (let i = 0; i < basePositions.length; i++) {
+        lineAttr[i * 3] = basePositions[i].x;
+        lineAttr[i * 3 + 1] = basePositions[i].y;
+        lineAttr[i * 3 + 2] = basePositions[i].z;
+      }
+      lineMesh.geometry.attributes.position.needsUpdate = true;
+    }
+  }
+
+  renderer.render(scene, camera);
+}
+
+// ===================================================================
+// INICIALIZACIÓN
+// ===================================================================
+createDefaultHelix();
+animate();
+
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+</script>
 </body>
 </html>
