@@ -110,8 +110,8 @@ def target_coherence_psi : ℝ := 0.999999
 /-- Factor de contracción de Banach k = 10⁻⁶. -/
 def contraction_factor_k : ℝ := 0.000001
 
-/-- Energía mínima del operador armónico h_min = 141.6999. -/
-def energy_minimum_h : ℝ := 141.6999
+/-- Energía mínima del operador armónico h_min = 141.69996 Hz (redondeo a 5 decimales). -/
+def energy_minimum_h : ℝ := 141.69996
 
 /-- Teorema: el defecto de coherencia en el objetivo Ψ = 0.999999 es positivo. -/
 theorem target_coherence_defect_pos :

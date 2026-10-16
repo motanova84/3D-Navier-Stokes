@@ -12,7 +12,7 @@ noncomputable def psi_coherence : ℝ := 0.999999
 /-- Energía mínima del operador. -/
 noncomputable def energy_minimum_h : ℝ := f_0 * psi_coherence
 
-/-- Valor canónico: 141.6999 Hz (redondeado). -/
+/-- Valor canónico: 141.69996 Hz (redondeo a 5 decimales). -/
 theorem energy_minimum_value :
     energy_minimum_h = 141.7001 * 0.999999 := by
   unfold energy_minimum_h f_0 psi_coherence

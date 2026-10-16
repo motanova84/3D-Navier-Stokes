@@ -145,7 +145,7 @@ end QCAL.Bures
    - `bures_sq_ident`: $D_B^2 = 2\varepsilon$.
    - `bures_anchor`: Anclaje con el colector $\varepsilon = \Lambda_G^2 / 4$.
 2. **`QCAL.EnergyMinimum`**:
-   - `energy_minimum_value`: $h \equiv f_0 \cdot \Psi = 141.7001 \cdot 0.999999 = 141.69996$ Hz ($\approx 141.6999$ Hz).
+   - `energy_minimum_value`: $h \equiv f_0 \cdot \Psi = 141.7001 \cdot 0.999999 = 141.69996$ Hz (redondeo a 5 decimales).
    - `energy_minimum_pos`: $0 < h$.
 3. **`QCAL.QmolFormat`**:
    - `psi_k_consistency`: $\Psi + k = 1$ en el régimen nominal.
