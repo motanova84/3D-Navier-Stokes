@@ -134,3 +134,27 @@ end QCAL.Bures
 3. **Simetría métrica**: `bures_sq_symm` y `bures_dist_symm` aseguran que la variedad de estados cuántico-informáticos posee simetría riemanniana bajo la métrica de Bures-Fisher.
 4. **Anclaje con el protocolo QCAL-SYMBIO-BRIDGE**: `bures_sq_at_target` conecta la coherencia objetivo $\Psi = 0.999999$ con el defecto $\varepsilon = 1 - \Psi = 10^{-6}$, cerrando la consistencia entre la formalización en Lean 4, el motor numérico en Python y la visualización tridimensional en el navegador.
 
+---
+
+## 6. LIBER XXII — Visor .Qmol Integrado y Cierre Formal
+
+### 6.1 Módulos Formales de LIBER XXII en Lean 4
+1. **`QCAL.Bures`**:
+   - `bures_sq_pos`: Positividad estricta.
+   - `bures_sq_symm`: Simetría de la métrica al cuadrado.
+   - `bures_sq_ident`: $D_B^2 = 2\varepsilon$.
+   - `bures_anchor`: Anclaje con el colector $\varepsilon = \Lambda_G^2 / 4$.
+2. **`QCAL.EnergyMinimum`**:
+   - `energy_minimum_value`: $h \equiv f_0 \cdot \Psi = 141.7001 \cdot 0.999999 = 141.69996$ Hz ($\approx 141.6999$ Hz).
+   - `energy_minimum_pos`: $0 < h$.
+3. **`QCAL.QmolFormat`**:
+   - `psi_k_consistency`: $\Psi + k = 1$ en el régimen nominal.
+
+### 6.2 Fronteras Declaradas
+- **XXII.D.1**: `energy_minimum_h = f₀ · Ψ` es estructural, no derivado desde primeros principios.
+- **XXII.D.2**: $D_{BF}^2 \approx \varepsilon$ es estructural en el colector.
+- **XXII.D.3**: La detección de estructura secundaria es cualitativa.
+- **XXII.D.4**: El modo resonancia a $f_0$ usa escala visual ($f_0 / 100 \approx 1.417$ Hz).
+- **XXII.D.5**: La coloración dual Bures/$\Psi$ es implementada.
+
+

@@ -126,4 +126,13 @@ theorem bures_sq_at_target :
   unfold bures_sq eps_of_psi
   ring
 
+/-- Anclaje con el colector: ε = Λ_G² / 4. -/
+noncomputable def Lambda_G : ℝ := 1 / (Real.pi ^ 2 * 49 + 8)
+noncomputable def epsilon_imperfection : ℝ := Lambda_G ^ 2 / 4
+
+theorem bures_anchor (eps : ℝ) (h : eps = epsilon_imperfection) :
+    bures_sq eps eps = 2 * epsilon_imperfection := by
+  rw [h]
+  exact bures_sq_ident epsilon_imperfection
+
 end QCAL.Bures
