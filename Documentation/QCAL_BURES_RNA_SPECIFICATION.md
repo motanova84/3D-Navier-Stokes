@@ -89,7 +89,48 @@ Se proporcionan tres scripts de extensión para PyMOL:
 
 ## 4. Interfaz Interactiva Web (Three.js)
 
-El archivo `index.html` en la raíz del repositorio provee una simulación interactiva 3D en tiempo real:
-- Renderizado por GPU mediante WebGL y Three.js.
-- Sliders en vivo para modular la frecuencia fundamental $f_0$ (50–300 Hz) y el nivel de perturbación térmica exógena.
-- Representación dinámica de la contracción de Banach ($k = 10^{-6}$) y coloración en gradiente de Bures.
+El archivo `index.html` en la raíz del repositorio provee una simulación interactiva 3D en tiempo real con visor directo para archivos `.qmol`:
+- Renderizado por GPU mediante WebGL y Three.js con niebla cuántica y estética ciberespacio.
+- Botón interactivo de importación local asíncrona mediante `FileReader`.
+- Parser nativo de bloques JSON `qcal_metadata` y registros atómicos `ATOM`, actualizando las coordenadas y la coloración del esqueleto en función de la distancia de Bures ($D_B$).
+- Mapeo dinámico del gradiente métrico en los canales RGB de los vértices.
+
+---
+
+## 5. Formalización Matemática en Lean 4 (`QCAL.Bures`)
+
+El módulo formal `QCAL/Bures.lean` formaliza de manera constructiva y sin axiomas ad-hoc las propiedades de la distancia de Bures-Fisher al cuadrado en el colector de fase:
+
+```lean
+import Mathlib.Data.Real.Basic
+import Mathlib.Analysis.SpecialFunctions.Sqrt
+
+namespace QCAL.Bures
+
+/-- Distancia de Bures-Fisher al cuadrado, en el colector de fase
+    con coherencia imperfecta ε. -/
+noncomputable def bures_sq (eps1 eps2 : ℝ) : ℝ :=
+  eps1 + eps2
+
+/-- Propiedad: la distancia al cuadrado es no negativa para ε positivos. -/
+theorem bures_sq_pos (eps1 eps2 : ℝ)
+    (h1 : 0 < eps1) (h2 : 0 < eps2) :
+    0 < bures_sq eps1 eps2 := by
+  unfold bures_sq
+  linarith
+
+/-- Propiedad: si ε₁ = ε₂ = ε, entonces D_B² = 2ε. -/
+theorem bures_sq_ident (eps : ℝ) :
+    bures_sq eps eps = 2 * eps := by
+  unfold bures_sq
+  ring
+
+end QCAL.Bures
+```
+
+### Propiedades Ancladas e Integradas:
+1. **Positividad estricta y no-negatividad**: `bures_sq_pos` y `bures_sq_nonneg` garantizan que cualquier desviación respecto a la coherencia perfecta induce una distancia métrica no trivial.
+2. **Identidad diagonal**: `bures_sq_ident` demuestra rigurosamente que $D_B^2 = 2\varepsilon$ cuando ambas perturbaciones coinciden.
+3. **Simetría métrica**: `bures_sq_symm` y `bures_dist_symm` aseguran que la variedad de estados cuántico-informáticos posee simetría riemanniana bajo la métrica de Bures-Fisher.
+4. **Anclaje con el protocolo QCAL-SYMBIO-BRIDGE**: `bures_sq_at_target` conecta la coherencia objetivo $\Psi = 0.999999$ con el defecto $\varepsilon = 1 - \Psi = 10^{-6}$, cerrando la consistencia entre la formalización en Lean 4, el motor numérico en Python y la visualización tridimensional en el navegador.
+

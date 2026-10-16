@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QCAL Ecosystem - Geometría de Bures y Operador Phi</title>
+    <title>QCAL Ecosystem - Visor .Qmol e Interfaz de Bures</title>
     <style>
         :root {
             --bg-color: #050508;
-            --panel-bg: rgba(15, 15, 25, 0.85);
+            --panel-bg: rgba(15, 15, 25, 0.9);
             --accent: #00f2fe;
             --accent-secondary: #4facfe;
             --text-color: #e0e0e8;
@@ -40,11 +40,11 @@
             border: 1px solid var(--border-glow);
             border-radius: 12px;
             padding: 20px;
-            width: 340px;
+            width: 360px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
         }
         h1 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-top: 0;
             color: var(--accent);
             text-transform: uppercase;
@@ -53,38 +53,54 @@
         .metric-row {
             display: flex;
             justify-content: space-between;
-            margin: 10px 0;
-            font-size: 0.9rem;
+            margin: 8px 0;
+            font-size: 0.85rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 5px;
+            padding-bottom: 4px;
         }
         .metric-value {
             font-family: monospace;
             color: var(--accent-secondary);
         }
         .control-group {
-            margin-top: 15px;
+            margin-top: 12px;
         }
         label {
             display: block;
-            font-size: 0.8rem;
-            margin-bottom: 5px;
+            font-size: 0.75rem;
+            margin-bottom: 4px;
             color: #b0b0c0;
         }
-        input[type="range"] {
+        input[type="file"] {
+            display: none;
+        }
+        .file-upload-btn {
+            display: block;
             width: 100%;
-            accent-color: var(--accent);
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            color: #050508;
+            text-align: center;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
+            transition: opacity 0.2s;
+        }
+        .file-upload-btn:hover {
+            opacity: 0.9;
         }
         .footer-info {
             margin-top: 15px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #808090;
             text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 8px;
         }
     </style>
-    <!-- Importar Three.js desde CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
@@ -92,39 +108,35 @@
     <div id="canvas-container"></div>
 
     <div class="ui-panel">
-        <h1>QCAL Ecosystem</h1>
+        <h1>Visor QCAL .Qmol</h1>
         <div class="metric-row">
-            <span>Frecuencia Base (f0):</span>
-            <span class="metric-value" id="val-f0">141.70 Hz</span>
+            <span>Protocolo:</span>
+            <span class="metric-value" id="meta-protocol">QCAL-SYMBIO</span>
         </div>
         <div class="metric-row">
-            <span>Coherencia (&Psi;):</span>
-            <span class="metric-value" id="val-psi">0.999999</span>
+            <span>Frecuencia (f0):</span>
+            <span class="metric-value" id="meta-f0">141.7001 Hz</span>
         </div>
         <div class="metric-row">
-            <span>Contracción (k):</span>
-            <span class="metric-value">1.00e-6</span>
+            <span>Coherencia (Ψ):</span>
+            <span class="metric-value" id="meta-psi">0.999999</span>
+        </div>
+        <div class="metric-row">
+            <span>Átomos Cargados:</span>
+            <span class="metric-value" id="meta-count">60 (Simulados)</span>
         </div>
 
-        <div class="control-group">
-            <label for="slider-f0">Modulación de Frecuencia (f0)</label>
-            <input type="range" id="slider-f0" min="50" max="300" step="0.1" value="141.7">
-        </div>
-
-        <div class="control-group">
-            <label for="slider-chaos">Perturbación Exógena (Ruido)</label>
-            <input type="range" id="slider-chaos" min="0" max="1" step="0.01" value="0.2">
-        </div>
+        <label for="qmol-file-input" class="file-upload-btn">📂 Cargar Archivo .Qmol</label>
+        <input type="file" id="qmol-file-input" accept=".qmol,.txt">
 
         <div class="footer-info">
-            Operador &Phi; | Métrica de Bures Activa &#x2705;
+            Parser de Métrica de Bures Activo ✅
         </div>
     </div>
 
     <script>
-        // --- CONFIGURACIÓN DE LA ESCENA 3D (THREE.JS) ---
+        // --- CONFIGURACIÓN DE SCENE 3D ---
         const container = document.getElementById('canvas-container');
-        
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0x050508);
         scene.fog = new THREE.FogExp2(0x050508, 0.035);
@@ -137,113 +149,142 @@
         renderer.setPixelRatio(window.devicePixelRatio);
         container.appendChild(renderer.domElement);
 
-        // --- CREACIÓN DE LA GEOMETRÍA DE BURES / ARN ---
-        const particleCount = 80;
-        const geometry = new THREE.BufferGeometry();
-        const positions = new Float32Array(particleCount * 3);
-        const colors = new Float32Array(particleCount * 3);
+        let particleSystem, lineMesh;
+        let currentPositions = [];
+        let buresValues = [];
 
-        const targetPositions = [];
-        for (let i = 0; i < particleCount; i++) {
-            const t = (i / particleCount) * Math.PI * 6;
-            targetPositions.push(new THREE.Vector3(
-                Math.cos(t) * 5,
-                Math.sin(t) * 5,
-                (i / particleCount) * 16 - 8
-            ));
-            
-            positions[i * 3] = (Math.random() - 0.5) * 20;
-            positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
-            positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
+        function createDefaultHelix() {
+            const count = 60;
+            const positions = [];
+            const colors = [];
+            buresValues = [];
+            currentPositions = [];
+
+            for (let i = 0; i < count; i++) {
+                const t = (i / count) * Math.PI * 6;
+                const x = Math.cos(t) * 4;
+                const y = Math.sin(t) * 4;
+                const z = (i / count) * 14 - 7;
+                
+                currentPositions.push(new THREE.Vector3(x, y, z));
+                buresValues.push(Math.random() * 1e-5);
+            }
+            updateSceneGeometry();
         }
 
-        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+        function updateSceneGeometry() {
+            if (particleSystem) scene.remove(particleSystem);
+            if (lineMesh) scene.remove(lineMesh);
 
-        // Material de partículas brillantes estilo ciberespacio cuántico
-        const material = new THREE.PointsMaterial({
-            size: 0.6,
-            vertexColors: true,
-            transparent: true,
-            opacity: 0.9,
-            blending: THREE.AdditiveBlending
+            const count = currentPositions.length;
+            const geom = new THREE.BufferGeometry();
+            const posAttr = new Float32Array(count * 3);
+            const colAttr = new Float32Array(count * 3);
+            const linePos = [];
+
+            for (let i = 0; i < count; i++) {
+                const p = currentPositions[i];
+                posAttr[i * 3] = p.x;
+                posAttr[i * 3 + 1] = p.y;
+                posAttr[i * 3 + 2] = p.z;
+                
+                linePos.push(p.x, p.y, p.z);
+
+                // Gradiente color según Bures distance
+                let intensity = Math.min(1.0, buresValues[i] * 1e6);
+                colAttr[i * 3] = intensity;          // Canal R
+                colAttr[i * 3 + 1] = 1.0 - intensity; // Canal G
+                colAttr[i * 3 + 2] = 1.0;            // Canal B
+            }
+
+            geom.setAttribute('position', new THREE.BufferAttribute(posAttr, 3));
+            geom.setAttribute('color', new THREE.BufferAttribute(colAttr, 3));
+
+            const mat = new THREE.PointsMaterial({ size: 0.7, vertexColors: true, transparent: true, opacity: 0.95 });
+            particleSystem = new THREE.Points(geom, mat);
+            scene.add(particleSystem);
+
+            const lineGeom = new THREE.BufferGeometry().setFromPoints(currentPositions);
+            const lineMat = new THREE.LineBasicMaterial({ color: 0x00f2fe, transparent: true, opacity: 0.4 });
+            lineMesh = new THREE.Line(lineGeom, lineMat);
+            scene.add(lineMesh);
+
+            document.getElementById('meta-count').innerText = count;
+        }
+
+        // --- PARSER DEL ARCHIVO .QMOL ---
+        document.getElementById('qmol-file-input').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const content = e.target.result;
+                parseQmolContent(content);
+            };
+            reader.readAsText(file);
         });
 
-        const particleSystem = new THREE.Points(geometry, material);
-        scene.add(particleSystem);
+        function parseQmolContent(text) {
+            const lines = text.split('\n');
+            let newPositions = [];
+            let newBures = [];
+            let jsonMetaCaptured = false;
 
-        // Línea conectora del esqueleto
-        const lineMaterial = new THREE.LineBasicMaterial({ color: 0x00f2fe, transparent: true, opacity: 0.3 });
-        const lineGeometry = new THREE.BufferGeometry();
-        const lineMesh = new THREE.Line(lineGeometry, lineMaterial);
-        scene.add(lineMesh);
+            for (let line of lines) {
+                line = line.trim();
+                if (line.startsWith('{') || jsonMetaCaptured) {
+                    try {
+                        // Intento de captura de metadatos JSON
+                        if (line.includes('fundamental_frequency_hz')) {
+                            let match = line.match(/: \s*([0-9.]+)/);
+                            if (match) document.getElementById('meta-f0').innerText = match[1] + " Hz";
+                        }
+                    } catch(err) {}
+                    if (line.includes('}')) jsonMetaCaptured = true;
+                }
 
-        // --- CONTROLES DE INTERACTIVIDAD ---
-        let currentF0 = 141.7;
-        let chaosLevel = 0.2;
+                if (line.startsWith('ATOM')) {
+                    const parts = line.split(/\s+/);
+                    if (parts.length >= 10) {
+                        const x = parseFloat(parts[6]);
+                        const y = parseFloat(parts[7]);
+                        const z = parseFloat(parts[8]);
+                        const buresDb = parseFloat(parts[9]);
 
-        document.getElementById('slider-f0').addEventListener('input', (e) => {
-            currentF0 = parseFloat(e.target.value);
-            document.getElementById('val-f0').innerText = currentF0.toFixed(2) + " Hz";
-        });
+                        newPositions.push(new THREE.Vector3(x, y, z));
+                        newBures.push(buresDb);
+                    }
+                }
+            }
 
-        document.getElementById('slider-chaos').addEventListener('input', (e) => {
-            chaosLevel = parseFloat(e.target.value);
-        });
+            if (newPositions.length > 0) {
+                currentPositions = newPositions;
+                buresValues = newBures;
+                updateSceneGeometry();
+                console.log(">> Archivo .qmol parseado e integrado con éxito.");
+            } else {
+                alert("Error: No se pudieron extraer registros ATOM válidos del archivo .qmol.");
+            }
+        }
 
-        // --- BUCLE DE ANIMACIÓN Y EVOLUCIÓN DEL OPERADOR PHI ---
+        // Inicializar hélice por defecto
+        createDefaultHelix();
+
+        // --- BUCLE DE ANIMACIÓN ---
         let clock = new THREE.Clock();
-
         function animate() {
             requestAnimationFrame(animate);
             let time = clock.getElapsedTime();
 
-            const posAttr = geometry.attributes.position;
-            const colorAttr = geometry.attributes.color;
-            const linePositions = [];
-
-            for (let i = 0; i < particleCount; i++) {
-                let px = posAttr.getX(i);
-                let py = posAttr.getY(i);
-                let pz = posAttr.getZ(i);
-
-                let target = targetPositions[i];
-
-                // Aplicación del operador Phi: Contracción hacia el atractor + filtro armónico de f0
-                let harmonicFactor = Math.cos(time * (currentF0 / 50.0) + i * 0.1);
-                let noiseX = (Math.random() - 0.5) * chaosLevel * harmonicFactor;
-                let noiseY = (Math.random() - 0.5) * chaosLevel * harmonicFactor;
-
-                // Dinámica de contracción de Banach (k = 1e-6 simulado en tasa de aproximación)
-                px += (target.x - px) * 0.05 + noiseX;
-                py += (target.y - py) * 0.05 + noiseY;
-                pz += (target.z - pz) * 0.05;
-
-                posAttr.setXYZ(i, px, py, pz);
-                linePositions.push(px, py, pz);
-
-                // Mapeo de color basado en la distancia de Bures (proximidad al atractor)
-                let distToTarget = Math.sqrt(Math.pow(target.x - px, 2) + Math.pow(target.y - py, 2));
-                let colorIntensity = Math.max(0, 1.0 - distToTarget / 5.0);
-                
-                colorAttr.setXYZ(i, 0.0, colorIntensity * 0.95 + 0.05, 1.0);
+            if (particleSystem) {
+                particleSystem.rotation.y = time * 0.15;
+                lineMesh.rotation.y = time * 0.15;
             }
-
-            posAttr.needsUpdate = true;
-            colorAttr.needsUpdate = true;
-
-            lineGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
-
-            // Rotación suave global de la escena simbiótica
-            particleSystem.rotation.y = time * 0.2;
-            lineMesh.rotation.y = time * 0.2;
-
             renderer.render(scene, camera);
         }
-
         animate();
 
-        // --- RESPONSIVE WINDOW ---
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();

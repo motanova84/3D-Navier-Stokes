@@ -152,6 +152,21 @@ class TestQCALMOLSpecification(unittest.TestCase):
         self.assertTrue(hasattr(qcal, "QCALBuresRNAVisualizer"))
         self.assertTrue(hasattr(qcal, "export_to_qcal_mol"))
         self.assertTrue(hasattr(qcal, "parse_qcal_mol"))
+        self.assertTrue(hasattr(qcal, "bures_sq"))
+
+    def test_bures_sq_properties(self):
+        """Verifica las propiedades formales de bures_sq (bures_sq_pos, bures_sq_ident)."""
+        from qcal.bures_rna_visualizer import bures_sq
+
+        # bures_sq_pos: eps1 > 0 y eps2 > 0 => bures_sq eps1 eps2 > 0
+        eps1 = 0.00001
+        eps2 = 0.00002
+        self.assertGreater(bures_sq(eps1, eps2), 0.0)
+        self.assertAlmostEqual(bures_sq(eps1, eps2), eps1 + eps2, places=8)
+
+        # bures_sq_ident: bures_sq eps eps = 2 * eps
+        eps = 1.0 - 0.999999
+        self.assertAlmostEqual(bures_sq(eps, eps), 2.0 * eps, places=10)
 
 
 if __name__ == "__main__":

@@ -10,6 +10,7 @@ New modules for QCAL ∞³ Framework:
 - SarnakPrinciple: QCAL-Sarnak orthogonality principle
 - EnergyEstimates: Energy decay and estimates
 - SpacetimeFluid: Spacetime-fluid correspondence (membrane paradigm)
+- Bures: Bures-Fisher metric on the quantum phase manifold
 -/
 
 import QCAL.Frequency
@@ -21,5 +22,6 @@ import QCAL.NLSEquation
 import QCAL.SarnakPrinciple
 import QCAL.EnergyEstimates
 import QCAL.SpacetimeFluid
+import QCAL.Bures
 -- Note: QCAL.FrequencyValidation.F0Derivation contains similar definitions
 -- and is imported separately when needed to avoid naming conflicts
