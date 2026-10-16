@@ -200,7 +200,7 @@ def export_to_qcal_mol(
             "target_coherence_psi": psi_target,
             "contraction_factor_k": contraction_k,
             "metric_tensor_type": "Bures-Fisher",
-            "energy_minimum_h": 141.69996 if (abs(f_0 - 141.7001) < 1e-6 and abs(psi_target - 0.999999) < 1e-6) else round(f_0 * psi_target, 5),
+            "energy_minimum_h": round(f_0 * psi_target, 5),
         }
     }
 

@@ -147,6 +147,20 @@ class TestQCALMOLSpecification(unittest.TestCase):
             np.testing.assert_allclose(coords_arr, self.sample_coords, atol=1e-3)
             np.testing.assert_allclose(bures_arr, self.sample_bures, atol=1e-5)
 
+    def test_energy_minimum_uses_custom_coherence(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            qmol_path = os.path.join(tmpdir, "custom-coherence.qmol")
+            export_to_qcal_mol(
+                self.sample_coords[:1],
+                self.sample_bures[:1],
+                filename=qmol_path,
+                f_0=141.7001,
+                psi_target=0.9999995,
+            )
+
+            metadata = parse_qcal_mol(qmol_path)["metadata"]["qcal_metadata"]
+            self.assertEqual(metadata["energy_minimum_h"], 141.70003)
+
     def test_qcal_package_exports(self):
         """Verifica que el paquete qcal exponga los nuevos símbolos."""
         self.assertTrue(hasattr(qcal, "QCALBuresRNAVisualizer"))

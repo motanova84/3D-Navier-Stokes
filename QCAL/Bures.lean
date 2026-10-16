@@ -1,4 +1,4 @@
-/-!
+/-
 # QCAL.Bures: Métrica de Bures-Fisher y Colector de Fase Cuántica
 
 Formalización de la métrica de Bures-Fisher en el colector de fase cuántico-informático

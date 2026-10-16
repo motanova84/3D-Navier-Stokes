@@ -69,6 +69,7 @@ input[type="file"] { display: none; }
 .file-upload-btn {
   display: block; width: 100%;
   background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+  border: 0; font-family: inherit;
   color: #050508; text-align: center;
   padding: 10px; border-radius: 6px;
   font-weight: bold; font-size: 0.82rem;
@@ -172,7 +173,7 @@ input[type="file"] { display: none; }
   </div>
 
   <h2>Controles</h2>
-  <label for="qmol-file-input" class="file-upload-btn">📂 Cargar Archivo .Qmol</label>
+  <button type="button" id="btn-load-qmol" class="file-upload-btn">📂 Cargar Archivo .Qmol</button>
   <input type="file" id="qmol-file-input" accept=".qmol,.txt">
 
   <button class="action-btn" id="btn-toggle-color">
@@ -255,8 +256,16 @@ function createDefaultHelix() {
 // ACTUALIZAR GEOMETRÍA
 // ===================================================================
 function updateSceneGeometry() {
-  if (particleSystem) scene.remove(particleSystem);
-  if (lineMesh) scene.remove(lineMesh);
+  if (particleSystem) {
+    scene.remove(particleSystem);
+    particleSystem.geometry.dispose();
+    particleSystem.material.dispose();
+  }
+  if (lineMesh) {
+    scene.remove(lineMesh);
+    lineMesh.geometry.dispose();
+    lineMesh.material.dispose();
+  }
 
   const count = currentPositions.length;
   const geom = new THREE.BufferGeometry();
@@ -272,20 +281,26 @@ function updateSceneGeometry() {
     let r, g, b;
     if (colorMode === 'bures') {
       // Color por D_BF² normalizada
-      const intensity = Math.min(1.0, buresValues[i] / 2.0e-6);
+      const intensity = Math.min(1.0, buresValues[i] / 2.0);
       r = intensity;
       g = 1.0 - intensity;
       b = 1.0;
     } else if (colorMode === 'psi') {
       // Color por Local_Ψ
-      const psi = psiValues[i] || 0.999999;
+      const psi = psiValues[i] ?? 0.999999;
       const deficit = Math.min(1.0, (1.0 - psi) / 2.0e-6);
       r = deficit;
       g = 1.0 - deficit;
       b = 1.0;
     } else {
-      // Modo estructura: por defecto
-      r = 0.0; g = 1.0; b = 1.0;
+      const psi = psiValues[i] ?? 0.999999;
+      if (psi >= 0.999999) {
+        r = 0.2; g = 1.0; b = 0.4;
+      } else if (psi >= 0.9999) {
+        r = 1.0; g = 0.75; b = 0.0;
+      } else {
+        r = 1.0; g = 0.2; b = 0.2;
+      }
     }
 
     colAttr[i * 3] = r;
@@ -350,6 +365,10 @@ document.getElementById('qmol-file-input').addEventListener('change', function(e
   reader.readAsText(file);
 });
 
+document.getElementById('btn-load-qmol').addEventListener('click', function() {
+  document.getElementById('qmol-file-input').click();
+});
+
 function parseQmolContent(text) {
   const lines = text.split('\n');
   let newPositions = [];
@@ -358,6 +377,8 @@ function parseQmolContent(text) {
   let inJsonBlock = false;
   let jsonBuffer = '';
   let braceDepth = 0;
+  let inJsonString = false;
+  let jsonEscape = false;
 
   for (let rawLine of lines) {
     const line = rawLine.trim();
@@ -366,13 +387,28 @@ function parseQmolContent(text) {
     // --- Parseo del bloque JSON de metadatos ---
     if (line.startsWith('{') && !inJsonBlock) {
       inJsonBlock = true;
-      jsonBuffer = line;
-      braceDepth = (line.match(/{/g) || []).length - (line.match(/}/g) || []).length;
-      continue;
+      jsonBuffer = '';
+      braceDepth = 0;
     }
     if (inJsonBlock) {
-      jsonBuffer += line;
-      braceDepth += (line.match(/{/g) || []).length - (line.match(/}/g) || []).length;
+      jsonBuffer += line + '\n';
+      for (const char of line) {
+        if (inJsonString) {
+          if (jsonEscape) {
+            jsonEscape = false;
+          } else if (char === '\\') {
+            jsonEscape = true;
+          } else if (char === '"') {
+            inJsonString = false;
+          }
+        } else if (char === '"') {
+          inJsonString = true;
+        } else if (char === '{') {
+          braceDepth++;
+        } else if (char === '}') {
+          braceDepth--;
+        }
+      }
       if (braceDepth <= 0) {
         inJsonBlock = false;
         try {
@@ -382,6 +418,8 @@ function parseQmolContent(text) {
           console.warn("JSON no parseable:", err.message);
         }
         jsonBuffer = '';
+        inJsonString = false;
+        jsonEscape = false;
       }
       continue;
     }
@@ -394,12 +432,12 @@ function parseQmolContent(text) {
         const x = parseFloat(parts[6]);
         const y = parseFloat(parts[7]);
         const z = parseFloat(parts[8]);
-        const buresD2 = parseFloat(parts[9]);
+        const buresDistance = parseFloat(parts[9]);
         const localPsi = parts.length >= 11 ? parseFloat(parts[10]) : 0.999999;
 
         if (!isNaN(x) && !isNaN(y) && !isNaN(z)) {
           newPositions.push(new THREE.Vector3(x, y, z));
-          newBures.push(isNaN(buresD2) ? 0 : buresD2);
+          newBures.push(isNaN(buresDistance) ? 0 : buresDistance ** 2);
           newPsi.push(isNaN(localPsi) ? 0.999999 : localPsi);
         }
       }
@@ -433,15 +471,15 @@ function applyMetadata(parsed) {
     document.getElementById('meta-f0').innerText = m.fundamental_frequency_hz + ' Hz';
     globalMeta.f0 = m.fundamental_frequency_hz;
   }
-  if (m.target_coherence_psi) {
+  if (m.target_coherence_psi != null) {
     document.getElementById('meta-psi').innerText = m.target_coherence_psi;
     globalMeta.psi = m.target_coherence_psi;
   }
-  if (m.contraction_factor_k) {
+  if (m.contraction_factor_k != null) {
     document.getElementById('meta-k').innerText = m.contraction_factor_k;
     globalMeta.k = m.contraction_factor_k;
   }
-  if (m.energy_minimum_h) {
+  if (m.energy_minimum_h != null) {
     document.getElementById('meta-h').innerText = m.energy_minimum_h + ' Hz';
     globalMeta.h = m.energy_minimum_h;
   }
@@ -540,6 +578,15 @@ function animate() {
       posAttr[i * 3 + 2] = basePositions[i].z;
     }
     particleSystem.geometry.attributes.position.needsUpdate = true;
+    if (lineMesh) {
+      const lineAttr = lineMesh.geometry.attributes.position.array;
+      for (let i = 0; i < basePositions.length; i++) {
+        lineAttr[i * 3] = basePositions[i].x;
+        lineAttr[i * 3 + 1] = basePositions[i].y;
+        lineAttr[i * 3 + 2] = basePositions[i].z;
+      }
+      lineMesh.geometry.attributes.position.needsUpdate = true;
+    }
   }
 
   renderer.render(scene, camera);
